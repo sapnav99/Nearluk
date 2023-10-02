@@ -1,0 +1,7 @@
+export enum RadioValues {
+  ADMIN = "ADMIN",
+  MASTER_ADMIN = "MASTER_ADMIN",
+  BUYER = "BUYER",
+  SELLER = "SELLER",
+  BUSINESS_OWNER = "BUSINESS_OWNER",
+}

@@ -1,0 +1,19 @@
+/* Action Tyes */
+export const loginTypes = {
+    LOGIN_REQ: 'LOGIN_REQ',
+    LOGIN_REQ_SUCCESS: 'LOGIN_REQ_SUCCESS',
+    LOGIN_REQ_FAILED: 'LOGIN_REQ_FAILED',
+    SET_USER_DATA: 'SET_USER_DATA',
+    REMOVE_USER_DATA: 'REMOVE_USER_DATA',  
+    USER_LOGGED_OUT:'USER_LOGGED_OUT',
+};
+
+
+export const signupTypes = {
+  FETCH_SIGNUP_REQ: "FETCH_SIGNUP_REQ",
+  SET_SIGNUP_REQ: "SET_SIGNUP_REQ",
+};
+
+
+
+

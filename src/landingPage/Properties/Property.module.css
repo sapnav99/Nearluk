@@ -1,0 +1,31 @@
+/* .blog-posts > figure {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  max-width: 340px;
+}
+.blog-posts > figure img {
+  border-radius: 6px;
+  width: 100%;
+} */
+.blog_posts.figure img {
+  width: 500px;
+}
+.images {
+  width: 550px;
+}
+.blogpostmeta {
+  /* display: inline-block; */
+  /* max-width: 50%; */
+  padding-left: 15px;
+  margin-top: 20px;
+  vertical-align: middle;
+}
+@media only screen and (max-width: 768px) {
+
+
+.main2{
+  display: flex;
+  flex-direction: column;
+}
+}

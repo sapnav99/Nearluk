@@ -1,0 +1,20 @@
+.blog-posts{
+    margin-bottom: 0px; 
+    display: flex;
+}
+@media only screen and (max-width: 768px) {
+    .main-wraper {
+        height: 400px;
+      margin-bottom: -80px; /* Adjust margin for smaller screens */
+    }
+  
+    .blog-posts {
+        height: 400px;
+      flex-direction: column;
+      margin-bottom: 20px; /* Add some spacing between the items */
+    }
+  
+    .blog-post-meta {
+      text-align: center;
+    }
+  }

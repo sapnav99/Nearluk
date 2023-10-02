@@ -1,0 +1,46 @@
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 10px 30px 0px rgb(0 0 0 / 6%);
+  margin-right: 70px;
+}
+
+.category-inner-card {
+  margin-left: -40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.category-card .icon {
+  font-size: 17px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.category-card .info {
+  flex-grow: 1;
+  color: gray;
+}
+
+.category-card .edit-icon,
+.category-card .check-icon {
+  font-size: 17px;
+  color: gray;
+  cursor: pointer;
+  position: absolute;
+  right: 10px; /* Adjust the right position as needed */
+}
+
+.category-card .check-icon {
+  color: green;
+}
+
+.category-card .edit-icon:hover,
+.category-card .check-icon:hover {
+  color: blue;
+}

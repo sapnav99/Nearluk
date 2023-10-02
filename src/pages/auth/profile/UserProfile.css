@@ -1,0 +1,88 @@
+
+@media (max-width: 767px) {
+.nav .nav-tabs .post-detail-btn {
+  display: none;
+}
+}
+/* @media (max-width: 900px) {
+  
+  .mobile-nav-icon {
+    display: block;
+    color: white;
+    font-size: 30px;
+  }
+
+  .mobile-nav-menu {
+    display: none;
+    
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    z-index: 999;
+  }
+
+  .mobile-nav-menu.show {
+    display: block;
+  }
+
+  .post-detail-btn li.nav-item {
+    margin-left: 0;
+    text-align: start;
+  }
+
+  .post-detail-btn li.nav-item a {
+    color: black;
+    border-radius: none;
+  }
+
+  .post-detail-btn li.nav-item a.active {
+    border: none;
+    border-radius: none;
+    background-color: aquamarine;
+  }
+
+  .post-detail-btn li.nav-item a.active::before {
+    content: "";
+    height: 0;
+    left: -15px;
+    position: absolute;
+    top: -4px;
+    width: 0;
+    background-color: aquamarine;
+    border: none;
+    border-radius: none;
+  }
+
+  .post-detail-btn li.nav-item a.active::after {
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -15px;
+    top: 8px;
+    width: 0;
+    background-color: aquamarine;
+    border: none;
+    border-radius: none;
+  }
+
+  .post-subject ul.post-detail-btn {
+    text-align: right; 
+  }
+  .nav-item > span {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-nav-icon-container {
+    display: block;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-nav-icon-container {
+    display: none;
+  }
+} */

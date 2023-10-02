@@ -1,0 +1,33 @@
+.more-details {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+}
+.more-details li {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 33.333%;
+  font-size: 14px;
+  line-height: 24px;
+  color: #93959e;
+  padding-left: 28px;
+}
+.more-details li i {
+  position: absolute;
+  left: 0px;
+  top: 3px;
+  font-size: 14px;
+}
+.more-details li:before {
+  position: absolute;
+  content: "";
+  background-color: #e5e7ec;
+  width: 1px;
+  height: 18px;
+  top: 2px;
+  right: 12px;
+}
+.more-details li:last-child:before {
+  display: none;
+}

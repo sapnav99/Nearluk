@@ -1,0 +1,144 @@
+.full-book {
+  display: inline-block;
+  width: 100%;
+}
+.full-book  .propdetail__image_container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.full-book > figure > span {
+  background: #fec42d none repeat scroll 0 0;
+  color: #ffffff;
+  font-size: 12px;
+  left: -5px;
+  padding: 2px 14px;
+  position: absolute;
+  top: 5px;
+}
+.property__icon_cards > svg {
+  /* color: #A4A4A4 !important; */
+  stroke: #A4A4A4;
+  fill: #fff;
+}
+.property__icon_cards > h6 {
+  color: #A4A4A4;
+}
+.property__icon_cards{
+  width: 84px;
+  height: 33p[x];
+  display: flex;
+}
+.postproperty_detail_chip{
+  margin: 5px;
+  border-radius: none;
+  color: #A4A4A4;
+}
+
+.customLabelColor {
+  color: #A4A4A4; /* Replace with your desired label color */
+  font-size: 11px;
+}
+.customNoBorderRadius {
+  border-radius: 0;
+}
+.customBorderColor {
+  border-color: #00ff00; /* Replace with your desired border color */
+}
+.property__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.property__header_right{
+  width: 60%;
+}
+.property__header__left{
+  width: 40%;
+}
+
+.property__name{
+  color: #000000;
+  font-size: 22px;
+  margin: 10px 10px;
+}
+.property__naming_contacted{
+  font-size: 12px;
+  margin-right: 10px;
+  background-color: #a2eecc;
+}
+.property__naming_contacted p {
+    font-size: 12px;
+    padding: 3px
+}
+.property__naming_address{
+  color: #A4A4A4  ;
+  font-size: 13px;
+}
+.property__social__buttons{
+  border: none;
+  background-color: #79D9B0;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 5px;
+}
+.property__naming_rigth{
+  width: 60%;
+}
+.property__naming_left{
+  width: 40%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.property__namimg_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.property__pricing{
+  background-color:#c7c4c4;
+  border-radius: 16px;
+  padding: 3px 16px;
+}
+.property__pricing h4 {
+  color: #000000;
+}
+.property__pricing p {
+  color: #b8b5b5;
+  margin-bottom: 0;
+  text-align: center;
+  color: #646262;
+}
+.owner__container p {
+  
+}
+.property__user_profile_container{
+
+}
+.property__avtar_container{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.property__avtar{
+  margin: 5px;
+}
+.owner{
+  color: #646262;
+}
+.book__site_button{
+  border: none;
+  border-radius: 25px;
+  padding: 13px;
+  color: #000000;
+  font-size: 14px;
+}
+.request__button{
+  border: none;
+  border-radius: 25px;
+  padding: 13px;
+  background-color: rgb(126, 215, 207);
+  margin-left: 4px;
+}

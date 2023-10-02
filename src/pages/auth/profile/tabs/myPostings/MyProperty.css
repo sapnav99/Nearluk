@@ -1,0 +1,14 @@
+.verified-tag {
+  text-align: center;
+  width: 125px;
+  position: absolute;
+  top: 30px;
+  right: 39px;
+  background-color: #ff4500;
+  color: white;
+  padding: 5px 10px;
+  transform: translate(50%, -50%) rotate(39deg);
+  transform-origin: center;
+  z-index: 1;
+  clip-path: polygon(29% 0%, 80% 0%, 100% 100%, 0% 100%);
+}

@@ -1,0 +1,73 @@
+/* Chart.css */
+.rightContainer li {
+  color: #9c9c9c;
+  background-color: #eaeaea;
+}
+
+.rightContainer .nav-item a.nav-link.active {
+  color: black !important;
+  background-color: #7ed8cc !important;
+}
+/* .main-wraper,
+aside .widget {
+  height: fit-content;
+  background: #fafafa none repeat scroll 0 0;
+  border: 1px solid #e1e8ed;
+  border-radius: 5px;
+  display: block;
+  margin-bottom: 30px;
+  padding: 15px 20px 20px;
+  position: relative;
+  width: 100%;
+  z-index: 9;
+} */
+.followers1 {
+  background-color: white;
+  height: fit-content;
+  position: relative;
+}
+.followers1 > li figure {
+  background-color: white;
+  display: inline-block;
+  margin-bottom: 0;
+  max-width: fit-content;
+  min-width: fit-content;
+  vertical-align: middle;
+  width: 40px;
+}
+.followers1 > li figure img {
+  border-radius: 100%;
+}
+.friend_meta {
+  background-color: white;
+  display: inline-block;
+  padding-left: 10px;
+  vertical-align: middle;
+  width: fit-content;
+}
+.friend_meta > h4 {
+  padding-top: 10px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0;
+  width: fit-content;
+}
+.friend_meta > a {
+  float: right;
+
+  font-size: 20px;
+  margin-top: 3px;
+  position: relative;
+}
+.friend_meta span {
+  color: #9b9b9b;
+  display: inline-block;
+  font-size: 11px;
+  width: fit-content;
+}
+.friend_meta h4 a {
+  font-weight: 500;
+  font-size: 15px;
+  /* font-family: poppins; */
+}

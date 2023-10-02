@@ -1,0 +1,4 @@
+export const getAllpropdata = {
+  FETCH_ALL_PROPERTY: "FETCH_ALL_PROPERTY",
+  SET_ALL_PROPERTY: "SET_ALL_PROPERTY",
+};
