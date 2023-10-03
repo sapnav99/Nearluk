@@ -7,8 +7,8 @@ import PlacesAutocomplete, {
 
 type SearchProps = {
   address: string;
-  setAddress: () => void;
-  setCoordinates: () => void
+  setAddress: any;
+  setCoordinates: any;
 };
 
 export default function PropertySearchLocation({
@@ -18,7 +18,7 @@ export default function PropertySearchLocation({
 }: SearchProps) {
   const handleChange = () => {};
 
-  const handleSelect = async (value) => {
+  const handleSelect = async (value: any) => {
     const results = await geocodeByAddress(value);
     const ll = await getLatLng(results[0]);
     setAddress(value);
@@ -32,7 +32,12 @@ export default function PropertySearchLocation({
         onChange={setAddress}
         onSelect={handleSelect}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        {({
+          getInputProps,
+          suggestions,
+          getSuggestionItemProps,
+          loading,
+        }: any) => (
           <div>
             <input
               {...getInputProps({

@@ -18,10 +18,15 @@ interface Category {
 }
 
 interface PropertyOneProps {
-  data: Category[];
-  setStepOne: Dispatch<SetStateAction<boolean>>;
-  setStepTwo: Dispatch<SetStateAction<boolean>>;
+  data: any;
+  setStepOne: any;
+  setStepTwo: any;
 }
+// interface PropertyOneProps {
+//   data: Category[];
+//   setStepOne: Dispatch<SetStateAction<boolean>>;
+//   setStepTwo: Dispatch<SetStateAction<boolean>>;
+// }
 
 export default function PostPropertyOne({
   data,

@@ -22,11 +22,17 @@ import { propertyAction } from "./redux/actions";
 import { useNavigate } from "react-router-dom";
 
 type proprtyTwoProps = {
-  setStepOne: React.Dispatch<React.SetStateAction<boolean>>;
-  setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
+  setStepOne: any;
+  setStepTwo: any;
   stepOneData: any;
-  setOpenModal: () => void;
+  setOpenModal: any;
 };
+// type proprtyTwoProps = {
+//   setStepOne: React.Dispatch<React.SetStateAction<boolean>>;
+//   setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
+//   stepOneData: any;
+//   setOpenModal: () => void;
+// };
 
 interface furnish {
   active: any;
@@ -116,7 +122,7 @@ export default React.memo(function PostPropertyTwo({
 
   const hideInputRef: React.MutableRefObject<undefined> = useRef();
 
-  const handleMarkerDragEnd = (event: google.maps.MouseEvent) => {
+  const handleMarkerDragEnd = (event: any) => {
     const newLat = event.latLng.lat();
     const newLng = event.latLng.lng();
     setCurrentPosition({ lat: newLat, lng: newLng });
@@ -140,8 +146,8 @@ export default React.memo(function PostPropertyTwo({
 
   // function for handling images when change
 
-  const handleImageSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formData = new FormData();
+  const handleImageSelect = async (e: any) => {
+    const formData: any = new FormData();
 
     formData.append("file", e.target.files[0]);
     const urlOfSeerver = await uploadtoServer(formData);
@@ -475,7 +481,7 @@ export default React.memo(function PostPropertyTwo({
         <div className="property__photo_button_container">
           <button
             className="property_photo__button"
-            onClick={() => hideInputRef.current.click()}
+            onClick={() => hideInputRef?.current.click()}
           >
             +Add picture
           </button>

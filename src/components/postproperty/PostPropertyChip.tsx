@@ -9,12 +9,19 @@ interface Category {
 }
 
 interface PropertyChipProps {
-  data: Category[];
-  setPtype?: Dispatch<SetStateAction<Category[]>> | undefined;
+  data: any;
+  setPtype?: any;
   forLable: string;
   propertyTypes: any;
   setPropertyTypes: any;
 }
+// interface PropertyChipProps {
+//   data: Category[];
+//   setPtype?: Dispatch<SetStateAction<Category[]>> | undefined;
+//   forLable: string;
+//   propertyTypes: any;
+//   setPropertyTypes: any;
+// }
 
 export default function PostPropertyChip({
   data,
