@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+
 import banner1 from "../assets/images/banner1.jpg";
 import banner2 from "../assets/images/banner2.jpg";
 import banner3 from "../assets/images/banner3.jpg";
@@ -7,13 +6,7 @@ import useExternalScripts from "../hooks/useExternalScripts";
 import { Carousel } from "antd";
 import SearchBar from "../components/searchbar/SearchBar";
 
-const contentStyle: React.CSSProperties = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
+
 
 const ImageCarousel = () => {
   useExternalScripts({ urls: ["js/main.min.js", "js/script.js"] });

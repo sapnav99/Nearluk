@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // import "../MyGallery/MyGallery.css";
 import Verified from "./Verified";
 
-type Props = {};
 
-const Verify = (props: Props) => {
+
+const Verify = () => {
   const [activeTab, setActiveTab] = useState("property");
 
   const handleTabClick = (tab: string) => {

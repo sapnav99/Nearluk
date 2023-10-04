@@ -1,13 +1,13 @@
-import React from "react";
+
 import bangalore from "../../assets/images/bangalore.png";
 import hyderabad from "../../assets/images/hyderabad.png";
 import mumbai from "../../assets/images/Mumbai.png";
 import chennai from "../../assets/images/chennai.png";
 import delhi from "../../assets/images/delhi.png";
 import pune from "../../assets/images/pune.png";
-type Props = {};
 
-const SearchProperty = (props: Props) => {
+
+const SearchProperty = () => {
   return (
     <div>
       <section style={{ backgroundColor: "#eafaf1" }}>

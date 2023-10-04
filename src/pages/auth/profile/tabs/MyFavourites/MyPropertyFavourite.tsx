@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // import "../MyGallery/MyGallery.css";
 import "../myPostings/MyProperty.css";
-type Props = {};
 
-const PropertyFavourite = (props: Props) => {
-  const propertyArray = Array.from({ length: 10 });
+
+const PropertyFavourite = () => {
+ 
   const [activeTab, setActiveTab] = useState("sell");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -15,8 +15,8 @@ const PropertyFavourite = (props: Props) => {
     setCurrentPage(1);
   };
 
-  const startIndex = (currentPage - 1) * imagesPerPage;
-  const endIndex = startIndex + imagesPerPage;
+  
+
   return (
     <div>
       <div className="leftContainer">

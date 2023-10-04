@@ -1,9 +1,9 @@
-import React from "react";
+
 import final from "../../assets/images/final letterhead 1.png";
 import './Services.css'
-type Props = {};
 
-const ServicesAd = (props: Props) => {
+
+const ServicesAd = () => {
   return (
     <div>
       <div className="gap">

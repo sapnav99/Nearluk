@@ -1,4 +1,4 @@
-import React from "react";
+
 import villa3 from "../../assets/images/villa3.jpg";
 import villa4 from "../../assets/images/villa4.jpg";
 import profile from "../../assets/images/profilePhoto.jpg";
@@ -7,10 +7,10 @@ import elevator from "../../assets/images/elevator 1.png";
 import swimming from "../../assets/images/swimming 1.png";
 import "../Properties/EventSpace.css";
 import './AgentProperty.css'
-type Props = {};
 
-const AgentProperties = (props: Props) => {
-  const propertyArray = Array.from({ length: 3 });
+
+const AgentProperties = () => {
+ 
   return (
     <div>
       <div className="gap">

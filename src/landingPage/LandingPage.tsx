@@ -1,10 +1,10 @@
-import React from "react";
+
 import ImageCarousel from "./ImageCarousel";
-import SearchBar from "../components/searchbar/SearchBar";
+
 import Services from "./services/Services";
 import Ownerproperties from "./Properties/Ownerproperties";
 import SearchProperty from "./Properties/SearchProperties";
-import PopularAgents from "./agents/PopularAgents";
+
 import Featured from "./Properties/Featured";
 import EventSpaces from "./Properties/EventSpaces";
 import AgentProperties from "./agents/AgentProperties";
@@ -14,11 +14,11 @@ import TopProjects from "./Properties/TopPojects";
 import Trending from "./Properties/Trending";
 
 import Plots from "./Properties/Plots";
-import Rent from "./Properties/Rent";
 
-type Props = {};
 
-const LandingPage = (props: Props) => {
+
+
+const LandingPage = () => {
   return (
     <div>
       <ImageCarousel />

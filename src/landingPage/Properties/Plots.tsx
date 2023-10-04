@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import topbuilders1 from "../../assets/images/Topbuilders1.png";
 import topbuilders2 from "../../assets/images/Topbuilders2.png";
@@ -6,9 +6,9 @@ import topbuilders3 from "../../assets/images/Topbuilders3.png";
 
 import "./EventSpace.css";
 
-type Props = {};
 
-const Plots = (props: Props) => {
+
+const Plots = () => {
   
   return (
     <div>

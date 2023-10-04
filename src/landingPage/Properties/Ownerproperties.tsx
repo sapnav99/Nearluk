@@ -1,9 +1,9 @@
-import React from "react";
+
 import villa2 from "../../assets/images/villa2.jpg";
 import profile from "../../assets/images/profilePhoto.jpg";
-type Props = {};
 
-const Ownerproperties = (props: Props) => {
+
+const Ownerproperties = () => {
   const propertyArray = Array.from({ length: 4 });
   return (
     <div className="gap">

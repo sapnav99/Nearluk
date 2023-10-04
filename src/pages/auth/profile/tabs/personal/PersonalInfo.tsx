@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./PersonalInfo.css";
 import Recent from "./Recent";
 import emails from "../../../../../assets/images/email 1.png";
@@ -28,7 +28,7 @@ import youtube from "../../../../../assets/images/youtube 1.png";
 //   faYoutube,
 // } from "@fortawesome/free-brands-svg-icons";
 
-type Props = {};
+
 
 const PersonalInfo = ({phoneNumber,email}: any) => {
   return (

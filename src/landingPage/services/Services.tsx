@@ -1,4 +1,3 @@
-import React from "react";
 import rental from "../../assets/images/Rental.png";
 import packers from "../../assets/images/Packers and movers.png";
 import cleaning from "../../assets/images/Cleaning.png";
@@ -6,9 +5,8 @@ import plumbing from "../../assets/images/Plumbing.png";
 import electrician from "../../assets/images/electrician 1.png";
 import painting from "../../assets/images/Painting.png";
 
-type Props = {};
 
-const Services = (props: Props) => {
+const Services = () => {
   return (
     <div>
       <section>

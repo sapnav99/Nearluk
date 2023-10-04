@@ -1,18 +1,18 @@
-import React from "react";
+
 import styles from "./Recent.module.css";
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
+
   Tooltip,
   Legend,
   Cell,
 } from "recharts";
-type Props = {};
 
-const Recent = (props: Props) => {
+
+const Recent = () => {
   const data = [
     { name: "Category 1", value: 10, color: "#D9D9D9" },
     { name: "Category 2", value: 15, color: "#F07575" },
