@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+// import "../MyGallery/MyGallery.css";
 import "../myPostings/MyProperty.css";
 type Props = {};
 

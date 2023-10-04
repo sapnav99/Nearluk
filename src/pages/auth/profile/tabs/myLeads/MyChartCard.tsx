@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+// import "../MyGallery/MyGallery.css";
 import "./MyLead.css";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";

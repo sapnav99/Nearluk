@@ -7,7 +7,6 @@ import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 
 import { useNavigate } from "react-router-dom";
-
 import Inputs from "./Inputs";
 import axios from "axios";
 interface Values {

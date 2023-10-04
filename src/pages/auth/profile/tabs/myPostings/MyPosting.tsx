@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+// import "../MyGallery/MyGallery.css";
 import Property from "./MyPostProperty";
 type Props = {};
 
