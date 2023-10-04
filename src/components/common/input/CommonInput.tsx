@@ -1,8 +1,8 @@
 import React from "react";
 import "./Input.css";
 type Props = {
-  onChange?: (e: any) => void;
-  onBlur?: (e: any) => void;
+  onChange?:any;
+  onBlur?: any;
   id?: string;
   name?: string;
   type?: string;
@@ -55,4 +55,4 @@ const CommonInput: React.FC<Props> = ({
   );
 };
 
-export default CommonInput;
+export default React.memo(CommonInput);

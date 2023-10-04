@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-import * as Yup from "yup";
 import login1 from "../../../assets/images/Login-page1.jpg";
 import login2 from "../../../assets/images/Login-page2.jpg";
 import { notification } from "antd";
@@ -12,11 +11,7 @@ import useExternalScripts from "../../../hooks/useExternalScripts";
 import SentOtpBox from "./SentOtpBox";
 import VerifyOTPBox from "./VerifyOTPBox";
 
-interface Values {
-  email: string;
-  mobile_no: string;
-  showEmailField: boolean;
-}
+
 type NotificationType = "success" | "info" | "warning" | "error";
 
 const Login1 = () => {
@@ -31,10 +26,7 @@ const Login1 = () => {
   const loginResponse = useSelector(
     (state: any) => state?.loginReducer?.logRes
   );
-  const loginLoading = useSelector(
-    (state: any) => state?.loginReducer?.loading
-  );
-
+  
   const openNotification = (
     placement: NotificationPlacement,
     type: NotificationType,

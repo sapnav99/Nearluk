@@ -25,7 +25,7 @@ const Recent = (props: Props) => {
     stroke: "#FDF1E7",
     strokeWidth: 7,
   };
-  const RoundedBar = (props) => {
+  const RoundedBar = (props:any) => {
     const { x, y, width, height, fill } = props;
 
     const borderRadius = 10;

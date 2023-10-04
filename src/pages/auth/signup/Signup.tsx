@@ -1,62 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Formik, useFormikContext } from "formik";
-import * as Yup from "yup";
-import { message, notification } from "antd";
+import notification from "antd/lib/notification";
 import { LoginActions } from "../redux/actions";
 import useExternalScripts from "../../../hooks/useExternalScripts";
 import { useDispatch, useSelector } from "react-redux";
-
-import { useNavigate } from "react-router-dom";
-
 import type { NotificationPlacement } from "antd/es/notification/interface";
 
 import Signup1 from "./Signup1";
 import Signup2 from "./Signup2";
 import Signup3 from "./Signup3";
 
-interface Values {
-  fName: string;
-  lName: string;
-  mobile_no: string;
-  userType: string;
-  email: string;
-  showEmailField: boolean;
-}
-
 type NotificationType = "success" | "info" | "warning" | "error";
 
 const Signup = () => {
   useExternalScripts({ urls: ["js/main.min.js", "js/script.js"] });
-
   const [api1, contextHolder] = notification.useNotification();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [step, setStep] = useState(1);
-  const navigate = useNavigate();
-
+  const [otpDetails, setOtpDetails] = useState(null);
   const signupRes = useSelector(
     (state: any) => state?.loginReducer?.signupData
   );
-  console.log(signupRes);
-  const signUpLoading = useSelector(
-    (state: any) => state?.loginReducer?.signupLoading
-  );
-  console.log(signUpLoading);
-  const dispatch = useDispatch();
 
-  useExternalScripts({
-    urls: [
-      "assets/js/script.js", // Your main script should be the last in the array
-    ],
-  });
-  const initialValues: Values = {
-    fName: "",
-    lName: "",
-    mobile_no: "",
-    userType: "",
-    email: "",
-    showEmailField: false,
-  };
+  const dispatch = useDispatch();
+  useExternalScripts({ urls: ["js/main.min.js", "js/script.js"] });
 
   const openNotification = (
     placement: NotificationPlacement,
@@ -70,44 +36,43 @@ const Signup = () => {
       duration: 1.5,
     });
   };
-
-  console.log(signupRes);
   useEffect(() => {
-    if (signupRes?.code === 400 || signupRes?.code === 500) {
-      openNotification("topRight", "error", signupRes?.error?.msg);
+    if (signupRes === "User already exists") {
+      openNotification("topRight", "error", signupRes?.msg);
       dispatch(LoginActions.setSignup(null));
-    } else if (signupRes?.code === 200) {
-      setStep((prevStep) => prevStep + 1);
     }
+ 
   }, [dispatch, signupRes]);
-
-  // const handleButtonClick = async () => {
-  //   await signUp(formik.values);
-  //   navigate("/login");
-  // };
-  console.log(phoneNumber);
-  const nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
-  };
-
-  const prevStep = () => {
-    setStep((prevStep) => prevStep - 1);
-  };
+console.log("signup")
 
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
           <Signup1
-            setPhoneNumber={setPhoneNumber}
-            phoneNumber={phoneNumber}
-            onNextStep={nextStep}
+            openNotification={openNotification}
+            setStep={setStep}
+            setPhone={setPhoneNumber}
+       
+            setOtpDetails={setOtpDetails}
           />
         );
       case 2:
-        return <Signup2 onNextStep={nextStep} />;
+        return (
+          <Signup2
+            setStep={setStep}
+            openNotification={openNotification}
+            otpDetails={otpDetails}
+          />
+        );
       case 3:
-        return <Signup3 phoneNumber={phoneNumber} />;
+        return (
+          <Signup3
+            setStep={setStep}
+            phoneNumber={phoneNumber}
+            openNotification={openNotification}
+          />
+        );
       default:
         return null;
     }
@@ -115,7 +80,7 @@ const Signup = () => {
 
   return (
     <div className="theme-layout">
-      {/* {contextHolder} */}
+      {contextHolder}
 
       <div className="gap no-gap signin whitish medium-opacity register">
         <div
@@ -186,4 +151,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default React.memo(Signup);

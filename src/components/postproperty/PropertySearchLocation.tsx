@@ -47,7 +47,7 @@ export default function PropertySearchLocation({
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
-              {suggestions.map((suggestion) => {
+              {suggestions.map((suggestion:any) => {
                 const className = suggestion.active
                   ? "suggestion-item--active"
                   : "suggestion-item";

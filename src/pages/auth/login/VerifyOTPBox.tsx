@@ -1,17 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import login1 from "../../../assets/images/Login-page1.jpg";
-import login2 from "../../../assets/images/Login-page2.jpg";
+import { LoginActions } from "../redux/actions";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
-import { message, notification } from "antd";
-import type { NotificationPlacement } from "antd/es/notification/interface";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { LoginActions } from "../redux/actions";
-import useExternalScripts from "../../../hooks/useExternalScripts";
+import { message } from "antd";
+
 import axios from "axios";
 
 const otpSchema = Yup.object().shape({
@@ -21,10 +15,10 @@ const VerifyOTPBox = ({
   step,
   setStep,
   navigate,
-  setOtpDetails,
+  
   otpDetails,
   mobnum,
-  setMobNum,
+ 
   openNotification,
   dispatch,
 }: any) => {
@@ -45,7 +39,7 @@ const VerifyOTPBox = ({
         return;
       }
 
-      const res = await axios.post(`http://65.0.108.54:2000/users/login`, {
+      const res = await axios.post(`https://5d28-183-82-109-169.ngrok-free.app/users/login`, {
         id: otpDetails,
         mobile_no: mobnum,
         otp: enteredOTP,
@@ -87,8 +81,7 @@ const VerifyOTPBox = ({
         }}
       >
         {({
-          errors,
-          touched,
+          
           handleChange,
           handleBlur,
           handleSubmit,

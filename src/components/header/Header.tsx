@@ -15,7 +15,6 @@ const Header: React.FC<Props> = ({}) => {
     (state: any) => state?.loginReducer?.isLoggedIn
   );
 
-  console.log(isLoggedIn);
   const handleButtonClick = () => {
     navigate("/");
     dispatch(LoginActions.loggedOut());
@@ -466,7 +465,7 @@ const Header: React.FC<Props> = ({}) => {
             //   marginRight: "-10px",
             // }}
           >
-            {/* <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li> */}
+            <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
 
             <li>
               <a>Rent Pay</a>

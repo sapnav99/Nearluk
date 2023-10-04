@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PersonalInfo from "./tabs/personal/PersonalInfo";
-import Gallery from "./tabs/MyGallery/MyGallery";
+
 import Posting from "./tabs/myPostings/MyPosting";
 import MyLeads from "./tabs/myLeads/MyLeads";
 import Favourite from "./tabs/MyFavourites/MyFavourite";
@@ -71,80 +71,68 @@ const UserProfile = (props: Props) => {
                         </li>
                       ) : (
                         ""
-                        
                       )}
-                     
-                     
                     </ul>
-                    
                   </div>
 
-                  <div >
-      {/* {isLoggedIn && ( */}
-      <nav className="sidebar">
-        <ul className="menu-slide">
-          <li className="">
-          <a
-                        className={`nav-link ${
-                          activeTab === "personal" ? "active" : ""
-                        }`}
-                        href="#"
-                        data-toggle="tab"
-                        onClick={() => handleTabClick("personal")}
-                      >
-              
-              Personal Info
-            </a>
-          </li>
-          <li className="">
-          <a
-                        className={`nav-link ${
-                          activeTab === "posting" ? "active" : ""
-                        }`}
-                        href="#"
-                        data-toggle="tab"
-                        onClick={() => handleTabClick("posting")}
-                      >
-              
-              My Postings
-            </a>
-          </li>
-          <li className="">
-          <a
-                        className={`nav-link ${
-                          activeTab === "lead" ? "active" : ""
-                        }`}
-                        href="#"
-                        data-toggle="tab"
-                        onClick={() => handleTabClick("lead")}
-                      >
-              
-              My Leads
-            </a>
-          </li>
-          <li className="">
-          <a
-                        className={`nav-link ${
-                          activeTab === "favourite" ? "active" : ""
-                        }`}
-                        href="#"
-                        data-toggle="tab"
-                        onClick={() => handleTabClick("favourite")}
-                      >
-              
-              My Favourites
-            </a>
-          </li>
-          
-          
-        </ul>
-      </nav>
-      {/* )} */}
-    </div>
-                  
-                  <ul
-                    className="nav nav-tabs post-detail-btn " 
-                  >
+                  <div>
+                    {/* {isLoggedIn && ( */}
+                    <nav className="sidebar">
+                      <ul className="menu-slide">
+                        <li className="">
+                          <a
+                            className={`nav-link ${
+                              activeTab === "personal" ? "active" : ""
+                            }`}
+                            href="#"
+                            data-toggle="tab"
+                            onClick={() => handleTabClick("personal")}
+                          >
+                            Personal Info
+                          </a>
+                        </li>
+                        <li className="">
+                          <a
+                            className={`nav-link ${
+                              activeTab === "posting" ? "active" : ""
+                            }`}
+                            href="#"
+                            data-toggle="tab"
+                            onClick={() => handleTabClick("posting")}
+                          >
+                            My Postings
+                          </a>
+                        </li>
+                        <li className="">
+                          <a
+                            className={`nav-link ${
+                              activeTab === "lead" ? "active" : ""
+                            }`}
+                            href="#"
+                            data-toggle="tab"
+                            onClick={() => handleTabClick("lead")}
+                          >
+                            My Leads
+                          </a>
+                        </li>
+                        <li className="">
+                          <a
+                            className={`nav-link ${
+                              activeTab === "favourite" ? "active" : ""
+                            }`}
+                            href="#"
+                            data-toggle="tab"
+                            onClick={() => handleTabClick("favourite")}
+                          >
+                            My Favourites
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                    {/* )} */}
+                  </div>
+
+                  <ul className="nav nav-tabs post-detail-btn ">
                     <li className="nav-item">
                       <a
                         className={`nav-link ${
@@ -221,7 +209,7 @@ const UserProfile = (props: Props) => {
                       >
                         My Gallery
                       </a> */}
-                      {/* <span>23</span> */}
+                    {/* <span>23</span> */}
                     {/* </li> */}
                   </ul>
 

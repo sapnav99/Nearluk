@@ -1,60 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
-import { Formik, useFormikContext } from "formik";
-import * as Yup from "yup";
-import { message, notification } from "antd";
-import { LoginActions } from "../redux/actions";
-import useExternalScripts from "../../../hooks/useExternalScripts";
-import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import api from "../../../api/apiServices";
-import Logo from "../../../assets/main-logo.png";
-import { useNavigate } from "react-router-dom";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
-import type { NotificationPlacement } from "antd/es/notification/interface";
-import { RadioValues } from "../../Constants/EnumValue";
-import axios from "axios";
-
-type NotificationType = "success" | "info" | "warning" | "error";
-
-type Props = {};
 
 const Signup1 = ({
-  onNextStep,
-  setPhoneNumber,
-  phoneNumber,
-}: {
-  onNextStep: () => void;
-}) => {
-  const [otpSent, setOtpSent] = useState(false);
-  // const [phoneNumber, setPhoneNumber] = useState("");
+  setPhone,
+  openNotification,
+  setOtpDetails,
+  setStep,
+}: any) => {
 
-  const [otpDetails, setOtpDetails] = useState(null);
   const [sendOTPLoading, setSendOTPLoading] = useState(false);
-
-  const [api1, contextHolder] = notification.useNotification();
-  const [step, setStep] = useState(1);
-
-  const handleButtonClick = async () => {
-    await sendOTP();
-    onNextStep(); // Call the function to move to the next step
-  };
-  const openNotification = (
-    placement: NotificationPlacement,
-    type: NotificationType,
-    msg: string
-  ) => {
-    api1[type]({
-      message: "Authentication Message",
-      description: <b>{`${msg}!`}</b>,
-      placement,
-      duration: 1.5,
-    });
-  };
-
-  const sendOTP = async () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const sendOTP = async (phoneNumber: any) => {
     setSendOTPLoading(true);
+    setPhone(phoneNumber)
     try {
       if (!phoneNumber || phoneNumber.length < 10) {
         openNotification(
@@ -66,38 +28,32 @@ const Signup1 = ({
         return;
       }
       const response = await api.get(
-        `/users/send-otp?mobile_no=${phoneNumber}`
+        `/users/send-otp?mobile_no=${phoneNumber}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          },
+        }
       );
 
       if (response.data.Status === "Success") {
         openNotification("topRight", "success", "OTP sent successfully!");
-        console.log(phoneNumber);
-
-        setOtpSent(true);
         setSendOTPLoading(false);
         setOtpDetails(response.data.Details);
-        console.log(response.data.Details);
-        setStep((prevStep) => prevStep + 1);
-      } else {
-        setSendOTPLoading(false);
-        openNotification(
-          "topRight",
-          "error",
-          "Failed to send OTP. Please try again later."
-        );
-        console.log("else");
+   
+        setStep((step: any) => step + 1);
       }
     } catch (error: any) {
-      console.log(error);
       setSendOTPLoading(false);
-      openNotification("topRight", "error", error?.response?.data?.message);
-      console.log("catch");
+      openNotification("topRight", "error", error.response.data.message);
     }
   };
 
+  console.log('signup1')
   return (
     <div>
-      {contextHolder}
+      <h3>Signup</h3>
       <div>
         <div>
           <h4>
@@ -108,13 +64,13 @@ const Signup1 = ({
             type="text"
             name="mobile_no"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e:any) => setPhoneNumber(e.target.value)}
           />
         </div>
 
         <CommonButton
           label="Send OTP"
-          onClick={handleButtonClick}
+          onClick={()=>sendOTP(phoneNumber)}
           loader={sendOTPLoading}
           style={{
             backgroundColor: sendOTPLoading ? "#e3e3e3" : "",
@@ -148,4 +104,4 @@ const Signup1 = ({
   );
 };
 
-export default Signup1;
+export default React.memo(Signup1);

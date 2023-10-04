@@ -35,4 +35,4 @@ const CommonButton: React.FC<Props> = ({
   );
 };
 
-export default CommonButton;
+export default React.memo(CommonButton);

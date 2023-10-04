@@ -1,7 +1,7 @@
 import React from "react";
 import "./PersonalInfo.css";
 import Recent from "./Recent";
-import email from "../../../../../assets/images/email 1.png";
+import emails from "../../../../../assets/images/email 1.png";
 import facebook from "../../../../../assets/images/facebook 1.png";
 import instagram from "../../../../../assets/images/instagram 1.png";
 import linkedin from "../../../../../assets/images/linkedin 1.png";
@@ -30,7 +30,7 @@ import youtube from "../../../../../assets/images/youtube 1.png";
 
 type Props = {};
 
-const PersonalInfo = (props: Props) => {
+const PersonalInfo = ({phoneNumber,email}: any) => {
   return (
     <div>
       <label>Contact Information</label>
@@ -40,16 +40,16 @@ const PersonalInfo = (props: Props) => {
             <img src={phone} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Mobile Number: <span>+91-1234567890</span>
+                Mobile Number: <span>{phoneNumber}</span>
               </label>
             </div>
             {/* <img src={edit} alt="" className="edit-icon" /> */}
           </div>
           <div className="category-card">
-            <img src={email} alt="" className="icon" />
+            <img src={emails} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Email: <span>+91-1234567890</span>
+                Email: <span>{email}</span>
               </label>
             </div>
 
@@ -59,7 +59,7 @@ const PersonalInfo = (props: Props) => {
             <img src={location} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Location: <span>+91-1234567890</span>
+                Location: <span></span>
               </label>
             </div>
             <img src={edit} alt="" className="edit-icon" />
@@ -67,7 +67,7 @@ const PersonalInfo = (props: Props) => {
           <div className="category-card">
             <div className="info">
               <label style={{ color: "gray", paddingLeft: "20px" }}>
-                Aadhaar No.: <span>+91-1234567890</span>
+                Aadhaar No.: <span></span>
               </label>
             </div>
 
@@ -80,7 +80,7 @@ const PersonalInfo = (props: Props) => {
           <div className="category-card">
             <div className="info">
               <label style={{ color: "gray", paddingLeft: "20px" }}>
-                Pan No.: <span>+91-1234567890</span>
+                Pan No.: <span></span>
               </label>
             </div>
             <img src={check} className="check-icon" />
