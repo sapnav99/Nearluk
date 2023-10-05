@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { LoginActions } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
-
 import { useNavigate } from "react-router-dom";
-import Inputs from "./Inputs";
+import SignupInputs from "./SignupInputs";
 import axios from "axios";
+import _ from "lodash"; 
+
 interface Values {
   fName: string;
   lName: string;
@@ -38,6 +39,7 @@ const validationSchema = Yup.object().shape({
     .required("Email is required"),
 });
 
+
 const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
   const navigate = useNavigate();
   const initialValues: Values = {
@@ -55,7 +57,7 @@ const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
   const signUp = async (values: Values) => {
     try {
       const res = await axios.post(
-        `https://5d28-183-82-109-169.ngrok-free.app/users/signup`,
+        `https://de00-183-82-109-169.ngrok-free.app/users/signup`,
         {
           fname: values.fName,
           lname: values.lName,
@@ -71,25 +73,25 @@ const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
         }
       );
 
-      if (res.data.Status === "success") {
-        openNotification("topRight", "success", "Signed up successfully");
-        dispatch(LoginActions.fetchSignup({
-          fname: values.fName,
-          lname: values.lName,
-          email: values.email,
-          mobile_no: phoneNumber,
-          role: values.userType,
-              }))
+      if (res.data.status === "success"|| res.data.code === 200) {
+        openNotification("topRight", "success", res.data.msg);
+        dispatch(
+          LoginActions.fetchSignup({
+            fname: values.fName,
+            lname: values.lName,
+            email: values.email,
+            mobile_no: phoneNumber,
+            role: values.userType,
+          })
+        );
         navigate("/login");
-
-      } else {
-        openNotification("topRight", "error", " Please try again.");
       }
     } catch (error) {
       openNotification("topRight", "error", "Please try again later.");
+      console.log("catch");
     }
   };
-  console.log("signup3");
+  const debouncedSignUp = useCallback(_.debounce(signUp, 300), [signUp]);
   return (
     <div>
       <div>
@@ -108,30 +110,19 @@ const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values) => signUp(values)}
-          //   (e: any) => {
-          //   dispatch(
-          //     LoginActions.fetchSignup({
-          //       ...e,
-          //       mobile_no: phoneNumber,
-          //       userType: e.userType,
-          //     })
-          //   );
-          // }
-        
+          onSubmit={(values) => debouncedSignUp(values)} 
+          // {(values) => signUp(values)}
         >
           {({
             setFieldValue,
-            
             handleBlur,
-            handleChange,
             errors,
             touched,
             values,
           }) => (
             <div className="row merged-10">
-              <Inputs
-                handleChange={handleChange}
+              <SignupInputs  
+                          
                 handleBlur={handleBlur}
                 values={values}
                 errors={errors}
@@ -140,7 +131,8 @@ const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
               />
               <div className="col-lg-4 col-md-6 mt-2">
                 <CommonButton
-                  onClick={() => signUp(values)}
+                onClick={() => debouncedSignUp(values)}
+                  // onClick={() => signUp(values)}
                   loaderColor="white"
                   label="Sign up"
                   loader={signUpLoading}

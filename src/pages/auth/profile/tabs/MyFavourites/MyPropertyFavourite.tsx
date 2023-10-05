@@ -2,20 +2,12 @@ import { useState } from "react";
 // import "../MyGallery/MyGallery.css";
 import "../myPostings/MyProperty.css";
 
-
 const PropertyFavourite = () => {
- 
   const [activeTab, setActiveTab] = useState("sell");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const imagesPerPage = 5;
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    setCurrentPage(1);
   };
-
-  
 
   return (
     <div>

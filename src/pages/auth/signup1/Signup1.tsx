@@ -1,9 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import api from "../../../api/apiServices";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
+import { debounce } from "lodash";
 
 const Signup1 = ({
   setPhone,
@@ -11,22 +12,28 @@ const Signup1 = ({
   setOtpDetails,
   setStep,
 }: any) => {
-
   const [sendOTPLoading, setSendOTPLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const debouncedSendOTP = debounce((phoneNumber: string) => {
+    if (phoneNumber.length === 10) {
+      sendOTP(phoneNumber);
+    }
+  }, 300);
+
   const sendOTP = async (phoneNumber: any) => {
     setSendOTPLoading(true);
-    setPhone(phoneNumber)
+    setPhone(phoneNumber);
     try {
-      if (!phoneNumber || phoneNumber.length < 10) {
+      if (!phoneNumber || phoneNumber.length !== 10) {
         openNotification(
           "topRight",
           "error",
-          "Please enter a valid mobile number."
+          "Please enter a valid 10-digit mobile number."
         );
-
         return;
       }
+
       const response = await api.get(
         `/users/send-otp?mobile_no=${phoneNumber}`,
         {
@@ -41,7 +48,6 @@ const Signup1 = ({
         openNotification("topRight", "success", "OTP sent successfully!");
         setSendOTPLoading(false);
         setOtpDetails(response.data.Details);
-   
         setStep((step: any) => step + 1);
       }
     } catch (error: any) {
@@ -50,7 +56,7 @@ const Signup1 = ({
     }
   };
 
-  console.log('signup1')
+  console.log("signup1");
   return (
     <div>
       <h3>Signup</h3>
@@ -64,13 +70,16 @@ const Signup1 = ({
             type="text"
             name="mobile_no"
             value={phoneNumber}
-            onChange={(e:any) => setPhoneNumber(e.target.value)}
+            onChange={(e: any) => {
+              setPhoneNumber(e.target.value);
+              debouncedSendOTP(e.target.value);
+            }}
           />
         </div>
 
         <CommonButton
           label="Send OTP"
-          onClick={()=>sendOTP(phoneNumber)}
+          onClick={() => sendOTP(phoneNumber)}
           loader={sendOTPLoading}
           style={{
             backgroundColor: sendOTPLoading ? "#e3e3e3" : "",
@@ -87,7 +96,7 @@ const Signup1 = ({
         <div className="col-lg-8 col-md-6 mt-2 d-flex">
           <p
             className="reg-with"
-            style={{ marginRight: "-200px", color: "black" }}
+            style={{ marginRight: "-150px", color: "black" }}
           >
             Register With
           </p>

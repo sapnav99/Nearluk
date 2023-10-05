@@ -1,9 +1,9 @@
-// CommonFormInputs.tsx
 import React from "react";
 import CommonInput from "../../../components/common/input/CommonInput";
 import { RadioValues } from "../../Constants/EnumValue";
+
+
 interface CommonFormInputsProps {
-  handleChange: any;
   handleBlur: any;
   values: any;
   errors: any;
@@ -11,39 +11,25 @@ interface CommonFormInputsProps {
   setFieldValue: any;
 }
 
-const Inputs: React.FC<CommonFormInputsProps> = ({
-  handleChange,
+const SignupInputs: React.FC<CommonFormInputsProps> = ({
   handleBlur,
   values,
   errors,
   touched,
   setFieldValue,
 }) => {
-  const currentYear = new Date().getFullYear();
-  const years = Array.from(
-    { length: currentYear - 1929 + 1 },
-    (_, index) => currentYear - index
-  );
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const handleInputChange =
+    (name: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { value } = e.target;
+      setFieldValue(name, value);
+    };
   return (
     <>
       <div className="col-lg-6 col-md-6 col-sm-6">
         <CommonInput
           className="mb-2"
-          onChange={handleChange("fName")}
+          onChange={handleInputChange("fName")}
           onBlur={handleBlur("fName")}
           value={values.fName}
           type="text"
@@ -55,7 +41,7 @@ const Inputs: React.FC<CommonFormInputsProps> = ({
       <div className="col-lg-6 col-md-6 col-sm-6">
         <CommonInput
           className="mb-2"
-          onChange={handleChange("lName")}
+          onChange={handleInputChange("lName")}
           onBlur={handleBlur("lName")}
           value={values.lName}
           type="text"
@@ -67,7 +53,7 @@ const Inputs: React.FC<CommonFormInputsProps> = ({
       <div className="col-lg-12 col-md-12 col-sm-12">
         <CommonInput
           className="mb-2"
-          onChange={handleChange("email")}
+          onChange={handleInputChange("email")}
           onBlur={handleBlur("email")}
           value={values.email}
           type="email"
@@ -76,52 +62,7 @@ const Inputs: React.FC<CommonFormInputsProps> = ({
           placeholder="Email"
         />
       </div>
-      <div className="col-lg-4 col-md-6 col-sm-6">
-        <label>Date of Birth</label>
-        <CommonInput className="mb-2" type="text" placeholder="Date" />
-      </div>
-      <div className="col-lg-4 col-md-6 col-sm-6">
-        <label>Year</label>
-        <select className="mb-2">
-          {years.map((year: any) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="col-lg-4 col-md-6 col-sm-6">
-        <label>Month</label>
-        <select className="mb-2">
-          {months.map((month: any, index: any) => (
-            <option key={index} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="col-lg-12 col-md-12 col-sm-12">
-        <div className="gender mb-2">
-          <label>Gender</label>
-          <div className="form-radio">
-      {["Male", "Female", "Custom"].map((gender) => (
-        <div key={gender} className="radio">
-          <label>
-            <CommonInput
-              type="radio"
-              name="gender"
-              value={gender}
-              checked={values.gender === gender}
-              onChange={() => setFieldValue("gender", gender)}
-            />
-            <i className="check-box"></i>
-            {gender}
-          </label>
-        </div>
-      ))}
-    </div>
-        </div>
-      </div>
+
       <div className="col-lg-12 col-md-12 col-sm-12">
         <div className="gender mb-2">
           <label>User Type</label>
@@ -183,4 +124,4 @@ const Inputs: React.FC<CommonFormInputsProps> = ({
   );
 };
 
-export default React.memo(Inputs);
+export default React.memo(SignupInputs);

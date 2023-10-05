@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 import notification from "antd/lib/notification";
 import { LoginActions } from "../redux/actions";
 import useExternalScripts from "../../../hooks/useExternalScripts";
@@ -22,8 +23,6 @@ const Signup = () => {
   );
 
   const dispatch = useDispatch();
-  useExternalScripts({ urls: ["js/main.min.js", "js/script.js"] });
-
   const openNotification = (
     placement: NotificationPlacement,
     type: NotificationType,
@@ -101,10 +100,10 @@ console.log("signup")
                   />
                 </figure>
                 <h1>Welcome</h1>
-                <p>
+                {/* <p>
                   Socimo is a social network that can be used to connect people.
                   We helps you connect and share with the people in your life.
-                </p>
+                </p> */}
                 <div className="barcode">
                   <figure>
                     <img src="images/resources/Barcode.jpg" alt="" />
@@ -151,4 +150,4 @@ console.log("signup")
   );
 };
 
-export default React.memo(Signup);
+export default Signup;

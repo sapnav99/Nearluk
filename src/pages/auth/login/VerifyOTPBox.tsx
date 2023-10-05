@@ -39,7 +39,7 @@ const VerifyOTPBox = ({
         return;
       }
 
-      const res = await axios.post(`https://5d28-183-82-109-169.ngrok-free.app/users/login`, {
+      const res = await axios.post(`https://de00-183-82-109-169.ngrok-free.app/users/login`, {
         id: otpDetails,
         mobile_no: mobnum,
         otp: enteredOTP,

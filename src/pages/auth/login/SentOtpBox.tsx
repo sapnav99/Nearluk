@@ -32,7 +32,7 @@ const SentOtpBox = ({
 
         return;
       }
-      const response = await axios.post(`https://5d28-183-82-109-169.ngrok-free.app/users/login`, {
+      const response = await axios.post(`https://de00-183-82-109-169.ngrok-free.app/users/login`, {
         mobile_no: phoneNumber,
         isOtp: true,
       });
@@ -58,7 +58,7 @@ const SentOtpBox = ({
       console.log("catch");
 
       setOtpLoader(false);
-      openNotification("topRight", "error", error.response.data.msg);
+      openNotification("topRight", "error", error.response.data.message);
     }
   };
   return (

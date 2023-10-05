@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import login1 from "../../../assets/images/Login-page1.jpg";
 import login2 from "../../../assets/images/Login-page2.jpg";
 import { notification } from "antd";
@@ -104,31 +103,31 @@ const Login1 = () => {
               <figure>
                 <img src={login1} alt="" />
               </figure>
-              <h4>Ask questions with seniors Researchers</h4>
+              {/* <h4>Ask questions with seniors Researchers</h4>
               <p>
                 Ask questions and get the experienced answer by researchers and
                 others fellows.
-              </p>
+              </p> */}
             </li>
             <li className="welcome-box">
               <figure>
                 <img src={login2} alt="" />
               </figure>
-              <h4>Find New Researchers or Friends</h4>
+              {/* <h4>Find New Researchers or Friends</h4>
               <p>
                 Join Socimo and make your network of university or college
                 fellows.
-              </p>
+              </p> */}
             </li>
             <li className="welcome-box">
               <figure>
                 <img src={login1} alt="" />
               </figure>
-              <h4>Sell Your Online paid Content</h4>
+              {/* <h4>Sell Your Online paid Content</h4>
               <p>
                 Sell your online lectures, videos, books and many more with
                 Socimo.
-              </p>
+              </p> */}
             </li>
           </ul>
         </div>

@@ -2,10 +2,10 @@ import React, { useState, useRef, useMemo, useEffect } from "react";
 
 import Radio from "@mui/material/Radio";
 import Chip from "@mui/material/Chip";
-import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+
 import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { furnishedStatus, furnishingItems } from "../../helper/PostPropertyObj";
+import { furnishedStatus} from "../../helper/PostPropertyObj";
 import FurnishingStatusModal from "./FurnishingStatusModal";
 import SemiFurnishingStatusModal from "./SemiFurnishingStatusModal";
 
@@ -34,16 +34,12 @@ type proprtyTwoProps = {
 //   setOpenModal: () => void;
 // };
 
-interface furnish {
-  active: any;
-  label: string;
-  value: string;
-}
+
 
 export default React.memo(function PostPropertyTwo({
   setStepOne,
   setStepTwo,
-  stepOneData,
+  
   setOpenModal,
 }: proprtyTwoProps) {
   const [radioSelectValue, setRadioSelectvalue] = useState("");
