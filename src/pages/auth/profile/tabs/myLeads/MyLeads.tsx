@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+import { useState } from "react";
+// import "../MyGallery/MyGallery.css";
 import ChatCard from "./MyChartCard";
 
-type Props = {};
 
-const MyLeads = (props: Props) => {
+
+const MyLeads = () => {
   const [activeTab, setActiveTab] = useState("property");
 
   const handleTabClick = (tab: string) => {

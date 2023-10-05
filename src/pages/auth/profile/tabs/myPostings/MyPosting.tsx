@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+import { useState } from "react";
+// import "../MyGallery/MyGallery.css";
 import Property from "./MyPostProperty";
-type Props = {};
 
-const Posting = (props: Props) => {
+
+const Posting = () => {
   const [activeTab, setActiveTab] = useState("property");
 
   const handleTabClick = (tab: string) => {

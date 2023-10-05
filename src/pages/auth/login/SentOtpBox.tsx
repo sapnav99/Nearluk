@@ -1,29 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import login1 from "../../../assets/images/Login-page1.jpg";
-import login2 from "../../../assets/images/Login-page2.jpg";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
-import { message, notification } from "antd";
-import type { NotificationPlacement } from "antd/es/notification/interface";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { LoginActions } from "../redux/actions";
-import useExternalScripts from "../../../hooks/useExternalScripts";
+
 import axios from "axios";
 const SentOtpBox = ({
-  step,
   setStep,
-  navigate,
   setOtpDetails,
-  otpDetails,
-  mobnum,
   setMobNum,
-  notification,
   openNotification,
-  dispatch,
+ 
 }: any) => {
   const [otpLoader, setOtpLoader] = useState(false);
   const mobSchema = Yup.object().shape({
@@ -44,11 +32,11 @@ const SentOtpBox = ({
 
         return;
       }
-      const response = await axios.post(`http://65.0.108.54:2000/users/login`, {
+      const response = await axios.post(`https://de00-183-82-109-169.ngrok-free.app/users/login`, {
         mobile_no: phoneNumber,
         isOtp: true,
       });
-
+      
       if (response.data.Status === "Success") {
         console.log("succs", response.data);
         openNotification("topRight", "success", "OTP sent successfully!");
@@ -70,7 +58,7 @@ const SentOtpBox = ({
       console.log("catch");
 
       setOtpLoader(false);
-      openNotification("topRight", "error", error.response.data.msg);
+      openNotification("topRight", "error", error.response.data.message);
     }
   };
   return (

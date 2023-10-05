@@ -1,13 +1,13 @@
-import React from "react";
+
 import style from "./Property.module.css";
 import project2 from "../../assets/images/project2.jpg";
 import project1 from "../../assets/images/project1.jpg";
 import vasavi from "../../assets/images/vasavi.jpg";
 import abode from "../../assets/images/abode.jpg";
 import './Featured.css'
-type Props = {};
 
-const Featured = (props: Props) => {
+
+const Featured = () => {
   return (
     <div>
       <div className="gap">

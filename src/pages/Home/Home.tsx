@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Content from "../../components/content/Content";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Sectionbar from "../../components/sectionbar/Sectionbar";
 import { useDispatch, useSelector } from "react-redux";
 import { allpropdataactions } from "./redux/action";
 
-type Props = {};
-interface propdetails {}
 
-const Home = (props: Props) => {
+
+
+const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {

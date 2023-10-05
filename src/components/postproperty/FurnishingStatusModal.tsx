@@ -16,11 +16,10 @@ export default React.memo(function FurnishingStatusModal({
   setOpenFurnishingModal,
 }: FurnishingProps) {
   const [furnishingObj, setfurnishingObj] = useState(furnishingItems);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  
   const handleClose = () => {};
   const handleModalClose = () => {
-    const finalArry = furnishingObj.filter((item) => item.count > 0);
+    
     setFurnishingItemsObj(furnishingObj);
     setfurnishingObj(furnishingItems);
     setOpenFurnishingModal(false);

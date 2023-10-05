@@ -1,5 +1,5 @@
 
-type Props = {}
+
 
 export default function Books({}) {
   return (

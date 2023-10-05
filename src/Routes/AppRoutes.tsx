@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -10,7 +10,7 @@ import Blog from "../components/blog/Blog";
 import Groups from "../components/groups/Groups";
 import Topnavbar from "../components/topnavbar/Topnavbar";
 import Login1 from "../pages/auth/login/Login1";
-import Signup from "../pages/auth/signup/Signup";
+import Signup from "../pages/auth/signup1/Signup";
 import UserProfile from "../pages/auth/profile/UserProfile";
 import LandingPage from "../landingPage/LandingPage";
 import PropertyDetaing from "../pages/propertydetailingpage/PropertyDetaing";

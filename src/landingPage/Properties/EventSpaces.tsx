@@ -1,16 +1,14 @@
-import React from "react";
-import profile from "../../assets/images/profilePhoto.jpg";
+
 import events1 from "../../assets/images/events1.png";
-import events2 from "../../assets/images/events2.png";
-import events3 from "../../assets/images/events3.png";
+
 import car from "../../assets/images/car 1.png";
 import elevator from "../../assets/images/elevator 1.png";
 import swimming from "../../assets/images/swimming 1.png";
 import "./EventSpace.css";
 
-type Props = {};
 
-const EventSpaces = (props: Props) => {
+
+const EventSpaces = () => {
   const propertyArray = Array.from({ length: 3 });
   return (
     <div>

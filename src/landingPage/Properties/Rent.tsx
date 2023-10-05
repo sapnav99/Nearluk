@@ -1,13 +1,13 @@
-import React from "react";
+
 
 import rooms from "../../assets/images/rooms.png";
 import './Rent.css'
 
 import "./EventSpace.css";
 
-type Props = {};
 
-const Rent = (props: Props) => {
+
+const Rent = () => {
   
   return (
     <div>

@@ -1,8 +1,8 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { LoginActions } from "./actions";
 import { loginTypes, signupTypes } from "./types";
 import Apis from "../../../api";
-import { error } from "console";
+// import { error } from "console";
 
 const login = function* login(action: any) {
   try {

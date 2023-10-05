@@ -1,10 +1,9 @@
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
-import React from "react";
+
 import profile from "../../assets/images/profilePhoto.jpg";
 // import './Agents.css'
-type Props = {};
 
-const PopularAgents = (props: Props) => {
+
+const PopularAgents = () => {
   return (
     <div>
       <div className="gap">

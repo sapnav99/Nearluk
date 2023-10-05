@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+
 import PropertyCard from "../propertycard/PropertyCard";
 import { useSelector } from "react-redux";
-type Props = {};
-interface propdetails {}
 
-export default function Content({ dataFromApi }: any) {
-  const [allData, setAllData] = useState([]);
+
+export default function Content() {
+ 
 
   // useEffect(() => {
   //   setAllData(dataFromApi);

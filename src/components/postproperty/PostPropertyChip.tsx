@@ -1,12 +1,8 @@
-import React from "react";
-import PropertyChip from "../../helper/PropertyChip";
-import { Dispatch, SetStateAction } from "react";
 
-interface Category {
-  label: string;
-  child: any[]; // You can specify a more specific type if needed
-  key: string;
-}
+import PropertyChip from "../../helper/PropertyChip";
+
+
+
 
 interface PropertyChipProps {
   data: any;

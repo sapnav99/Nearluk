@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import rooms from "../../assets/images/rooms.png";
 
@@ -7,9 +7,9 @@ import elevator from "../../assets/images/elevator 1.png";
 import swimming from "../../assets/images/swimming 1.png";
 import "./EventSpace.css";
 
-type Props = {};
 
-const RecentSearches = (props: Props) => {
+
+const RecentSearches = () => {
   
   return (
     <div>

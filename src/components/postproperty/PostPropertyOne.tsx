@@ -3,19 +3,15 @@ import PostPropertyChip from "./PostPropertyChip";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { Dispatch, SetStateAction } from "react";
+import Select  from "@mui/material/Select";
+
 import { useDispatch, useSelector } from "react-redux";
 import { propertyAction } from "./redux/actions";
-import Chip from "@mui/material/Chip";
-import { propertyAraeUnits, availability } from "../../helper/PostPropertyObj";
+
+import { propertyAraeUnits} from "../../helper/PostPropertyObj";
 import PropertySearchLocation from "./PropertySearchLocation";
 
-interface Category {
-  label: string;
-  child: any[]; // You can specify a more specific type if needed
-  key: string;
-}
+
 
 interface PropertyOneProps {
   data: any;
@@ -40,9 +36,7 @@ export default function PostPropertyOne({
   const defaultSelction = "sell";
   const defaultPtyeSelection = "residential";
   const dispatch = useDispatch();
-  const selectStepData = useSelector(
-    (state: any) => state?.postPropertyReducer?.stepdata
-  );
+  
   // console.log("this is step data ==> ", selectStepData);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "../MyGallery/MyGallery.css";
+import  { useState } from "react";
+// import "../MyGallery/MyGallery.css";
 import PropertyFavourite from "./MyPropertyFavourite";
-type Props = {};
 
-const Favourite = (props: Props) => {
+
+const Favourite = () => {
   const [activeTab, setActiveTab] = useState("property");
 
   const handleTabClick = (tab: string) => {

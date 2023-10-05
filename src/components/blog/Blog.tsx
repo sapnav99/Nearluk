@@ -1,5 +1,5 @@
 
-type Props = {}
+
 
 export default function Blog({}) {
   return (

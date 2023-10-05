@@ -1,6 +1,6 @@
 import { loginTypes, signupTypes } from "./types";
 
-function loginReq(userData: any) {
+function loginReq() {
   return {
     type: loginTypes.LOGIN_REQ,
     // payload: userData,
