@@ -1,4 +1,4 @@
-import  { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -6,7 +6,7 @@ import PostPropertyOne from "./PostPropertyOne";
 import { data } from "../../helper/PostPropertyObj";
 import PostPropertyTwo from "./PostPropertyTwo";
 import "./postproperty.css";
-import  { SelectChangeEvent } from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 interface ModalProps {
   openModal: boolean;
@@ -32,7 +32,7 @@ export default function PostProperty({ openModal, setOpenModal }: ModalProps) {
     overflowX: "hidden",
   };
 
-  const handleClose = (event: SelectChangeEvent, reason: string) => {
+  const handleClose = (_: SelectChangeEvent, reason: string) => {
     if (reason && reason == "backdropClick") return;
     setOpenModal(false);
   };
@@ -77,6 +77,7 @@ export default function PostProperty({ openModal, setOpenModal }: ModalProps) {
               setStepOne={setStepOne}
               setStepTwo={setStepTwo}
               stepOneData={stepOneData}
+              setStepOneData={setStepOneData}
               setOpenModal={setOpenModal}
             />
           )}

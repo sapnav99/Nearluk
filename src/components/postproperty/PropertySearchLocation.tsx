@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng,
 } from "react-places-autocomplete";
 
@@ -16,7 +15,7 @@ export default function PropertySearchLocation({
   setAddress,
   setCoordinates,
 }: SearchProps) {
-  const handleChange = () => {};
+
 
   const handleSelect = async (value: any) => {
     const results = await geocodeByAddress(value);

@@ -1,0 +1,4 @@
+export const userPropDetailTypes = {
+  FETCH_PROP_DETAILS: "FETCH_PROP_DETAILS",
+  SET_PROP_DETAILS: "SET_PROP_DETAILS",
+};

@@ -1,12 +1,12 @@
-import { useState } from "react";
-// import "../MyGallery/MyGallery.css";
+import React, { useState } from "react";
+import "../MyGallery/MyGallery.css";
 import "./MyLead.css";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space, Typography } from "antd";
 
 
-const ChatCard = () => {
+const ChatCard:React.FC = () => {
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -21,7 +21,7 @@ const ChatCard = () => {
       label: "Item 3",
     },
   ];
-  
+
   const [activeTab, setActiveTab] = useState("property");
   const [activeSecondTab, setActiveSecondTab] = useState("may");
   const handleTabClick = (tab: string) => {

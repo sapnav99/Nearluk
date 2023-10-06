@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
@@ -6,14 +6,22 @@ import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 
 import axios from "axios";
-const SentOtpBox = ({
+import { BASE_URL } from "../../../utils/baseurl";
+type Props={
+  setStep?:any,
+  setOtpDetails?:any,
+  setMobNum?:any,
+  openNotification?:any,
+  navigate?:any,
+}
+const SentOtpBox:React.FC<Props> = ({
   setStep,
   setOtpDetails,
   setMobNum,
   openNotification,
- 
-}: any) => {
-  const [otpLoader, setOtpLoader] = useState(false);
+
+}) => {
+  const [otpLoader, setOtpLoader]:any = useState(false);
   const mobSchema = Yup.object().shape({
     mobile_no: Yup.string()
       .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits")
@@ -32,11 +40,11 @@ const SentOtpBox = ({
 
         return;
       }
-      const response = await axios.post(`https://de00-183-82-109-169.ngrok-free.app/users/login`, {
+      const response = await axios.post(`${BASE_URL}/users/login`, {
         mobile_no: phoneNumber,
         isOtp: true,
       });
-      
+
       if (response.data.Status === "Success") {
         console.log("succs", response.data);
         openNotification("topRight", "success", "OTP sent successfully!");

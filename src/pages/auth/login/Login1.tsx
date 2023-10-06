@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import login1 from "../../../assets/images/Login-page1.jpg";
 import login2 from "../../../assets/images/Login-page2.jpg";
 import { notification } from "antd";
@@ -10,14 +10,13 @@ import useExternalScripts from "../../../hooks/useExternalScripts";
 import SentOtpBox from "./SentOtpBox";
 import VerifyOTPBox from "./VerifyOTPBox";
 
-
 type NotificationType = "success" | "info" | "warning" | "error";
 
-const Login1 = () => {
+const Login1:React.FC = () => {
   useExternalScripts({ urls: ["js/main.min.js", "js/script.js"] });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [step, setStep] = useState(1);
+  const [step, setStep]:any = useState(1);
   const [otpDetails, setOtpDetails] = useState(null);
   const [mobnum, setMobNum] = useState("");
   const [api1, contextHolder] = notification.useNotification();
@@ -25,7 +24,7 @@ const Login1 = () => {
   const loginResponse = useSelector(
     (state: any) => state?.loginReducer?.logRes
   );
-  
+
   const openNotification = (
     placement: NotificationPlacement,
     type: NotificationType,
@@ -54,14 +53,11 @@ const Login1 = () => {
       case 1:
         return (
           <SentOtpBox
-            step={step}
             setStep={setStep}
-            navigate={navigate}
             setOtpDetails={setOtpDetails}
-            mobnum={mobnum}
             setMobNum={setMobNum}
             openNotification={openNotification}
-            dispatch={dispatch}
+        
           />
         );
       case 2:

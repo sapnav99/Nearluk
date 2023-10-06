@@ -1,27 +1,32 @@
-import  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PersonalInfo from "./tabs/personal/PersonalInfo";
+
 import Posting from "./tabs/myPostings/MyPosting";
 import MyLeads from "./tabs/myLeads/MyLeads";
 import Favourite from "./tabs/MyFavourites/MyFavourite";
 import Verify from "./tabs/verify/Verify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./UserProfile.css";
 import profilePhoto from "../../../assets/images/profilePhoto.jpg";
+type Props = {};
 
-
-const UserProfile = () => {
+const UserProfile:React.FC<Props> = () => {
   const [activeTab, setActiveTab] = useState("personal");
- 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
 
   const handleTabClick = (tabName: any) => {
     setActiveTab(tabName);
-    
+    setMobileNavOpen(false);
   };
 
-  
+  const toggleMobileNav = () => {
+    setMobileNavOpen(!mobileNavOpen);
+  };
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
+      setIsMobile(window.innerWidth <= 900);
     };
 
     window.addEventListener("resize", handleResize);
@@ -54,7 +59,7 @@ const UserProfile = () => {
                       <h4>Georg Peeter </h4>
                       <span>@Georgofficial</span>
                     </div>
-                    {/* <ul className="sharing-options">
+                    <ul className="sharing-options">
                       {isMobile ? (
                         <li className="mobile-nav-icon-container">
                           <a
@@ -66,71 +71,79 @@ const UserProfile = () => {
                         </li>
                       ) : (
                         ""
+                        
                       )}
-                    </ul> */}
+                     
+                     
+                    </ul>
+                    
                   </div>
 
-                  <div>
-                    {isMobile && (
-                      <nav className="sidebar">
-                        <ul className="menu-slide">
-                          <li className="">
-                            <a
-                              className={`nav-link ${
-                                activeTab === "personal" ? "active" : ""
-                              }`}
-                              href="#"
-                              data-toggle="tab"
-                              onClick={() => handleTabClick("personal")}
-                            >
-                              Personal Info
-                            </a>
-                          </li>
-                          <li className="">
-                            <a
-                              className={`nav-link ${
-                                activeTab === "posting" ? "active" : ""
-                              }`}
-                              href="#"
-                              data-toggle="tab"
-                              onClick={() => handleTabClick("posting")}
-                            >
-                              My Postings
-                            </a>
-                          </li>
-                          <li className="">
-                            <a
-                              className={`nav-link ${
-                                activeTab === "lead" ? "active" : ""
-                              }`}
-                              href="#"
-                              data-toggle="tab"
-                              onClick={() => handleTabClick("lead")}
-                            >
-                              My Leads
-                            </a>
-                          </li>
-                          <li className="">
-                            <a
-                              className={`nav-link ${
-                                activeTab === "favourite" ? "active" : ""
-                              }`}
-                              href="#"
-                              data-toggle="tab"
-                              onClick={() => handleTabClick("favourite")}
-                            >
-                              My Favourites
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    )}
-                  </div>
-
+                  <div >
+      {/* {isLoggedIn && ( */}
+      <nav className="sidebar">
+        <ul className="menu-slide">
+          <li className="">
+          <a
+                        className={`nav-link ${
+                          activeTab === "personal" ? "active" : ""
+                        }`}
+                        href="#"
+                        data-toggle="tab"
+                        onClick={() => handleTabClick("personal")}
+                      >
+              
+              Personal Info
+            </a>
+          </li>
+          <li className="">
+          <a
+                        className={`nav-link ${
+                          activeTab === "posting" ? "active" : ""
+                        }`}
+                        href="#"
+                        data-toggle="tab"
+                        onClick={() => handleTabClick("posting")}
+                      >
+              
+              My Postings
+            </a>
+          </li>
+          <li className="">
+          <a
+                        className={`nav-link ${
+                          activeTab === "lead" ? "active" : ""
+                        }`}
+                        href="#"
+                        data-toggle="tab"
+                        onClick={() => handleTabClick("lead")}
+                      >
+              
+              My Leads
+            </a>
+          </li>
+          <li className="">
+          <a
+                        className={`nav-link ${
+                          activeTab === "favourite" ? "active" : ""
+                        }`}
+                        href="#"
+                        data-toggle="tab"
+                        onClick={() => handleTabClick("favourite")}
+                      >
+              
+              My Favourites
+            </a>
+          </li>
+          
+          
+        </ul>
+      </nav>
+      {/* )} */}
+    </div>
+                  
                   <ul
-                    className={`nav nav-tabs post-detail-btn ${
-                      isMobile ? "mobile-hidden" : ""
-                    }`}
+                    className="nav nav-tabs post-detail-btn " 
                   >
                     <li className="nav-item">
                       <a
@@ -208,7 +221,7 @@ const UserProfile = () => {
                       >
                         My Gallery
                       </a> */}
-                    {/* <span>23</span> */}
+                      {/* <span>23</span> */}
                     {/* </li> */}
                   </ul>
 

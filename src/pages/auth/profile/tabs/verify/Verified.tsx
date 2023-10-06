@@ -1,9 +1,9 @@
-import { useState } from "react";
-// import "../MyGallery/MyGallery.css";
+import React, { useState } from "react";
+import "../MyGallery/MyGallery.css";
 import "./Verify.css";
 
 
-const Verified = () => {
+const Verified:React.FC = () => {
   const propertyArray = Array.from({ length: 4 }).map((_, index) => ({
     id: index + 1,
     verified: index % 2 === 0,

@@ -111,12 +111,7 @@
   text-align: center;
   color: #646262;
 }
-.owner__container p {
-  
-}
-.property__user_profile_container{
 
-}
 .property__avtar_container{
   display: flex;
   align-items: flex-start;
@@ -141,4 +136,35 @@
   padding: 13px;
   background-color: rgb(126, 215, 207);
   margin-left: 4px;
+}
+.prop__detail_card{
+  background-color: #F4F4F4;
+  border-radius: 20px;
+}
+.prop__detail_top_items{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px;
+}
+.card-title {
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+}
+.prop__detail_top_items p {
+  font-size: 12px;
+  color: #000000;
+  font-weight: 400;
+}
+.prop__overviw_card{
+  background-color: #F4F4F4;
+  border-radius: 20px;
+}
+.prop__overview_container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }

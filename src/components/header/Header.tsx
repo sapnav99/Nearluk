@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PostProperty from "../postproperty/PostProperty";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
-import support from "../../assets/images/support.png";
+
 import { GrLocation } from "react-icons/gr";
 import "./Header.css";
 type Props = {};
@@ -26,7 +26,7 @@ const Header: React.FC<Props> = ({}) => {
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="images/main-logo-pic.png"
+            src="/images/main-logo-pic.png"
             alt=""
             onClick={() => navigate("/")}
           />
@@ -111,25 +111,13 @@ const Header: React.FC<Props> = ({}) => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            {isLoggedIn ? (
-              <a href="/">
-                <img
-                  src="images/main-logo-pic.png"
-                  alt=""
-                  style={{ height: "45px", width: "145px" }}
-                />
-              </a>
-            ) : (
-              <a href="/">
-                <img
-                  src="images/main-logo-pic.png"
-                  alt=""
-                  style={{ height: "45px", width: "145px" }}
-                />
-              </a>
-            )}
-
-            {/* <span>Socimo</span> */}
+            <a href="/">
+              <img
+                src="/images/main-logo-pic.png"
+                alt=""
+                style={{ height: "45px", width: "145px" }}
+              />
+            </a>
           </div>
 
           <div className="nl-search-location">
@@ -196,7 +184,7 @@ const Header: React.FC<Props> = ({}) => {
                 )}
               </div>
             </li>
-            {isLoggedIn ? (
+            {/* {isLoggedIn && (
               <li>
                 <a href="index.html" title="Home" data-toggle="tooltip">
                   <i>
@@ -218,10 +206,8 @@ const Header: React.FC<Props> = ({}) => {
                   </i>
                 </a>
               </li>
-            ) : (
-              ""
-            )}
-            {isLoggedIn ? (
+            )} */}
+            {/* {isLoggedIn && (
               <li>
                 <a
                   className="mesg-notif"
@@ -248,10 +234,8 @@ const Header: React.FC<Props> = ({}) => {
                 </a>
                 <span></span>
               </li>
-            ) : (
-              ""
-            )}
-            {isLoggedIn ? (
+            )} */}
+            {/* {isLoggedIn && (
               <li>
                 <a
                   className="mesg-notif"
@@ -279,10 +263,8 @@ const Header: React.FC<Props> = ({}) => {
                 </a>
                 <span></span>
               </li>
-            ) : (
-              ""
-            )}
-            {isLoggedIn ? (
+            )} */}
+            {/* {isLoggedIn && (
               <li>
                 <a
                   className="create"
@@ -309,10 +291,8 @@ const Header: React.FC<Props> = ({}) => {
                   </i>
                 </a>
               </li>
-            ) : (
-              ""
-            )}
-            {isLoggedIn ? (
+            )} */}
+            {isLoggedIn && (
               <li>
                 <a href="#" title="">
                   <img
@@ -399,14 +379,12 @@ const Header: React.FC<Props> = ({}) => {
                   </li>
                 </ul>
               </li>
-            ) : (
-              ""
             )}
-            <img
+            {/* <img
               src={support}
               alt=""
               style={{ height: "20px", width: "20px", color: "blue" }}
-            />
+            /> */}
             {/* <FontAwesomeIcon icon={fa-sharp fa-light fa-headset} /> */}
             <li>
               <a
@@ -489,7 +467,9 @@ const Header: React.FC<Props> = ({}) => {
             //   marginRight: "-10px",
             // }}
           >
-            <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
 
             <li>
               <a>Rent Pay</a>
@@ -521,15 +501,14 @@ const Header: React.FC<Props> = ({}) => {
               </ul>
             </li>
             <li>
-              <a>Near U
-              <span className="heartbeat"></span>
+              <a>
+                Near U<span className="heartbeat"></span>
                 <span className="location">
-                  <GrLocation  />
+                  <GrLocation />
                 </span>
               </a>
-              
             </li>
-            
+
             <li>
               <a>Services</a>
               {/* <ul className="dropdown1">
@@ -584,17 +563,17 @@ const Header: React.FC<Props> = ({}) => {
                   data-toggle="tooltip"
                 >
                   <span className="heartbeat"></span>
-                <span className="dot">
-                <i>
-                    <svg
-                      fill="#f00"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 32 32"
-                      width="18px"
-                      height="18px"
-                    >
-                      <path
-                        d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
+                  <span className="dot">
+                    <i>
+                      <svg
+                        fill="#f00"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="18px"
+                        height="18px"
+                      >
+                        <path
+                          d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
                       23.365437 6.1015625 25.898438 L 7.5195312 24.480469 C 5.3465312 22.307469 4 19.308 4 16 
                       C 4 12.692 5.3465312 9.6925313 7.5195312 7.5195312 L 6.1015625 6.1015625 z M 25.898438 6.1015625 
                       L 24.480469 7.5195312 C 26.653469 9.6925312 28 12.692 28 16 C 28 19.308 26.653469 22.307469 
@@ -606,11 +585,10 @@ const Header: React.FC<Props> = ({}) => {
                         19.680266 20.947266 20.947266 L 22.363281 22.363281 C 23.992281 20.734281 25 18.485 25 16 
                         C 25 13.515 23.992281 11.265719 22.363281 9.6367188 z M 16 12 A 4 4 0 0 0 16 20 A 4 4 0 0 0 
                         16 12 z"
-                      />
-                    </svg>
-                  </i>
-                </span>
-                 
+                        />
+                      </svg>
+                    </i>
+                  </span>
                 </a>
               </a>
             </li>

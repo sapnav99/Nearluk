@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 const PropertyCard = ({ property }: any) => {
   const navigate = useNavigate();
-  console.log(property?.property?.building_name);
   return (
     <div
       className="col-lg-6 col-md-6 col-sm-6"
-      onClick={() => navigate("/proprtydetail")}
+      onClick={() => {
+        navigate(`/proprtydetail/${property._id}`);
+        console.log(property);
+      }}
     >
       <div className="course">
         <figure>
@@ -120,8 +122,8 @@ const PropertyCard = ({ property }: any) => {
                   lineHeight: "15px",
                 }}
               >
-                {property?.property.locality} <br />
-                {property?.property.city}, {property?.property.state}
+                {property?.property?.locality} <br />
+                {property?.property?.city}, {property?.property?.state}
               </p>
             </div>
             <div className="col-lg-4 mt-2 ">

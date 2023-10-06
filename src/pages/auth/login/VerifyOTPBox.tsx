@@ -7,6 +7,7 @@ import CommonInput from "../../../components/common/input/CommonInput";
 import { message } from "antd";
 
 import axios from "axios";
+import { BASE_URL } from "../../../utils/baseurl";
 
 const otpSchema = Yup.object().shape({
   otp: Yup.string().required("Phone number is required"),
@@ -15,10 +16,10 @@ const VerifyOTPBox = ({
   step,
   setStep,
   navigate,
-  
+
   otpDetails,
   mobnum,
- 
+
   openNotification,
   dispatch,
 }: any) => {
@@ -39,7 +40,7 @@ const VerifyOTPBox = ({
         return;
       }
 
-      const res = await axios.post(`https://de00-183-82-109-169.ngrok-free.app/users/login`, {
+      const res = await axios.post(`${BASE_URL}/users/login`, {
         id: otpDetails,
         mobile_no: mobnum,
         otp: enteredOTP,
@@ -80,14 +81,7 @@ const VerifyOTPBox = ({
           console.log(otpDetails, e.otp);
         }}
       >
-        {({
-          
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isValid,
-        }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
           <div>
             <CommonInput
               placeholder="Enter OTP"
