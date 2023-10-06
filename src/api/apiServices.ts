@@ -1,12 +1,13 @@
 import axios from "axios";
-
-// const baseURL = "https://d35c-49-205-254-36.ngrok-free.app/";
-const baseURL = "https://de00-183-82-109-169.ngrok-free.app";
-// const baseURL = process.env.REACT_APP_BACKEND_URL;
+import { BASE_URL } from "../utils/baseurl";
+const baseURL = BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL,
   timeout: 60000,
+  headers: {
+    "ngrok-skip-browser-warning": true,
+  },
 });
 
 export const setJwtToken = (token: string) => {

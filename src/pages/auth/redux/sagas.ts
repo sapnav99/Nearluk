@@ -2,7 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { LoginActions } from "./actions";
 import { loginTypes, signupTypes } from "./types";
 import Apis from "../../../api";
-// import { error } from "console";
+
 
 const login = function* login(action: any) {
   try {
@@ -13,12 +13,6 @@ const login = function* login(action: any) {
       yield put(LoginActions.loginReqFailed(data));
     }
 
-    // yield put(
-    //   LoginActions.setUserData({
-    //     user: data?.data.data,
-    //     jwtToken: data.data.token,
-    //   })
-    // );
   } catch (error: any) {
     console.log("error", error?.response?.data);
     yield put(LoginActions.loginReqFailed(error?.response?.data));

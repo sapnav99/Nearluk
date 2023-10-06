@@ -3,20 +3,21 @@ import PostPropertyChip from "./PostPropertyChip";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select  from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { propertyAction } from "./redux/actions";
 
-import { propertyAraeUnits} from "../../helper/PostPropertyObj";
+import { propertyAraeUnits } from "../../helper/PostPropertyObj";
 import PropertySearchLocation from "./PropertySearchLocation";
+
 
 
 
 interface PropertyOneProps {
   data: any;
-  setStepOne: any;
-  setStepTwo: any;
+  setStepOne: React.Dispatch<React.SetStateAction<boolean>>;
+  setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 // interface PropertyOneProps {
 //   data: Category[];
@@ -29,20 +30,23 @@ export default function PostPropertyOne({
   setStepOne,
   setStepTwo,
 }: PropertyOneProps) {
-  const [maindata, setMaindata] = useState(data);
+  // const [maindata, setMaindata] = useState(data);
   const [ptype, setPtype] = useState([]);
   const [propertyTypes, setPropertyTypes] = useState({});
   const [ptypeChild, setPtypeChild] = useState([]);
   const defaultSelction = "sell";
   const defaultPtyeSelection = "residential";
   const dispatch = useDispatch();
-  
+  // const selectStepData = useSelector(
+  //   (state: any) => state?.postPropertyReducer?.stepdata
+  // );
   // console.log("this is step data ==> ", selectStepData);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
   });
+  console.log(coordinates)
 
   const [otherPropertyDetails, setotherPropertyDetails] = useState({
     city: address,
@@ -91,7 +95,7 @@ export default function PostPropertyOne({
           <strong>I Want to</strong>
         </h6>
         <PostPropertyChip
-          data={maindata}
+          data={data}
           setPtype={setPtype}
           forLable="iwant"
           propertyTypes={propertyTypes}

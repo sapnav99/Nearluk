@@ -1,21 +1,22 @@
-import { useState } from "react";
-// import "../MyGallery/MyGallery.css";
-import "./MyProperty.css"
+import React, { useState } from "react";
+import "../MyGallery/MyGallery.css";
+import "./MyProperty.css";
 
-const Property = () => {
+
+const Property:React.FC = () => {
 
   const [activeTab, setActiveTab] = useState("sell");
+  // const [currentPage, setCurrentPage] = useState(1);
 
-
-
+  // const imagesPerPage = 5;
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    
+    // setCurrentPage(1);
   };
 
- 
-  
+  // const startIndex = (currentPage - 1) * imagesPerPage;
+  // const endIndex = startIndex + imagesPerPage;
   return (
     <div>
       <div className="leftContainer">

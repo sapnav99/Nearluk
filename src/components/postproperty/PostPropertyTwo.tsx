@@ -2,10 +2,10 @@ import React, { useState, useRef, useMemo, useEffect } from "react";
 
 import Radio from "@mui/material/Radio";
 import Chip from "@mui/material/Chip";
-
+// import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { furnishedStatus} from "../../helper/PostPropertyObj";
+import { furnishedStatus } from "../../helper/PostPropertyObj";
 import FurnishingStatusModal from "./FurnishingStatusModal";
 import SemiFurnishingStatusModal from "./SemiFurnishingStatusModal";
 
@@ -26,26 +26,23 @@ type proprtyTwoProps = {
   setStepTwo: any;
   stepOneData: any;
   setOpenModal: any;
+  setStepOneData: any;
 };
-// type proprtyTwoProps = {
-//   setStepOne: React.Dispatch<React.SetStateAction<boolean>>;
-//   setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
-//   stepOneData: any;
-//   setOpenModal: () => void;
-// };
-
 
 
 export default React.memo(function PostPropertyTwo({
   setStepOne,
   setStepTwo,
-  
+
   setOpenModal,
+  
 }: proprtyTwoProps) {
   const [radioSelectValue, setRadioSelectvalue] = useState("");
   const [textareastr, setTextareastr] = useState("");
-  const [imagePreview, setImagePreview] = useState<File[]>([]);
-  const [addFurnishingRadio, setAddFurnishingRadio] = useState(furnitureRadio);
+  const [imagePreview, setImagePreview] = useState<
+    (File | { url: string; serveruri: any })[]
+  >([]);
+ 
   const [addAminities, setAddAminities] = useState(aminity);
   const [addOwnerShip, setAddOwnerShip] = useState(ownerShiptype);
   const [addAvailability, setAddAvailability] = useState(availability);
@@ -56,14 +53,14 @@ export default React.memo(function PostPropertyTwo({
   const [furnishingItemsObj, setFurnishingItemsObj] = useState([]);
   const [semiFurnishingItemsObj, setSemiFurnishingItemsObj] = useState(null);
   const [map, setMap] = useState(/** @type google.maps.GoogleMap */ null);
-
+console.log(map)
   const [objectOne, setObjectOne] = useState({
     ownership: "",
     availablity: "",
     discription: "",
     furmished_status: "",
     expected_price: 0,
-    maintainance_per_month: null,
+    maintainance_per_month: 0,
     negotiable: false,
     loan: "",
     all_inclusive_price: false,
@@ -96,7 +93,7 @@ export default React.memo(function PostPropertyTwo({
 
   const stepTwoData = useMemo(
     () => ({
-      // frunishing: addFurnishingRadio.filter((item) => item.active === true),
+      // frunishing: furnitureRadio.filter((item) => item.active === true),
       amenities: addAminities.filter((item: any) => item.active === true),
       image_gallery: imagePreview,
       ...objectOne,
@@ -105,7 +102,7 @@ export default React.memo(function PostPropertyTwo({
       semi_furnished: semiFurnishingItemsObj,
     }),
     [
-      addFurnishingRadio,
+      furnitureRadio,
       addAminities,
       imagePreview,
       objectOne,
@@ -116,7 +113,7 @@ export default React.memo(function PostPropertyTwo({
   );
   console.log("step two Data", stepTwoData);
 
-  const hideInputRef: React.MutableRefObject<undefined> = useRef();
+  const hideInputRef: any = useRef();
 
   const handleMarkerDragEnd = (event: any) => {
     const newLat = event.latLng.lat();
@@ -164,7 +161,7 @@ export default React.memo(function PostPropertyTwo({
   };
 
   // const handleFurnishRadioChange = useCallback((value: string) => {
-  //   const newArr = [...addFurnishingRadio];
+  //   const newArr = [...furnitureRadio];
   //   const updatedRadioOptions = newArr.map((item) => ({
   //     ...item,
   //     active: item.value === value ? !item.active : item.active,
@@ -174,7 +171,7 @@ export default React.memo(function PostPropertyTwo({
 
   const handleAddAminityRadio = (value: string) => {
     const newArry = [...addAminities];
-    const updatedAminitiesOtion = newArry.map((item) => ({
+    const updatedAminitiesOtion = newArry.map((item:any) => ({
       ...item,
       active: item.value === value ? !item.active : item.active,
     }));
@@ -183,7 +180,7 @@ export default React.memo(function PostPropertyTwo({
 
   const handleAddOwnerShipType = (value: string) => {
     const newArry = [...addOwnerShip];
-    const updatedArry = newArry.map((item) => ({
+    const updatedArry = newArry.map((item:any) => ({
       ...item,
       active: item.value === value,
     }));
@@ -196,7 +193,7 @@ export default React.memo(function PostPropertyTwo({
 
   const handleFurnishingStatus = (key: string) => {
     const newArry = [...addFurnishingStatus];
-    const updatedArry = newArry.map((item) => ({
+    const updatedArry = newArry.map((item:any) => ({
       ...item,
       active: item.key == key,
     }));
@@ -263,7 +260,7 @@ export default React.memo(function PostPropertyTwo({
     <div>
       {/* <div>
         <h6>Add Furnishing</h6>
-        {addFurnishingRadio.map((item) => (
+        {furnitureRadio.map((item) => (
           <Chip
             key={item.value}
             label={item.label}
@@ -334,7 +331,7 @@ export default React.memo(function PostPropertyTwo({
       </div>
       <div>
         <h6>Ownership type</h6>
-        {addOwnerShip.map((item) => (
+        {addOwnerShip.map((item:any) => (
           <Chip
             key={item.value}
             style={{
@@ -349,7 +346,7 @@ export default React.memo(function PostPropertyTwo({
       </div>
       <div>
         <h6>Availability</h6>
-        {addAvailability.map((item) => (
+        {addAvailability.map((item:any) => (
           <Chip
             style={{
               margin: "8px",
@@ -371,10 +368,10 @@ export default React.memo(function PostPropertyTwo({
             placeholder="Expected Price"
             className="property__area_input m-1"
             value={objectOne.expected_price}
-            onChange={(e) =>
+            onChange={(e:any) =>
               setObjectOne({
                 ...objectOne,
-                expected_price: e.target.value,
+                expected_price: parseFloat(e.target.value),
               })
             }
           />
@@ -397,7 +394,7 @@ export default React.memo(function PostPropertyTwo({
               className="m-1"
               type="checkbox"
               value="yes"
-              onChange={(e: any) =>
+              onChange={() =>
                 setObjectOne({
                   ...objectOne,
                   negotiable: true,
@@ -423,7 +420,7 @@ export default React.memo(function PostPropertyTwo({
             <input
               type="checkbox"
               value="yes"
-              onChange={(e) =>
+              onChange={() =>
                 setObjectOne({
                   ...objectOne,
                   all_inclusive_price: true,
@@ -436,7 +433,7 @@ export default React.memo(function PostPropertyTwo({
             <input
               type="checkbox"
               value="yes"
-              onChange={(e) =>
+              onChange={() =>
                 setObjectOne({
                   ...objectOne,
                   all_inclusive_price: true,
@@ -449,7 +446,7 @@ export default React.memo(function PostPropertyTwo({
             <input
               type="checkbox"
               value="yes"
-              onChange={(e) =>
+              onChange={() =>
                 setObjectOne({
                   ...objectOne,
                   anual_dues_pay: true,
@@ -500,7 +497,7 @@ export default React.memo(function PostPropertyTwo({
       <div>
         <h6>Choose tag</h6>
         <div className="row">
-          {imagePreview.map((item, index) => (
+          {imagePreview.map((item: any, index: any) => (
             <div className="col-lg-4">
               <div className="choose_tag__image">
                 <img src={item.url} alt={`item-${index}`} />
@@ -578,7 +575,7 @@ export default React.memo(function PostPropertyTwo({
                 mapContainerClassName="map-container"
                 center={currentPosition || undefined}
                 zoom={15}
-                onLoad={(map) => setMap(map)}
+                onLoad={(map: any) => setMap(map)}
               >
                 {currentPosition && (
                   <Marker

@@ -1,10 +1,9 @@
-import { useState } from "react";
-// import "../MyGallery/MyGallery.css";
+import React, { useState } from "react";
+import "../MyGallery/MyGallery.css";
 import Verified from "./Verified";
 
 
-
-const Verify = () => {
+const Verify:React.FC = () => {
   const [activeTab, setActiveTab] = useState("property");
 
   const handleTabClick = (tab: string) => {

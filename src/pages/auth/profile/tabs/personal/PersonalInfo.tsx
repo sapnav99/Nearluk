@@ -1,7 +1,7 @@
-
+import React from "react";
 import "./PersonalInfo.css";
 import Recent from "./Recent";
-import emails from "../../../../../assets/images/email 1.png";
+import email from "../../../../../assets/images/email 1.png";
 import facebook from "../../../../../assets/images/facebook 1.png";
 import instagram from "../../../../../assets/images/instagram 1.png";
 import linkedin from "../../../../../assets/images/linkedin 1.png";
@@ -12,25 +12,8 @@ import phone from "../../../../../assets/images/phone-call 1.png";
 import twitter from "../../../../../assets/images/twitter 1.png";
 import youtube from "../../../../../assets/images/youtube 1.png";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faPen,
-//   faPhone,
-//   faEnvelope,
-//   faLocationDot,
-//   faCircleCheck,
-// } from "@fortawesome/free-solid-svg-icons";
-// import {
-//   faFacebook,
-//   faInstagram,
-//   faTwitter,
-//   faLinkedin,
-//   faYoutube,
-// } from "@fortawesome/free-brands-svg-icons";
 
-
-
-const PersonalInfo = ({phoneNumber,email}: any) => {
+const PersonalInfo:React.FC = () => {
   return (
     <div>
       <label>Contact Information</label>
@@ -40,16 +23,16 @@ const PersonalInfo = ({phoneNumber,email}: any) => {
             <img src={phone} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Mobile Number: <span>{phoneNumber}</span>
+                Mobile Number: <span>+91-1234567890</span>
               </label>
             </div>
             {/* <img src={edit} alt="" className="edit-icon" /> */}
           </div>
           <div className="category-card">
-            <img src={emails} alt="" className="icon" />
+            <img src={email} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Email: <span>{email}</span>
+                Email: <span>+91-1234567890</span>
               </label>
             </div>
 
@@ -59,7 +42,7 @@ const PersonalInfo = ({phoneNumber,email}: any) => {
             <img src={location} alt="" className="icon" />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
-                Location: <span></span>
+                Location: <span>+91-1234567890</span>
               </label>
             </div>
             <img src={edit} alt="" className="edit-icon" />
@@ -67,7 +50,7 @@ const PersonalInfo = ({phoneNumber,email}: any) => {
           <div className="category-card">
             <div className="info">
               <label style={{ color: "gray", paddingLeft: "20px" }}>
-                Aadhaar No.: <span></span>
+                Aadhaar No.: <span>+91-1234567890</span>
               </label>
             </div>
 
@@ -80,7 +63,7 @@ const PersonalInfo = ({phoneNumber,email}: any) => {
           <div className="category-card">
             <div className="info">
               <label style={{ color: "gray", paddingLeft: "20px" }}>
-                Pan No.: <span></span>
+                Pan No.: <span>+91-1234567890</span>
               </label>
             </div>
             <img src={check} className="check-icon" />

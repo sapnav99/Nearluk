@@ -3,8 +3,8 @@ import { propertyTypes } from "./actionType";
 const initialState = {};
 
 const postPropertyReducer = (state = initialState, action: any) => {
-  const { type, payload } = action;
-  switch (type) {
+
+  switch (action.type) {
     case propertyTypes.FETCH_POST_PROPERTY:
       return {
         ...state,

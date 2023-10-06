@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./proprtydetails.css";
 import Chip from "@mui/material/Chip";
 import ShareIcon from "@mui/icons-material/Share";
@@ -8,7 +8,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import PublicIcon from "@mui/icons-material/Public";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import useExternalScripts from "../../hooks/useExternalScripts";
-import { useParams } from "react-router-dom";
 
 type Props = {};
 export default function PropertyDetaing({}: Props) {

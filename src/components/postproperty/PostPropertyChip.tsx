@@ -1,6 +1,6 @@
-
+// import React from "react";
 import PropertyChip from "../../helper/PropertyChip";
-
+// import { Dispatch, SetStateAction } from "react";
 
 
 
@@ -11,13 +11,6 @@ interface PropertyChipProps {
   propertyTypes: any;
   setPropertyTypes: any;
 }
-// interface PropertyChipProps {
-//   data: Category[];
-//   setPtype?: Dispatch<SetStateAction<Category[]>> | undefined;
-//   forLable: string;
-//   propertyTypes: any;
-//   setPropertyTypes: any;
-// }
 
 export default function PostPropertyChip({
   data,

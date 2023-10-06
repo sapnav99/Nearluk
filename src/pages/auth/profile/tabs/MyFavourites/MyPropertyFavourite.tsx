@@ -1,14 +1,24 @@
-import { useState } from "react";
-// import "../MyGallery/MyGallery.css";
+import React, { useState } from "react";
+import "../MyGallery/MyGallery.css";
 import "../myPostings/MyProperty.css";
+type Props = {};
 
-const PropertyFavourite = () => {
+const PropertyFavourite:React.FC<Props> = () => {
+ 
   const [activeTab, setActiveTab] = useState("sell");
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  // const imagesPerPage = 5;
+
+
+//  const propertyArray = Array.from({ length: 10 });
+  // const startIndex = (currentPage - 1) * imagesPerPage;
+//   const endIndex = startIndex + imagesPerPage;
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
+    // setCurrentPage(1);
   };
-
   return (
     <div>
       <div className="leftContainer">
