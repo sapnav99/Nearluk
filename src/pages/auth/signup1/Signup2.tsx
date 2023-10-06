@@ -77,7 +77,7 @@ const Signup2 = ({
         return;
       }
       const res = await api.get(
-        `/users/verify-otp?id=${otpDetails}&otp=${enteredOTP}`,
+        `users/verify-otp?id=${otpDetails}&otp=${enteredOTP}`,
         {
           headers: {
             "Content-Type": "application/json",
