@@ -7,7 +7,7 @@ import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 import { useNavigate } from "react-router-dom";
 import SignupInputs from "./SignupInputs";
-import axios from "axios";
+import api from "../../../api/apiServices";
 import _ from "lodash"; 
 
 interface Values {
@@ -56,8 +56,8 @@ const Signup3 = ({ phoneNumber, openNotification }: Signup3Props) => {
   const dispatch = useDispatch();
   const signUp = async (values: Values) => {
     try {
-      const res = await axios.post(
-        `https://de00-183-82-109-169.ngrok-free.app/users/signup`,
+      const res = await api.post(
+        `users/signup`,
         {
           fname: values.fName,
           lname: values.lName,

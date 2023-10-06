@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 
-import axios from "axios";
-import { BASE_URL } from "../../../utils/baseurl";
+import Apis from "../../../api/apiServices";
 type Props={
   setStep?:any,
   setOtpDetails?:any,
@@ -40,7 +39,7 @@ const SentOtpBox:React.FC<Props> = ({
 
         return;
       }
-      const response = await axios.post(`${BASE_URL}/users/login`, {
+      const response = await Apis.post(`users/login`, {
         mobile_no: phoneNumber,
         isOtp: true,
       });

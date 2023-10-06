@@ -35,7 +35,7 @@ const Signup1 = ({
       }
 
       const response = await api.get(
-        `/users/send-otp?mobile_no=${phoneNumber}`,
+        `users/send-otp?mobile_no=${phoneNumber}`,
         {
           headers: {
             "Content-Type": "application/json",

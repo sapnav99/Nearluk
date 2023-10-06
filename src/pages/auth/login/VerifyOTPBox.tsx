@@ -5,10 +5,7 @@ import { LoginActions } from "../redux/actions";
 import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 import { message } from "antd";
-
-import axios from "axios";
-import { BASE_URL } from "../../../utils/baseurl";
-
+import Apis from "../../../api/apiServices";
 const otpSchema = Yup.object().shape({
   otp: Yup.string().required("Phone number is required"),
 });
@@ -40,7 +37,7 @@ const VerifyOTPBox = ({
         return;
       }
 
-      const res = await axios.post(`${BASE_URL}/users/login`, {
+      const res = await Apis.post(`users/login`, {
         id: otpDetails,
         mobile_no: mobnum,
         otp: enteredOTP,
