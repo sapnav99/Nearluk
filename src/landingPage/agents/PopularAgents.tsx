@@ -11,14 +11,14 @@ const PopularAgents = () => {
           <div className="row">
             <div className="col-lg-12">
               <div id="page-contents" className="row">
-                <div
+                {/* <div
                   className="main-wraper"
                   style={{
                     marginBottom: "-80px",
                     width: "1160px",
                     marginLeft: "30px",
                   }}
-                >
+                > */}
                   <div className="user-post" style={{ marginBottom: "30px" }}>
                     <div className="friend-info">
                       <h4 className="main-title">Popular Agents</h4>
@@ -102,7 +102,7 @@ const PopularAgents = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>

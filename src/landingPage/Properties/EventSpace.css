@@ -6,7 +6,7 @@
 .more-details li {
   position: relative;
   display: inline-block;
-  float: left;
+  float: none;
   width: 33.333%;
   font-size: 14px;
   line-height: 24px;

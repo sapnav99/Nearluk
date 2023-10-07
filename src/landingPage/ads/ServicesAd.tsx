@@ -12,28 +12,24 @@ const ServicesAd = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20"></div>
               <div className="col-lg-12">
-                <div className="main-wraper" style={{ marginBottom: "-80px" }}>
+                
                   <div
-                    className="blog-posts"
+                    className="blog-posts" style={{ marginBottom: "-80px" }}
                     // style={{ marginBottom: "0px", display: "flex" }}
                   >
+                    <div className="col-lg-7 col-md-12">
                     <figure>
-                      <img
+                      <img className="images"
                         src={final}
                         alt=""
-                        style={{ width: "720px", height: "450px" }}
+                        
                       />
                     </figure>
+                    </div>
+                   
                     <div
-                      className="blog-post-meta"
-                      style={{
-                        textAlign: "right",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        marginLeft: "50px",
-                      }}
+                      className="blog-post-meta col-lg-4 col-md-12"
+                     
                     >
                       <h1 style={{ lineHeight: "60px" }}>Rent Services</h1>
                       <p
@@ -62,7 +58,7 @@ const ServicesAd = () => {
                 </div>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     </div>

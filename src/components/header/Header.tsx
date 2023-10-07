@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PostProperty from "../postproperty/PostProperty";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
-
-import { GrLocation } from "react-icons/gr";
+import support from "../../assets/images/help-desk.png";
+import { AiOutlineCaretDown } from 'react-icons/ai';
 import "./Header.css";
 type Props = {};
 
@@ -26,20 +26,12 @@ const Header: React.FC<Props> = ({}) => {
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="/images/main-logo-pic.png"
+            src="images/main-logo-pic.png"
             alt=""
             onClick={() => navigate("/")}
           />
         </div>
-        {/* <div className="user-avatar mobile">
-          <a href="profile.html" title="View Profile">
-            <img alt="" src="images/resources/user.jpg" />
-          </a>
-          <div className="name">
-            <h4>Danial Cardos</h4>
-            <span>Ontario, Canada</span>
-          </div>
-        </div> */}
+
         <div className="right-compact">
           <div className="sidemenu">
             <i>
@@ -111,28 +103,27 @@ const Header: React.FC<Props> = ({}) => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            <a href="/">
-              <img
-                src="/images/main-logo-pic.png"
-                alt=""
-                style={{ height: "45px", width: "145px" }}
-              />
-            </a>
+            {isLoggedIn ? (
+              <a href="/">
+                <img
+                  src="images/main-logo-pic.png"
+                  alt=""
+                  style={{ height: "45px", width: "145px" }}
+                />
+              </a>
+            ) : (
+              <a href="/">
+                <img
+                  src="images/main-logo-pic.png"
+                  alt=""
+                  style={{ height: "45px", width: "145px" }}
+                />
+              </a>
+            )}
           </div>
 
           <div className="nl-search-location">
             <div className="searchicon">
-              <span
-                style={{
-                  marginTop: "-67px",
-                  marginLeft: "10px",
-                  color: "#1bdf1b",
-                  fontSize: "6em",
-                  paddingRight: "20px",
-                }}
-              >
-                .
-              </span>
               <div className="nl-search-location_wrap">
                 <input
                   type="text"
@@ -141,8 +132,6 @@ const Header: React.FC<Props> = ({}) => {
                 />
               </div>
             </div>
-
-            {/* <div className="nl-search__error"></div> */}
           </div>
           <div className="sidemenu" style={{ float: "right" }}>
             <i>
@@ -175,7 +164,8 @@ const Header: React.FC<Props> = ({}) => {
                     style={{
                       backgroundColor: "#84D7E8",
                       borderRadius: "25px",
-                      fontWeight: "700",
+                      fontWeight: "500",
+                      letterSpacing: "1px",
                     }}
                     onClick={() => setOpenModal(true)}
                   >
@@ -184,7 +174,43 @@ const Header: React.FC<Props> = ({}) => {
                 )}
               </div>
             </li>
-            {/* {isLoggedIn && (
+            <li>
+              <a
+                className="mesg-notif"
+                href="#"
+                title="Notifications"
+                data-toggle="tooltip"
+                style={{
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-bell"
+                  >
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </i>
+              </a>
+              <span></span>
+            </li>
+            <img
+              src={support}
+              alt=""
+              style={{ height: "30px", width: "30px", color: "blue" }}
+            />
+            {/* {isLoggedIn ? (
               <li>
                 <a href="index.html" title="Home" data-toggle="tooltip">
                   <i>
@@ -206,8 +232,10 @@ const Header: React.FC<Props> = ({}) => {
                   </i>
                 </a>
               </li>
+            ) : (
+              ""
             )} */}
-            {/* {isLoggedIn && (
+            {/* {isLoggedIn ? (
               <li>
                 <a
                   className="mesg-notif"
@@ -234,8 +262,10 @@ const Header: React.FC<Props> = ({}) => {
                 </a>
                 <span></span>
               </li>
+            ) : (
+              ""
             )} */}
-            {/* {isLoggedIn && (
+            {/* {isLoggedIn ? (
               <li>
                 <a
                   className="mesg-notif"
@@ -263,8 +293,10 @@ const Header: React.FC<Props> = ({}) => {
                 </a>
                 <span></span>
               </li>
+            ) : (
+              ""
             )} */}
-            {/* {isLoggedIn && (
+            {/* {isLoggedIn ? (
               <li>
                 <a
                   className="create"
@@ -291,8 +323,10 @@ const Header: React.FC<Props> = ({}) => {
                   </i>
                 </a>
               </li>
+            ) : (
+              ""
             )} */}
-            {isLoggedIn && (
+            {isLoggedIn ? (
               <li>
                 <a href="#" title="">
                   <img
@@ -305,25 +339,7 @@ const Header: React.FC<Props> = ({}) => {
                       borderRadius: "50%",
                     }}
                   />
-                  <i>
-                    {/* <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-grid"
-                  >
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                  </svg> */}
-                  </i>
+                  <i></i>
                 </a>
                 <ul className="dropdown">
                   <li>
@@ -379,44 +395,10 @@ const Header: React.FC<Props> = ({}) => {
                   </li>
                 </ul>
               </li>
+            ) : (
+              ""
             )}
-            {/* <img
-              src={support}
-              alt=""
-              style={{ height: "20px", width: "20px", color: "blue" }}
-            /> */}
-            {/* <FontAwesomeIcon icon={fa-sharp fa-light fa-headset} /> */}
-            <li>
-              <a
-                className="mesg-notif"
-                href="#"
-                title="Notifications"
-                data-toggle="tooltip"
-                style={{
-                  border: "none",
-                  background: "none",
-                }}
-              >
-                <i>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-bell"
-                  >
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                  </svg>
-                </i>
-              </a>
-              <span></span>
-            </li>
+
             <li>
               <div className="add-prop">
                 {!isLoggedIn && (
@@ -438,142 +420,65 @@ const Header: React.FC<Props> = ({}) => {
                 )}
               </div>
             </li>
-
-            <li>
-              {/* <div className="add-prop">
-                <button
-                  type="button"
-                  className="btn  "
-                  style={{
-                    backgroundColor: "#7ED7CF",
-                    borderRadius: "25px",
-                    fontWeight: "500",
-                    width: 160,
-                  }}
-                  onClick={() => navigate("/login")}
-                >
-                  Post Property
-                </button>
-              </div> */}
-            </li>
           </ul>
-
-          <ul
-            className="web_elements list2"
-            // style={{
-            //   color: "black",
-            //   fontWeight: 500,
-            //   fontSize: "14px",
-            //   marginRight: "-10px",
-            // }}
-          >
+          <ul className="web_elements list2">
+            <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-
-            <li>
-              <a>Rent Pay</a>
-              <ul className="dropdown2">
-                <li>
-                  <a href="">Rent</a>
-                </li>
-                <li>
-                  <a href="">Maintanance</a>
-                </li>
-                <li>
-                  <a href="">Advance Amount</a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a>Creditluk</a>
-              <ul className="dropdown2">
-                <li>
-                  <a href="">Loans</a>
-                </li>
-                <li>
-                  <a href="">Loan Calculator</a>
-                </li>
-                <li>
-                  <a href="">CIBIL</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>
-                Near U<span className="heartbeat"></span>
-                <span className="location">
-                  <GrLocation />
-                </span>
-              </a>
-            </li>
-
-            <li>
-              <a>Services</a>
-              {/* <ul className="dropdown1">
-                <li>
-                  <a href="#" title="">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Auctions
-                  </a>
-                </li>
-                <li>
-                  <a className="invite-new" href="#" title="">
-                    Fo Business Owners
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Fo Builders
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    For Poperty Consultants
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Notifications
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Insights
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Sales Support
-                  </a>
-                </li>
-              </ul> */}
-            </li>
-            <li>
-              <a>
-                Auctions
-                <a
-                  href="live-stream.html"
-                  title="Go Live"
-                  data-toggle="tooltip"
-                >
+              <a style={{marginLeft:"-6px"}}>
+                <i>
                   <span className="heartbeat"></span>
-                  <span className="dot">
-                    <i>
-                      <svg
-                        fill="#f00"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                        width="18px"
-                        height="18px"
-                      >
-                        <path
-                          d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
+                  <span className="location">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      strokeWidth="0"
+                      viewBox="0 0 24 24"
+                      height="1em"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke="#088dcd"
+                        strokeWidth="2"
+                        d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 
+            12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 
+            C9,11.657 10.343,13 12,13 L12,13 Z"
+                      ></path>
+                    </svg>
+                  </span>
+                </i>
+              </a>
+              <a>Near U</a>
+            </li>
+           
+            <li>
+              <a
+                style={{ paddingRight: "6px" }}
+                href="live-stream.html"
+                title="Go Live"
+                data-toggle="tooltip"
+              >
+                <span
+                  className="heartbeat"
+                  style={{
+                    backgroundColor: "red",
+                    opacity: "0.2",
+                    marginLeft: "1px",
+                    marginTop: "17px",
+                  }}
+                ></span>
+                <span className="location ">
+                  <i>
+                    <svg
+                      fill="#f00"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      width="18px"
+                      height="18px"
+                    >
+                      <path
+                        d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
                       23.365437 6.1015625 25.898438 L 7.5195312 24.480469 C 5.3465312 22.307469 4 19.308 4 16 
                       C 4 12.692 5.3465312 9.6925313 7.5195312 7.5195312 L 6.1015625 6.1015625 z M 25.898438 6.1015625 
                       L 24.480469 7.5195312 C 26.653469 9.6925312 28 12.692 28 16 C 28 19.308 26.653469 22.307469 
@@ -585,12 +490,48 @@ const Header: React.FC<Props> = ({}) => {
                         19.680266 20.947266 20.947266 L 22.363281 22.363281 C 23.992281 20.734281 25 18.485 25 16 
                         C 25 13.515 23.992281 11.265719 22.363281 9.6367188 z M 16 12 A 4 4 0 0 0 16 20 A 4 4 0 0 0 
                         16 12 z"
-                        />
-                      </svg>
-                    </i>
-                  </span>
-                </a>
+                      />
+                    </svg>
+                  </i>
+                </span>
               </a>
+              <a>Auctions</a>
+            </li>
+            <li>
+              <a>Services<AiOutlineCaretDown style={{color: "#000000",}}/> </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>Rent Pay</a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Rent</a>
+                    </li>
+                    <li>
+                      <a href="">Maintanance</a>
+                    </li>
+                    <li>
+                      <a href="">Advance Amount</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Creditluk</a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Loans</a>
+                    </li>
+                    <li>
+                      <a href="">Loan Calculator</a>
+                    </li>
+                    <li>
+                      <a href="">CIBIL</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Insights</a>
+                </li>
+              </ul>
             </li>
             <li>
               <a>For Business Owners</a>
@@ -600,9 +541,6 @@ const Header: React.FC<Props> = ({}) => {
             </li>
             <li>
               <a>For Poperty Consultants</a>
-            </li>
-            <li>
-              <a>Insights</a>
             </li>
           </ul>
         </div>

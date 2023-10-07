@@ -19,9 +19,7 @@ const PropertyCard = ({ property }: any) => {
               property?.property?.image_gallery[0]?.serveruri
             }
             alt="property image"
-            style={{
-              height: 260,
-            }}
+
           />
           <i className="icofont-book-mark" title="bookmark" />
           <em>Verified</em>
@@ -129,15 +127,15 @@ const PropertyCard = ({ property }: any) => {
             <div className="col-lg-4 mt-2 ">
               <span>
                 <b>
-                  <span>&#8377;</span> {property?.property?.expected_price}
+                  <span>₹</span> {property?.property?.expected_price}
                 </b>
               </span>
             </div>
           </div>
           <div className="course-info">
-            <span className="lecturez">
+            {/* <span className="lecturez">
               <i className="icofont-film" /> 20 Lectures
-            </span>
+            </span> */}
 
             <span className="lecturez">
               <i className="icofont-film" /> car Parking
@@ -235,9 +233,9 @@ const PropertyCard = ({ property }: any) => {
                 </span>
               </li>
             </ul>
-            <a href="post-detail.html" title="" className="reply">
+            {/* <a href="post-detail.html" title="" className="reply">
               Reply <i className="icofont-reply" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

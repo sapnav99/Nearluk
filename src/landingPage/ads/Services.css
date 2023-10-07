@@ -2,9 +2,27 @@
     margin-bottom:0px;
      display: flex
 }
+.images{
+    width: 590px !important;
+}
+.blog-post-meta{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-top: 100px;
+    
+}
 @media only screen and (max-width: 768px) {
 .blog-posts{
     display: flex;
     flex-direction: column;
+}
+.images{
+    margin-top: -100px;
+}
+.blog-post-meta{
+    margin-top: -5px;
+    text-align: start;
 }
 }

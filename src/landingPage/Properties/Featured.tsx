@@ -16,14 +16,7 @@ const Featured = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div className="col-lg-12 ">
-                  <div
-                    className="main-wraper"
-                    // style={{
-                    //   height: "470px",
-                    //   marginBottom: "-7px",
-                    //   marginTop: "-7px",
-                    // }}
-                  >
+                  
                     <div className="main-title">Featured Projects</div>
                     <div className="main2"
                       // style={{
@@ -113,7 +106,7 @@ const Featured = () => {
                   </div>
                 </div>
               </div>
-            </div>
+           
           </div>
         </div>
       </div>

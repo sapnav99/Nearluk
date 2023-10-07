@@ -13,9 +13,9 @@ const Ownerproperties = () => {
             <div id="page-contents" className="row merged20"></div>
             <div className="d-flex justify-content-center align-items-center ">
               <div className="col-lg-12 ">
-                <div className="main-wraper" style={{ marginBottom: "-80px" }}>
+               
                   <h4 className="main-title">Owner Properties</h4>
-                  <div className="row">
+                  <div className="row" style={{ marginBottom: "-80px" }}>
                     {propertyArray.map((_, index) => (
                       <div className="col-lg-3 col-md-6 col-sm-6" key={index}>
                         <div className="course">
@@ -54,6 +54,7 @@ const Ownerproperties = () => {
                                 Modern villa with pool
                               </a>
                             </h5>
+                            <p>3BHK, Gachibowli</p>
                             <div className="we-video-info">
                               <ul style={{ width: "80%" }}>
                                 <li>
@@ -180,7 +181,7 @@ const Ownerproperties = () => {
                 </div>
               </div>
             </div>
-          </div>
+         
         </div>
       </div>
     </div>

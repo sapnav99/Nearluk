@@ -19,10 +19,10 @@ const EventSpaces = () => {
               <div id="page-contents" className="row merged20"></div>
               <div className="d-flex justify-content-center align-items-center ">
                 <div className="col-lg-12 ">
-                  <div
+                  {/* <div
                     className="main-wraper"
                     style={{ marginBottom: "-80px" }}
-                  >
+                  > */}
                     <h4 className="main-title">Event spaces in Hyderabad</h4>
                     <div className="row">
                       {propertyArray.map((_, index) => (
@@ -190,7 +190,7 @@ const EventSpaces = () => {
                 </div>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </div>

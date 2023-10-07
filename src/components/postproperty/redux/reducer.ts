@@ -6,6 +6,7 @@ const postPropertyReducer = (state = initialState, action: any) => {
 
   switch (action.type) {
     case propertyTypes.FETCH_POST_PROPERTY:
+     
       return {
         ...state,
         postingData: [],
@@ -19,6 +20,7 @@ const postPropertyReducer = (state = initialState, action: any) => {
       };
 
     case propertyTypes.TAKE_STEP_DATA:
+      console.log(action.payload);
       return {
         ...state,
         stepData: action.payload,

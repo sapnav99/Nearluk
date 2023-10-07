@@ -6,17 +6,14 @@ import "./MyProperty.css";
 const Property:React.FC = () => {
 
   const [activeTab, setActiveTab] = useState("sell");
-  // const [currentPage, setCurrentPage] = useState(1);
-
-  // const imagesPerPage = 5;
+  
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    // setCurrentPage(1);
+   
   };
 
-  // const startIndex = (currentPage - 1) * imagesPerPage;
-  // const endIndex = startIndex + imagesPerPage;
+ 
   return (
     <div>
       <div className="leftContainer">
@@ -283,9 +280,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -517,9 +512,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -751,9 +744,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -985,9 +976,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -1219,9 +1208,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -1453,9 +1440,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -1693,9 +1678,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -1927,9 +1910,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -2161,9 +2142,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -2395,9 +2374,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -2629,9 +2606,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>
@@ -2863,9 +2838,7 @@ const Property:React.FC = () => {
                           </span>
                         </li>
                       </ul>
-                      <a href="post-detail.html" title="" className="reply">
-                        Reply <i className="icofont-reply" />
-                      </a>
+                     
                     </div>
                   </div>
                 </div>

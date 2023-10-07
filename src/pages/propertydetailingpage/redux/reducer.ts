@@ -10,6 +10,7 @@ const userPropDetailsReducer = (state = initialState, action: any) => {
         userProperty: action.payload,
       };
     case userPropDetailTypes.SET_PROP_DETAILS:
+      console.log(action.payload)
       return {
         ...state,
         userPropLoader: false,

@@ -5,18 +5,18 @@ import mumbai from "../../assets/images/Mumbai.png";
 import chennai from "../../assets/images/chennai.png";
 import delhi from "../../assets/images/delhi.png";
 import pune from "../../assets/images/pune.png";
-
+import './SearchProperty.css'
 
 const SearchProperty = () => {
   return (
     <div>
-      <section style={{ backgroundColor: "#eafaf1" }}>
+      <section style={{ backgroundColor: "#eafaf1" }} >
         <div className="gap">
-          <div className="container">
+          <div className="container ">
             <div className="row">
               <div className="col-lg-12">
                 <div id="page-contents" className="row merged20">
-                  <div className="col-lg-12">
+                  <div className="col-lg-12 ">
                     <h3
                       style={{
                         textAlign: "center",
@@ -28,7 +28,7 @@ const SearchProperty = () => {
                     </h3>
                     {/* <div className="books-caro"> */}
                     <div
-                      className="row col-xs-6 "
+                      className="row col-xs-12 "
                       style={{ marginBottom: "-30px" }}
                     >
                       <div className="col-lg-2 col-md-4 col-sm-4">
