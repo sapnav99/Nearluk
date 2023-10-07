@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
 import PublicIcon from "@mui/icons-material/Public";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import useExternalScripts from "../../hooks/useExternalScripts";
+
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allUserPropDetailsActions } from "./redux/action";
@@ -18,22 +18,21 @@ type Props = {};
 export default function PropertyDetaing({}: Props) {
   const dispatch = useDispatch();
   const params = useParams();
-  useExternalScripts({
-    urls: [
-      "js/main.min.js",
-      "js/script.js",
-      "./css/main.min.css",
-      "./css/style.css",
-      "./css/color.css",
-      "./css/responsive.css",
-    ],
-  });
+  // useExternalScripts({
+  //   urls: [
+  //     "js/main.min.js",
+  //     "js/script.js",
+  //     "./css/main.min.css",
+  //     "./css/style.css",
+  //     "./css/color.css",
+  //     "./css/responsive.css",
+  //   ],
+  // });
 
-  console.log(params);
+ 
   const userdata = useSelector((state: any) => state?.loginReducer);
-  // console.log("log in user ==>", userdata?.user?.user?._id);
+
   useEffect(() => {
-    console.log("is running");
     dispatch(
       allUserPropDetailsActions.fecthPropDetails({
         property: params.id,
@@ -47,8 +46,6 @@ export default function PropertyDetaing({}: Props) {
   );
 
   const formatedValue = fromateNumber(data?.property?.expected_price);
-  console.log("user Data at propretyDetailing page", data);
-  console.log("debugging object", data?.property_owner);
   const amenities = data?.property?.amenities;
   const furnishing = data?.property?.furnishing;
 
@@ -483,22 +480,22 @@ export default function PropertyDetaing({}: Props) {
                     <div className="card-body">
                       <h6 className="card-title">Overview</h6>
                       <div className="prop__overview_container">
-                        <div>
+                        <div className="prop__overview_item">
                           <img
                             src="/images/elements/double-bed_icon.png"
                             alt=""
                           />{" "}
                           <span>Bed Room: {data?.property?.bhk}</span>
                         </div>
-                        <div>
+                        <div className="prop__overview_item">
                           <img src="/images/elements/balcony_icon.png" alt="" />{" "}
                           <span>Balconies: {data?.property?.balconies}</span>
                         </div>
-                        <div>
+                        <div className="prop__overview_item">
                           <img src="/images/elements/compass_icon.png" alt="" />{" "}
                           <span>{data?.property?.facing} Facing</span>
                         </div>
-                        <div>
+                        <div className="prop__overview_item">
                           <img
                             src="/images/elements/building_icon.png"
                             alt=""
@@ -507,11 +504,11 @@ export default function PropertyDetaing({}: Props) {
                             {data?.property?.floor_no} Floor out of 5Floors
                           </span>
                         </div>
-                        <div>
+                        <div className="prop__overview_item">
                           <img src="/images/elements/pooja_icon.png" alt="" />{" "}
                           <span>Pooja Room: {data?.property?.pooja_rooms}</span>
                         </div>
-                        <div>
+                        <div className="prop__overview_item">
                           <img src="/images/elements/bathtub_icon.png" alt="" />{" "}
                           <span>Bathrooms: {data?.property?.bathrooms}</span>
                         </div>
@@ -524,11 +521,13 @@ export default function PropertyDetaing({}: Props) {
                     <div className="card-body">
                       <h6 className="card-title">Amenities</h6>
                       <div className="prop__overview_container">
-                        {amenities?.map((item: any) => (
-                          <div>
-                            <span>{item?.label}</span>
-                          </div>
-                        ))}
+                        {amenities?.map((item: any) =>{
+                          return( 
+                            <div key={item.key} className="prop__aminities_item">
+                              <span>{item?.label}</span>
+                            </div>
+                          )
+                        } )}
                       </div>
                     </div>
                   </div>

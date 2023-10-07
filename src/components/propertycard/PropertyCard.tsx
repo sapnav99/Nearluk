@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import {fromateNumber} from "../../pages/propertydetailingpage/PropertyHelper"
 
 const PropertyCard = ({ property }: any) => {
   const navigate = useNavigate();
@@ -7,8 +8,10 @@ const PropertyCard = ({ property }: any) => {
     <div
       className="col-lg-6 col-md-6 col-sm-6"
       onClick={() => {
-        navigate(`/proprtydetail/${property._id}`);
-        console.log(property);
+        const url = `/proprtydetail/${property._id}`;
+        window.open(url, '_blank');
+        // navigate(`/proprtydetail/${property._id}`);
+        // console.log(property);
       }}
     >
       <div className="course">
@@ -129,7 +132,7 @@ const PropertyCard = ({ property }: any) => {
             <div className="col-lg-4 mt-2 ">
               <span>
                 <b>
-                  <span>&#8377;</span> {property?.property?.expected_price}
+                  <span>&#8377;</span> {fromateNumber(property?.property?.expected_price)} 
                 </b>
               </span>
             </div>

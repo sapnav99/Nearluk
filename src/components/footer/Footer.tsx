@@ -10,7 +10,7 @@ const Footer: FC<Props> = ({}) => {
           <div
             className="bg-image"
             style={{
-              backgroundImage: "url(images/resources/footer-bg.png)",
+              backgroundImage: "url(/images/resources/footer-bg.png)",
             }}
           ></div>
           <div className="container">
@@ -19,7 +19,7 @@ const Footer: FC<Props> = ({}) => {
                 <div className="web-info" style={{ marginTop: "-22px" }}>
                   <div className="logo">
                     <img
-                      src="images/main-logo-pic.png"
+                      src="/images/main-logo-pic.png"
                       alt=""
                       style={{ maxWidth: "200px", marginBottom: "-17px" }}
                     />
@@ -179,13 +179,13 @@ const Footer: FC<Props> = ({}) => {
                     </p>
                     <h5>Download App</h5>
                     <a href="#" title="">
-                      <img src="images/android.png" alt="" />
+                      <img src="/images/android.png" alt="" />
                     </a>
                     <a href="#" title="">
-                      <img src="images/apple.png" alt="" />
+                      <img src="/images/apple.png" alt="" />
                     </a>
                     <a href="#" title="">
-                      <img src="images/windows.png" alt="" />
+                      <img src="/images/windows.png" alt="" />
                     </a>
                   </div>
                 </div>

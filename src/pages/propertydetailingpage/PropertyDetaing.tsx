@@ -1,4 +1,4 @@
-
+import React from "react";
 import "./proprtydetails.css";
 import Chip from "@mui/material/Chip";
 import ShareIcon from "@mui/icons-material/Share";
@@ -7,20 +7,9 @@ import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
 import PublicIcon from "@mui/icons-material/Public";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import useExternalScripts from "../../hooks/useExternalScripts";
 
 type Props = {};
-export default function PropertyDetaing({}: Props) {
-  useExternalScripts({
-    urls: [
-      "js/main.min.js",
-      "js/script.js",
-      "./css/main.min.css",
-      "./css/style.css",
-      "./css/color.css",
-      "./css/responsive.css",
-    ],
-  });
+export default function PropertyDetailinng({}: Props) {
   return (
     <div className="gap">
       <div className="container">
@@ -36,25 +25,25 @@ export default function PropertyDetaing({}: Props) {
                           <div className="row">
                             <div className="col-12 p-0">
                               <img
-                                src="images/propertyimages/propertyimage_01.png"
+                                src="/images/propertyimages/propertyimage_01.png"
                                 alt="property-image"
                               />
                             </div>
                             <div className="col-4 p-1">
                               <img
-                                src="images/propertyimages/propertyimage_01.png"
+                                src="/images/propertyimages/propertyimage_01.png"
                                 alt=""
                               />
                             </div>
                             <div className="col-4 p-1">
                               <img
-                                src="images/propertyimages/propertyimage_02.jpg"
+                                src="/images/propertyimages/propertyimage_02.jpg"
                                 alt=""
                               />
                             </div>
                             <div className="col-4 p-1">
                               <img
-                                src="images/propertyimages/propertyimage_01.png"
+                                src="/images/propertyimages/propertyimage_01.png"
                                 alt=""
                               />
                             </div>
@@ -192,7 +181,7 @@ export default function PropertyDetaing({}: Props) {
                             <div className="property__buttons>">
                               <button className=" book__site_button">
                                 <img
-                                  src="images/elements/calendar-01.png"
+                                  src="/images/elements/calendar_img.png"
                                   alt="calendar"
                                 />{" "}
                                 Book Site Visit
@@ -200,172 +189,349 @@ export default function PropertyDetaing({}: Props) {
                               <button className="request__button">
                                 {" "}
                                 <img
-                                  src="images/elements/phone-receiver-silhouette-01.png"
+                                  src="/images/elements/phone-icon.png"
                                   alt=""
                                 />{" "}
                                 Request Callback
                               </button>
+                              {/* <button className="tag__button">
+                                {""}
+                                <img src="/images/group-1.png" alt="" />
+                                {""}
+                                Tag for Investment Sharing
+                                {""}
+                                <img src="images/elements/i.png" alt="" />
+                              </button> */}
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="book-description">
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                        dolore magna aliquam erat volutpat. Ut wisi enim ad
-                        minim veniam, quis nostrud exerci tation ullamcorper
-                      </p>
-                    </div>
-                    <div className="comment-area product mt-5">
-                      <h4 className="comment-title">03 Feedback</h4>
-                      <ul className="comments">
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="images/resources/commenter-1.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>willimes doe</h6>
-                                <span>12 june 2017</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
+                    {/* <div className="book-description">
+ <p>
+ Lorem ipsum dolor sit amet, consectetuer adipiscing
+ elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+ dolore magna aliquam erat volutpat. Ut wisi enim ad
+ minim veniam, quis nostrud exerci tation ullamcorper
+ </p>
+ </div> */}
+                    {/* <div className="comment-area product mt-5">
+ <h4 className="comment-title">03 Feedback</h4>
+ <ul className="comments">
+ <li>
+ <div className="comment-box">
+ <div className="commenter-photo">
+ <img src="images/resources/commenter-1.jpg" />
+ </div>
+ <div className="commenter-meta">
+ <div className="comment-titles">
+ <h6>willimes doe</h6>
+ <span>12 june 2017</span>
+ <ins>
+ <i className="icofont-star" /> 4.5
+ </ins>
+ </div>
+ <p>
+ Quis autem velum iure reprehe nderit. Lorem
+ ipsum dolor sit amet adipiscing egetmassa
+ pulvinar eu aliquet nibh dapibus.
+ </p>
+ </div>
+ </div>
+ </li>
+ <li>
+ <div className="comment-box">
+ <div className="commenter-photo">
+ <img src="images/resources/commenter-2.jpg" />
+ </div>
+ <div className="commenter-meta">
+ <div className="comment-titles">
+ <h6>Qlark Jack</h6>
+ <span>22 july 2017</span>
+ <ins>
+ <i className="icofont-star" /> 4.5
+ </ins>
+ </div>
+ <p>
+ Quis autem velum iure reprehe nderit. Lorem
+ ipsum dolor sit amet adipiscing egetmassa
+ pulvinar eu aliquet nibh dapibus.
+ </p>
+ </div>
+ </div>
+ </li>
+ <li>
+ <div className="comment-box">
+ <div className="commenter-photo">
+ <img src="images/resources/commenter-3.jpg" />
+ </div>
+ <div className="commenter-meta">
+ <div className="comment-titles">
+ <h6>Olivia Take</h6>
+ <span>15 jan 2016</span>
+ <ins>
+ <i className="icofont-star" /> 4.5
+ </ins>
+ </div>
+ <p>
+ Quis autem velum iure reprehe nderit. Lorem
+ ipsum dolor sit amet adipiscing egetmassa
+ pulvinar eu aliquet nibh dapibus.
+ </p>
+ </div>
+ </div>
+ </li>
+ </ul>
+ <div className="add-comment">
+ <span>Give Your Rating</span>
+ <ul className="stars">
+ <li>
+ <i className="icofont-star" />
+ </li>
+ <li>
+ <i className="icofont-star" />
+ </li>
+ <li>
+ <i className="icofont-star" />
+ </li>
+ <li>
+ <i className="icofont-star" />
+ </li>
+ <li>
+ <i className="icofont-star" />
+ </li>
+ </ul>
+ <form method="post" className="c-form">
+ <input type="text" placeholder="Name" />
+ <input type="text" placeholder="Email" />
+ <textarea
+ rows={4}
+ placeholder="Write Message"
+ defaultValue={""}
+ />
+ <button className="main-btn" type="submit">
+ Add Review
+ </button>
+ </form>
+ </div>
+ </div> */}
+                  </div>
+                  {/* <div className="main-wraper">
+ <h4 className="main-title">
+ Related Books{" "}
+ <a className="view-all" href="#">
+ view all
+ </a>
+ </h4>
+ <div className="books-caro">
+ <div className="book-post">
+ <figure>
+ <a href="book-detail.html">
+ <img src="images/resources/book1.jpg" />
+ </a>
+ </figure>
+ <a href="book-detail.html">Html5 Brick Breaker</a>
+ </div>
+ <div className="book-post">
+ <figure>
+ <a href="book-detail.html">
+ <img src="images/resources/book3.jpg" />
+ </a>
+ </figure>
+ <a href="book-detail.html">Python Tricks</a>
+ </div>
+ <div className="book-post">
+ <figure>
+ <a href="book-detail.html">
+ <img src="images/resources/book5.jpg" />
+ </a>
+ </figure>
+ <a href="book-detail.html">Technology Wants</a>
+ </div>
+ <div className="book-post">
+ <figure>
+ <a href="book-detail.html">
+ <img src="images/resources/book2.jpg" />
+ </a>
+ </figure>
+ <a href="book-detail.html">The Aesthetic Ideology</a>
+ </div>
+ <div className="book-post">
+ <figure>
+ <a href="book-detail.html">
+ <img src="images/resources/book4.jpg" />
+ </a>
+ </figure>
+ <a href="book-detail.html">Holy Bible Old</a>
+ </div>
+ </div>
+ </div> */}
+                  {/* <PropertyDetailCard />
+                  <PropertyDetailOverviewCard />
+                  <PropertyDetailAminitiesCard />
+                  <PropertyDetailFurnishingCard />
+                  <PropertyNearbyCard /> */}
+                  <div className="mt-5">
+                    <div className="card property__detail_card">
+                      <div className="card-body">
+                        <h5 className="card-titel">Details</h5>
+                        <div className="mt-3">
+                          <img src="/images/elements/area_icon.png" alt="" />
+                          <span className="detail__area">Area</span>
+                        </div>
+                        <div className="card__top">
+                          <div className="card__top_left">
+                            <h6>Built Area: 1500sqft</h6>
+                            <h6>Gated Community: Yes</h6>
                           </div>
-                        </li>
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="images/resources/commenter-2.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>Qlark Jack</h6>
-                                <span>22 july 2017</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
+                          <div className="card__top_right">
+                            <h6>Carpet Area: 1200sqft</h6>
+                            <h6>Undevided Share: 40sqft</h6>
+                            <h6>Property Age: Newly Constructed</h6>
                           </div>
-                        </li>
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="images/resources/commenter-3.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>Olivia Take</h6>
-                                <span>15 jan 2016</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
+                        </div>
+                        <hr />
+                        <div className="mt-3">
+                          <img src="images/elements/price-tag-1.png" alt="" />
+                          <span className="detail__area">Pricing</span>
+                        </div>
+                        <div className="card__bottom">
+                          <div className="card__top_left">
+                            <h6>Expected Price: 30Lacs</h6>
+                            <h6>Brokerage: No</h6>
                           </div>
-                        </li>
-                      </ul>
-                      <div className="add-comment">
-                        <span>Give Your Rating</span>
-                        <ul className="stars">
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                        </ul>
-                        <form method="post" className="c-form">
-                          <input type="text" placeholder="Name" />
-                          <input type="text" placeholder="Email" />
-                          <textarea
-                            rows={4}
-                            placeholder="Write Message"
-                            defaultValue={""}
-                          />
-                          <button className="main-btn" type="submit">
-                            Add Review
-                          </button>
-                        </form>
+                          <div className="card__top_right">
+                            <h6>Maintenance Charges : Rs.1500/- P/M</h6>
+                            <h6>Govt Charges & Tax Included : Yes</h6>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="main-wraper">
-                    <h4 className="main-title">
-                      Related Books{" "}
-                      <a className="view-all" href="#">
-                        view all
-                      </a>
-                    </h4>
-                    <div className="books-caro">
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="images/resources/book1.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Html5 Brick Breaker</a>
+                  <div className="mt-5">
+                    <div className="card property__cards">
+                      <div className="card-body">
+                        <h5 className="card-titel">Over View</h5>
+                        <div className="property__card_contents">
+                          <div>
+                            <img
+                              src="images/elements/double-bed-8.png"
+                              alt=""
+                            />
+                            <span>2 Bed Rooms</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/balcony-1.png" alt="" />
+                            <span>2 Balconies</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/compass-1.png" alt="" />
+                            <span>East Facing</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/building-1.png" alt="" />
+                            <span>3rd Floor Out of 5 Floors</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/pooja-1.png" alt="" />
+                            <span>Pooja Room</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/bathtub-1.png" alt="" />
+                            <span>3 Bath Rooms</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="images/resources/book3.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Python Tricks</a>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="card property__cards">
+                      <div className="card-body">
+                        <h5 className="card-titel">Amenities</h5>
+                        <div className="property__card_contents">
+                          <div>
+                            <img src="images/elements/parking-1.png" alt="" />
+                            <span>1 Car parking</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/elevator-1.png" alt="" />
+                            <span>Lift</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/generator-1.png" alt="" />
+                            <span>Power Backup</span>
+                          </div>
+                          <div>
+                            <img
+                              src="images/elements/water-control-1.png"
+                              alt=""
+                            />
+                            <span>Manjeera Water</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/ground-1.png" alt="" />
+                            <span>Ground Water</span>
+                          </div>
+                          <div>
+                            <img
+                              src="images/elements/surveillance-1.png"
+                              alt=""
+                            />
+                            <span>CCTV surveillance</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/guard-1.png" alt="" />
+                            <span>24/7 Security</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="images/resources/book5.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Technology Wants</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="images/resources/book2.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">The Aesthetic Ideology</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="images/resources/book4.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Holy Bible Old</a>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="card property__cards">
+                      <div className="card-body">
+                        <h5 className="card-titel">Furnishing</h5>
+                        <div className="property__card_contents">
+                          <div>
+                            <img src="/images/elements/lightbulb-1.png" alt="" />
+                            <span>12 Lights</span>
+                          </div>
+                          <div>
+                            <img
+                              src="/images/elements/ceiling-fan-1.png"
+                              alt=""
+                            />
+                            <span>4 Fans</span>
+                          </div>
+                          <div>
+                            <img
+                              src="/images/elements/air-conditioner-1.png"
+                              alt=""
+                            />
+                            <span>AC</span>
+                          </div>
+                          <div>
+                            <img src="/images/elements/kitchen-1.png" alt="" />
+                            <span>Modular Kitchen</span>
+                          </div>
+                          <div>
+                            <img src="/images/elements/ground-1.png" alt="" />
+                            <span>Ground Water</span>
+                          </div>
+                          <div>
+                            <img
+                              src="/images/elements/surveillance-1.png"
+                              alt=""
+                            />
+                            <span>CCTV surveillance</span>
+                          </div>
+                          <div>
+                            <img src="images/elements/guard-1.png" alt="" />
+                            <span>24/7 Security</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

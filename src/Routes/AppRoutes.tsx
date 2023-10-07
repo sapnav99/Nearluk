@@ -20,7 +20,7 @@ export default function AppRoutes() {
   const isLoggedIn = useSelector(
     (state: any) => state?.loginReducer?.isLoggedIn
   );
-  console.log("this is for login ==>", isLoggedIn);
+  
   const UnAuthRoutes = () => {
     return (
       <Routes>

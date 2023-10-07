@@ -7,7 +7,6 @@ const getPropDetailsById = function* getPropDetailsById(action: any) {
   try {
     // console.log("userPropDeails Saga Called", action.payload);
     const { data } = yield call(Apis.userPropDetailsById, action.payload);
-    console.log("property data", data);
     yield put(allUserPropDetailsActions.setPropDetails(data.data || []));
   } catch (err) {
     console.error("Error fetching property details:", err);

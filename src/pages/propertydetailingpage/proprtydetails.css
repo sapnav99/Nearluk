@@ -150,13 +150,13 @@
 }
 .card-title {
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 500;
   color: #000000;
 }
 .prop__detail_top_items p {
   font-size: 12px;
   color: #000000;
-  font-weight: 400;
+  font-weight: 500;
 }
 .prop__overviw_card{
   background-color: #F4F4F4;
@@ -167,4 +167,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+}
+.prop__overview_item span{
+  font-size: 12px;
+  color:#000000;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 5px;
+}
+.prop__aminities_item span{
+  font-size: 12px;
+  color:#000000;
+  font-weight: 500;
+  line-height: 21px;
+  margin: 5px;
 }
