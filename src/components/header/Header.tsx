@@ -4,7 +4,8 @@ import PostProperty from "../postproperty/PostProperty";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
 import support from "../../assets/images/help-desk.png";
-import { AiOutlineCaretDown } from 'react-icons/ai';
+import { AiOutlineCaretDown, AiOutlineCaretRight } from 'react-icons/ai';
+import { BiSupport } from "react-icons/bi";
 import "./Header.css";
 type Props = {};
 
@@ -205,11 +206,7 @@ const Header: React.FC<Props> = ({}) => {
               </a>
               <span></span>
             </li>
-            <img
-              src={support}
-              alt=""
-              style={{ height: "30px", width: "30px", color: "blue" }}
-            />
+            <BiSupport/>
             {/* {isLoggedIn ? (
               <li>
                 <a href="index.html" title="Home" data-toggle="tooltip">
@@ -498,10 +495,10 @@ const Header: React.FC<Props> = ({}) => {
               <a>Auctions</a>
             </li>
             <li>
-              <a>Services<AiOutlineCaretDown style={{color: "#000000",}}/> </a>
+              <a>Services<AiOutlineCaretDown /> </a>
               <ul className="dropdown2">
                 <li>
-                  <a>Rent Pay</a>
+                  <a>Rent Pay <AiOutlineCaretRight/></a>
                   <ul className="dropdown3">
                     <li>
                       <a href="">Rent</a>
@@ -515,7 +512,7 @@ const Header: React.FC<Props> = ({}) => {
                   </ul>
                 </li>
                 <li>
-                  <a>Creditluk</a>
+                  <a>Creditluk <AiOutlineCaretRight/></a>
                   <ul className="dropdown3">
                     <li>
                       <a href="">Loans</a>

@@ -1,16 +1,23 @@
+/* .images {
+  margin-left: 90px;
+}
+.buttons {
+  width: 100px;
+  margin-left: 90px;
+} */
+
 @media only screen and (max-width: 480px) {
-    .container{
-       max-width: 100% !important;
-    }
-   }
+  .container {
+    max-width: 100% !important;
+  }
+}
 @media only screen and (max-width: 667px) {
- .container{
-    max-width: 900px !important;
- }
+  .container {
+    max-width: 700px !important;
+  }
 }
 @media only screen and (max-width: 736px) {
-    .container{
-       max-width: 1000px !important;
-    }
-   }
-   
+  .container {
+    max-width: 1000px !important;
+  }
+}

@@ -32,7 +32,7 @@ const Services = () => {
                     </h2>
                     {/* <div className="books-caro"> */}
                     <div
-                      className="row col-xs-6 "
+                      className="row col-xs-6 page-caro"
                       style={{ marginBottom: "-30px" }}
                     >
                       <div className="col-lg-2 col-md-4 col-sm-4">
@@ -41,7 +41,7 @@ const Services = () => {
                             <img alt="" src={rental} />
                           </figure>
 
-                          <button>Rental Agreement</button>
+                          <button >Rental Agreement</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">

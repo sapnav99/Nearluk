@@ -1,16 +1,18 @@
 
+
 import bangalore from "../../assets/images/bangalore.png";
 import hyderabad from "../../assets/images/hyderabad.png";
 import mumbai from "../../assets/images/Mumbai.png";
 import chennai from "../../assets/images/chennai.png";
 import delhi from "../../assets/images/delhi.png";
 import pune from "../../assets/images/pune.png";
-import './SearchProperty.css'
-
+import "./SearchProperty.css";
 const SearchProperty = () => {
+
+
   return (
     <div>
-      <section style={{ backgroundColor: "#eafaf1" }} >
+      <section style={{ backgroundColor: "#eafaf1" }}>
         <div className="gap">
           <div className="container ">
             <div className="row">
@@ -26,90 +28,68 @@ const SearchProperty = () => {
                     >
                       Search properties by popular cities
                     </h3>
-                    {/* <div className="books-caro"> */}
+
                     <div
-                      className="row col-xs-12 "
+                      className="row col-xs-12 page-caro"
                       style={{ marginBottom: "-30px" }}
                     >
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              alt=""
-                              src={bangalore}
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img className="images" alt="" src={bangalore} />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Bangalore</button>
+                          <button className="buttons">Bangalore</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              src={hyderabad}
-                              alt=""
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img src={hyderabad} alt="" className="images" />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Hyderabad</button>
+                          <button className="buttons">Hyderabad</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              src={delhi}
-                              alt=""
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img src={delhi} alt="" className="images" />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Delhi</button>
+                          <button className="buttons">Delhi</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              src={mumbai}
-                              alt=""
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img src={mumbai} alt="" className="images" />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Mumbai</button>
+                          <button className="buttons">Mumbai</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              src={pune}
-                              alt=""
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img src={pune} alt="" className="images" />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Pune</button>
+                          <button className="buttons">Pune</button>
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-sm-4">
                         <div className="group-box">
                           <figure>
-                            <img
-                              src={chennai}
-                              alt=""
-                              style={{ height: "65px", width: "70px" }}
-                            />
+                            <img src={chennai} alt="" className="images" />
                           </figure>
 
-                          <button style={{ width: "100px" }}>Chennai</button>
+                          <button className="buttons">Chennai</button>
                         </div>
                       </div>
                     </div>
+
+                    
                   </div>
                 </div>
               </div>

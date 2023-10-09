@@ -1,0 +1,17 @@
+.advanced{
+position: absolute;
+top: 100%;
+right: 0;
+z-index: 9;
+background-color: white;
+width: 575px;
+height: auto;
+border-radius: 10px;
+
+}
+.advanced>span{
+display: block;
+padding: 10px;
+font-size: 14px;
+color: rgba(23, 162, 184, 1);
+}
