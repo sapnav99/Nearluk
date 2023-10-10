@@ -1,17 +1,28 @@
 
+import { useEffect, useState } from "react";
 import PropertyCard from "../propertycard/PropertyCard";
 import { useSelector } from "react-redux";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 
 export default function Content() {
- 
+  const [properties, setProperties]: any = useState([])
+  const [page, setPage] = useState(1)
+  const pageSize = 10
 
-  // useEffect(() => {
-  //   setAllData(dataFromApi);
-  // }, [dataFromApi]);
   const allProperty = useSelector(
     (state: any) => state?.homeReducer?.allProperty
   );
+  
+  // console.log("allproperties =>",allProperty)
+
+  useEffect(() => {
+    const fetchMoreItems = () => {
+      const newItems: any = allProperty.slice((page-1)*pageSize, page*pageSize)
+      setProperties([...properties, ...newItems])
+    } 
+    fetchMoreItems()
+  },[page])
 
   return (
     <section>
@@ -332,11 +343,20 @@ export default function Content() {
                       <span>Emma Watson</span>
                     </div>
                   </div> */}
-                  <div className="row">
-                    {allProperty?.map((item: any) => (
-                      <PropertyCard key={item?._id} property={item} />
-                    ))}
-                  </div>
+                  
+                    <InfiniteScroll
+                    dataLength={properties.length}
+                    next={() => setPage(page => page+1)}
+                    hasMore={page*pageSize < allProperty?.length}
+                    loader={<h4>loadding...</h4>}
+                    >
+                     <div className="row">
+                      {properties?.map((item: any) => (
+                        <PropertyCard key={item?._id} property={item} />
+                      ))}
+                     </div>
+                    </InfiniteScroll>
+                  
 
                   {/* your group */}
                 </div>

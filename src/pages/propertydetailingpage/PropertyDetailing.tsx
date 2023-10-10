@@ -1,35 +1,37 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import "./proprtydetails.css";
 import Chip from "@mui/material/Chip";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
-import PublicIcon from "@mui/icons-material/Public";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
+import useExternalScripts from "../../hooks/useExternalScripts";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allUserPropDetailsActions } from "./redux/action";
 import { fromateNumber } from "./PropertyHelper";
 import moment from "moment";
+import { AiOutlineGlobal } from "react-icons/ai";
+import Maps from "../../components/Maps/Maps";
 
+type latlngLiteral = google.maps.LatLngLiteral
 type Props = {};
 export default function PropertyDetaing({}: Props) {
+  // import ("/js/main.min.js")
   const dispatch = useDispatch();
   const params = useParams();
-  // useExternalScripts({
-  //   urls: [
-  //     "js/main.min.js",
-  //     "js/script.js",
-  //     "./css/main.min.css",
-  //     "./css/style.css",
-  //     "./css/color.css",
-  //     "./css/responsive.css",
-  //   ],
-  // });
+  useExternalScripts({
+    urls: [
+      "js/main.min.js",
+      "js/script.js",
+      "./css/main.min.css",
+      "./css/style.css",
+      "./css/color.css",
+      "./css/responsive.css",
+    ],
+  });
 
- 
   const userdata = useSelector((state: any) => state?.loginReducer);
 
   useEffect(() => {
@@ -44,6 +46,14 @@ export default function PropertyDetaing({}: Props) {
   const data = useSelector(
     (state: any) => state?.userPropDetailsReducer?.userProperty
   );
+  
+  console.log("data",data)
+  if(data.property?.image_gallery){
+    console.log("wanted data", data.property?.image_gallery)
+
+  }
+  
+  const propertyPosition: latlngLiteral = { lat: data?.location?.coordinates[0], lng: data?.location?.coordinates[1] }
 
   const formatedValue = fromateNumber(data?.property?.expected_price);
   const amenities = data?.property?.amenities;
@@ -64,42 +74,22 @@ export default function PropertyDetaing({}: Props) {
                           <div className="row">
                             <div className="col-12 p-0">
                               <img
-                                src="/images/propertyimages/propertyimage_01.png"
+                                src={data?.property?.feature_image || data.property?.image_gallery && data.property?.image_gallery[0].serveruri}
                                 alt="property-image"
+                                style={{objectFit: "cover", borderRadius: "5px"}}
                               />
                             </div>
-                            <div className="col-4 p-1">
-                              <img
-                                src="/images/propertyimages/propertyimage_01.png"
-                                alt=""
-                              />
-                            </div>
-                            <div className="col-4 p-1">
-                              <img
-                                src="/images/propertyimages/propertyimage_01.png"
-                                alt=""
-                              />
-                            </div>
-                            <div className="col-4 p-1">
-                              <img
-                                src="/images/propertyimages/propertyimage_01.png"
-                                alt=""
-                              />
-                            </div>
+                            
+                              {data.property?.image_gallery &&  data.property?.image_gallery.slice(0,3).map((item: any) => (
+                                <div className="col-4 p-0" key={item.key}>
+                                  <img
+                                  src={item?.serveruri}
+                                  alt=""
+                                  style={{objectFit: "cover",borderRadius: "5px", padding: "2px"}}
+                                />
+                                </div>
+                              ))}
                           </div>
-                        </div>
-                        <div className="prod-stat">
-                          <ul>
-                            <li>
-                              <span>Visited:</span> 130
-                            </li>
-                            <li>
-                              <span>Downloads:</span> 1.3k
-                            </li>
-                            <li>
-                              <span>Availablity:</span> Available
-                            </li>
-                          </ul>
                         </div>
                       </div>
                     </div>
@@ -115,6 +105,8 @@ export default function PropertyDetaing({}: Props) {
                                     variant="outlined"
                                     style={{
                                       margin: "4px",
+                                      borderRadius: "10px",
+                                      height: "27px",
                                     }}
                                     classes={{
                                       label: "customLabelColor",
@@ -127,6 +119,8 @@ export default function PropertyDetaing({}: Props) {
                                     variant="outlined"
                                     style={{
                                       margin: "4px",
+                                      borderRadius: "10px",
+                                      height: "27px",
                                     }}
                                     classes={{
                                       label: "customLabelColor",
@@ -139,6 +133,8 @@ export default function PropertyDetaing({}: Props) {
                                     variant="outlined"
                                     style={{
                                       margin: "4px",
+                                      borderRadius: "10px",
+                                      height: "27px",
                                     }}
                                     classes={{
                                       label: "customLabelColor",
@@ -151,6 +147,8 @@ export default function PropertyDetaing({}: Props) {
                                     variant="outlined"
                                     style={{
                                       margin: "4px",
+                                      borderRadius: "10px",
+                                      height: "27px",
                                     }}
                                     classes={{
                                       label: "customLabelColor",
@@ -180,19 +178,19 @@ export default function PropertyDetaing({}: Props) {
                                       Property
                                     </p>
                                   </div>
-                                  <p className="property__naming_address">
-                                    <LocationOnIcon />
-                                    {data?.property?.locality}
-                                  </p>
-                                  <div>
-                                    <PublicIcon />
-                                    <p>
+                                  <div className="property__naming_address">
+                                  <span><LocationOnIcon /></span>
+                                  <p>{data?.property?.locality}</p>
+                                  </div>
+                                  {/* <div className="property__post_date">
+                                    <AiOutlineGlobal color="#646262" size={18} />
+                                    <span>
                                       Posted On:{" "}
                                       {moment(data?.property?.createdAt).format(
                                         "DD-MM-YYYY"
                                       )}
-                                    </p>
-                                  </div>
+                                    </span>
+                                  </div> */}
                                 </div>
                                 <div className="property__naming_left">
                                   <div className="property__pricing">
@@ -228,6 +226,15 @@ export default function PropertyDetaing({}: Props) {
                                     </p>
                                   </div>
                                 </div>
+                                <div className="property__post_date">
+                                    <AiOutlineGlobal color="#646262" size={18} />
+                                    <span>
+                                      Posted On:{" "}
+                                      {moment(data?.property?.createdAt).format(
+                                        "DD-MM-YYYY"
+                                      )}
+                                    </span>
+                                  </div>
                                 <div></div>
                                 <div></div>
                               </div>
@@ -521,13 +528,16 @@ export default function PropertyDetaing({}: Props) {
                     <div className="card-body">
                       <h6 className="card-title">Amenities</h6>
                       <div className="prop__overview_container">
-                        {amenities?.map((item: any) =>{
-                          return( 
-                            <div key={item.key} className="prop__aminities_item">
+                        {amenities?.map((item: any) => {
+                          return (
+                            <div
+                              key={item.key}
+                              className="prop__aminities_item"
+                            >
                               <span>{item?.label}</span>
                             </div>
-                          )
-                        } )}
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -586,6 +596,171 @@ export default function PropertyDetaing({}: Props) {
                           <img src="/images/elements/guard_icon.png" alt="" />{" "}
                           <span>24/7 Security</span>
                         </div> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5">
+                  <div className="card property__cards">
+                    <div className="nearby__card_wrapper">
+                      <div className="card-boby">
+                        <h5 className="card-title">Near By</h5>
+                        <div className="row">
+                          <div className="col-12">
+                          {
+                           propertyPosition.lat && <Maps propertyPosition={propertyPosition}/>
+                          }
+                          </div>
+                          <div className="col-12 mt-2">
+                            <div className="card nearby__public_info_card">
+                              <div className="nearby__public_info_card_carousel">
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/train-1.png"
+                                        alt=""
+                                      /> */}
+                                      Metro Station
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/bus 1.png"
+                                        alt=""
+                                      /> */}
+                                      Bus Station
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/bus-2.png"
+                                        alt=""
+                                      /> */}
+                                      Railway Station
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/bus-2.png"
+                                        alt=""
+                                      /> */}
+                                      Hospitals
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/bus-2.png"
+                                        alt=""
+                                      /> */}
+                                      Schools
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                                <Chip
+                                  label={
+                                    <>
+                                      {/* <img
+                                        src="images/elements/bus-2.png"
+                                        alt=""
+                                      /> */}
+                                      {""}Shopping
+                                    </>
+                                  }
+                                  variant="outlined"
+                                  style={{
+                                    margin: "4px",
+                                  }}
+                                  classes={{
+                                    label: "customLabelColor",
+                                    outlined: "customNoBorderRadius",
+                                    outlinedPrimary: "customBorderColor",
+                                  }}
+                                />
+                              </div>
+                              <hr />
+                              <div className="info_container">
+                                <div className="info">
+                                  <h4>Ameerpet</h4>
+                                  <h4>2.1km/6mints</h4>
+                                </div>
+                                <div className="info">
+                                  <h4>Panjagutta</h4>
+                                  <h4>5.1km/6mints</h4>
+                                </div>
+                                <div className="info">
+                                  <h4>SR Nagar</h4>
+                                  <h4>2km/2mints</h4>
+                                </div>
+                                <div className="info">
+                                  <h4>Yousafguda</h4>
+                                  <h4>1km/1mints</h4>
+                                </div>
+                                <div className="info">
+                                  <h4>Irru Manzil</h4>
+                                  <h4>2.1km/6mints</h4>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

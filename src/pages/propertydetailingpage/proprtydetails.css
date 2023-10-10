@@ -1,3 +1,9 @@
+.main-wraper {
+  height: auto;
+  margin-bottom: -7px;
+  margin-top: -7px;
+  border-radius: 10px;
+}
 .full-book {
   display: inline-block;
   width: 100%;
@@ -74,6 +80,13 @@
 .property__naming_address{
   color: #A4A4A4  ;
   font-size: 13px;
+  display: flex;
+}
+.property__naming_address p {
+  font-size: 13px;
+}
+.property__user_profile_container{
+  margin-bottom: 12px;
 }
 .property__social__buttons{
   border: none;
@@ -96,6 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5px;
 }
 .property__pricing{
   background-color:#c7c4c4;
@@ -139,7 +153,7 @@
 }
 .prop__detail_card{
   background-color: #F4F4F4;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .prop__detail_top_items{
   display: flex;
@@ -160,7 +174,7 @@
 }
 .prop__overviw_card{
   background-color: #F4F4F4;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .prop__overview_container{
   display: flex;
@@ -182,3 +196,36 @@
   line-height: 21px;
   margin: 5px;
 }
+.property__post_date span{
+  color: #3D3D3D99;
+  margin-left: 4px;
+}
+.owner__container h6{
+  font-size: 24px;
+  font-weight: 800;
+  margin: 3px 3px;
+}
+.owner__container p {
+  margin-left: 3px;
+}
+
+/* nearby */
+.property__cards{
+  background-color: #F4F4F4;
+ }
+ .nearby__card_wrapper{
+  padding: 10px;
+ }
+ .nearby__public_info_card{
+  background-color: #fff;
+ }
+ .info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+ .info h4 {
+  font-size: 16px;
+  margin: 5px;
+ }
+ 

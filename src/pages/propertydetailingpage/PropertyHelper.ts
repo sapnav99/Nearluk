@@ -5,7 +5,7 @@ export const fromateNumber = (number: any) => {
   }
   if (number >= 100000) {
     const Lakhs = (number / 100000).toFixed(2);
-    return `${Lakhs} Lakh`;
+    return `${Lakhs} Lac`;
   }
   if (number >= 1000) {
     const thousand = (number / 1000).toFixed();

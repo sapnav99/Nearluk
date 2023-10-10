@@ -238,9 +238,9 @@ const PropertyCard = ({ property }: any) => {
                 </span>
               </li>
             </ul>
-            <a href="post-detail.html" title="" className="reply">
+            {/* <a href="post-detail.html" title="" className="reply">
               Reply <i className="icofont-reply" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
