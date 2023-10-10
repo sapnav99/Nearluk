@@ -1,108 +1,38 @@
-
 import profile from "../../assets/images/profilePhoto.jpg";
 // import './Agents.css'
-
 
 const PopularAgents = () => {
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{backgroundColor:"rgba(226, 255, 253, 1)"}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div id="page-contents" className="row">
-                {/* <div
-                  className="main-wraper"
-                  style={{
-                    marginBottom: "-80px",
-                    width: "1160px",
-                    marginLeft: "30px",
-                  }}
-                > */}
-                  <div className="user-post" style={{ marginBottom: "30px" }}>
-                    <div className="friend-info">
-                      <h4 className="main-title">Popular Agents</h4>
-                      <ul
-                        className="suggested-caro"
-                        // style={{
-                        //   margin: 0,
-                        // }}
-                      >
-                        <li >
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Muhammad Khan</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Sadia Gill</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+              <div id="page-contents" className="row" >
+                <h4 className="main-title">Popular Agents</h4>
+                <div className="widget stick-widget col-lg-3" style={{backgroundColor:"white"}}>
+                  <ul className="followers">
+                    <li>
+                      <figure>
+                        <img alt="" src="images/resources/friend-avatar.jpg" />
+                      </figure>
+                      <div className="friend-meta">
+                        <h6>Mitra Spaces Pvt Ltd</h6>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", fontSize:"14px" }}>
+                        <span>
+                          Dealing in : Rent/Lease Original Booking, Resale
+                        </span>
+                        <span>Member Since: 2022</span>
+                        <span>
+                          Properties Dealing: 100 Villas | 37 Plots | 2 Flats |
+                          1 House
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-              {/* </div> */}
+              </div>
             </div>
           </div>
         </div>

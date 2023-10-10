@@ -1,5 +1,5 @@
 
-import ImageCarousel from "./ImageCarousel";
+import ImageCarousel from "./Carousel/ImageCarousel";
 
 import Services from "./services/Services";
 import Ownerproperties from "./Properties/Ownerproperties";
@@ -12,9 +12,9 @@ import ServicesAd from "./ads/ServicesAd";
 import RecentSearches from "./Properties/RecentSeach";
 import TopProjects from "./Properties/TopPojects";
 import Trending from "./Properties/Trending";
-
+import Rent from "./Properties/Rent";
 import Plots from "./Properties/Plots";
-
+import PopularAgents from "./agents/PopularAgents";
 
 
 
@@ -25,7 +25,7 @@ const LandingPage = () => {
       <SearchProperty />
       <Featured />
       <Services />
-      {/* <PopularAgents /> */}
+      <PopularAgents />
       <Ownerproperties />
       <EventSpaces />
       <AgentProperties />
@@ -34,7 +34,7 @@ const LandingPage = () => {
       <TopProjects />
       <Trending />
       <Plots />
-      {/* <Rent/> */}
+      <Rent/>
       
     </div>
   );

@@ -91,7 +91,7 @@ const HeaderBeforeLogin = () => {
                       type="button"
                       className="btn  "
                       style={{
-                        backgroundColor: "rgba(121, 216, 178, 1)",
+                        backgroundColor: "rgba(63, 219, 209, 1)",
                         borderRadius: "8px",
                         fontWeight: "600",
                         fontSize:"14px",
@@ -106,7 +106,7 @@ const HeaderBeforeLogin = () => {
                       type="button"
                       className="btn "
                       style={{
-                        backgroundColor: "rgba(121, 216, 178, 1)",
+                        backgroundColor: "rgba(63, 219, 209, 1)",
                         borderRadius: "8px",
                         color: "black",
                         fontWeight: "600",

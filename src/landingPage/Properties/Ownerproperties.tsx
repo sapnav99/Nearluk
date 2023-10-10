@@ -5,6 +5,8 @@ import profile from "../../assets/images/profilePhoto.jpg";
 
 const Ownerproperties = () => {
   const propertyArray = Array.from({ length: 4 });
+  
+  
   return (
     <div className="gap">
       <div className="container">
@@ -14,13 +16,16 @@ const Ownerproperties = () => {
             <div className="d-flex justify-content-center align-items-center ">
               <div className="col-lg-12 ">
                
-                  <h4 className="main-title">Owner Properties</h4>
+                  <h4 className="main-title">Owner Properties</h4>                 
                   <div className="row" style={{ marginBottom: "-80px" }}>
-                    {propertyArray.map((_, index) => (
-                      <div className="col-lg-3 col-md-6 col-sm-6" key={index}>
+                  
+                    {propertyArray.map((_, index) => (                     
+                      <div className="col-lg-3 col-md-6 col-sm-6" key={index}>                          
                         <div className="course">
                           <figure>
-                            <img src={villa2} alt="" />
+                            <img src={villa2} alt="" 
+                            
+                            />
                             <i
                               className="icofont-book-mark"
                               title="bookmark"
@@ -174,10 +179,11 @@ const Ownerproperties = () => {
                             </span>
                           </div> */}
                           </div>
-                        </div>
+                        </div>                     
                       </div>
                     ))}
-                  </div>
+                   
+                  </div>                
                 </div>
               </div>
             </div>

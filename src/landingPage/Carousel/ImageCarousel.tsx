@@ -1,10 +1,12 @@
 import React from "react";
-import useExternalScripts from "../hooks/useExternalScripts";
+import useExternalScripts from "../../hooks/useExternalScripts";
 import { Carousel } from "antd";
-import banner1 from "../assets/images/banner1.jpg";
-import banner2 from "../assets/images/banner2.jpg";
-import banner3 from "../assets/images/banner3.jpg";
-import SearchBarBeforeLogin from "../components/searchbar/SearchBar1";
+
+import banner1 from "../../assets/images/banner1.jpg";
+import banner2 from "../../assets/images/banner2.jpg";
+import banner3 from "../../assets/images/banner3.jpg";
+import SearchBarBeforeLogin from "../../components/searchbar/SearchBar1";
+import { Heading } from "./Heading";
 
 
 const ImageCarousel = () => {
@@ -32,7 +34,7 @@ const ImageCarousel = () => {
 
   return (
     <div style={overlayContainerStyle}>
-      <Carousel autoplay>
+      <Carousel autoplay dots={false}>
         <div>
           <div style={overlayStyle}></div>
           <img src={banner1} alt="" style={contentStyle} />
@@ -46,7 +48,9 @@ const ImageCarousel = () => {
           <img src={banner3} alt="" style={contentStyle} />
         </div>
       </Carousel>
-      {/* SearchBar placed outside overlay-container */}
+    <div>
+      <Heading/>
+    </div>
       <div style={{ marginTop: "-220px", marginBottom: "220px" }}>
         <SearchBarBeforeLogin />
       </div>
