@@ -8,7 +8,7 @@ import { Slider } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBarBeforeLogin() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -24,6 +24,11 @@ export default function SearchBarBeforeLogin() {
   ]);
   const [minSliderValue, setMinSliderValue] = useState<number>(500000);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
+  const [activeTab, setActiveTab] = useState('Buy');
+
+  const handleTabClick = (tab:any) => {
+    setActiveTab(tab);
+  };
 
   const handleChange = (value: number | [number, number]) => {
     if (Array.isArray(value)) {
@@ -59,7 +64,6 @@ export default function SearchBarBeforeLogin() {
 
   const toggleDropdown = () => {
     setDropdownVisibility(!isDropdownVisible);
-    
   };
   const togglePropertyDropdown = () => {
     setisPropertyDropdownOpen(!isPropertyDropdownOpen);
@@ -92,7 +96,7 @@ export default function SearchBarBeforeLogin() {
         // style={{ backgroundColor: "white", borderRadius: "20px" }}
       >
         <ul
-          className="nav nav-pills "
+          className="nav nav-tabs "
           style={{
             width: "725px",
             marginLeft: "60px",
@@ -100,29 +104,41 @@ export default function SearchBarBeforeLogin() {
             gap: "10px",
           }}
         >
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link " aria-current="page">
-              PG
-            </a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link">Rent/Lease</a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link">Buy</a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link ">Commercial</a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link ">Event Space</a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link ">Flatmate</a>
-          </li>
-          <li className="nav-item bg-light rounded">
-            <a className="nav-link ">Office Space</a>
-          </li>
+          <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Buy' ? 'active' : ''}`} onClick={() => handleTabClick('Buy')}>
+          Buy
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Rent/Lease' ? 'active' : ''}`} onClick={() => handleTabClick('Rent/Lease')}>
+        Rent/Lease
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Office Space' ? 'active' : ''}`} onClick={() => handleTabClick('Office Space')}>
+        Office Space
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Commercial' ? 'active' : ''}`} onClick={() => handleTabClick('Commercial')}>
+        Commercial
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Event Space' ? 'active' : ''}`} onClick={() => handleTabClick('Event Space')}>
+        Event Space
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'Flatmate' ? 'active' : ''}`} onClick={() => handleTabClick('Flatmate')}>
+        Flatmate
+        </a>
+      </li>
+      <li className={`nav-item bg-light rounded `}>
+        <a className={`nav-link ${activeTab === 'PG' ? 'active' : ''}`} onClick={() => handleTabClick('PG')}>
+        PG
+        </a>
+      </li>
         </ul>
         <div className="nl-search__wrap">
           <div className="nl-search__location">
@@ -256,7 +272,7 @@ export default function SearchBarBeforeLogin() {
                           placeholder=""
                           style={{
                             width: "70px",
-                            border:"none",
+                            border: "solid 0.5px rgba(255, 210, 210, 1)",
                             borderRadius: "5px",
                             backgroundColor: "white",
                           }}
@@ -278,7 +294,7 @@ export default function SearchBarBeforeLogin() {
                           placeholder=""
                           style={{
                             width: "70px",
-                            border:"none",
+                            border: "solid 0.5px rgba(255, 210, 210, 1)",
                             borderRadius: "5px",
                             backgroundColor: "white",
                           }}
@@ -289,14 +305,13 @@ export default function SearchBarBeforeLogin() {
                       className="slider"
                       range={{ draggableTrack: true }}
                       value={sliderValue}
-                      min={500000}
+                      min={0}
                       max={50000000}
                       onChange={handleChange}
-                      onAfterChange={handleChange} 
+                      onAfterChange={handleChange}
                       tooltip={{
                         formatter: (value) => formatValue(value as number),
                       }}
-                      
                     />
                   </div>
                 )}
@@ -318,13 +333,20 @@ export default function SearchBarBeforeLogin() {
               <span className="nl-search__btn_icon">
                 <i className="icofont-search"></i>
               </span>
-              <span className="nl-search__btn_text" onClick={()=>navigate("/searchresult")}>Search</span>
+              <span
+                className="nl-search__btn_text"
+                onClick={() => navigate("/searchresult")}
+              >
+                Search
+              </span>
             </div>
           </div>
         </div>
       </div>
       <div
         style={{
+          paddingInline:"10px",
+          paddingBlock:"2px",
           backgroundColor: "white",
           borderRadius: "25px",
           marginRight: "-695px",
@@ -334,7 +356,7 @@ export default function SearchBarBeforeLogin() {
           justifyContent: "space-between",
         }}
       >
-        <img src={plus} alt="" style={{marginLeft:"5px"}}/>
+        <img src={plus} alt=""  />
         <span onClick={toggleDropdown} style={{ cursor: "pointer" }}>
           Advanced Search
         </span>

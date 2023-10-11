@@ -7,7 +7,12 @@ import pune from "../../assets/images/pune.png";
 import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
 import "./SearchProperty.css";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import {Navigation} from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/hash-navigation"
 const SearchProperty = () => {
   
 
@@ -19,7 +24,7 @@ const SearchProperty = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div id="page-contents" className="row merged20">
-                  <div className="col-lg-1" style={{ marginTop: "60px" }}>
+                  <div className="prev col-lg-1"  style={{ marginTop: "60px" }}>
                     <img src={left} alt="" />
                   </div>
                   <div className="col-lg-10 ">
@@ -32,12 +37,22 @@ const SearchProperty = () => {
                     >
                       Search properties by popular cities
                     </h3>
-                 
+                    <Swiper
+                     modules={[Navigation]}
+                      spaceBetween={20}
+                      slidesPerView={6}
+                      autoplay={{ delay: 2000, disableOnInteraction: false }}
+                      navigation={{
+                        nextEl: ".next",
+                        prevEl: ".prev",
+                      }}
+                    >
                       <div
                         className="row col-xs-12 "
                         style={{ marginBottom: "-30px" }}
                       >
                         <div className="col-lg-2 col-md-4 col-sm-4">
+                        <SwiperSlide>
                           <div className="group-box">
                             <figure>
                               <img
@@ -49,8 +64,10 @@ const SearchProperty = () => {
 
                             <button className="buttons">Bangalore</button>
                           </div>
+                          </SwiperSlide>
                         </div>
                         <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
                           <div className="group-box">
                             <figure>
                               <img
@@ -62,26 +79,33 @@ const SearchProperty = () => {
 
                             <button className="buttons">Hyderabad</button>
                           </div>
+                          </SwiperSlide>
+                          
                         </div>
                         <div className="col-lg-2 col-md-4 col-sm-4">
-                          <div className="group-box">
+                         <SwiperSlide>
+                         <div className="group-box">
                             <figure>
                               <img src={delhi} alt="" className="cityImages" />
                             </figure>
 
                             <button className="buttons">Delhi</button>
                           </div>
+                         </SwiperSlide>
                         </div>
                         <div className="col-lg-2 col-md-4 col-sm-4">
-                          <div className="group-box">
+                         <SwiperSlide>
+                         <div className="group-box">
                             <figure>
                               <img src={mumbai} alt="" className="cityImages" />
                             </figure>
 
                             <button className="buttons">Mumbai</button>
                           </div>
+                         </SwiperSlide>
                         </div>
                         <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
                           <div className="group-box">
                             <figure>
                               <img src={pune} alt="" className="cityImages" />
@@ -89,9 +113,11 @@ const SearchProperty = () => {
 
                             <button className="buttons">Pune</button>
                           </div>
+                          </SwiperSlide>
                         </div>
                         <div className="col-lg-2 col-md-4 col-sm-4">
-                          <div className="group-box">
+                         <SwiperSlide>
+                         <div className="group-box">
                             <figure>
                               <img
                                 src={chennai}
@@ -102,11 +128,42 @@ const SearchProperty = () => {
 
                             <button className="buttons">Chennai</button>
                           </div>
+                         </SwiperSlide>
+                        </div>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                        <SwiperSlide>
+                          <div className="group-box">
+                            <figure>
+                              <img
+                                className="cityImages"
+                                alt=""
+                                src={bangalore}
+                              />
+                            </figure>
+
+                            <button className="buttons">Bangalore</button>
+                          </div>
+                          </SwiperSlide>
+                        </div>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                        <SwiperSlide>
+                          <div className="group-box">
+                            <figure>
+                              <img
+                                className="cityImages"
+                                alt=""
+                                src={bangalore}
+                              />
+                            </figure>
+
+                            <button className="buttons">Bangalore</button>
+                          </div>
+                          </SwiperSlide>
                         </div>
                       </div>
-                   
+                   </Swiper>
                   </div>
-                  <div className="col-lg-1" style={{ marginTop: "60px" }}>
+                  <div  className="next col-lg-1" style={{ marginTop: "60px" }}>
                     <img src={right} alt="" />
                   </div>
                 </div>

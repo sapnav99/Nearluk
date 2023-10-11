@@ -15,6 +15,8 @@ import Trending from "./Properties/Trending";
 import Rent from "./Properties/Rent";
 import Plots from "./Properties/Plots";
 import PopularAgents from "./agents/PopularAgents";
+import PopularBuilders from "./Properties/PopularBuilders";
+import NewlyLaunched from "./Properties/NewlyLaunched";
 
 
 
@@ -35,7 +37,8 @@ const LandingPage = () => {
       <Trending />
       <Plots />
       <Rent/>
-      
+      <PopularBuilders/>
+      <NewlyLaunched/>
     </div>
   );
 };

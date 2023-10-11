@@ -1,0 +1,44 @@
+.pill{
+    width: 500px;
+    height: 130px;
+    display: inline-block;
+    background-color: white; 
+    border-radius: 90px; 
+    padding: 2px;
+}
+.popularBuilders{
+    display: flex;
+    flex-direction: row;
+}
+.figurep{
+    width: 125px;
+  height: 125px;
+  padding-top: 4px; 
+  background-color: white; 
+  border-radius: 50%;
+  border: solid 0.5px rgb(190, 190, 190);
+    
+}
+.figurep>img{
+    padding-top: 20px;
+    padding-left: 10px;
+    object-fit: cover;
+    width: 80%;
+}
+.builders>label{
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.span1{
+    font-size: 14px;
+    padding-bottom: 5px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.span2{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21px;
+}

@@ -4,7 +4,15 @@ import cleaning from "../../assets/images/Cleaning.png";
 import plumbing from "../../assets/images/Plumbing.png";
 import electrician from "../../assets/images/electrician 1.png";
 import painting from "../../assets/images/Painting.png";
-
+import "./Services.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {Navigation} from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/hash-navigation"
+import right from "../../assets/images/Right.png";
+import left from "../../assets/images/Left.png";
 
 const Services = () => {
   return (
@@ -20,7 +28,11 @@ const Services = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div id="page-contents" className="row merged20">
-                  <div className="col-lg-12">
+                  <div  slot="container-start" className="prev col-lg-1" style={{ marginTop: "60px" }}>
+                    <img src={left} alt="" />
+                  </div>
+
+                  <div className="col-lg-10">
                     <h2
                       style={{
                         textAlign: "center",
@@ -30,66 +42,152 @@ const Services = () => {
                     >
                       Nearluk exclusive services
                     </h2>
-                    {/* <div className="books-caro"> */}
-                    <div
-                      className="row col-xs-6 page-caro"
-                      style={{ marginBottom: "-30px" }}
+                    <Swiper
+                     modules={[Navigation]}
+                      spaceBetween={20}
+                      slidesPerView={6}
+                      autoplay={{ delay: 2000, disableOnInteraction: false }}
+                      navigation={{
+                        nextEl: ".next",
+                        prevEl: ".prev",
+                      }}
                     >
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img alt="" src={rental} />
-                          </figure>
-
-                          <button >Rental Agreement</button>
+                      <div
+                        className="row col-xs-6"
+                        style={{ marginBottom: "-30px" }}
+                      >
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  alt=""
+                                  src={rental}
+                                  className="serviceImage"
+                                />
+                              </figure>
+                              <button className="serviceButton">
+                                Rental Agreement
+                              </button>
+                            </div>
+                          </SwiperSlide>
                         </div>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img src={packers} alt="" />
-                          </figure>
 
-                          <button>Packers & Movers</button>
-                        </div>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img src={cleaning} alt="" />
-                          </figure>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  src={packers}
+                                  alt=""
+                                  className="serviceImage"
+                                />
+                              </figure>
 
-                          <button>Cleaning Services</button>
+                              <button className="serviceButton">
+                                Packers & Movers
+                              </button>
+                            </div>
+                          </SwiperSlide>
                         </div>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img src={plumbing} alt="" />
-                          </figure>
 
-                          <button>Plumbing Services</button>
-                        </div>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img src={electrician} alt="" />
-                          </figure>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  src={cleaning}
+                                  alt=""
+                                  className="serviceImage"
+                                />
+                              </figure>
 
-                          <button>Electrician</button>
+                              <button className="serviceButton">
+                                Cleaning Services
+                              </button>
+                            </div>
+                          </SwiperSlide>
                         </div>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-sm-4">
-                        <div className="group-box">
-                          <figure>
-                            <img src={painting} alt="" />
-                          </figure>
+                       
+                        
 
-                          <button>Painting Services</button>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  src={plumbing}
+                                  alt=""
+                                  className="serviceImage"
+                                />
+                              </figure>
+
+                              <button className="serviceButton">
+                                Plumbing Services
+                              </button>
+                            </div>
+                          </SwiperSlide>
                         </div>
+
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  src={electrician}
+                                  alt=""
+                                  className="serviceImage"
+                                />
+                              </figure>
+
+                              <button className="serviceButton">
+                                Electrician
+                              </button>
+                            </div>
+                          </SwiperSlide>
+                        </div>
+
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  src={painting}
+                                  alt=""
+                                  className="serviceImage"
+                                />
+                              </figure>
+
+                              <button className="serviceButton">
+                                Painting Services
+                              </button>
+                            </div>
+                          </SwiperSlide>
+                        </div>
+                        <div className="col-lg-2 col-md-4 col-sm-4">
+                          <SwiperSlide>
+                            <div className="group-box">
+                              <figure>
+                                <img
+                                  alt=""
+                                  src={rental}
+                                  className="serviceImage"
+                                />
+                              </figure>
+                              <button className="serviceButton">
+                                Rental Agreement
+                              </button>
+                            </div>
+                          </SwiperSlide>
+                        </div>
+
                       </div>
-                    </div>
+                    
+                    </Swiper>
+                  </div>
+
+                  <div slot="container-end" className="next col-lg-1" style={{ marginTop: "60px" }}>
+                    <img src={right} alt="" />
                   </div>
                 </div>
               </div>
