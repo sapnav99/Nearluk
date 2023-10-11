@@ -29,6 +29,8 @@ export default function AppRoutes() {
         <Route index path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/termsandconditions" element={<TermsandConditions/>} />
+        <Route path="/privacyandpolicy" element={<PrivacyandPolicy/>} />
       </Routes>
     );
   };
@@ -44,8 +46,7 @@ export default function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
-        <Route path="/termsandconditions" element={<TermsandConditions/>} />
-        <Route path="/privacyandpolicy" element={<PrivacyandPolicy/>} />
+        
       </Routes>
     );
   };
