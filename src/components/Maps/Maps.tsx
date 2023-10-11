@@ -1,3 +1,4 @@
+import React from "react"
 import   {useCallback, useMemo, useRef} from 'react'
 import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api"
 
@@ -20,9 +21,9 @@ const Maps = ({propertyPosition}: any) => {
             lat: propertyPosition.lat,
             lng: propertyPosition.lng
         }
-      ), [propertyPosition])
+      ), [])
 
-
+        console.log(centerPositon)
       const options = useMemo<MapOtions>(() => (
         {
             disableDefaultUI: true,
@@ -40,18 +41,16 @@ const Maps = ({propertyPosition}: any) => {
             isLoaded ? (
                 <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={propertyPosition}
+                center={centerPositon}
                 zoom={15}
                 options={options}
                 onLoad={onLoad}
                 >
-                
-            {centerPositon && (<Marker position={centerPositon}/>)} 
-                
+               {centerPositon && (<Marker position={centerPositon} />) } 
             </GoogleMap>) : (<h4>Loadding...</h4>)
         
     );
 
 }
 
-export default Maps
+export default React.memo(Maps)

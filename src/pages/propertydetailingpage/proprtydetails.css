@@ -65,8 +65,9 @@
 
 .property__name{
   color: #000000;
-  font-size: 22px;
-  margin: 10px 10px;
+  font-size: 28px;
+  margin: 10px 0px;
+  font-weight: 800;
 }
 .property__naming_contacted{
   font-size: 12px;
@@ -94,6 +95,9 @@
   border-radius: 5px;
   padding: 3px;
   margin: 5px;
+}
+.property__social__buttons svg{
+  width: 20px;
 }
 .property__naming_rigth{
   width: 60%;
@@ -166,6 +170,8 @@
   font-size: 22px;
   font-weight: 500;
   color: #000000;
+  border-bottom: 5px solid #3FDBD1 ;
+  width: fit-content;
 }
 .prop__detail_top_items p {
   font-size: 12px;

@@ -51,7 +51,7 @@ export default function PropertyDetaing({}: Props) {
     (state: any) => state?.userPropDetailsReducer?.userProperty
   );
   
-  console.log("data",data)
+  // console.log("data",data)
   // if(data.property?.image_gallery){
   //   console.log("wanted data", data.property?.image_gallery)
 
