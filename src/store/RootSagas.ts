@@ -5,8 +5,8 @@ import userPropDetailsSaga from "../pages/propertydetailingpage/redux/saga";
 function* watchAndLog() {
   yield takeEvery("*", function* logger(action) {
     const state: SelectEffect = yield select();
-    console.debug("action", action);
-    console.debug("state after", state);
+    // console.debug("action", action);
+    // console.debug("state after", state);
   });
 }
 

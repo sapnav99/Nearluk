@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import useExternalScripts from "../../hooks/useExternalScripts";
+// import useExternalScripts from "../../hooks/useExternalScripts";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allUserPropDetailsActions } from "./redux/action";
@@ -14,6 +14,7 @@ import { fromateNumber } from "./PropertyHelper";
 import moment from "moment";
 import { AiOutlineGlobal } from "react-icons/ai";
 import Maps from "../../components/Maps/Maps";
+import { ThreeCircles } from "react-loader-spinner";
 
 type latlngLiteral = google.maps.LatLngLiteral
 type Props = {};
@@ -21,16 +22,15 @@ export default function PropertyDetaing({}: Props) {
   // import ("/js/main.min.js")
   const dispatch = useDispatch();
   const params = useParams();
-  useExternalScripts({
-    urls: [
-      "js/main.min.js",
-      "js/script.js",
-      "./css/main.min.css",
-      "./css/style.css",
-      "./css/color.css",
-      "./css/responsive.css",
-    ],
-  });
+  // useExternalScripts({
+  //   urls: [
+  //     "js/script.js",
+  //     "./css/main.min.css",
+  //     "./css/style.css",
+  //     "./css/color.css",
+  //     "./css/responsive.css",
+  //   ],
+  // });
 
   const userdata = useSelector((state: any) => state?.loginReducer);
 
@@ -43,21 +43,49 @@ export default function PropertyDetaing({}: Props) {
     );
   }, [params.id]);
 
+  const loader = useSelector(
+    (state: any) => state?.userPropDetailsReducer?.userPropLoader
+  )
+
   const data = useSelector(
     (state: any) => state?.userPropDetailsReducer?.userProperty
   );
   
   console.log("data",data)
-  if(data.property?.image_gallery){
-    console.log("wanted data", data.property?.image_gallery)
+  // if(data.property?.image_gallery){
+  //   console.log("wanted data", data.property?.image_gallery)
 
-  }
+  // }
+
+
   
   const propertyPosition: latlngLiteral = { lat: data?.location?.coordinates[0], lng: data?.location?.coordinates[1] }
 
   const formatedValue = fromateNumber(data?.property?.expected_price);
   const amenities = data?.property?.amenities;
   const furnishing = data?.property?.furnishing;
+
+  if (loader)
+    return (
+      <div className="full-screen-loader">
+        <ThreeCircles
+          height="50"
+          width="100"
+          color="#4fa94d"
+          wrapperStyle={{
+            display: "flex",
+            alignItem: "center",
+            justifyContent: "center",
+          }}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="three-circles-rotating"
+          outerCircleColor=""
+          innerCircleColor=""
+          middleCircleColor=""
+        />
+      </div>
+    );
 
   return (
     <div className="gap">
@@ -81,7 +109,7 @@ export default function PropertyDetaing({}: Props) {
                             </div>
                             
                               {data.property?.image_gallery &&  data.property?.image_gallery.slice(0,3).map((item: any) => (
-                                <div className="col-4 p-0" key={item.key}>
+                                <div className="col-4 p-0" key={item.id}>
                                   <img
                                   src={item?.serveruri}
                                   alt=""
@@ -170,7 +198,7 @@ export default function PropertyDetaing({}: Props) {
                               <div className="property__namimg_container">
                                 <div className="property__naming_rigth">
                                   <h1 className="property__name">
-                                    {data?.property?.property__name}
+                                    {data?.property?.building_name}
                                   </h1>
                                   <div className="property__naming_contacted">
                                     <p>
@@ -182,15 +210,6 @@ export default function PropertyDetaing({}: Props) {
                                   <span><LocationOnIcon /></span>
                                   <p>{data?.property?.locality}</p>
                                   </div>
-                                  {/* <div className="property__post_date">
-                                    <AiOutlineGlobal color="#646262" size={18} />
-                                    <span>
-                                      Posted On:{" "}
-                                      {moment(data?.property?.createdAt).format(
-                                        "DD-MM-YYYY"
-                                      )}
-                                    </span>
-                                  </div> */}
                                 </div>
                                 <div className="property__naming_left">
                                   <div className="property__pricing">
@@ -261,166 +280,7 @@ export default function PropertyDetaing({}: Props) {
                         </div>
                       </div>
                     </div>
-
-                    {/* <div className="book-description">
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                        dolore magna aliquam erat volutpat. Ut wisi enim ad
-                        minim veniam, quis nostrud exerci tation ullamcorper
-                      </p>
-                    </div> */}
-                    {/* <div className="comment-area product mt-5">
-                      <h4 className="comment-title">03 Feedback</h4>
-                      <ul className="comments">
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="/images/resources/commenter-1.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>willimes doe</h6>
-                                <span>12 june 2017</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="/images/resources/commenter-2.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>Qlark Jack</h6>
-                                <span>22 july 2017</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="comment-box">
-                            <div className="commenter-photo">
-                              <img src="/images/resources/commenter-3.jpg" />
-                            </div>
-                            <div className="commenter-meta">
-                              <div className="comment-titles">
-                                <h6>Olivia Take</h6>
-                                <span>15 jan 2016</span>
-                                <ins>
-                                  <i className="icofont-star" /> 4.5
-                                </ins>
-                              </div>
-                              <p>
-                                Quis autem velum iure reprehe nderit. Lorem
-                                ipsum dolor sit amet adipiscing egetmassa
-                                pulvinar eu aliquet nibh dapibus.
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                      <div className="add-comment">
-                        <span>Give Your Rating</span>
-                        <ul className="stars">
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                          <li>
-                            <i className="icofont-star" />
-                          </li>
-                        </ul>
-                        <form method="post" className="c-form">
-                          <input type="text" placeholder="Name" />
-                          <input type="text" placeholder="Email" />
-                          <textarea
-                            rows={4}
-                            placeholder="Write Message"
-                            defaultValue={""}
-                          />
-                          <button className="main-btn" type="submit">
-                            Add Review
-                          </button>
-                        </form>
-                      </div>
-                    </div> */}
                   </div>
-                  {/* <div className="main-wraper">
-                    <h4 className="main-title">
-                      Related Books{" "}
-                      <a className="view-all" href="#">
-                        view all
-                      </a>
-                    </h4>
-                    <div className="books-caro">
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="/images/resources/book1.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Html5 Brick Breaker</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="/images/resources/book3.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Python Tricks</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="/images/resources/book5.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Technology Wants</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="/images/resources/book2.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">The Aesthetic Ideology</a>
-                      </div>
-                      <div className="book-post">
-                        <figure>
-                          <a href="book-detail.html">
-                            <img src="/images/resources/book4.jpg" />
-                          </a>
-                        </figure>
-                        <a href="book-detail.html">Holy Bible Old</a>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
                 <div className="mt-3">
                   <div className="card prop__detail_card">
@@ -436,13 +296,13 @@ export default function PropertyDetaing({}: Props) {
                           Area
                         </h6>
                         <div className="prop__detail_top_items">
-                          <p>Built Area: {data?.property?.builtup_area} Sqft</p>
+                          <p>Built Area: {data?.property?.builtup_area}{" "} {data?.property?.builtup_units}</p>
                           <p>
-                            Carpet Area : {data?.property?.carpet_area} Sqft
+                            Carpet Area : {data?.property?.carpet_area}{" "} {data?.property?.carpet_units}
                           </p>
                           <p>
                             Undivided Share : {data?.property?.undivided_share}{" "}
-                            Sqrdst
+                            {data?.property?.undivided_share_units}
                           </p>
                           <p>Property Age : {data?.property?.property_age}</p>
                           <p>
@@ -462,7 +322,7 @@ export default function PropertyDetaing({}: Props) {
                         </h6>
                         <div className="prop__detail_top_items">
                           <p>
-                            Expected Price : {data?.property?.expected_price}
+                            Expected Price :  &#8377; {formatedValue}
                           </p>
                           <p>
                             Maintenance Charges :{" "}
@@ -508,7 +368,7 @@ export default function PropertyDetaing({}: Props) {
                             alt=""
                           />{" "}
                           <span>
-                            {data?.property?.floor_no} Floor out of 5Floors
+                            {data?.property?.floor_no} Floor out of {data?.property?.total_floors} Floors
                           </span>
                         </div>
                         <div className="prop__overview_item">
@@ -556,46 +416,6 @@ export default function PropertyDetaing({}: Props) {
                             <span>{item?.label}</span>
                           </div>
                         ))}
-                        {/* <div>
-                          <img
-                            src="/images/elements/lightbulb_icon.png"
-                            alt=""
-                          />{" "}
-                          <span>12 Lights</span>
-                        </div>
-                        <div>
-                          <img
-                            src="/images/elements/ceiling-fan_icon.png"
-                            alt=""
-                          />{" "}
-                          <span>4 Fans</span>
-                        </div>
-                        <div>
-                          <img
-                            src="/images/elements/air-conditioner_icon.png"
-                            alt=""
-                          />{" "}
-                          <span>AC</span>
-                        </div>
-                        <div>
-                          <img src="/images/elements/kitchen_icon.png" alt="" />{" "}
-                          <span>Modular Kitchen</span>
-                        </div>
-                        <div>
-                          <img src="/images/elements/ground_icon.png" alt="" />{" "}
-                          <span>Ground Water</span>
-                        </div> */}
-                        {/* <div>
-                          <img
-                            src="/images/elements/surveillance_icon.png"
-                            alt=""
-                          />{" "}
-                          <span>CCTV surveillance</span>
-                        </div>
-                        <div>
-                          <img src="/images/elements/guard_icon.png" alt="" />{" "}
-                          <span>24/7 Security</span>
-                        </div> */}
                       </div>
                     </div>
                   </div>

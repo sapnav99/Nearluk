@@ -1,17 +1,16 @@
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {fromateNumber} from "../../pages/propertydetailingpage/PropertyHelper"
+import './propertycard.css'
 
 const PropertyCard = ({ property }: any) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div
       className="col-lg-6 col-md-6 col-sm-6"
       onClick={() => {
         const url = `/proprtydetail/${property._id}`;
         window.open(url, '_blank');
-        // navigate(`/proprtydetail/${property._id}`);
-        // console.log(property);
       }}
     >
       <div className="course">
@@ -112,22 +111,27 @@ const PropertyCard = ({ property }: any) => {
             <div className="col-lg-8">
               <h5 className="course-title">
                 <a
-                  onClick={() => navigate("/proprtydetail")}
+                  // onClick={() => navigate("/proprtydetail")}
                   title="course-details"
                 >
                   {property?.property?.building_name || "N/A"}
                 </a>
               </h5>
+              <div className="locality__truncate">
               <p
-                style={{
-                  fontSize: "11px",
-                  marginBottom: "0",
-                  lineHeight: "15px",
-                }}
+              
+                // style={{
+                //   fontSize: "11px",
+                //   marginBottom: "0",
+                //   lineHeight: "15px",
+                // }}
               >
-                {property?.property?.locality} <br />
-                {property?.property?.city}, {property?.property?.state}
+                {property?.property?.locality}
+                
               </p>
+              <p>{property?.property?.city}, {property?.property?.state}</p>
+              </div>
+              
             </div>
             <div className="col-lg-4 mt-2 ">
               <span>
@@ -137,7 +141,7 @@ const PropertyCard = ({ property }: any) => {
               </span>
             </div>
           </div>
-          <div className="course-info">
+          {/* <div className="course-info">
             <span className="lecturez">
               <i className="icofont-film" /> 20 Lectures
             </span>
@@ -145,7 +149,7 @@ const PropertyCard = ({ property }: any) => {
             <span className="lecturez">
               <i className="icofont-film" /> car Parking
             </span>
-          </div>
+          </div> */}
           <div className="we-video-info">
             <ul>
               <li>

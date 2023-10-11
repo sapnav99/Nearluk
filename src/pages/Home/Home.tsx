@@ -10,7 +10,7 @@ import useExternalScripts from "../../hooks/useExternalScripts";
 
 
 const Home = () => {
-  useExternalScripts({ urls: ["js/owl.carousel.min.js"] });
+  useExternalScripts({ urls: ["js/owl.carousel.min.js",] });
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allpropdataactions.fetchAllProperty([]));
