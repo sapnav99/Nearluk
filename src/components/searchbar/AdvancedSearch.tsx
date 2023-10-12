@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import "./SearchBar1.css";
-const AdvancedSearch = () => {
+const AdvancedSearch = ({ onSearchDataChange }:any) => {
   const [bhkStatus, setBHKStatus] = useState("");
   const [ConstrStatus, setConstrStatus] = useState("");
   const [PostedStatus, setPostedStatus] = useState("");
@@ -39,7 +39,37 @@ const[serviceChecked, setServiceChecked]=useState(false);
   const togglePostedByDropdown = () => {
     setPostedByDropdownOpen(!isPostedByDropdownOpen);
   };
-
+  const updateSearchData = () => {
+    onSearchDataChange({
+      bhkStatus,
+      ConstrStatus,
+      PostedStatus,
+      flatChecked,
+      houseChecked,
+      villaChecked,
+      studioChecked,
+      guestChecked,
+      serviceChecked,
+    });
+  };
+  useEffect(() => {
+    // Call the function to update search data
+    updateSearchData();
+  }, [
+    bhkStatus,
+    ConstrStatus,
+    PostedStatus,
+    flatChecked,
+    houseChecked,
+    villaChecked,
+    studioChecked,
+    guestChecked,
+    serviceChecked,
+    onSearchDataChange,
+  ]);
+    
+ 
+  
   const clearAll = () => {
     setBHKStatus("");
     setConstrStatus("");

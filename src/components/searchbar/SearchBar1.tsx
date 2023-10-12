@@ -6,6 +6,7 @@ import "./SearchBar1.css";
 import { Slider } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import AdvancedSearch from "./AdvancedSearch";
+import { useLocation } from "react-router-dom";
 type PropertyType =
   | "Flat"
   | "Independent House"
@@ -19,6 +20,7 @@ type PropertyType =
   | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -29,7 +31,12 @@ export default function SearchBarBeforeLogin() {
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
   const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
+  const [searchData, setSearchData] = useState({});
 
+  const handleSearchDataChange = (data:any) => {
+    setSearchData(data);
+    
+  };
   const handleItemClick = (item: PropertyType) => {
     if (selectedItems.includes(item)) {
       setSelectedItems((prevSelectedItems) =>
@@ -39,7 +46,24 @@ export default function SearchBarBeforeLogin() {
       setSelectedItems((prevSelectedItems) => [...prevSelectedItems, item]);
     }
   };
+  const collectUserData = () => {
+    const userData = {
+      selectedItems: selectedItems,
+      priceRange: sliderValue,
+    };
+    
+    const newState = {
+      ...location.state,
+      searchData: searchData, 
+      userData: userData,
+    };
+    navigate("/searchresult", { state: newState });
+    console.log("Collected User Data:", userData);
+    
+  };
+  
 
+ 
   const [activeTab, setActiveTab] = useState("Buy");
 
   const handleTabClick = (tabName: any) => {
@@ -510,7 +534,7 @@ export default function SearchBarBeforeLogin() {
               </span>
               <span
                 className="nl-search__btn_text"
-                onClick={() => navigate("/searchresult")}
+                onClick={collectUserData}
               >
                 Search
               </span>
@@ -536,7 +560,7 @@ export default function SearchBarBeforeLogin() {
           Advanced Search
         </span>
 
-        {isDropdownVisible && <AdvancedSearch />}
+        {isDropdownVisible && <AdvancedSearch onSearchDataChange={handleSearchDataChange}/>}
       </div>
     </section>
   );
