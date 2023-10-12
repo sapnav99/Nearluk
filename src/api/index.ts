@@ -9,13 +9,19 @@ const userPropDetailsById = (payload: any) => {
 };
 const signup = (payload: Object) => api.post(`/users/signup`, payload);
 const getAllProductApi = () => api.get("/property/getAllProperty");
+const getNearuDataApi = (payload: any) => {
+  console.log("from Api", payload);
+  const params = new URLSearchParams(payload).toString();
+  return api.get(`/property/nearu?${params}`);
+};
 
 const Apis = {
   login,
   postProperty,
   getAllProductApi,
   userPropDetailsById,
-  signup
+  signup,
+  getNearuDataApi,
 };
 
 export default Apis;
