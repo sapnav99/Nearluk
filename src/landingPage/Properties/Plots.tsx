@@ -18,7 +18,7 @@ const Plots = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20"></div>
               <div className="d-flex justify-content-center align-items-center ">
-                <div className="col-lg-12 ">
+                <div className="col-lg-10 ">
                   
                     <h4 className="main-title">Plots for Sale in Hyderabad</h4>
                     <div className="row" style={{ marginBottom: "-80px" }}>

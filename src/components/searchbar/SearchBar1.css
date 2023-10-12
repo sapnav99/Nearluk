@@ -1,6 +1,8 @@
-.nav .nav-item .nav-link:active {
+
+.tabcontainer a.nav-link:active {
   background-color: rgba(63, 219, 209, 1) !important;
 }
+
 .advanced {
     position: absolute;
     top: 100%;

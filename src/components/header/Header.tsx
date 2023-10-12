@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PostProperty from "../postproperty/PostProperty";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
-import support from "../../assets/images/help-desk.png";
+import locationSymbol from "../../assets/images/Location.png";
 import { AiOutlineCaretDown, AiOutlineCaretRight } from 'react-icons/ai';
 import { BiSupport } from "react-icons/bi";
 import "./Header.css";
@@ -207,122 +207,7 @@ const Header: React.FC<Props> = ({}) => {
               <span></span>
             </li>
             <BiSupport/>
-            {/* {isLoggedIn ? (
-              <li>
-                <a href="index.html" title="Home" data-toggle="tooltip">
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-home"
-                    >
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                  </i>
-                </a>
-              </li>
-            ) : (
-              ""
-            )} */}
-            {/* {isLoggedIn ? (
-              <li>
-                <a
-                  className="mesg-notif"
-                  href="#"
-                  title="Messages"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-message-square"
-                    >
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                  </i>
-                </a>
-                <span></span>
-              </li>
-            ) : (
-              ""
-            )} */}
-            {/* {isLoggedIn ? (
-              <li>
-                <a
-                  className="mesg-notif"
-                  href="#"
-                  title="Notifications"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-bell"
-                    >
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                  </i>
-                </a>
-                <span></span>
-              </li>
-            ) : (
-              ""
-            )} */}
-            {/* {isLoggedIn ? (
-              <li>
-                <a
-                  className="create"
-                  href="#"
-                  title="Add New"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-plus"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                  </i>
-                </a>
-              </li>
-            ) : (
-              ""
-            )} */}
+           
             {isLoggedIn ? (
               <li>
                 <a href="#" title="">
@@ -421,34 +306,25 @@ const Header: React.FC<Props> = ({}) => {
           <ul className="web_elements list2">
             <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
             <li>
-              <a style={{marginLeft:"-6px"}}>
+              <a style={{ marginLeft: "-6px" }}>
                 <i>
                   <span className="heartbeat"></span>
                   <span className="location">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 24 24"
-                      height="1em"
-                      width="2em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke="#088dcd"
-                        strokeWidth="2"
-                        d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 
-            12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 
-            C9,11.657 10.343,13 12,13 L12,13 Z"
-                      ></path>
-                    </svg>
+                    <img
+                      src={locationSymbol}
+                      alt=""
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        marginRight: "5px",
+                      }}
+                    />
                   </span>
                 </i>
               </a>
               <a>Near U</a>
             </li>
-           
+
             <li>
               <a
                 style={{ paddingRight: "6px" }}
@@ -459,8 +335,6 @@ const Header: React.FC<Props> = ({}) => {
                 <span
                   className="heartbeat"
                   style={{
-                    backgroundColor: "red",
-                    opacity: "0.2",
                     marginLeft: "1px",
                     marginTop: "17px",
                   }}

@@ -1,18 +1,25 @@
+
+.maindiv{
+    width: 100%;
+    transition: all .3s ease-in-out;
+    white-space: nowrap;
+}
 .pill{
-    width: 500px;
-    height: 130px;
+    width: 750px;
+    height: 90px;
     display: inline-block;
     background-color: white; 
     border-radius: 90px; 
     padding: 2px;
+    padding-top: 5px;
 }
 .popularBuilders{
     display: flex;
     flex-direction: row;
 }
 .figurep{
-    width: 125px;
-  height: 125px;
+    width: 80px;
+  height: 80px;
   padding-top: 4px; 
   background-color: white; 
   border-radius: 50%;
@@ -26,7 +33,7 @@
     width: 80%;
 }
 .builders>label{
-    padding-top: 10px;
+    padding-top: 2px;
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;

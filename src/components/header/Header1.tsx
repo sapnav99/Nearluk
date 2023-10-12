@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PostProperty from "../postproperty/PostProperty";
-import { useSelector, useDispatch } from "react-redux";
-import { LoginActions } from "../../pages/auth/redux/actions";
 import locationSymbol from "../../assets/images/Location.png";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
@@ -10,16 +8,28 @@ import "./Header.css";
 
 const HeaderBeforeLogin = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   const [openModal, setOpenModal] = useState(false);
-  const isLoggedIn = useSelector(
-    (state: any) => state?.loginReducer?.isLoggedIn
-  );
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
 
-  const handleButtonClick = () => {
-    navigate("/");
-    dispatch(LoginActions.loggedOut());
-  };
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by your browser.");
+    }
+  }, []);
+
+  
   return (
     <>
       <PostProperty openModal={openModal} setOpenModal={setOpenModal} />
@@ -27,7 +37,7 @@ const HeaderBeforeLogin = () => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            {isLoggedIn ? (
+            
               <a href="/">
                 <img
                   src="images/main-logo-pic.png"
@@ -35,25 +45,26 @@ const HeaderBeforeLogin = () => {
                   style={{ height: "45px", width: "145px" }}
                 />
               </a>
-            ) : (
-              <a href="/">
-                <img
-                  src="images/main-logo-pic.png"
-                  alt=""
-                  style={{ height: "45px", width: "145px" }}
-                />
-              </a>
-            )}
+           
           </div>
 
           <div className="nl-search-location">
             <div className="searchicon">
               <div className="nl-search-location_wrap">
-                <input
+                <div >
+                  {latitude !== null && longitude !== null ? (
+                    <p>
+                      Your current location is: {latitude}, {longitude}
+                    </p>
+                  ) : (
+                    <p>Loading location...</p>
+                  )}
+                </div>
+                {/* <input
                   type="text"
                   className="nl-searchlocation-input"
                   placeholder="Hyderabad"
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -85,7 +96,7 @@ const HeaderBeforeLogin = () => {
 
             <li>
               <div className="add-prop">
-                {!isLoggedIn && (
+                
                   <div>
                     <button
                       type="button"
@@ -94,8 +105,8 @@ const HeaderBeforeLogin = () => {
                         backgroundColor: "rgba(63, 219, 209, 1)",
                         borderRadius: "8px",
                         fontWeight: "600",
-                        fontSize:"14px",
-                        marginRight:"22px",
+                        fontSize: "14px",
+                        marginRight: "22px",
                         width: "118px",
                       }}
                       onClick={() => navigate("/login")}
@@ -110,7 +121,7 @@ const HeaderBeforeLogin = () => {
                         borderRadius: "8px",
                         color: "black",
                         fontWeight: "600",
-                        fontSize:"14px",
+                        fontSize: "14px",
                         width: "121px",
                       }}
                       onClick={() => navigate("/login")}
@@ -118,12 +129,12 @@ const HeaderBeforeLogin = () => {
                       Login/Signup
                     </button>
                   </div>
-                )}
+              
               </div>
             </li>
           </ul>
           <ul className="web_elements list2">
-            <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
+            <li> <a href="/">Home</a></li>
             <li>
               <a style={{ marginLeft: "-6px" }}>
                 <i>

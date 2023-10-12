@@ -2,32 +2,48 @@ import { useState } from "react";
 import microphone from "../../assets/images/Microphone.png";
 import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
-import right from "../../assets/images/right (2).png";
 import "./SearchBar1.css";
 import { Slider } from "antd";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import AdvancedSearch from "./AdvancedSearch";
+type PropertyType =
+  | "Flat"
+  | "Independent House"
+  | "Villa"
+  | "Guest House"
+  | "Studio Apartment"
+  | "Farm House"
+  | "Service Apartment"
+  | "Hostel"
+  | "Co-Working Spaces"
+  | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
-  const [bhkStatus, setBHKStatus] = useState("");
-  const [ConstrStatus, setConstrStatus] = useState("");
-  const [PostedStatus, setPostedStatus] = useState("");
-  const [isBHKDropdownOpen, setBHKDropdownOpen] = useState(false);
-  const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
-    useState(false);
-  const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
-  const [sliderValue, setSliderValue] = useState<[number, number] | undefined>([
-    500000, 10000000,
-  ]);
-  const [minSliderValue, setMinSliderValue] = useState<number>(500000);
-  const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
-  const [activeTab, setActiveTab] = useState('Buy');
 
-  const handleTabClick = (tab:any) => {
-    setActiveTab(tab);
+  const [sliderValue, setSliderValue] = useState<[number, number] | undefined>([
+    0, 10000000,
+  ]);
+  const [minSliderValue, setMinSliderValue] = useState<number>(0);
+  const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
+  const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
+
+  const handleItemClick = (item: PropertyType) => {
+    if (selectedItems.includes(item)) {
+      setSelectedItems((prevSelectedItems) =>
+        prevSelectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+    } else {
+      setSelectedItems((prevSelectedItems) => [...prevSelectedItems, item]);
+    }
+  };
+
+  const [activeTab, setActiveTab] = useState("Buy");
+
+  const handleTabClick = (tabName: any) => {
+    setActiveTab(tabName);
   };
 
   const handleChange = (value: number | [number, number]) => {
@@ -36,30 +52,6 @@ export default function SearchBarBeforeLogin() {
       setMinSliderValue(value[0]);
       setMaxSliderValue(value[1]);
     }
-  };
-  const toggleBHKDropdown = () => {
-    setBHKDropdownOpen(!isBHKDropdownOpen);
-  };
-
-  const toggleConstructionDropdown = () => {
-    setConstructionDropdownOpen(!isConstructionDropdownOpen);
-  };
-  const handleBHKStatus = (status: string) => {
-    setBHKStatus(status);
-    setBHKDropdownOpen(false);
-  };
-  const handleconstrStatus = (status: string) => {
-    setConstrStatus(status);
-    setConstructionDropdownOpen(false);
-  };
-  const handlePostedStatus = (status: string) => {
-    setPostedStatus(status);
-    setPostedByDropdownOpen(false);
-  };
-
-  const togglePostedByDropdown = () => {
-    setPostedByDropdownOpen(!isPostedByDropdownOpen);
-    setPostedByDropdownOpen(!isPropertyDropdownOpen);
   };
 
   const toggleDropdown = () => {
@@ -95,51 +87,144 @@ export default function SearchBarBeforeLogin() {
         className="p-2"
         // style={{ backgroundColor: "white", borderRadius: "20px" }}
       >
-        <ul
-          className="nav nav-tabs "
-          style={{
-            width: "725px",
-            marginLeft: "60px",
-            marginBottom: "-5px",
-            gap: "10px",
-          }}
-        >
-          <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Buy' ? 'active' : ''}`} onClick={() => handleTabClick('Buy')}>
-          Buy
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Rent/Lease' ? 'active' : ''}`} onClick={() => handleTabClick('Rent/Lease')}>
-        Rent/Lease
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Office Space' ? 'active' : ''}`} onClick={() => handleTabClick('Office Space')}>
-        Office Space
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Commercial' ? 'active' : ''}`} onClick={() => handleTabClick('Commercial')}>
-        Commercial
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Event Space' ? 'active' : ''}`} onClick={() => handleTabClick('Event Space')}>
-        Event Space
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'Flatmate' ? 'active' : ''}`} onClick={() => handleTabClick('Flatmate')}>
-        Flatmate
-        </a>
-      </li>
-      <li className={`nav-item bg-light rounded `}>
-        <a className={`nav-link ${activeTab === 'PG' ? 'active' : ''}`} onClick={() => handleTabClick('PG')}>
-        PG
-        </a>
-      </li>
-        </ul>
+        <div className="tabcontainer">
+          <ul
+            className={`nav  `}
+            style={{ marginLeft: "45px", marginBottom: "-5px" }}
+          >
+            <li className="nav-item">
+              <a
+                className={`nav-link ${activeTab === "buy" ? "active" : ""}`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("buy")}
+                style={{
+                  backgroundColor:
+                    activeTab === "buy" ? "rgba(63, 219, 209, 1)" : "white",
+                  borderRadius: "5px 5px 0px 0px",
+                  marginRight: "5px",
+                }}
+              >
+                Buy
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeTab === "rent/lease" ? "active" : ""
+                }`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("rent/lease")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "rent/lease"
+                      ? "rgba(63, 219, 209, 1)"
+                      : "white",
+                  marginRight: "5px",
+                }}
+              >
+                Rent/Lease
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${activeTab === "office" ? "active" : ""}`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("office")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "office" ? "rgba(63, 219, 209, 1)" : "white",
+                  marginRight: "5px",
+                }}
+              >
+                Office Spaces
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeTab === "commercial" ? "active" : ""
+                }`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("commercial")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "commercial"
+                      ? "rgba(63, 219, 209, 1)"
+                      : "white",
+                  marginRight: "5px",
+                }}
+              >
+                Commercial
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeTab === "eventspace" ? "active" : ""
+                }`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("eventspace")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "eventspace"
+                      ? "rgba(63, 219, 209, 1)"
+                      : "white",
+                  marginRight: "5px",
+                }}
+              >
+                Event Spaces
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeTab === "flatmate" ? "active" : ""
+                }`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("flatmate")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "flatmate"
+                      ? "rgba(63, 219, 209, 1)"
+                      : "white",
+                  marginRight: "5px",
+                }}
+              >
+                Flatmate
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${activeTab === "pg" ? "active" : ""}`}
+                href="#"
+                data-toggle="tab"
+                onClick={() => handleTabClick("pg")}
+                style={{
+                  borderRadius: "5px 5px 0px 0px",
+                  backgroundColor:
+                    activeTab === "pg" ? "rgba(63, 219, 209, 1)" : "white",
+                    color: activeTab === "pg" ? "black" : "inherit",
+                }}
+              >
+                PG
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <div className="nl-search__wrap">
           <div className="nl-search__location">
             <div className="nl-search__location_wrap">
@@ -182,6 +267,7 @@ export default function SearchBarBeforeLogin() {
                   type="text"
                   className="nl-searchlocation__propertyInput"
                   placeholder="Flat/Plot/Shop/Hostel"
+                  onClick={togglePropertyDropdown}
                 />
                 <BsChevronDown
                   onClick={togglePropertyDropdown}
@@ -189,34 +275,122 @@ export default function SearchBarBeforeLogin() {
                 />
                 {isPropertyDropdownOpen && (
                   <ul className="propertyDropdown">
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Flat")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Flat")}
+                    >
                       <a>Flat</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes(
+                          "Independent House"
+                        )
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Independent House")}
+                    >
                       <a>Independent House</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Villa")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Villa")}
+                    >
                       <a>Villa</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Guest House")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Guest House")}
+                    >
                       <a>Guest House</a>
                     </li>
-                    <li style={{ marginRight: "23px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes(
+                          "Studio Apartment"
+                        )
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Studio Apartment")}
+                    >
                       <a>Studio Apartment</a>
                     </li>
-                    <li style={{ marginRight: "22px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Farm House")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Farm House")}
+                    >
                       <a>Farm House</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes(
+                          "Service Apartment"
+                        )
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Service Apartment")}
+                    >
                       <a>Service Apartment</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Hostel")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Hostel")}
+                    >
                       <a>Hostel</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes(
+                          "Co-Working Spaces"
+                        )
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Co-Working Spaces")}
+                    >
                       <a>Co-Working Spaces</a>
                     </li>
-                    <li style={{ marginRight: "20px" }}>
+                    <li
+                      style={{
+                        marginRight: "20px",
+                        backgroundColor: selectedItems.includes("Event Spaces")
+                          ? "rgba(63, 219, 209, 1)"
+                          : "transparent",
+                      }}
+                      onClick={() => handleItemClick("Event Spaces")}
+                    >
                       <a>Event Spaces</a>
                     </li>
                   </ul>
@@ -242,6 +416,7 @@ export default function SearchBarBeforeLogin() {
                   type="text"
                   className="nl-searchlocation__propertyInput"
                   placeholder="₹  Select Price Range"
+                  onClick={togglePriceDropdown}
                 />
                 <BsChevronDown
                   onClick={togglePriceDropdown}
@@ -345,8 +520,8 @@ export default function SearchBarBeforeLogin() {
       </div>
       <div
         style={{
-          paddingInline:"10px",
-          paddingBlock:"2px",
+          paddingInline: "10px",
+          paddingBlock: "2px",
           backgroundColor: "white",
           borderRadius: "25px",
           marginRight: "-695px",
@@ -356,172 +531,12 @@ export default function SearchBarBeforeLogin() {
           justifyContent: "space-between",
         }}
       >
-        <img src={plus} alt=""  />
+        <img src={plus} alt="" />
         <span onClick={toggleDropdown} style={{ cursor: "pointer" }}>
           Advanced Search
         </span>
 
-        {isDropdownVisible && (
-          <div className="advanced">
-            <div className="clear-all">
-              <a>Clear All</a>
-            </div>
-            <div>
-              <img src={right} alt="" />
-              <span>Flat/Apartment</span>
-            </div>
-            <div>
-              <img src={right} alt="" />
-              <span>Independent House/Villa</span>
-            </div>
-            <div>
-              <img src={right} alt="" />
-              <span>Studio Apartment</span>
-            </div>
-
-            <div>
-              <img src={right} alt="" />
-              <span>Guest House</span>
-            </div>
-            <div>
-              <img src={right} alt="" />
-              <span>Service Apartment</span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                marginTop: "55px",
-              }}
-            >
-              <div className="bedrooms" style={{ marginLeft: "-400px" }}>
-                <div>
-                  <label> BHK</label>
-                </div>
-                <div
-                  style={{
-                    width: "178px",
-                    marginTop: "4px",
-                    display: "flex",
-                    border: "solid 0.5px rgba(255, 210, 210, 1)",
-                    borderRadius: "13px",
-                    height: "35px",
-                    backgroundColor: "rgba(240, 240, 240, 1)",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="nl-searchlocation__propertyInput"
-                    placeholder=""
-                    value={bhkStatus}
-                    readOnly
-                  />
-                  <BsChevronDown
-                    style={{ marginTop: "8px", marginRight: "6px" }}
-                    onClick={toggleBHKDropdown}
-                  />
-                  {isBHKDropdownOpen && (
-                    <ul className="advanced2">
-                      <li>
-                        <a onClick={() => handleBHKStatus("1BHK")}>1 BHK</a>
-                      </li>
-                      <li>
-                        <a onClick={() => handleBHKStatus("2BHK")}>2 BHK</a>
-                      </li>
-                      <li>
-                        <a onClick={() => handleBHKStatus("3BHK")}>3 BHK</a>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div>
-              <div className="construction" style={{ marginLeft: "15px" }}>
-                <div>
-                  <label> Construction Status</label>
-                </div>
-                <div
-                  style={{
-                    width: "178px",
-                    marginTop: "4px",
-                    display: "flex",
-                    border: "solid 0.5px rgba(255, 210, 210, 1)",
-                    borderRadius: "13px",
-                    height: "35px",
-                    backgroundColor: "rgba(240, 240, 240, 1)",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="nl-searchlocation__propertyInput"
-                    placeholder=""
-                    value={ConstrStatus}
-                    readOnly
-                  />
-                  <BsChevronDown
-                    style={{ marginTop: "8px", marginRight: "6px" }}
-                    onClick={toggleConstructionDropdown}
-                  />
-                  {isConstructionDropdownOpen && (
-                    <ul className="advanced2">
-                      <li>
-                        <a
-                          onClick={() =>
-                            handleconstrStatus("Under Construction")
-                          }
-                        >
-                          Under Construction
-                        </a>
-                      </li>
-                      <li>
-                        <a onClick={() => handleconstrStatus("Ready to move")}>
-                          Ready to move
-                        </a>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div>
-              <div className="posted" style={{ marginLeft: "15px" }}>
-                <div>
-                  <label> Posted By</label>
-                </div>
-                <div
-                  style={{
-                    width: "178px",
-                    marginTop: "4px",
-                    display: "flex",
-                    border: "solid 0.5px rgba(255, 210, 210, 1)",
-                    borderRadius: "13px",
-                    height: "35px",
-                    backgroundColor: "rgba(240, 240, 240, 1)",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="nl-searchlocation__propertyInput"
-                    placeholder=""
-                    value={PostedStatus}
-                    readOnly
-                  />
-                  <BsChevronDown
-                    style={{ marginTop: "8px", marginRight: "6px" }}
-                    onClick={togglePostedByDropdown}
-                  />
-                  {isPostedByDropdownOpen && (
-                    <ul className="advanced2">
-                      <li>
-                        <a onClick={() => handlePostedStatus("ABC")}>ABC</a>
-                      </li>
-                      <li>
-                        <a onClick={() => handlePostedStatus("XYZ")}>XYZ</a>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        {isDropdownVisible && <AdvancedSearch />}
       </div>
     </section>
   );

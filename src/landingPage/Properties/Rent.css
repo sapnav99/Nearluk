@@ -1,55 +1,32 @@
+.rents>i>img{
+  width: 180px;
+  height: 170px;
+  border-radius: 20px;
+}
 
-.suggested_caro {
-    list-style: outside none none;
-    margin: 20px 0 0;
-    padding-left: 0;
-  }
-  .suggested_caro li {
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-  }
-  .friendz {
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 15px;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-  }
-  .suggested_caro li figure img,
-  .friendz figure img {
-    border: 2px solid #088dcd;
-    border-radius: 10px;
-    max-width: 100%;
-  }
-  .suggested_caro li span,
-  .friendz span {
-    display: inline-block;
-    font-weight: 500;
-    width: 100%;
-  }
-  .suggested_caro li ins,
-  .friendz ins {
-    color: #088dcd;
-    display: inline-block;
-    font-size: 12px;
-    text-decoration: none;
-    width: 100%;
-  }
-  .suggested_caro li > a,
-  .friendz > a {
-    background: #088dcd none repeat scroll 0 0;
-    border-radius: 16px;
-    color: #fff;
-    display: inline-block;
-    font-size: 12px;
-    margin-top: 10px;
-    padding: 5px 10px;
-  }
-  .suggested_caro li figure img,
-  .friendz figure img {
-    display: inline-block !important;
-    width: auto !important;
-  }
+/* .categ-card {
+  position: relative;
+} */
+
+.overlay-text {
+  position: absolute;
+  border-radius: 20px;
+  bottom: 0;
+  top: 0;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  width: 73%;
+  text-align: start;
+  color: white;
+}
+.overlay-text>p{
+  color: white;
+  font-size: 11px;
+  line-height: 6px;
+}
+.overlay-text>label{
+  padding-top: 115px;
+  font-size: 12px;
+  line-height: 1px;
+}
