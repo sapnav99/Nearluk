@@ -1,0 +1,27 @@
+.custom-modal .ant-modal-content {
+  height: 600px; /* Adjust the height as per your requirement */
+}
+.custom-modal .ant-modal-body {
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+.chip__containe {
+}
+.chip__wrapper {
+  display: flex;
+  gap: 20px;
+}
+.chip {
+  width: fit-content;
+  border: 1px solid #9b9494;
+  height: 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #9b9494;
+  cursor: pointer;
+}
+.property__img {
+  border: 5px, solid #363131;
+}

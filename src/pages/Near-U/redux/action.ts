@@ -1,20 +1,19 @@
-import {nearuTypes} from "./types"
-const fetchNearudata = (payload: any) =>{
-    return {
-        type: nearuTypes.FETCH_NEARU_DATA,
-        data: payload
-    }
-}
+import { nearuTypes } from "./types";
+const fetchNearudata = (data: any) => {
+  return {
+    type: nearuTypes.FETCH_NEARU_DATA,
+    payload: data,
+  };
+};
 
-const setNearudata = (payload: any) => {
-    return{
-        type: nearuTypes.SET_NEARU_DATA,
-        data: payload
-    }
-}
+const setNearudata = (data: any) => {
+  return {
+    type: nearuTypes.SET_NEARU_DATA,
+    payload: data,
+  };
+};
 
 export const nearuActions = {
-    fetchNearudata,
-    setNearudata
-}
-
+  fetchNearudata,
+  setNearudata,
+};

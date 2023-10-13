@@ -1,16 +1,20 @@
 import moment from "moment";
 // import { useNavigate } from "react-router-dom";
-import {fromateNumber} from "../../pages/propertydetailingpage/PropertyHelper"
-import './propertycard.css'
+import { fromateNumber } from "../../pages/propertydetailingpage/PropertyHelper";
+import "./propertycard.css";
 
-const PropertyCard = ({ property }: any) => {
+const PropertyCard = ({ property, page }: any) => {
   // const navigate = useNavigate();
   return (
     <div
-      className="col-lg-6 col-md-6 col-sm-6"
+      className={
+        page === "nearu"
+          ? "col-lg-3 col-md-4 col-sm-12"
+          : "col-lg-6 col-md-4 col-sm-12"
+      }
       onClick={() => {
         const url = `/proprtydetail/${property._id}`;
-        window.open(url, '_blank');
+        window.open(url, "_blank");
       }}
     >
       <div className="course">
@@ -118,25 +122,26 @@ const PropertyCard = ({ property }: any) => {
                 </a>
               </h5>
               <div className="locality__truncate">
-              <p
-              
+                <p
+
                 // style={{
                 //   fontSize: "11px",
                 //   marginBottom: "0",
                 //   lineHeight: "15px",
                 // }}
-              >
-                {property?.property?.locality}
-                
-              </p>
-              <p>{property?.property?.city}, {property?.property?.state}</p>
+                >
+                  {property?.property?.locality}
+                </p>
+                <p>
+                  {property?.property?.city}, {property?.property?.state}
+                </p>
               </div>
-              
             </div>
             <div className="col-lg-4 mt-2 ">
               <span>
                 <b>
-                  <span>&#8377;</span> {fromateNumber(property?.property?.expected_price)} 
+                  <span>&#8377;</span>{" "}
+                  {fromateNumber(property?.property?.expected_price)}
                 </b>
               </span>
             </div>

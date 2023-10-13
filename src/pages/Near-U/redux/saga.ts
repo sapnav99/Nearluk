@@ -1,11 +1,16 @@
-import { call, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { nearuTypes } from "./types";
 import Apis from "../../../api";
+import { nearuActions } from "./action";
 
 const getNearuData = function* getNearUData(action: any) {
-  console.log("Hello from saga", action.data);
-  const { data } = yield call(Apis.getNearuDataApi, action.data);
-  console.log("data from saga", data);
+  try{
+    const { data } = yield call(Apis.getNearuDataApi, action.data);
+    yield put(nearuActions.setNearudata(data.data || []));
+  }catch(err){
+    console.log(err)
+  }
+  
 };
 
 export default function* NearuDataSaga() {
