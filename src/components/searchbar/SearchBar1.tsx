@@ -4,9 +4,9 @@ import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
 import { Slider } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import AdvancedSearch from "./AdvancedSearch";
-import { useLocation } from "react-router-dom";
+
 type PropertyType =
   | "Flat"
   | "Independent House"
@@ -20,7 +20,7 @@ type PropertyType =
   | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
-  const location = useLocation();
+  
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -31,12 +31,8 @@ export default function SearchBarBeforeLogin() {
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
   const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
-  const [searchData, setSearchData] = useState({});
+ 
 
-  const handleSearchDataChange = (data:any) => {
-    setSearchData(data);
-    
-  };
   const handleItemClick = (item: PropertyType) => {
     if (selectedItems.includes(item)) {
       setSelectedItems((prevSelectedItems) =>
@@ -47,23 +43,26 @@ export default function SearchBarBeforeLogin() {
     }
   };
   const collectUserData = () => {
+    const locationInput = document.querySelector('.nl-searchlocation__input') as HTMLInputElement;
+  
+    if (!locationInput) {
+      
+      return;
+    }
+  
     const userData = {
+      city: locationInput.value,
       selectedItems: selectedItems,
       priceRange: sliderValue,
     };
-    
-    const newState = {
-      ...location.state,
-      searchData: searchData, 
-      userData: userData,
-    };
-    navigate("/searchresult", { state: newState });
-    console.log("Collected User Data:", userData);
-    
+  
+    navigate("/searchresult", { state: { searchData: userData } });
+    console.log(userData);
+  
+    return userData;
   };
   
-
- 
+  
   const [activeTab, setActiveTab] = useState("Buy");
 
   const handleTabClick = (tabName: any) => {
@@ -114,7 +113,7 @@ export default function SearchBarBeforeLogin() {
         <div className="tabcontainer">
           <ul
             className={`nav  `}
-            style={{ marginLeft: "45px", marginBottom: "-5px" }}
+            style={{ marginLeft: "65px", marginBottom: "-5px" }}
           >
             <li className="nav-item">
               <a
@@ -534,7 +533,10 @@ export default function SearchBarBeforeLogin() {
               </span>
               <span
                 className="nl-search__btn_text"
-                onClick={collectUserData}
+                onClick={()=>{
+                  collectUserData();
+                  
+                }}
               >
                 Search
               </span>
@@ -560,7 +562,7 @@ export default function SearchBarBeforeLogin() {
           Advanced Search
         </span>
 
-        {isDropdownVisible && <AdvancedSearch onSearchDataChange={handleSearchDataChange}/>}
+        {isDropdownVisible && <AdvancedSearch />}
       </div>
     </section>
   );

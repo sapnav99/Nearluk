@@ -1,0 +1,4 @@
+export const getAllSearchproperty={
+  FETCH_ALL_PROPERTY: "FETCH_ALL_PROPERTY",
+  SET_ALL_PROPERTY:" SET_ALL_PROPERTY",
+}

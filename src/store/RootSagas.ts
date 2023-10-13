@@ -1,6 +1,7 @@
 import { takeEvery, all, fork, SelectEffect, select } from "redux-saga/effects";
 import propertySaga from "../components/postproperty/redux/saga";
 import homeSaga from "../pages/Home/redux/saga";
+import searchSaga from "../landingPage/navigationPages/redux/saga";
 import userPropDetailsSaga from "../pages/propertydetailingpage/redux/saga";
 function* watchAndLog() {
   yield takeEvery("*", function* logger(action) {
@@ -15,6 +16,7 @@ export default function* root() {
     fork(propertySaga),
     fork(homeSaga),
     fork(userPropDetailsSaga),
+    fork(searchSaga),
   ];
   if (process.env.NODE_ENV === "development") {
     allForks.unshift(fork(watchAndLog));

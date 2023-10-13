@@ -51,7 +51,7 @@ const HeaderBeforeLogin = () => {
           <div className="nl-search-location">
             <div className="searchicon">
               <div className="nl-search-location_wrap">
-                <div >
+                {/* <div >
                   {latitude !== null && longitude !== null ? (
                     <p>
                       Your current location is: {latitude}, {longitude}
@@ -59,12 +59,12 @@ const HeaderBeforeLogin = () => {
                   ) : (
                     <p>Loading location...</p>
                   )}
-                </div>
-                {/* <input
+                </div> */}
+                <input
                   type="text"
                   className="nl-searchlocation-input"
                   placeholder="Hyderabad"
-                /> */}
+                />
               </div>
             </div>
           </div>

@@ -3,13 +3,14 @@ import { loginReducer, userReducer } from "../pages/auth/redux/reducer";
 import postPropertyReducer from "../components/postproperty/redux/reducer";
 import homeReducer from "../pages/Home/redux/reducer";
 import userPropDetailsReducer from "../pages/propertydetailingpage/redux/reducer";
-
+import searchReducer from "../landingPage/navigationPages/redux/reducer";
 export const rootReducer = combineReducers({
   postPropertyReducer,
   homeReducer,
   loginReducer,
   userReducer,
   userPropDetailsReducer,
+  searchReducer,
 });
 
 export const getRootReducer = () => rootReducer;
