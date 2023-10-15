@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -20,7 +20,7 @@ const PopularAgents = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="col-lg-1 prev"
+                  className="col-lg-1 prevagent"
                   slot="container-start"
                   style={{ marginTop: "60px" }}
                 >
@@ -29,14 +29,16 @@ const PopularAgents = () => {
                 <div className="col-lg-10">
                 <h4 className="main-title">Popular Agents</h4>
                 <Swiper
-                  modules={[Navigation]}
+                  modules={[Pagination, Autoplay, Navigation, EffectFade]}
                   spaceBetween={-400}
                   slidesPerView={2}
                   autoplay={{ delay: 2000, disableOnInteraction: false }}
                   navigation={{
-                    nextEl: ".next",
-                    prevEl: ".prev",
+                    nextEl: ".nextagent",
+                    prevEl: ".prevagent",
                   }}
+                  pagination={{ clickable: true }}
+                    loop={true}
                 >
                  
                     <SwiperSlide>
@@ -247,7 +249,7 @@ const PopularAgents = () => {
                   </div>
                
                 <div
-                  className="next col-lg-1"
+                  className="nextagent col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "60px" }}
                 >

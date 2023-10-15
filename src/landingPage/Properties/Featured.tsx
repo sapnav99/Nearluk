@@ -5,7 +5,7 @@ import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
 import "./Featured.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -21,7 +21,7 @@ const Featured = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
+                  className="prevfeatured col-lg-1"
                   slot="container-start"
                   style={{ marginTop: "160px" }}
                 >
@@ -30,14 +30,16 @@ const Featured = () => {
                 <div className="col-lg-10 ">
                   <div className="main-title">Featured Projects</div>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-160}
                     slidesPerView={2}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nextfeatured",
+                      prevEl: ".prevfeatured",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
                     <div className="main2">
                       {propertyArray.map((_, index) => (
@@ -210,7 +212,7 @@ const Featured = () => {
                   </Swiper>
                 </div>
                 <div
-                  className="next col-lg-1"
+                  className="nextfeatured col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "160px" }}
                 >

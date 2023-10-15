@@ -1,11 +1,11 @@
 import villa3 from "../../assets/images/villa3.jpg";
-import villa4 from "../../assets/images/villa4.jpg";
+
 import profile from "../../assets/images/profilePhoto.jpg";
 import car from "../../assets/images/car 1.png";
 import elevator from "../../assets/images/elevator 1.png";
 import swimming from "../../assets/images/swimming 1.png";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -25,7 +25,7 @@ const AgentProperties = () => {
               <div id="page-contents" className="row merged20">
                 <div
                   className="prev col-lg-1"
-                  slot="container-start"
+                  // slot="container-start"
                   style={{ marginTop: "4px" }}
                 >
                   <img src={left} alt="" />
@@ -33,7 +33,7 @@ const AgentProperties = () => {
                 <div className="col-lg-10" style={{ marginTop: "-80px" }}>
                   <div className="main-title">Agent Properties</div>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-500}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -41,6 +41,8 @@ const AgentProperties = () => {
                       nextEl: ".next",
                       prevEl: ".prev",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
                     <div style={{ display: "flex", marginBottom: "-60px" }}>
                       <SwiperSlide>
@@ -101,7 +103,64 @@ const AgentProperties = () => {
                           </div>
                         </div>
                       </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
+                          <figure>
+                            <img src={villa3} alt="" />
+                          </figure>
+                          <div
+                            className="blog-post_meta"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <div className="post-by">
+                              <figure>
+                                <img src={profile} alt="" />
+                              </figure>
+                              <div className="course-cat">
+                                <span style={{ marginTop: "12px" }}>
+                                  By: Sarah K
+                                </span>
+                              </div>
+                            </div>
 
+                            <h6>Modern villa with pool</h6>
+                            <div
+                              style={{ display: "flex", flexDirection: "row" }}
+                            >
+                              <ul
+                                style={{
+                                  width: "85%",
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  listStyle: "none",
+                                  padding: 0,
+                                  marginTop:"10px"
+                                }}
+                              >
+                                <li style={{ marginRight: "20px" }}>
+                                  <img src={car} alt="" />
+                                  Car parking
+                                </li>
+                                <li style={{ marginRight: "20px" }}>
+                                  <img src={elevator} alt="" />
+                                  Lift
+                                </li>
+                                <li style={{ marginRight: "20px" }}>
+                                  <img src={swimming} alt="" />
+
+                                  <span>Swimming pool</span>
+                                </li>
+                                
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
                       <SwiperSlide>
                       <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
                           <figure>
@@ -281,7 +340,7 @@ const AgentProperties = () => {
                 </div>
                 <div
                   className="next col-lg-1"
-                  slot="container-end"
+                  // slot="container-end"
                   style={{ marginTop: "4px" }}
                 >
                   <img src={right} alt="" />

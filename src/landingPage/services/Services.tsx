@@ -6,7 +6,7 @@ import electrician from "../../assets/images/electrician 1.png";
 import painting from "../../assets/images/Painting.png";
 import "./Services.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {Navigation} from 'swiper/modules';
+import {Pagination, Autoplay, Navigation, EffectFade} from 'swiper/modules';
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -28,7 +28,7 @@ const Services = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div id="page-contents" className="row merged20">
-                  <div  slot="container-start" className="prev col-lg-1" style={{ marginTop: "60px" }}>
+                  <div  slot="container-start" className="prevservice col-lg-1" style={{ marginTop: "60px" }}>
                     <img src={left} alt="" />
                   </div>
 
@@ -43,14 +43,16 @@ const Services = () => {
                       Nearluk exclusive services
                     </h2>
                     <Swiper
-                     modules={[Navigation]}
+                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
                       spaceBetween={20}
                       slidesPerView={6}
                       autoplay={{ delay: 2000, disableOnInteraction: false }}
                       navigation={{
-                        nextEl: ".next",
-                        prevEl: ".prev",
+                        nextEl: ".nextservice",
+                        prevEl: ".prevservice",
                       }}
+                      pagination={{ clickable: true }}
+                    loop={true}
                     >
                       <div
                         className="row col-xs-6"
@@ -186,7 +188,7 @@ const Services = () => {
                     </Swiper>
                   </div>
 
-                  <div slot="container-end" className="next col-lg-1" style={{ marginTop: "60px" }}>
+                  <div slot="container-end" className="nextservice col-lg-1" style={{ marginTop: "60px" }}>
                     <img src={right} alt="" />
                   </div>
                 </div>

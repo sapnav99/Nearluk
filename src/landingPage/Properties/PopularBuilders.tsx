@@ -35,7 +35,7 @@ const PopularBuilders = () => {
                   <h4 className="main-title">Popular Builders</h4>
                   <Swiper
                     modules={[Navigation]}
-                    spaceBetween={-300}
+                    spaceBetween={-200}
                     slidesPerView={2}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{

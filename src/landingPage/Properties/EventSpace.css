@@ -31,3 +31,24 @@
 .more-details li:last-child:before {
   display: none;
 }
+
+
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slider.active {
+  transform: translateX(-100%);
+}

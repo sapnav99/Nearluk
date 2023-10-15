@@ -8,7 +8,7 @@ import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
 import "./SearchProperty.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {Navigation} from 'swiper/modules';
+import {Pagination, Autoplay, Navigation, EffectFade} from 'swiper/modules';
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -24,7 +24,7 @@ const SearchProperty = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div id="page-contents" className="row merged20">
-                  <div className="prev col-lg-1"  style={{ marginTop: "60px" }}>
+                  <div className="prevsearch col-lg-1"  style={{ marginTop: "60px" }}>
                     <img src={left} alt="" />
                   </div>
                   <div className="col-lg-10 ">
@@ -38,14 +38,16 @@ const SearchProperty = () => {
                       Search properties by popular cities
                     </h3>
                     <Swiper
-                     modules={[Navigation]}
+                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
                       spaceBetween={20}
                       slidesPerView={6}
                       autoplay={{ delay: 2000, disableOnInteraction: false }}
                       navigation={{
-                        nextEl: ".next",
-                        prevEl: ".prev",
+                        nextEl: ".nextsearch",
+                        prevEl: ".prevsearch",
                       }}
+                      pagination={{ clickable: true }}
+                    loop={true}
                     >
                       <div
                         className="row col-xs-12 "
@@ -163,7 +165,7 @@ const SearchProperty = () => {
                       </div>
                    </Swiper>
                   </div>
-                  <div  className="next col-lg-1" style={{ marginTop: "60px" }}>
+                  <div  className="nextsearch col-lg-1" style={{ marginTop: "60px" }}>
                     <img src={right} alt="" />
                   </div>
                 </div>
