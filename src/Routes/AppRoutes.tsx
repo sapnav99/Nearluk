@@ -45,7 +45,7 @@ export default function AppRoutes() {
         <Route path="/groups" element={<Groups />} />
         <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
         <Route path="/nearu" element={<NearU />} />
-        <Route path="/postproperty" element={<PostProperty/>} />
+        <Route path="/postproperty" element={<PostProperty />} />
       </Routes>
     );
   };

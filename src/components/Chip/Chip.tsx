@@ -1,5 +1,4 @@
-import React from 'react'
-
+import "./chip.css";
 
 type Props = {
   item?: any;
@@ -9,19 +8,19 @@ type Props = {
   containerStyle?: any;
 };
 
-const Chip = ({
-  item,
-  onClick
-
-}: Props) => {
+const Chip = ({ item, onClick }: Props) => {
   return (
-    <div className="chip" style={{
-      color: item?.active ? "black" : "gray",
-    }}
-    onClick={onClick}>
-        {item.label}
+    <div
+      className="chips"
+      style={{
+        color: item?.active ? "black" : "#A1A1A1",
+        backgroundColor: item?.active ? "#3FDBD1" : "",
+      }}
+      onClick={onClick}
+    >
+      {item.label}
     </div>
-  )
-}
+  );
+};
 
-export default Chip
+export default Chip;

@@ -1,51 +1,47 @@
-import React, {useState} from "react"
-import "./postproperty.css"
+import React, { useState } from "react";
+import "./postproperty.css";
 // import Chip from "../../components/Chip/Chip"
-import { Button, message, Steps, theme } from 'antd';
+import { Button, message, Steps } from "antd";
 import PostPropertyOne from "./PostPropertyOne";
-
+import PostPropertyTwo from "./PostPropertyTwo";
 
 const steps = [
-    {
-      title: 'First',
-      content: 'First-content',
-    },
-    {
-      title: 'Second',
-      content: 'Second-content',
-    },
-    {
-      title: 'Last',
-      content: 'Last-content',
-    },
-  ];
+  {
+    title: "First",
+    content: "First-content",
+  },
+  {
+    title: "Second",
+    content: "Second-content",
+  },
+  {
+    title: "Last",
+    content: "Last-content",
+  },
+];
 
 const PostProperty: React.FC = () => {
-    const { token } = theme.useToken();
+  // const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
+  const [stepOne, setStepOne] = useState(true);
+  const [stepTwo, setStepTwo] = useState(false);
 
   const next = () => {
     setCurrent(current + 1);
+    setStepOne(false);
+    setStepTwo(true);
   };
 
   const prev = () => {
     setCurrent(current - 1);
+    setStepOne(true);
+    setStepTwo(false);
   };
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
-//   const contentStyle: React.CSSProperties = {
-//     lineHeight: '260px',
-//     textAlign: 'center',
-//     color: token.colorTextTertiary,
-//     backgroundColor: token.colorFillAlter,
-//     borderRadius: token.borderRadiusLG,
-//     border: `1px dashed ${token.colorBorder}`,
-//     marginTop: 16,
-//   };
-
-    return(
-        <section>
+  return (
+    <section>
       <div className="gap">
         <div className="container">
           <div className="row">
@@ -301,24 +297,31 @@ const PostProperty: React.FC = () => {
                 {/* time part */}
                 <div className="col-lg-6">
                   <Steps current={current} items={items} />
-                    <PostPropertyOne />
-                    <div style={{ marginTop: 24 }}>
-                        {current < steps.length - 1 && (
-                            <Button type="primary" onClick={() => next()}>
-                                Next
-                            </Button>
-                        )}
-                        {current === steps.length - 1 && (
-                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                            Done
-                        </Button>
-                        )}
-                        {current > 0 && (
-                        <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-                            Previous
-                        </Button>
-                        )}
-                    </div>                                                          
+                  {stepOne && <PostPropertyOne />}
+                  {stepTwo && <PostPropertyTwo />}
+                  <div style={{ marginTop: 24 }}>
+                    {current < steps.length - 1 && (
+                      <Button type="primary" onClick={() => next()}>
+                        Next
+                      </Button>
+                    )}
+                    {current === steps.length - 1 && (
+                      <Button
+                        type="primary"
+                        onClick={() => message.success("Processing complete!")}
+                      >
+                        Done
+                      </Button>
+                    )}
+                    {current > 0 && (
+                      <Button
+                        style={{ margin: "0 8px" }}
+                        onClick={() => prev()}
+                      >
+                        Previous
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 <div className="col-lg-3">
                   <aside className="sidebar static right">
@@ -622,6 +625,6 @@ const PostProperty: React.FC = () => {
       </div>
       {/* content */}
     </section>
-    )
-}
-export default PostProperty
+  );
+};
+export default PostProperty;
