@@ -120,8 +120,8 @@ export default function PropertyDetaing({}: Props) {
                                 <img
                                   src={
                                     data?.property?.feature_image ||
-                                    (data.property?.image_gallery &&
-                                      data.property?.image_gallery[0].serveruri)
+                                    (data?.property?.image_gallery &&
+                                      data?.property?.image_gallery[0].serveruri)
                                   }
                                   alt="property-image"
                                   style={{
@@ -131,8 +131,8 @@ export default function PropertyDetaing({}: Props) {
                                 />
                               </div>
 
-                              {data.property?.image_gallery &&
-                                data.property?.image_gallery
+                              {data?.property?.image_gallery &&
+                                data?.property?.image_gallery
                                   .slice(0, 3)
                                   .map((item: any, i: number) => (
                                     <div className="col-4 p-0" key={item.id}>

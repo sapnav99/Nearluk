@@ -16,7 +16,7 @@ const ImageGalleryModal = ({ openModal, setOpenModal }: ModalProps) => {
   //   console.log("data from moadal", data);
   const [images, setImages] = useState([]);
 
-  const groupedData = data.property?.image_gallery?.reduce(
+  const groupedData = data?.property?.image_gallery?.reduce(
     (result: any, item: any) => {
       const category = item.category;
       if (!result[category]) {
@@ -57,7 +57,7 @@ const ImageGalleryModal = ({ openModal, setOpenModal }: ModalProps) => {
         <div className="container">
           <div className="chip__container">
             <div className="chip__wrapper">
-              {Object.keys(groupedData).map((item, index) => (
+              {groupedData && Object.keys(groupedData)?.map((item, index) => (
                 <div
                   className="chip"
                   key={index}
