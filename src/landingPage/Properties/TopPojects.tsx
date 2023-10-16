@@ -1,6 +1,6 @@
 import rooms from "../../assets/images/rooms.png";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -22,7 +22,7 @@ const TopProjects = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
+                  className="prevtop col-lg-1"
                   slot="container-start"
                   style={{ marginTop: "160px" }}
                 >
@@ -32,21 +32,23 @@ const TopProjects = () => {
                 <div className="col-lg-10 ">
                   <h4 className="main-title">Top projects in Hyderabad </h4>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-650}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nexttop",
+                      prevEl: ".prevtop",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
 
 
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       {propertyArray.map((_, index) => (
                         <SwiperSlide>
-                          <div className="col-lg-4 col-md-6 col-sm-6">
+                          <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
                             <div className="course">
                               <figure>
                                 <img src={rooms} alt="" />
@@ -64,7 +66,7 @@ const TopProjects = () => {
                                   </a>
                                 </h5>
                                 <p>3BHK, Gachibowli</p>
-                                <ul className="we-video-info">
+                                <ul >
                                   <li>
                                     <img src={car} alt="" />
                                     Car parking
@@ -89,7 +91,7 @@ const TopProjects = () => {
                   </Swiper>
                 </div>
                 <div
-                  className="next col-lg-1"
+                  className="nexttop col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "160px" }}
                 >

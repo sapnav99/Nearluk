@@ -1,6 +1,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -25,7 +25,7 @@ const Plots = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
+                  className="prevplot col-lg-1"
                   slot="container-start"
                   style={{ marginTop: "160px" }}
                 >
@@ -36,14 +36,16 @@ const Plots = () => {
 
                   <h4 className="main-title">Plots for Sale in Hyderabad</h4>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-650}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nextplot",
+                      prevEl: ".prevplot",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       <SwiperSlide>
@@ -187,7 +189,7 @@ const Plots = () => {
                   </Swiper>
                 </div>
                 <div
-                  className="next col-lg-1"
+                  className="nextplot col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "160px" }}
                 >

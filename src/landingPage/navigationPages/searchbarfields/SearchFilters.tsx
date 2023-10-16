@@ -1,252 +1,188 @@
 import { useState } from "react";
-import './Searchfilter.css'
+import "./Searchfilter.css"
 import { BsChevronDown } from "react-icons/bs";
+
 export default function SearchFilters() {
-  const [bhkStatus, setBHKStatus] = useState("");
-  const [ConstrStatus, setConstrStatus] = useState("");
-  const [PostedStatus, setPostedStatus] = useState("");
-  const [isBHKDropdownOpen, setBHKDropdownOpen] = useState(false);
-  const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
-    useState(false);
-  const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
-  const [flatChecked, setFlatChecked] = useState(false);
-  const [villaChecked, setVillaChecked] = useState(false);
-  const [houseChecked, setHouseChecked] = useState(false);
-  const [studioChecked, setStudioChecked] = useState(false);
-  const [guestChecked, setGuestChecked] = useState(false);
-  const [serviceChecked, setServiceChecked] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  const toggleBHKDropdown = () => {
-    setBHKDropdownOpen(!isBHKDropdownOpen);
-  };
-  const handleBHKStatus = (status: string) => {
-    setBHKStatus(status);
-    setBHKDropdownOpen(false);
-  };
-  const toggleConstructionDropdown = () => {
-    setConstructionDropdownOpen(!isConstructionDropdownOpen);
-  };
-
-  const handleconstrStatus = (status: string) => {
-    setConstrStatus(status);
-    setConstructionDropdownOpen(false);
-  };
-  const handlePostedStatus = (status: string) => {
-    setPostedStatus(status);
-    setPostedByDropdownOpen(false);
-  };
-
-  const togglePostedByDropdown = () => {
-    setPostedByDropdownOpen(!isPostedByDropdownOpen);
+  const handleCheckboxChange = (value: string) => {
+    const updatedSelection = [...selectedItems];
+    if (updatedSelection.includes(value)) {
+      updatedSelection.splice(updatedSelection.indexOf(value), 1);
+    } else {
+      updatedSelection.push(value);
+    }
+    setSelectedItems(updatedSelection);
   };
 
   return (
     <div>
-      <div>
-        <h6>Property Type</h6>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedflat"
-            checked={flatChecked}
-            onChange={() => setFlatChecked(!flatChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedflat">
-            Flat/Apartment
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedhouse"
-            checked={houseChecked}
-            onChange={() => setHouseChecked(!houseChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedhouse">
-            Independent House
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedvilla"
-            checked={villaChecked}
-            onChange={() => setVillaChecked(!villaChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedvilla">
-            Villa
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedstudio"
-            checked={studioChecked}
-            onChange={() => setStudioChecked(!studioChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedstudio">
-            Studio Apartment
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedguest"
-            checked={guestChecked}
-            onChange={() => setGuestChecked(!guestChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedguest">
-            Guest House
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="checkedservice"
-            checked={serviceChecked}
-            onChange={() => setServiceChecked(!serviceChecked)}
-          />
-          <label className="form-check-label" htmlFor="checkedservice">
-            Service Apartment
-          </label>
+      <div className="dropdown_container">
+        <div className="custom-dropdown">
+          
+          <div className="dropdowns">
+            <span className="dropdown-placeholder">
+              Property Type
+              <BsChevronDown
+                style={{
+                  fontSize: "10px",
+                  fontWeight:'800',
+                  marginLeft: "145px",
+                  marginTop: "-45px",
+                }}
+              />
+            </span>
+            <div className="options-container">
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Flat/Apartment
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Independent House"
+                  onChange={() => handleCheckboxChange("Independent House")}
+                />
+                Independent House
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Villa
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Guest House
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Studio Apartment
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Farm House
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Flat/Apartment"
+                  onChange={() => handleCheckboxChange("Flat/Apartment")}
+                />
+                Service Apartment
+              </label>
+            </div>
+          </div>
         </div>
       </div>
+      
 
-      <div className="bedrooms" >
-        <div>
-          <h6> No. of Bedrooms</h6>
+      <div className="dropdown-container">
+        <div >
+        <select className="selector">
+          <option value="1">No. of Bedrooms</option>
+          <option value="2">1 BHK</option>
+          <option value="3">2 BHK</option>
+          <option value="4">3 BHK</option>
+        </select>
         </div>
-        <div
-          style={{
-            width: "178px",
-            marginTop: "4px",
-            display: "flex",
-
-            border: "solid 0.5px rgba(255, 210, 210, 1)",
-            borderRadius: "13px",
-            height: "35px",
-            backgroundColor: "rgba(240, 240, 240, 1)",
-          }}
-        >
-          <input
-            type="text"
-            className="nl-searchlocation__propertyInput"
-            placeholder=""
-            onClick={toggleBHKDropdown}
-            value={bhkStatus}
-            readOnly
-          />
-          <BsChevronDown
-            style={{ marginTop: "8px", marginRight: "6px" }}
-            onClick={toggleBHKDropdown}
-          />
-          {isBHKDropdownOpen && (
-            <ul className="searchfilter">
-              <li>
-                <a onClick={() => handleBHKStatus("1BHK")}>1 BHK</a>
-              </li>
-              <li>
-                <a onClick={() => handleBHKStatus("2BHK")}>2 BHK</a>
-              </li>
-              <li>
-                <a onClick={() => handleBHKStatus("3BHK")}>3 BHK</a>
-              </li>
-            </ul>
-          )}
+       
+      </div>
+      <div className="dropdown-container">
+        <select className="selector">
+          <option value="1">Construction Status</option>
+          <option value="2">Under Construction</option>
+          <option value="3">Ready to move</option>
+        </select>
+      </div>
+      <div className="dropdown-container">
+        <select className="selector">
+          <option value="1">Posted By</option>
+          <option value="2">Owner</option>
+          <option value="3">Agent</option>
+        </select>
+      </div>
+      <div className="dropdown-container">
+        <div>
+          <select className="selector">
+            <option value="1">Furnishing Status</option>
+            <option value="2">Unfurnished</option>
+            <option value="3">Semi-Furnished</option>
+            <option value="4">Furnished</option>
+          </select>
         </div>
       </div>
-      <div className="construction" >
+      <div className="dropdown-container">
         <div>
-          <h6> Construction Status</h6>
-        </div>
-        <div
-          style={{
-            width: "178px",
-            marginTop: "4px",
-            display: "flex",
-            border: "solid 0.5px rgba(255, 210, 210, 1)",
-            borderRadius: "13px",
-            height: "35px",
-            backgroundColor: "rgba(240, 240, 240, 1)",
-          }}
-        >
-          <input
-            type="text"
-            className="nl-searchlocation__propertyInput"
-            placeholder=""
-            onClick={toggleConstructionDropdown}
-            value={ConstrStatus}
-            readOnly
-          />
-          <BsChevronDown
-            style={{ marginTop: "8px", marginRight: "6px" }}
-            onClick={toggleConstructionDropdown}
-          />
-          {isConstructionDropdownOpen && (
-            <ul className="searchfilter">
-              <li>
-                <a onClick={() => handleconstrStatus("Under Construction")}>
-                  Under Construction
-                </a>
-              </li>
-              <li>
-                <a onClick={() => handleconstrStatus("Ready to move")}>
-                  Ready to move
-                </a>
-              </li>
-            </ul>
-          )}
+          <select className="selector">
+            <option value="1">Localities</option>
+            <option value="2">Unfurnished</option>
+            <option value="3">Semi-Furnished</option>
+            <option value="4">Furnished</option>
+          </select>
         </div>
       </div>
-      <div className="posted" >
+      <div className="dropdown-container">
         <div>
-          <h6> Posted By</h6>
+          <select className="selector">
+            <option value="1">Aminities</option>
+            <option value="2">Water Storage</option>
+            <option value="3">Power Backup</option>
+            <option value="4">Security/Fire Alarm</option>
+          </select>
         </div>
-        <div
-          style={{
-            width: "178px",
-            marginTop: "4px",
-            display: "flex",
-            border: "solid 0.5px rgba(255, 210, 210, 1)",
-            borderRadius: "13px",
-            height: "35px",
-            backgroundColor: "rgba(240, 240, 240, 1)",
-          }}
-        >
-          <input
-            type="text"
-            className="nl-searchlocation__propertyInput"
-            placeholder=""
-            onClick={togglePostedByDropdown}
-            value={PostedStatus}
-            readOnly
-          />
-          <BsChevronDown
-            style={{ marginTop: "8px", marginRight: "6px" }}
-            onClick={togglePostedByDropdown}
-          />
-          {isPostedByDropdownOpen && (
-            <ul className="searchfilter">
-              <li>
-                <a onClick={() => handlePostedStatus("Owner")}>Owner</a>
-              </li>
-              <li>
-                <a onClick={() => handlePostedStatus("Agent")}>Agent</a>
-              </li>
-            </ul>
-          )}
+      </div>
+      <div className="dropdown-container">
+        <div>
+          <select className="selector">
+            <option value="1">Facing</option>
+            <option value="2">East</option>
+            <option value="3">West</option>
+            <option value="4">North</option>
+            <option value="4">South</option>
+            <option value="4">North West</option>
+            <option value="4">North East</option>
+            <option value="4">South West</option>
+            <option value="4">South East</option>
+          </select>
+        </div>
+      </div>
+      <div className="dropdown-container">
+        <div>
+          <select className="selector">
+            <option value="1">Sale Type</option>
+            <option value="2">Unfurnished</option>
+            <option value="3">Semi-Furnished</option>
+            <option value="4">Furnished</option>
+          </select>
+        </div>
+      </div>
+      <div className="dropdown-container">
+        <div>
+          <select className="selector">
+            <option value="1">Construction Age</option>
+            <option value="2">10 years</option>
+            <option value="3">20 Years</option>
+            <option value="4">30 Years</option>
+          </select>
         </div>
       </div>
     </div>

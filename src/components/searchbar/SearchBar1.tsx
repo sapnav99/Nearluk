@@ -4,7 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
 import { Slider } from "antd";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdvancedSearch from "./AdvancedSearch";
 
 type PropertyType =
@@ -20,7 +20,7 @@ type PropertyType =
   | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
-  
+
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -31,7 +31,6 @@ export default function SearchBarBeforeLogin() {
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
   const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
- 
 
   const handleItemClick = (item: PropertyType) => {
     if (selectedItems.includes(item)) {
@@ -42,28 +41,31 @@ export default function SearchBarBeforeLogin() {
       setSelectedItems((prevSelectedItems) => [...prevSelectedItems, item]);
     }
   };
+
   const collectUserData = () => {
-    const locationInput = document.querySelector('.nl-searchlocation__input') as HTMLInputElement;
-  
+    const locationInput = document.querySelector(
+      ".nl-searchlocation__input"
+    ) as HTMLInputElement;
+
     if (!locationInput) {
-      
       return;
     }
-  
+
     const userData = {
       city: locationInput.value,
       selectedItems: selectedItems,
       priceRange: sliderValue,
     };
-  
-    navigate("/searchresult", { state: { searchData: userData } });
+    const selectedItemsString = selectedItems.map(item => encodeURIComponent(item)).join(",");
+    navigate(`/searchresult/?city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}`, {
+      state: { searchData: userData },
+    });
     console.log(userData);
-  
+
     return userData;
   };
-  
-  
-  const [activeTab, setActiveTab] = useState("Buy");
+
+  const [activeTab, setActiveTab] = useState("buy");
 
   const handleTabClick = (tabName: any) => {
     setActiveTab(tabName);
@@ -239,7 +241,7 @@ export default function SearchBarBeforeLogin() {
                   borderRadius: "5px 5px 0px 0px",
                   backgroundColor:
                     activeTab === "pg" ? "rgba(63, 219, 209, 1)" : "white",
-                    color: activeTab === "pg" ? "black" : "inherit",
+                  color: activeTab === "pg" ? "black" : "inherit",
                 }}
               >
                 PG
@@ -533,9 +535,8 @@ export default function SearchBarBeforeLogin() {
               </span>
               <span
                 className="nl-search__btn_text"
-                onClick={()=>{
+                onClick={() => {
                   collectUserData();
-                  
                 }}
               >
                 Search

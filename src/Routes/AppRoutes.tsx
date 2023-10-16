@@ -29,7 +29,7 @@ export default function AppRoutes() {
         <Route index path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/searchresult" element={<SearchResult />} />
+        <Route path="/searchresult/" element={<SearchResult />} />
       </Routes>
     );
   };

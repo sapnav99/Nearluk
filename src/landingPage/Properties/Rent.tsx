@@ -38,7 +38,7 @@ const Rent = () => {
                     </a>
                   </h4>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-750}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -46,6 +46,8 @@ const Rent = () => {
                       nextEl: ".next",
                       prevEl: ".prev",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                     <SwiperSlide>

@@ -3,9 +3,8 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -28,10 +27,9 @@ const EventSpaces = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
+                  className="prevevent col-lg-1"
                   slot="container-start"
-
-                  style={{ marginTop: "60px" }}
+                  style={{ marginTop: "160px" }}
                 >
                   <img src={left} alt="" />
                 </div>
@@ -43,20 +41,21 @@ const EventSpaces = () => {
                   > */}
                   <h4 className="main-title">Event spaces in Hyderabad</h4>
                   <Swiper
-                    modules={[Navigation]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-650}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nextevent",
+                      prevEl: ".prevevent",
                     }}
+                    pagination={{ clickable: true }}
+                    loop={true}
                   >
                     <div className="row slider-container">
                       {propertyArray.map((_, index) => (
                         <SwiperSlide>
                           <div className="col-lg-4 col-md-6 col-sm-6">
-
                             <div className="course slide" key={index}>
                               <figure>
                                 <img src={events1} alt="" />
@@ -77,18 +76,16 @@ const EventSpaces = () => {
                                   </a>
                                 </h5>
                                 <p>3BHK, Gachibowli</p>
-                                <ul className="we-video-info">
+                                <ul>
                                   <li>
                                     <img src={car} alt="" />
                                     Car parking
                                   </li>
-                                  <li >
+                                  <li>
                                     <img src={elevator} alt="" />
                                     Lift
                                   </li>
-                                  <li
-
-                                  >
+                                  <li>
                                     <img src={swimming} alt="" />
 
                                     <span>Swimming pool</span>
@@ -96,24 +93,17 @@ const EventSpaces = () => {
                                 </ul>
                               </div>
                             </div>
-
                           </div>
                         </SwiperSlide>
-
-
-
-
                       ))}
                     </div>
-
                   </Swiper>
                 </div>
                 {/* </div> */}
                 <div
-                  className="next col-lg-1"
+                  className="nextevent col-lg-1"
                   slot="container-end"
-
-                  style={{ marginTop: "60px" }}
+                  style={{ marginTop: "160px" }}
                 >
                   <img src={right} alt="" />
                 </div>

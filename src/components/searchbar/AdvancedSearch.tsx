@@ -56,12 +56,6 @@ const[serviceChecked, setServiceChecked]=useState(false);
     setStudioChecked(false);
     setServiceChecked(false);
   };
-
-  
-
-  
-
-  
   
   return (
     <div>

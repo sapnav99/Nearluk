@@ -68,7 +68,7 @@ const HeaderBeforeLogin = () => {
               </div>
             </div>
           </div>
-          <div className="sidemenu" style={{ float: "right" }}>
+          <div className="sidemenu" style={{ float: "right", marginRight:"10px", marginLeft:"10px" }}>
             <i>
               <svg
                 id="side-menu"
@@ -89,7 +89,9 @@ const HeaderBeforeLogin = () => {
               </svg>
             </i>
           </div>
+         
           <ul className="web-elements">
+            
             <BiSupport
               style={{ marginLeft: "10px", height: "20px", width: "20px" }}
             />
@@ -106,7 +108,7 @@ const HeaderBeforeLogin = () => {
                         borderRadius: "8px",
                         fontWeight: "600",
                         fontSize: "14px",
-                        marginRight: "22px",
+                        marginRight: "10px",
                         width: "118px",
                       }}
                       onClick={() => navigate("/login")}
@@ -133,9 +135,77 @@ const HeaderBeforeLogin = () => {
               </div>
             </li>
           </ul>
+         
           <ul className="web_elements list2">
-            <li> <a href="/">Home</a></li>
+            <li > <a href="/">Home</a></li>
+           
             <li>
+              <a>
+                Properties <BsChevronDown />
+              </a>
+            </li>
+            <li>
+              <a>
+                Services
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>
+                    Rent Pay <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Rent</a>
+                    </li>
+                    <li>
+                      <a href="">Maintanance</a>
+                    </li>
+                    <li>
+                      <a href="">Advance Amount</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    Creditluk <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Loans</a>
+                    </li>
+                    <li>
+                      <a href="">Loan Calculator</a>
+                    </li>
+                    <li>
+                      <a href="">CIBIL</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Insights</a>
+                </li>
+              </ul>
+            </li>
+            <li style={{marginRight:"400px"}}>
+              <a>
+                More
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>For Business Owners</a>
+                </li>
+                <li>
+                  <a>For Builders </a>
+                </li>
+                <li>
+                  <a>For Property Consultants</a>
+                </li>
+              </ul>
+            </li>
+            
+          <li>
               <a style={{ marginLeft: "-6px" }}>
                 <i>
                   <span className="heartbeat"></span>
@@ -198,71 +268,7 @@ const HeaderBeforeLogin = () => {
               </a>
               <a>Auctions</a>
             </li>
-            <li>
-              <a>
-                Properties <BsChevronDown />
-              </a>
-            </li>
-            <li>
-              <a>
-                Services
-                <BsChevronDown />{" "}
-              </a>
-              <ul className="dropdown2">
-                <li>
-                  <a>
-                    Rent Pay <BsChevronRight />
-                  </a>
-                  <ul className="dropdown3">
-                    <li>
-                      <a href="">Rent</a>
-                    </li>
-                    <li>
-                      <a href="">Maintanance</a>
-                    </li>
-                    <li>
-                      <a href="">Advance Amount</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>
-                    Creditluk <BsChevronRight />
-                  </a>
-                  <ul className="dropdown3">
-                    <li>
-                      <a href="">Loans</a>
-                    </li>
-                    <li>
-                      <a href="">Loan Calculator</a>
-                    </li>
-                    <li>
-                      <a href="">CIBIL</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Insights</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>
-                More
-                <BsChevronDown />{" "}
-              </a>
-              <ul className="dropdown2">
-                <li>
-                  <a>For Business Owners</a>
-                </li>
-                <li>
-                  <a>For Builders </a>
-                </li>
-                <li>
-                  <a>For Property Consultants</a>
-                </li>
-              </ul>
-            </li>
+         
           </ul>
         </div>
       </header>

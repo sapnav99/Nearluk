@@ -1,5 +1,5 @@
 import searchlocation from "../../assets/images/searchlocation.png";
-// import ToggleSwitch from "./Toggle";
+import ToggleSwitch from "./Toggle";
 import Apis from "../../api/apiServices";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -10,10 +10,12 @@ import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
 import PropertyCard from "../../components/propertycard/PropertyCard";
 import { searchActions } from "./redux/action";
+import SelectedItems from "./searchbarfields/Allfilters";
 
 const SearchResult = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const { state } = useLocation();
+  
   const searchData = state ? state.searchData : null;
   console.log(searchData);
   const [properties, setProperties] = useState([]);
@@ -23,7 +25,7 @@ const SearchResult = () => {
       try {
         const response = await Apis.get("/property/search", {
           params: {
-            city: searchData.city,            
+            city: searchData.city,
           },
         });
 
@@ -61,17 +63,11 @@ const SearchResult = () => {
                         <h6>Applied Properties</h6>
                         <a>Clear all</a>
                       </div>
+
                       <div>
-                        {searchData && (
-                          <div>
-                            <p>
-                              Property Type:
-                              {searchData.selectedItems.join("", "")}
-                            </p>
-                            <p>Price: {searchData.priceRange.join(" to ")}</p>
-                          </div>
-                        )}
+                        <SelectedItems searchData={searchData} />
                       </div>
+
                       <div>
                         <SearchFilters />
                       </div>
@@ -88,40 +84,33 @@ const SearchResult = () => {
                     </div>
                   </div>
                   <div>
-                    <h4>38 Properties near you</h4>
-                    {/* <div>
-                      <ToggleSwitch Name="photos" />
-                    </div> */}
-                    <div>
+                    <div style={{ display: "flex" }}>
+                      <h5>38 Properties near you</h5>
+                      <div>
+                        <span style={{ marginLeft: "20px", fontSize: "12px" }}>
+                          With Photos <ToggleSwitch Name="photos" />
+                        </span>
+                        <span style={{ marginLeft: "12px", fontSize: "12px" }}>
+                          Verified Only <ToggleSwitch Name="verified" />
+                        </span>
+                        <span style={{ marginLeft: "12px", fontSize: "12px" }}>
+                          Hide Seen <ToggleSwitch Name="seen" />
+                        </span>
+                      </div>
+                    </div>
+
+                    <div style={{ marginLeft: "-46px" }}>
                       <SearchTabs />
                     </div>
+                    <div className="row" style={{ marginTop: "85px" }}>
+                      {properties.length > 0
+                        ? properties.map((item: any, i: any) => (
+                            <PropertyCard property={item} key={i} />
+                          ))
+                        : "no data found"}
+                    </div>
                   </div>
-                  {properties ? (
-                      <div>
-                        {properties && properties.length > 0 && (
-                          <div>
-                            {properties.map((item: any, index: any) => (
-                              <div key={index}>
-                                <p>{item?.city}</p>
-                                <p>
-                                  {item?.property_owner?.fname}
-                                  {item?.property_owner?.lname}
-                                </p>
-                                <img src={item?.property?.image_gallery?.serveruri}></img>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <p>No properties found</p>
-                    )}
-                  {/* <div className="row">
-                    {properties &&
-                      properties.map((item: any, i: any) => (
-                        <PropertyCard property={item} key={i} />
-                      ))}
-                  </div> */}
+                  
                 </div>
               </div>
             </div>

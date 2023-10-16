@@ -16,6 +16,7 @@ import left from "../../assets/images/Left.png";
 import "./AgentProperty.css";
 
 const AgentProperties = () => {
+  const propertyArray = Array.from({ length: 4 });
   return (
     <div>
       <div className="gap">
@@ -24,8 +25,8 @@ const AgentProperties = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
-                  // slot="container-start"
+                  className="prevagent col-lg-1"
+                  slot="container-start"
                   style={{ marginTop: "4px" }}
                 >
                   <img src={left} alt="" />
@@ -38,15 +39,16 @@ const AgentProperties = () => {
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nextagent",
+                      prevEl: ".prevagent",
                     }}
                     pagination={{ clickable: true }}
                     loop={true}
                   >
                     <div style={{ display: "flex", marginBottom: "-60px" }}>
+                    {propertyArray.map((_, index) => (
                       <SwiperSlide>
-                        <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
+                        <div className="blog-posts col-lg-6 col-sm-12 col-md-12" key={index}>
                           <figure>
                             <img src={villa3} alt="" />
                           </figure>
@@ -103,244 +105,13 @@ const AgentProperties = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
-                          <figure>
-                            <img src={villa3} alt="" />
-                          </figure>
-                          <div
-                            className="blog-post_meta"
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div className="post-by">
-                              <figure>
-                                <img src={profile} alt="" />
-                              </figure>
-                              <div className="course-cat">
-                                <span style={{ marginTop: "12px" }}>
-                                  By: Sarah K
-                                </span>
-                              </div>
-                            </div>
-
-                            <h6>Modern villa with pool</h6>
-                            <div
-                              style={{ display: "flex", flexDirection: "row" }}
-                            >
-                              <ul
-                                style={{
-                                  width: "85%",
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  listStyle: "none",
-                                  padding: 0,
-                                  marginTop:"10px"
-                                }}
-                              >
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={car} alt="" />
-                                  Car parking
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={elevator} alt="" />
-                                  Lift
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={swimming} alt="" />
-
-                                  <span>Swimming pool</span>
-                                </li>
-                                
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                      <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
-                          <figure>
-                            <img src={villa3} alt="" />
-                          </figure>
-                          <div
-                            className="blog-post_meta"
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div className="post-by">
-                              <figure>
-                                <img src={profile} alt="" />
-                              </figure>
-                              <div className="course-cat">
-                                <span style={{ marginTop: "12px" }}>
-                                  By: Sarah K
-                                </span>
-                              </div>
-                            </div>
-
-                            <h6>Modern villa with pool</h6>
-                            <div
-                              style={{ display: "flex", flexDirection: "row" }}
-                            >
-                              <ul
-                                style={{
-                                  width: "85%",
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  listStyle: "none",
-                                  padding: 0,
-                                  marginTop:"10px"
-                                }}
-                              >
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={car} alt="" />
-                                  Car parking
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={elevator} alt="" />
-                                  Lift
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={swimming} alt="" />
-
-                                  <span>Swimming pool</span>
-                                </li>
-                                
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                      <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
-                          <figure>
-                            <img src={villa3} alt="" />
-                          </figure>
-                          <div
-                            className="blog-post_meta"
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div className="post-by">
-                              <figure>
-                                <img src={profile} alt="" />
-                              </figure>
-                              <div className="course-cat">
-                                <span style={{ marginTop: "12px" }}>
-                                  By: Sarah K
-                                </span>
-                              </div>
-                            </div>
-
-                            <h6>Modern villa with pool</h6>
-                            <div
-                              style={{ display: "flex", flexDirection: "row" }}
-                            >
-                              <ul
-                                style={{
-                                  width: "85%",
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  listStyle: "none",
-                                  padding: 0,
-                                  marginTop:"10px"
-                                }}
-                              >
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={car} alt="" />
-                                  Car parking
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={elevator} alt="" />
-                                  Lift
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={swimming} alt="" />
-
-                                  <span>Swimming pool</span>
-                                </li>
-                                
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                      <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
-                          <figure>
-                            <img src={villa3} alt="" />
-                          </figure>
-                          <div
-                            className="blog-post_meta"
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div className="post-by">
-                              <figure>
-                                <img src={profile} alt="" />
-                              </figure>
-                              <div className="course-cat">
-                                <span style={{ marginTop: "12px" }}>
-                                  By: Sarah K
-                                </span>
-                              </div>
-                            </div>
-
-                            <h6>Modern villa with pool</h6>
-                            <div
-                              style={{ display: "flex", flexDirection: "row" }}
-                            >
-                              <ul
-                                style={{
-                                  width: "85%",
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  listStyle: "none",
-                                  padding: 0,
-                                  marginTop:"10px"
-                                }}
-                              >
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={car} alt="" />
-                                  Car parking
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={elevator} alt="" />
-                                  Lift
-                                </li>
-                                <li style={{ marginRight: "20px" }}>
-                                  <img src={swimming} alt="" />
-
-                                  <span>Swimming pool</span>
-                                </li>
-                                
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
+                       ))}
                     </div>
                   </Swiper>
                 </div>
                 <div
-                  className="next col-lg-1"
-                  // slot="container-end"
+                  className="nextagent col-lg-1"
+                  slot="container-end"
                   style={{ marginTop: "4px" }}
                 >
                   <img src={right} alt="" />

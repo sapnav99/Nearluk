@@ -1,7 +1,7 @@
-import final from "../../assets/images/final letterhead 1.png";
+import flatmate from "../../assets/images/flatmate.png";
 import "./Services.css";
 
-const ServicesAd = () => {
+const FlatmateFinder = () => {
   return (
     <div>
       <div className="gap">
@@ -10,9 +10,12 @@ const ServicesAd = () => {
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div className="col-lg-12">
-                  <div className="blog-posts" style={{ marginBottom: "-80px" }}>
+                  <div
+                    className="blog-posts col-lg-10"
+                    style={{ marginBottom: "-80px" }}
+                  >
                     <div className="blog-post-meta col-lg-4 col-md-12">
-                      <h1 style={{ lineHeight: "60px" }}>Rent Services</h1>
+                      <h1 style={{ lineHeight: "60px" }}>Find your Flatmate</h1>
                       <p
                         style={{
                           fontSize: "20px",
@@ -24,10 +27,8 @@ const ServicesAd = () => {
                         sports skills at your nearby places.
                       </p>
 
-                      {/* <span>
-                        <i className="icofont-clock-time"></i> january 23, 2021
-                      </span> */}
-                       <button
+                     
+                      <button
                         style={{
                           backgroundColor: "#3FDBD1",
                           borderRadius: "10px",
@@ -35,12 +36,12 @@ const ServicesAd = () => {
                           width: "100px",
                         }}
                       >
-                        Book now
+                        Find
                       </button>
                     </div>
                     <div className="col-lg-7 col-md-12">
                       <figure>
-                        <img className="images" src={final} alt="" />
+                        <img style={{width:"590px", marginLeft:"40px"}} src={flatmate} alt="" />
                       </figure>
                     </div>
                   </div>
@@ -54,4 +55,4 @@ const ServicesAd = () => {
   );
 };
 
-export default ServicesAd;
+export default FlatmateFinder;

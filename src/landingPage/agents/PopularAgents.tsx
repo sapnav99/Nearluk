@@ -30,7 +30,7 @@ const PopularAgents = () => {
                 <h4 className="main-title">Popular Agents</h4>
                 <Swiper
                   modules={[Pagination, Autoplay, Navigation, EffectFade]}
-                  spaceBetween={-400}
+                  spaceBetween={-350}
                   slidesPerView={2}
                   autoplay={{ delay: 2000, disableOnInteraction: false }}
                   navigation={{
@@ -61,6 +61,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>
@@ -95,6 +96,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>
@@ -129,6 +131,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>
@@ -163,6 +166,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>
@@ -197,6 +201,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>
@@ -231,6 +236,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
+                              marginLeft:"40px"
                             }}
                           >
                             <span>

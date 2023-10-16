@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 const PropertyCard = ({ property }: any) => {
   const navigate = useNavigate();
+ 
+  
   return (
     <div
       className="col-lg-6 col-md-6 col-sm-6"
@@ -13,14 +15,18 @@ const PropertyCard = ({ property }: any) => {
     >
       <div className="course">
         <figure>
+          {property?.property?.image_gallery && 
+          
           <img
-            src={
-              property?.property?.image_gallery[0]?.serveruri?.data ||
-              property?.property?.image_gallery[0]?.serveruri
-            }
-            alt="property image"
+          src={
+            property?.property?.image_gallery[0]?.serveruri||
+             property?.property?.image_gallery[0]?.serveruri
+          }
+          alt="property image"
 
-          />
+        /> 
+          }
+          
           <i className="icofont-book-mark" title="bookmark" />
           <em>Verified</em>
           <span className="rate-result">

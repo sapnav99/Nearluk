@@ -1,7 +1,7 @@
 import villa2 from "../../assets/images/villa2.jpg";
 import profile from "../../assets/images/profilePhoto.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -16,7 +16,7 @@ const Ownerproperties = () => {
   const date = today.getDate();
   const currentDate = date + "-" + month + "-" + year;
 
-  const propertyArray = Array.from({ length: 4 });
+  const propertyArray = Array.from({ length: 8 });
 
   return (
     <div className="gap">
@@ -25,7 +25,7 @@ const Ownerproperties = () => {
           <div className="col-lg-12">
             <div id="page-contents" className="row merged20">
             <div
-                className="prev col-lg-1"
+                className="prevowner col-lg-1"
                 slot="container-start"
                 style={{ marginTop: "160px" }}
               >
@@ -35,14 +35,16 @@ const Ownerproperties = () => {
               <div className="col-lg-10">
                 <div className="main-title">Owner Properties</div>
                 <Swiper
-                  modules={[Navigation]}
+                  modules={[Pagination, Autoplay, Navigation, EffectFade]}
                   spaceBetween={-650}
                   slidesPerView={1}
                   autoplay={{ delay: 2000, disableOnInteraction: false }}
                   navigation={{
-                    nextEl: ".next",
-                    prevEl: ".prev",
+                    nextEl: ".nextowner",
+                    prevEl: ".prevowner",
                   }}
+                  pagination={{ clickable: true }}
+                    loop={true}
                 >
                   <div className="row " style={{ marginBottom: "-80px" }}>
 
@@ -50,7 +52,7 @@ const Ownerproperties = () => {
                       <SwiperSlide>
                         <div
                           className="col-lg-4 col-md-6 col-sm-6 "
-
+                      key={index}
                         >
                           <div className="course">
                             <figure>
@@ -108,9 +110,7 @@ const Ownerproperties = () => {
                                         {currentDate}
                                       </span>
                                     </div>
-                                    {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
+                                   
                                   </div>
                                 </div>
                                 <div className="prise">
@@ -241,22 +241,9 @@ const Ownerproperties = () => {
                                     </a>
                                   </li>
                                 </ul>
-                                {/* <a
-                              href="post-detail.html"
-                              title=""
-                              className="reply"
-                            >
-                              Reply <i className="icofont-reply" />
-                            </a> */}
+                               
                               </div>
-                              {/* <div className="course-info">
-                            <span className="lecturez">
-                              <i className="icofont-film"></i> 20 Lectures
-                            </span>
-                            <span className="time">
-                              <i className="icofont-clock-time"></i> 20Hrs
-                            </span>
-                          </div> */}
+                              
                             </div>
                           </div>
                         </div>
@@ -269,7 +256,7 @@ const Ownerproperties = () => {
               </div>
               {/* </div> */}
               <div
-                className="next col-lg-1"
+                className="nextowner col-lg-1"
                 slot="container-end"
                 style={{ marginTop: "160px" }}
               >

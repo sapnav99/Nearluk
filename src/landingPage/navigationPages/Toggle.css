@@ -1,13 +1,14 @@
-/* Toggle.css */
+
 
 .toggle-switch {
     position: relative;
-    width: 75px;
+    width: 55px;
     display: inline-block;
     vertical-align: middle;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
     text-align: left;
   }
   
@@ -27,6 +28,7 @@
   .toggle-switch-inner {
     display: block;
     width: 200%;
+    height: 24px;
     margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
   }
@@ -36,10 +38,10 @@
     display: block;
     float: left;
     width: 50%;
-    height: 34px;
+    height: 24px;
     padding: 0;
-    line-height: 34px;
-    font-size: 14px;
+    line-height: 24px;
+    font-size: 12px;
     color: white;
     font-weight: bold;
     box-sizing: border-box;
@@ -62,15 +64,17 @@
     text-align: right;
   }
   
+  
   .toggle-switch-switch {
     display: block;
-    width: 24px;
+    width: 20px;
+    height: 20px;
     margin: 5px;
-    background: #fff;
+    background: #79D9B1;
     position: absolute;
-    top: 0;
+    top: -3px;
     bottom: 0;
-    right: 40px;
+    right: 30px;
     border: 0 solid #bbb;
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
@@ -81,6 +85,6 @@
   }
   
   .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
-    right: 0px;
+    right: -4px;
   }
   

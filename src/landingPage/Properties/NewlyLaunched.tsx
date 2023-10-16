@@ -13,13 +13,13 @@ import left from "../../assets/images/Left.png";
 const NewlyLaunched = () => {
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{marginTop:"80px"}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prev col-lg-1"
+                  className="prevlaunched col-lg-1"
                   slot="container-start"
                   style={{ marginTop: "4px" }}
                 >
@@ -33,8 +33,8 @@ const NewlyLaunched = () => {
                     slidesPerView={2}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".next",
-                      prevEl: ".prev",
+                      nextEl: ".nextlaunched",
+                      prevEl: ".prevlaunched",
                     }}
                     pagination={{ clickable: true }}
                     loop={true}
@@ -998,7 +998,7 @@ const NewlyLaunched = () => {
                   </Swiper>
                 </div>
                 <div
-                  className="next col-lg-1"
+                  className="nextlaunched col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "4px" }}
                 >

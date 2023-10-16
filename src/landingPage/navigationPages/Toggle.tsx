@@ -14,7 +14,9 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ Name }) => {
           id={Name}
         />
         <label className="toggle-switch-label" htmlFor={Name}>
+          
           <span className="toggle-switch-inner" data-name={Name} />
+          
           <span className="toggle-switch-switch" />
         </label>
       </div>

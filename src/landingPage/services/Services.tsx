@@ -142,7 +142,7 @@ const Services = () => {
                                 />
                               </figure>
 
-                              <button className="serviceButton">
+                              <button className="serviceButton" style={{paddingBlock:"20px"}}>
                                 Electrician
                               </button>
                             </div>
