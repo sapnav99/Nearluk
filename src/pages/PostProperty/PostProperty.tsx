@@ -4,6 +4,7 @@ import "./postproperty.css";
 import { Button, message, Steps } from "antd";
 import PostPropertyOne from "./PostPropertyOne";
 import PostPropertyTwo from "./PostPropertyTwo";
+import PostPropertyThree from "./PostPropertyThree";
 
 const steps = [
   {
@@ -297,8 +298,9 @@ const PostProperty: React.FC = () => {
                 {/* time part */}
                 <div className="col-lg-6">
                   <Steps current={current} items={items} />
-                  {stepOne && <PostPropertyOne />}
-                  {stepTwo && <PostPropertyTwo />}
+                  {current === 0 && <PostPropertyOne />}
+                  {current === 1 && <PostPropertyTwo />}
+                  {current === 2 && <PostPropertyThree />}
                   <div style={{ marginTop: 24 }}>
                     {current < steps.length - 1 && (
                       <Button type="primary" onClick={() => next()}>

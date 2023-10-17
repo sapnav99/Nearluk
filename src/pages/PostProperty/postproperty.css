@@ -19,3 +19,67 @@
   width: 100%;
   height: 100%;
 }
+.propertyarea__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.proparea__values_wrapper {
+  display: flex;
+  align-items: center;
+}
+.other__rooms_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__features_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__building_features_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.water__sources_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.parking__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.car__parking {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.counter__part {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.visitor__parking {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.counter__part > button {
+  border: none;
+  background-color: #3fdbd1;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  margin: 10px;
+}
+.width__of_roadfacing_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
