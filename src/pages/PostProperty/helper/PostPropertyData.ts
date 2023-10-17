@@ -273,3 +273,178 @@ export const propertyDetailsData = [
     active: false,
   },
 ];
+
+export const balconiesData = [
+  {
+    label: "1",
+    key: "1",
+    active: false
+  },
+  {
+    label: "2",
+    key: "2",
+    active: false
+  },
+  {
+    label: "3",
+    key: "3",
+    active: false
+  },
+  {
+    label: "4",
+    key: "4",
+    active: false
+  },
+  {
+    label: "5",
+    key: "5",
+    active: false
+  },
+  {
+    label: "5+",
+    key: "5+",
+    active: false
+  },
+]
+
+export const bathroomsData = [
+  {
+    label: "1",
+    key: "1",
+    active: false
+  },
+  {
+    label: "2",
+    key: "2",
+    active: false
+  },
+  {
+    label: "3",
+    key: "3",
+    active: false
+  },
+  {
+    label: "4",
+    key: "4",
+    active: false
+  },
+  {
+    label: "5",
+    key: "5",
+    active: false
+  },
+  {
+    label: "5+",
+    key: "5+",
+    active: false
+  },
+]
+
+export const selectFloorData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1"
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2"
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3"
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4"
+  },
+  {
+    label: "6",
+    value: "6",
+    key: "6"
+  },
+  {
+    label: "7",
+    value: "7",
+    key: "7"
+  },
+  {
+    label: "8",
+    value: "8",
+    key: "8"
+  },
+  {
+    label: "9",
+    value: "9",
+    key: "9"
+  },
+  {
+    label: "10",
+    value: "10",
+    key: "10"
+  },
+  {
+    label: "10+",
+    value: "10+",
+    key: "10+"
+  },
+]
+
+export const facingData = [
+  {
+    label: "East",
+    value: "East",
+    key: "east"
+  },
+  {
+    label: "West",
+    value: "West",
+    key: "west"
+  },
+  {
+    label: "South",
+    value: "South",
+    key: "south"
+  },
+  {
+    label: "North",
+    value: "North",
+    key: "north"
+  },
+  {
+    label: "North-East",
+    value: "North-East",
+    key: "north-east"
+  },
+  {
+    label: "South-East",
+    value: "South-East",
+    key: "south-east"
+  },
+  {
+    label: "South-West",
+    value: "South-West",
+    key: "south-west"
+  },
+  {
+    label: "West-North",
+    value: "West-North",
+    key: "west-north"
+  }
+]
+
+export const availabilityData = [
+  {
+    label: "Ready to Move ",
+    key: "ready_to_move",
+    active: false
+  },
+  {
+    label: "Under Construction",
+    key: "under_construction",
+    active: false
+  },
+]
