@@ -21,7 +21,7 @@ const EventSpaces = () => {
 
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -50,7 +50,7 @@ const EventSpaces = () => {
                       prevEl: ".prevevent",
                     }}
                     pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                   >
                     <div className="row slider-container">
                       {propertyArray.map((_, index) => (
@@ -76,6 +76,7 @@ const EventSpaces = () => {
                                   </a>
                                 </h5>
                                 <p>3BHK, Gachibowli</p>
+                                <div className="we-video-info">
                                 <ul>
                                   <li>
                                     <img src={car} alt="" />
@@ -91,6 +92,8 @@ const EventSpaces = () => {
                                     <span>Swimming pool</span>
                                   </li>
                                 </ul>
+                                </div>
+                               
                               </div>
                             </div>
                           </div>

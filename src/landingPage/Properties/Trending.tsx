@@ -41,7 +41,7 @@ const Trending = () => {
                       prevEl: ".prevtrending",
                     }}
                     pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       {propertyArray.map((_, index) => (
@@ -70,6 +70,7 @@ const Trending = () => {
                                   </a>
                                 </h5>
                                 <p>3BHK, Gachibowli</p>
+                                <div className="we-video-info">
                                 <ul>
                                   <li>
                                     <img src={car} alt="" />
@@ -85,6 +86,7 @@ const Trending = () => {
                                     <span>Swimming pool</span>
                                   </li>
                                 </ul>
+                                </div>
                               </div>
                             </div>
                           </div>

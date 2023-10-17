@@ -1,10 +1,12 @@
-import rooms from "../../assets/images/rooms.png";
+import { useState, useEffect } from "react";
+import Apis from "../../api/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
+import { Pagination, Autoplay, Navigation, EffectFade, Virtual } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
+import 'swiper/css/virtual';
 import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
 import car from "../../assets/images/car 1.png";
@@ -13,10 +15,29 @@ import swimming from "../../assets/images/swimming 1.png";
 import "./EventSpace.css";
 
 const TopProjects = () => {
-  const propertyArray = Array.from({ length: 4 });
+  const [propertyArray, setPropertyArray] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Apis.get(
+          "/property/getAllProperty?city=hyderabad"
+        );
+
+        setPropertyArray(response?.data?.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(propertyArray);
+  
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -32,7 +53,7 @@ const TopProjects = () => {
                 <div className="col-lg-10 ">
                   <h4 className="main-title">Top projects in Hyderabad </h4>
                   <Swiper
-                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
+                    modules={[Pagination, Autoplay, Navigation, EffectFade, Virtual]}
                     spaceBetween={-650}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -42,51 +63,67 @@ const TopProjects = () => {
                     }}
                     pagination={{ clickable: true }}
                     loop={true}
+                    virtual
                   >
-
-
                     <div className="row" style={{ marginBottom: "-80px" }}>
-                      {propertyArray.map((_, index) => (
-                        <SwiperSlide>
-                          <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
-                            <div className="course">
-                              <figure>
-                                <img src={rooms} alt="" />
-                                <i className="icofont-book-mark" title="bookmark"></i>
-                                <em>Best seller</em>
-                                <span className="rate-result">
-                                  <i className="icofont-star"></i> 4.5
-                                </span>
-                              </figure>
-                              <div className="course-meta">
-                                <div style={{ display: "flex" }}></div>
-                                <h5 className="course-title">
-                                  <a href="course-detail.html" title="">
-                                    Modern villa with pool
-                                  </a>
-                                </h5>
-                                <p>3BHK, Gachibowli</p>
-                                <ul >
-                                  <li>
-                                    <img src={car} alt="" />
-                                    Car parking
-                                  </li>
-                                  <li>
-                                    <img src={elevator} alt="" />
-                                    Lift
-                                  </li>
-                                  <li>
-                                    <img src={swimming} alt="" />
+                      {propertyArray.length > 0
+                        ? propertyArray.map((item: any, i: any) => (
+                            <SwiperSlide>
+                              <div
+                                className="col-lg-4 col-md-6 col-sm-6"
+                                key={i}
+                              >
+                                <div className="course">
+                                  <figure>
+                                    {item?.property?.image_gallery && (
+                                      <img
+                                        src={
+                                          item?.property?.image_gallery[0]
+                                            ?.serveruri
+                                        }
+                                        alt=""
+                                      />
+                                    )}
+                                    <i
+                                      className="icofont-book-mark"
+                                      title="bookmark"
+                                    ></i>
+                                    {/* <em>Best seller</em> */}
+                                    <span className="rate-result">
+                                      <i className="icofont-star"></i> 4.5
+                                    </span>
+                                  </figure>
+                                  <div className="course-meta">
+                                    <div style={{ display: "flex" }}></div>
+                                    <h5 className="course-title">
+                                      <a href="course-detail.html" title="">
+                                      {item?.property?.building_name || "N/A"}
+                                      </a>
+                                    </h5>
+                                    <p>{item?.property?.locality}</p>
+                                    <div className="we-video-info">
+                                    <ul>
+                                      <li>
+                                        <img src={car} alt="" />
+                                        Car parking
+                                      </li>
+                                      <li>
+                                        <img src={elevator} alt="" />
+                                        Lift
+                                      </li>
+                                      <li>
+                                        <img src={swimming} alt="" />
 
-                                    <span>Swimming pool</span>
-                                  </li>
-                                </ul>
+                                        <span>Swimming pool</span>
+                                      </li>
+                                    </ul>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                      ))}
+                            </SwiperSlide>
+                          ))
+                        : "no data found"}
                     </div>
                   </Swiper>
                 </div>

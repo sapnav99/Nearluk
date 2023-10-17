@@ -14,7 +14,7 @@ const FlatmateFinder = () => {
                     className="blog-posts col-lg-10"
                     style={{ marginBottom: "-80px" }}
                   >
-                    <div className="blog-post-meta col-lg-4 col-md-12">
+                    <div className="blog-post-meta col-lg-4 col-md-12" style={{marginTop:"10px"}}>
                       <h1 style={{ lineHeight: "60px" }}>Find your Flatmate</h1>
                       <p
                         style={{
@@ -31,8 +31,8 @@ const FlatmateFinder = () => {
                       <button
                         style={{
                           backgroundColor: "#3FDBD1",
-                          borderRadius: "10px",
-                          paddingBlock: "10px",
+                          borderRadius: "20px",
+                          paddingBlock: "5px",
                           width: "100px",
                         }}
                       >

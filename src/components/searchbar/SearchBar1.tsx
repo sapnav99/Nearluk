@@ -3,9 +3,8 @@ import microphone from "../../assets/images/Microphone.png";
 import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
-import { Slider } from "antd";
+import {  Slider} from "antd";
 import { useNavigate } from "react-router-dom";
-import AdvancedSearch from "./AdvancedSearch";
 
 type PropertyType =
   | "Flat"
@@ -20,7 +19,7 @@ type PropertyType =
   | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
-
+ 
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -30,8 +29,56 @@ export default function SearchBarBeforeLogin() {
   ]);
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
+  
+  
+  const handleChange = (value: number | [number, number]) => {
+    if (Array.isArray(value)) {
+      setSliderValue(value);
+      setMinSliderValue(value[0]);
+      setMaxSliderValue(value[1]);
+      
+    }
+  };
   const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
+  const [bhkStatus, setBHKStatus] = useState("");
+  const [ConstrStatus, setConstrStatus] = useState("");
+  const [PostedStatus, setPostedStatus] = useState("");
+  const [isBHKDropdownOpen, setBHKDropdownOpen] = useState(false);
+  const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
+    useState(false);
+  const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
 
+  const toggleBHKDropdown = () => {
+    setBHKDropdownOpen(!isBHKDropdownOpen);
+  };
+  const handleBHKStatus = (status: string) => {
+    setBHKStatus(status);
+    setBHKDropdownOpen(false);
+  };
+  const toggleConstructionDropdown = () => {
+    setConstructionDropdownOpen(!isConstructionDropdownOpen);
+  };
+
+  const handleconstrStatus = (status: string) => {
+    setConstrStatus(status);
+    setConstructionDropdownOpen(false);
+  };
+  const handlePostedStatus = (status: string) => {
+    setPostedStatus(status);
+    setPostedByDropdownOpen(false);
+  };
+
+  const togglePostedByDropdown = () => {
+    setPostedByDropdownOpen(!isPostedByDropdownOpen);
+  };
+  const clearAll = () => {
+    setBHKStatus("");
+    setConstrStatus("");
+    setPostedStatus("");
+    setBHKDropdownOpen(false);
+    setConstructionDropdownOpen(false);
+    setPostedByDropdownOpen(false);
+  };
   const handleItemClick = (item: PropertyType) => {
     if (selectedItems.includes(item)) {
       setSelectedItems((prevSelectedItems) =>
@@ -42,7 +89,15 @@ export default function SearchBarBeforeLogin() {
     }
   };
 
+  // console.log(`Selected BHK: ${selectedBHK}`);
+  // console.log(`Selected Construction Status: ${selectedConstructionStatus}`);
+  // console.log(`Selected Posted By: ${selectedPostedBy}`);
+
   const collectUserData = () => {
+    const selectedBHK = bhkStatus;
+    const selectedConstructionStatus = ConstrStatus;
+    const selectedPostedBy = PostedStatus;
+
     const locationInput = document.querySelector(
       ".nl-searchlocation__input"
     ) as HTMLInputElement;
@@ -52,14 +107,24 @@ export default function SearchBarBeforeLogin() {
     }
 
     const userData = {
+      bhk: `${selectedBHK}`,
+      construction_status: `${selectedConstructionStatus}`,
+      posted_by: `${selectedPostedBy}`,
       city: locationInput.value,
       selectedItems: selectedItems,
       priceRange: sliderValue,
     };
-    const selectedItemsString = selectedItems.map(item => encodeURIComponent(item)).join(",");
-    navigate(`/searchresult/?city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}`, {
-      state: { searchData: userData },
-    });
+    const selectedItemsString = selectedItems
+      .map((item) => encodeURIComponent(item))
+      .join(",");
+    navigate(
+      `/searchresult/?city=${locationInput.value}&priceRange=${sliderValue}
+      &selectedItems=${selectedItemsString}&bhk=${selectedBHK}construction_status=${selectedConstructionStatus}
+      &posted_by=${selectedPostedBy}`,
+      {
+        state: { searchData: userData },
+      }
+    );
     console.log(userData);
 
     return userData;
@@ -71,13 +136,7 @@ export default function SearchBarBeforeLogin() {
     setActiveTab(tabName);
   };
 
-  const handleChange = (value: number | [number, number]) => {
-    if (Array.isArray(value)) {
-      setSliderValue(value);
-      setMinSliderValue(value[0]);
-      setMaxSliderValue(value[1]);
-    }
-  };
+  
 
   const toggleDropdown = () => {
     setDropdownVisibility(!isDropdownVisible);
@@ -468,15 +527,16 @@ export default function SearchBarBeforeLogin() {
                       >
                         <label>Min</label>
                         <label>{formatValue(minSliderValue)}</label>
-                        <input
+                        {/* <input
                           placeholder=""
+                          value=""
                           style={{
                             width: "70px",
                             border: "solid 0.5px rgba(255, 210, 210, 1)",
                             borderRadius: "5px",
                             backgroundColor: "white",
                           }}
-                        />
+                        /> */}
                       </div>
                       <div
                         className="max"
@@ -490,15 +550,16 @@ export default function SearchBarBeforeLogin() {
                       >
                         <label>Max</label>
                         <label>{formatValue(maxSliderValue)}</label>
-                        <input
+                        {/* <input
                           placeholder=""
+                          value=""
                           style={{
                             width: "70px",
                             border: "solid 0.5px rgba(255, 210, 210, 1)",
                             borderRadius: "5px",
                             backgroundColor: "white",
                           }}
-                        />
+                        /> */}
                       </div>
                     </div>
                     <Slider
@@ -507,6 +568,7 @@ export default function SearchBarBeforeLogin() {
                       value={sliderValue}
                       min={0}
                       max={50000000}
+                     
                       onChange={handleChange}
                       onAfterChange={handleChange}
                       tooltip={{
@@ -563,7 +625,153 @@ export default function SearchBarBeforeLogin() {
           Advanced Search
         </span>
 
-        {isDropdownVisible && <AdvancedSearch />}
+        {isDropdownVisible && (
+          <div className="advanced">
+            <div className="clear-all">
+              <a onClick={clearAll}>Clear All</a>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                float: "left",
+                marginLeft: "-165px",
+                marginTop: "15px",
+              }}
+            >
+              <div className="bedrooms" style={{ marginLeft: "-100px" }}>
+                <div>
+                  <label> BHK</label>
+                </div>
+                <div
+                  style={{
+                    width: "178px",
+                    marginTop: "4px",
+                    display: "flex",
+
+                    border: "solid 0.5px rgba(255, 210, 210, 1)",
+                    borderRadius: "13px",
+                    height: "35px",
+                    backgroundColor: "rgba(240, 240, 240, 1)",
+                  }}
+                >
+                  <input
+                    type="text"
+                    className="nl-searchlocation__propertyInput"
+                    placeholder=""
+                    onClick={toggleBHKDropdown}
+                    value={bhkStatus}
+                    readOnly
+                  />
+                  <BsChevronDown
+                    style={{ marginTop: "8px", marginRight: "6px" }}
+                    onClick={toggleBHKDropdown}
+                  />
+                  {isBHKDropdownOpen && (
+                    <ul className="advanced2">
+                      <li>
+                        <a onClick={() => handleBHKStatus("1BHK")}>1 BHK</a>
+                      </li>
+                      <li>
+                        <a onClick={() => handleBHKStatus("2BHK")}>2 BHK</a>
+                      </li>
+                      <li>
+                        <a onClick={() => handleBHKStatus("3BHK")}>3 BHK</a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+              <div className="construction" style={{ marginLeft: "15px" }}>
+                <div>
+                  <label> Construction Status</label>
+                </div>
+                <div
+                  style={{
+                    width: "178px",
+                    marginTop: "4px",
+                    display: "flex",
+                    border: "solid 0.5px rgba(255, 210, 210, 1)",
+                    borderRadius: "13px",
+                    height: "35px",
+                    backgroundColor: "rgba(240, 240, 240, 1)",
+                  }}
+                >
+                  <input
+                    type="text"
+                    className="nl-searchlocation__propertyInput"
+                    placeholder=""
+                    onClick={toggleConstructionDropdown}
+                    value={ConstrStatus}
+                    readOnly
+                  />
+                  <BsChevronDown
+                    style={{ marginTop: "8px", marginRight: "6px" }}
+                    onClick={toggleConstructionDropdown}
+                  />
+                  {isConstructionDropdownOpen && (
+                    <ul className="advanced2">
+                      <li>
+                        <a
+                          onClick={() =>
+                            handleconstrStatus("Under Construction")
+                          }
+                        >
+                          Under Construction
+                        </a>
+                      </li>
+                      <li>
+                        <a onClick={() => handleconstrStatus("Ready to move")}>
+                          Ready to move
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+              <div className="posted" style={{ marginLeft: "15px" }}>
+                <div>
+                  <label> Posted By</label>
+                </div>
+                <div
+                  style={{
+                    width: "178px",
+                    marginTop: "4px",
+                    display: "flex",
+                    border: "solid 0.5px rgba(255, 210, 210, 1)",
+                    borderRadius: "13px",
+                    height: "35px",
+                    backgroundColor: "rgba(240, 240, 240, 1)",
+                  }}
+                >
+                  <input
+                    type="text"
+                    className="nl-searchlocation__propertyInput"
+                    placeholder=""
+                    onClick={togglePostedByDropdown}
+                    value={PostedStatus}
+                    readOnly
+                  />
+                  <BsChevronDown
+                    style={{ marginTop: "8px", marginRight: "6px" }}
+                    onClick={togglePostedByDropdown}
+                  />
+                  {isPostedByDropdownOpen && (
+                    <ul className="advanced2">
+                      <li>
+                        <a onClick={() => handlePostedStatus("Owner")}>Owner</a>
+                      </li>
+                      <li>
+                        <a onClick={() => handlePostedStatus("Agent")}>Agent</a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

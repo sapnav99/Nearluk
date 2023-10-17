@@ -1,4 +1,3 @@
-
 import ImageCarousel from "./Carousel/ImageCarousel";
 
 import Services from "./services/Services";
@@ -18,27 +17,26 @@ import PopularBuilders from "./Properties/PopularBuilders";
 import NewlyLaunched from "./Properties/NewlyLaunched";
 import Allads from "./ads/Allads";
 
-
-
 const LandingPage = () => {
   return (
     <div>
       <ImageCarousel />
       <SearchProperty />
       <Featured />
+      <Rent />
+      <RecentSearches />
       <Services />
-      <PopularAgents />
       <Ownerproperties />
       <EventSpaces />
+      <PopularAgents />
       <AgentProperties />
       <Allads />
-      <RecentSearches />
       <TopProjects />
       <Trending />
       <Plots />
-      <Rent/>
-      <PopularBuilders/>
-      <NewlyLaunched/>
+      <NewlyLaunched />
+      <PopularBuilders />
+      
     </div>
   );
 };

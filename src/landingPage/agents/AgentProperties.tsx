@@ -19,7 +19,7 @@ const AgentProperties = () => {
   const propertyArray = Array.from({ length: 4 });
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD"}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -27,11 +27,11 @@ const AgentProperties = () => {
                 <div
                   className="prevagent col-lg-1"
                   slot="container-start"
-                  style={{ marginTop: "4px" }}
+                  style={{ marginTop: "90px" }}
                 >
                   <img src={left} alt="" />
                 </div>
-                <div className="col-lg-10" style={{ marginTop: "-80px" }}>
+                <div className="col-lg-10" style={{ marginTop: "40px" }}>
                   <div className="main-title">Agent Properties</div>
                   <Swiper
                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
@@ -43,7 +43,7 @@ const AgentProperties = () => {
                       prevEl: ".prevagent",
                     }}
                     pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                   >
                     <div style={{ display: "flex", marginBottom: "-60px" }}>
                     {propertyArray.map((_, index) => (
@@ -112,7 +112,7 @@ const AgentProperties = () => {
                 <div
                   className="nextagent col-lg-1"
                   slot="container-end"
-                  style={{ marginTop: "4px" }}
+                  style={{ marginTop: "90px" }}
                 >
                   <img src={right} alt="" />
                 </div>

@@ -18,7 +18,7 @@ const SearchProperty = () => {
 
   return (
     <div>
-      <section style={{ backgroundColor: "#eafaf1" }}>
+      <section style={{ backgroundColor: "#E2FFFD" }}>
         <div className="gap">
           <div className="container ">
             <div className="row">
@@ -47,7 +47,7 @@ const SearchProperty = () => {
                         prevEl: ".prevsearch",
                       }}
                       pagination={{ clickable: true }}
-                    loop={true}
+                      rewind={true}
                     >
                       <div
                         className="row col-xs-12 "
@@ -147,21 +147,7 @@ const SearchProperty = () => {
                           </div>
                           </SwiperSlide>
                         </div>
-                        <div className="col-lg-2 col-md-4 col-sm-4">
-                        <SwiperSlide>
-                          <div className="group-box">
-                            <figure>
-                              <img
-                                className="cityImages"
-                                alt=""
-                                src={bangalore}
-                              />
-                            </figure>
-
-                            <button className="buttons">Bangalore</button>
-                          </div>
-                          </SwiperSlide>
-                        </div>
+                        
                       </div>
                    </Swiper>
                   </div>

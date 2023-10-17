@@ -10,7 +10,7 @@ import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
 const Allads = () => {
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom:"80px"}}>
 <div className="row">
       <div
         className="prevadd col-lg-1"

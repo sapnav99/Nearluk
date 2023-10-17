@@ -1,4 +1,5 @@
-
+import { useState, useEffect } from "react";
+import Apis from "../../api/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -13,13 +14,29 @@ import topbuilders3 from "../../assets/images/Topbuilders3.png";
 
 import "./EventSpace.css";
 
-
-
 const Plots = () => {
+
+  const [plots, setPlots] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Apis.get("/property/propertyByCategory?sub_category=plot")
+
+        setPlots(response?.data?.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(plots);
 
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -33,7 +50,6 @@ const Plots = () => {
                 </div>
                 {/* <div className="d-flex justify-content-center align-items-center "> */}
                 <div className="col-lg-10 ">
-
                   <h4 className="main-title">Plots for Sale in Hyderabad</h4>
                   <Swiper
                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
@@ -45,7 +61,7 @@ const Plots = () => {
                       prevEl: ".prevplot",
                     }}
                     pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       <SwiperSlide>
@@ -63,32 +79,13 @@ const Plots = () => {
                               </span>
                             </figure>
                             <div className="course-meta">
-                              <div style={{ display: "flex" }}>
-                                {/* <div className="post-by"> */}
-                                {/* <figure>
-                                    <img src={profile} alt="" />
-                                  </figure> */}
-                                {/* <div className="course-cat"> */}
-                                {/* <span style={{ marginTop: "12px" }}>
-                                      By: Sarah K
-                                    </span> */}
-                                {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* <div className="prise">
-                                  <span>&#8377;30L</span>
-                                </div> */}
-                              </div>
+                              <div style={{ display: "flex" }}></div>
                               <h5 className="course-title">
                                 <a href="course-detail.html" title="">
                                   TMR Group Venture
                                 </a>
                               </h5>
                               <p>250Sqd, Gachibowli</p>
-
-
                             </div>
                           </div>
                         </div>
@@ -108,32 +105,13 @@ const Plots = () => {
                               </span>
                             </figure>
                             <div className="course-meta">
-                              <div style={{ display: "flex" }}>
-                                {/* <div className="post-by"> */}
-                                {/* <figure>
-                                    <img src={profile} alt="" />
-                                  </figure> */}
-                                {/* <div className="course-cat"> */}
-                                {/* <span style={{ marginTop: "12px" }}>
-                                      By: Sarah K
-                                    </span> */}
-                                {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* <div className="prise">
-                                  <span>&#8377;30L</span>
-                                </div> */}
-                              </div>
+                              <div style={{ display: "flex" }}></div>
                               <h5 className="course-title">
                                 <a href="course-detail.html" title="">
                                   TMR Group Venture
                                 </a>
                               </h5>
                               <p>250Sqd, Gachibowli</p>
-
-
                             </div>
                           </div>
                         </div>
@@ -153,38 +131,17 @@ const Plots = () => {
                               </span>
                             </figure>
                             <div className="course-meta">
-                              <div style={{ display: "flex" }}>
-                                {/* <div className="post-by"> */}
-                                {/* <figure>
-                                    <img src={profile} alt="" />
-                                  </figure> */}
-                                {/* <div className="course-cat"> */}
-                                {/* <span style={{ marginTop: "12px" }}>
-                                      By: Sarah K
-                                    </span> */}
-                                {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* <div className="prise">
-                                  <span>&#8377;30L</span>
-                                </div> */}
-                              </div>
+                              <div style={{ display: "flex" }}></div>
                               <h5 className="course-title">
                                 <a href="course-detail.html" title="">
                                   TMR Group Venture
                                 </a>
                               </h5>
                               <p>250Sqd, Gachibowli</p>
-
-
                             </div>
                           </div>
                         </div>
                       </SwiperSlide>
-
-
                     </div>
                   </Swiper>
                 </div>
@@ -195,10 +152,8 @@ const Plots = () => {
                 >
                   <img src={right} alt="" />
                 </div>
-                {/* </div> */}
               </div>
             </div>
-
           </div>
         </div>
       </div>

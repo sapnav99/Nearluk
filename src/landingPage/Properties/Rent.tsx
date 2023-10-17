@@ -16,7 +16,7 @@ import left from "../../assets/images/Left.png";
 const Rent = () => {
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -24,19 +24,19 @@ const Rent = () => {
                 <div
                   className="prev col-lg-1"
                   slot="container-start"
-                  style={{ marginTop: "160px" }}
+                  style={{ marginTop: "60px" }}
                 >
                   <img src={left} alt="" />
                 </div>
                 {/* <div className="d-flex justify-content-center align-items-center "> */}
                 <div className="col-lg-10 ">
 
-                <h4 className="main-title">
+                {/* <h4 className="main-title">
                     Categories
                     <a title="" href="#" className="view-all">
                       view all
                     </a>
-                  </h4>
+                  </h4> */}
                   <Swiper
                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-750}
@@ -47,7 +47,7 @@ const Rent = () => {
                       prevEl: ".prev",
                     }}
                     pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                     <SwiperSlide>
@@ -111,7 +111,7 @@ const Rent = () => {
                 <div
                   className="next col-lg-1"
                   slot="container-end"
-                  style={{ marginTop: "160px" }}
+                  style={{ marginTop: "60px" }}
                 >
                   <img src={right} alt="" />
                 </div>

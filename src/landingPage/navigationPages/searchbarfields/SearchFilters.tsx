@@ -1,135 +1,122 @@
+import "./Searchfilter.css";
 import { useState } from "react";
-import "./Searchfilter.css"
+import { Col, InputNumber, Row, Slider } from "antd";
 import { BsChevronDown } from "react-icons/bs";
-
 export default function SearchFilters() {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [minValue, setMinValue] = useState<number | undefined>(undefined);
+  const [maxValue, setMaxValue] = useState<number | undefined>(undefined);
+  const [budgetDropdownOpen, setBudgetDropdownOpen] = useState(false);
+  const togglePriceDropdown = () => {
+    setBudgetDropdownOpen(!budgetDropdownOpen);
+  };
+  const onSliderChange = (values: [number, number]) => {
+    setMinValue(values[0]);
+    setMaxValue(values[1]);
+  };
 
-  const handleCheckboxChange = (value: string) => {
-    const updatedSelection = [...selectedItems];
-    if (updatedSelection.includes(value)) {
-      updatedSelection.splice(updatedSelection.indexOf(value), 1);
-    } else {
-      updatedSelection.push(value);
+  const onMinChange = (newValue: number | null | undefined) => {
+    if (newValue !== null && newValue !== undefined) {
+      setMinValue(newValue);
     }
-    setSelectedItems(updatedSelection);
+  };
+
+  const onMaxChange = (newValue: number | null | undefined) => {
+    if (newValue !== null && newValue !== undefined) {
+      setMaxValue(newValue);
+    }
   };
 
   return (
     <div>
-      <div className="dropdown_container">
-        <div className="custom-dropdown">
-          
-          <div className="dropdowns">
-            <span className="dropdown-placeholder">
-              Property Type
-              <BsChevronDown
-                style={{
-                  fontSize: "10px",
-                  fontWeight:'800',
-                  marginLeft: "145px",
-                  marginTop: "-45px",
-                }}
-              />
-            </span>
-            <div className="options-container">
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Flat/Apartment
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Independent House"
-                  onChange={() => handleCheckboxChange("Independent House")}
-                />
-                Independent House
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Villa
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Guest House
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Studio Apartment
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Farm House
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Flat/Apartment"
-                  onChange={() => handleCheckboxChange("Flat/Apartment")}
-                />
-                Service Apartment
-              </label>
-            </div>
+      <div
+        className={`dropdown-container ${
+          budgetDropdownOpen ? "budget-open" : ""
+        }`}
+      >
+        <div>
+          <div style={{ display: "flex" }} className="selector">
+            <input
+              type="text"
+              className="selector"
+              placeholder="Budget"
+              style={{ fontWeight: 400 }}
+              onClick={togglePriceDropdown}
+            />
+            <BsChevronDown
+              onClick={togglePriceDropdown}
+              style={{
+                marginTop: "10px",
+                marginRight: "6px",
+                fontSize: "12px",
+                color: "black",
+              }}
+            />
           </div>
-        </div>
-      </div>
-      
 
-      <div className="dropdown-container">
-        <div >
-        <select className="selector">
-          <option value="1">No. of Bedrooms</option>
-          <option value="2">1 BHK</option>
-          <option value="3">2 BHK</option>
-          <option value="4">3 BHK</option>
-        </select>
+          {budgetDropdownOpen && (
+            <div className="areadropdown">
+              <Row>
+                <Col span={20}>
+                  <Slider
+                    range
+                    min={1}
+                    max={10000}
+                    style={{ marginLeft: "30px" }}
+                    onChange={onSliderChange}
+                    value={[
+                      minValue !== undefined ? minValue : 1,
+                      maxValue !== undefined ? maxValue : 10000,
+                    ]}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col span={4}>
+                  <InputNumber
+                    min={1}
+                    max={10000}
+                    style={{ margin: "0 0 0 10px", width: "70px" }}
+                    value={
+                      minValue !== undefined ? Number(minValue) : undefined
+                    }
+                    onChange={onMinChange}
+                  />
+                </Col>
+                <Col span={4}>
+                  <InputNumber
+                    min={1}
+                    max={10000}
+                    style={{ margin: "1px 0px 2px 130px", width: "70px" }}
+                    value={
+                      maxValue !== undefined ? Number(maxValue) : undefined
+                    }
+                    onChange={onMaxChange}
+                  />
+                </Col>
+              </Row>
+            </div>
+          )}
         </div>
-       
-      </div>
-      <div className="dropdown-container">
-        <select className="selector">
-          <option value="1">Construction Status</option>
-          <option value="2">Under Construction</option>
-          <option value="3">Ready to move</option>
-        </select>
-      </div>
-      <div className="dropdown-container">
-        <select className="selector">
-          <option value="1">Posted By</option>
-          <option value="2">Owner</option>
-          <option value="3">Agent</option>
-        </select>
       </div>
       <div className="dropdown-container">
         <div>
           <select className="selector">
-            <option value="1">Furnishing Status</option>
-            <option value="2">Unfurnished</option>
-            <option value="3">Semi-Furnished</option>
-            <option value="4">Furnished</option>
+            <option value="1" className="options">
+              Furnishing Status
+            </option>
+            <option value="2" className="options">
+              Unfurnished
+            </option>
+            <option value="3" className="options">
+              Semi-Furnished
+            </option>
+            <option value="4" className="options">
+              Furnished
+            </option>
           </select>
         </div>
       </div>
+
       <div className="dropdown-container">
         <div>
           <select className="selector">

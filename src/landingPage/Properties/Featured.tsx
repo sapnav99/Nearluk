@@ -110,17 +110,18 @@ const Featured = () => {
                               <div>
                                 <span>3 BHK Villas</span>
                                 <p>93.7 Lac onwards</p>
-                                <a
-                                  href="blog-detail.html"
-                                  title=""
-                                  className="button primary circle"
+
+                                <button
                                   style={{
-                                    paddingBlock: "10px",
-                                    paddingInline: "10px",
+                                    marginLeft: "28px",
+                                    backgroundColor: "#3FDBD1",
+                                    borderRadius: "25px",
+                                    paddingBlock: "5px",
+                                    width: "100px",
                                   }}
                                 >
                                   View Details
-                                </a>
+                                </button>
                               </div>
                             </div>
                             <div className="we-video-info">

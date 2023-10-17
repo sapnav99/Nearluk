@@ -79,7 +79,7 @@ const PersonalInfo = () => {
       <div className="category-inner">
         <ul className="category-inner-card">
           <div className="category-card">
-            <img src={phone} alt="" className="icon" />
+            <img src={phone} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Mobile Number: <span>{userData.user.mobile_no}</span>
@@ -88,7 +88,7 @@ const PersonalInfo = () => {
           </div>
 
           <div className="category-card">
-            <img src={emails} alt="" className="icon" />
+            <img src={emails} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Email: <span>{userData.user.email}</span>
@@ -96,7 +96,7 @@ const PersonalInfo = () => {
             </div>
           </div>
           <div className="category-card">
-            <img src={location} alt="" className="icon" />
+            <img src={location} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Location:
@@ -182,7 +182,7 @@ const PersonalInfo = () => {
         {/* Social links */}
         <ul className="category-inner-card">
           <div className="category-card">
-            <img src={facebook} alt="" className="icon" />
+            <img src={facebook} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Facebook:
@@ -244,7 +244,7 @@ const PersonalInfo = () => {
             )}
           </div>
           <div className="category-card">
-            <img src={instagram} alt="" className="icon" />
+            <img src={instagram} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Insta Id:
@@ -306,7 +306,7 @@ const PersonalInfo = () => {
             )}
           </div>
           <div className="category-card">
-            <img src={twitter} alt="" className="icon" />
+            <img src={twitter} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Twitter Id:
@@ -369,7 +369,7 @@ const PersonalInfo = () => {
             )}
           </div>
           <div className="category-card">
-            <img src={linkedin} alt="" className="icon" />
+            <img src={linkedin} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 LinkedIn Id:
@@ -431,7 +431,7 @@ const PersonalInfo = () => {
             )}
           </div>
           <div className="category-card">
-            <img src={youtube} alt="" className="icon" />
+            <img src={youtube} alt=""  />
             <div className="info">
               <label style={{ color: "gray", paddingTop: "10px" }}>
                 Youtube Channel:

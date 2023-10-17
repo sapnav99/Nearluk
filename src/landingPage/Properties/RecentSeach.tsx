@@ -41,7 +41,7 @@ const RecentSearches = () => {
                     prevEl: ".prevrecent",
                   }}
                   pagination={{ clickable: true }}
-                    loop={true}
+                    rewind={true}
                 >
 
                 

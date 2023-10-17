@@ -75,8 +75,8 @@ const SearchResult = () => {
                   </aside>
                 </div>
                 <div className="col-lg-9">
-                  <div className="category-card">
-                    <img src={searchlocation} alt="" className="icon" />
+                  <div className="category-card " style={{marginLeft:"720px"}} >
+                    <img src={searchlocation} alt="" />
                     <div className="info">
                       <label style={{ color: "gray", paddingTop: "10px" }}>
                         Location: <span>Bachupally</span>

@@ -30,8 +30,8 @@ const ServicesAd = () => {
                        <button
                         style={{
                           backgroundColor: "#3FDBD1",
-                          borderRadius: "10px",
-                          paddingBlock: "10px",
+                          borderRadius: "20px",
+                          paddingBlock: "5px",
                           width: "100px",
                         }}
                       >

@@ -20,9 +20,7 @@ const Services = () => {
       <section>
         <div
           className="gap"
-          style={{
-            backgroundColor: "#eafaf1",
-          }}
+          style={{ backgroundColor: "#E2FFFD" }}
         >
           <div className="container">
             <div className="row">
@@ -52,7 +50,7 @@ const Services = () => {
                         prevEl: ".prevservice",
                       }}
                       pagination={{ clickable: true }}
-                    loop={true}
+                      rewind={true}
                     >
                       <div
                         className="row col-xs-6"

@@ -13,7 +13,7 @@ const PopularAgents = () => {
     <div>
       <div
         className="gap"
-        style={{ backgroundColor: "rgba(226, 255, 253, 1)" }}
+       
       >
         <div className="container">
           <div className="row">

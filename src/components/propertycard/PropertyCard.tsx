@@ -10,7 +10,7 @@ const PropertyCard = ({ property }: any) => {
       className="col-lg-6 col-md-6 col-sm-6"
       onClick={() => {
         navigate(`/proprtydetail/${property._id}`);
-        console.log(property);
+        
       }}
     >
       <div className="course">
