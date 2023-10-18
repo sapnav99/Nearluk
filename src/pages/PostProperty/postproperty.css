@@ -83,3 +83,13 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.price__detailing__container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.price__details__checkbox_container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
