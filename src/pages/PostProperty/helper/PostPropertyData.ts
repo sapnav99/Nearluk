@@ -843,3 +843,38 @@ export const ownerShipData = [
     active: false,
   },
 ];
+
+export const proximityFeaturesData = [
+  { key: "close_to_school", label: "Close to School", active: false },
+  { key: "close_to_hospital", label: "Close to Hospital", active: false },
+  {
+    key: "close_to_metro_station",
+    label: "Close to Metro Station",
+    active: false,
+  },
+  { key: "close_to_airport", label: "Close to Airport", active: false },
+  { key: "close_to_mall", label: "Close to Mall", active: false },
+  {
+    key: "close_to_railway_station",
+    label: "Close to Railway Station",
+    active: false,
+  },
+  { key: "close_to_highway", label: "Close to Highway", active: false },
+  { key: "close_to_market", label: "Close to Market", active: false },
+  {
+    key: "good_air_quality",
+    label: "Good Air Quality (Air Quality Rating)",
+    active: false,
+  },
+  {
+    key: "good_water_quality",
+    label: "Good Water Quality (Water Quality Rating)",
+    active: false,
+  },
+  {
+    key: "walk_friendly_community",
+    label: "Walk Friendly Community",
+    active: false,
+  },
+  { key: "noise_free_community", label: "Noise Free Community", active: false },
+];
