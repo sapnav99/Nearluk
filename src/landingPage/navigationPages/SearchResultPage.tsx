@@ -4,7 +4,6 @@ import Apis from "../../api/apiServices";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import menu from "../../assets/images/menu.png";
 import "./Searchresult.css";
 import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
@@ -13,9 +12,15 @@ import { searchActions } from "./redux/action";
 import SelectedItems from "./searchbarfields/Allfilters";
 
 const SearchResult = () => {
+  // const [activeTab, setActiveTab] = useState("rent");
+
+  // const handleTabClick = (tab: string) => {
+  //   setActiveTab(tab);
+  // };
+
   const dispatch = useDispatch();
   const { state } = useLocation();
-  
+
   const searchData = state ? state.searchData : null;
   console.log(searchData);
   const [properties, setProperties] = useState([]);
@@ -30,6 +35,7 @@ const SearchResult = () => {
         });
 
         setProperties(response?.data?.data);
+
         dispatch(searchActions.fetchAllSearchdata([]));
       } catch (error) {
         console.error("Error fetching properties:", error);
@@ -57,11 +63,23 @@ const SearchResult = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "space-between",
+                          marginBottom: "15px",
                         }}
                       >
-                        <img src={menu} alt="" />
-                        <h6>Applied Properties</h6>
-                        <a>Clear all</a>
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <p className="line-with-reversedot"></p>
+                          <p className="line-with-dot"></p>
+                          <p className="line-with-reversedot"></p>
+                        </div>
+
+                        <h6 style={{ marginTop: "0px", marginLeft: "-50px" }}>
+                          Applied Filters
+                        </h6>
+                        <a style={{ marginRight: "30px", color: "#2F9F72" }}>
+                          Clear all
+                        </a>
                       </div>
 
                       <div>
@@ -74,8 +92,11 @@ const SearchResult = () => {
                     </div>
                   </aside>
                 </div>
-                <div className="col-lg-9">
-                  <div className="category-card " style={{marginLeft:"720px"}} >
+                <div className="col-lg-8">
+                  <div
+                    className="category-card "
+                    style={{ marginLeft: "720px" }}
+                  >
                     <img src={searchlocation} alt="" />
                     <div className="info">
                       <label style={{ color: "gray", paddingTop: "10px" }}>
@@ -85,9 +106,10 @@ const SearchResult = () => {
                   </div>
                   <div>
                     <div style={{ display: "flex" }}>
-                      <h5>38 Properties near you</h5>
+                      <h5>{properties.length} Properties near you</h5>
                       <div>
-                        <span style={{ marginLeft: "20px", fontSize: "12px" }}>
+                        
+                        <span style={{ marginLeft: "90px", fontSize: "12px" }}>
                           With Photos <ToggleSwitch Name="photos" />
                         </span>
                         <span style={{ marginLeft: "12px", fontSize: "12px" }}>
@@ -102,15 +124,69 @@ const SearchResult = () => {
                     <div style={{ marginLeft: "-46px" }}>
                       <SearchTabs />
                     </div>
-                    <div className="row" style={{ marginTop: "85px" }}>
-                      {properties.length > 0
-                        ? properties.map((item: any, i: any) => (
-                            <PropertyCard property={item} key={i} />
-                          ))
-                        : "no data found"}
+                    <div
+                      style={{
+                        backgroundColor: "white",
+                        boxShadow: "10px 10px 10px 10px #0000001a",
+                        padding: "10px",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      {/* <div style={{ marginTop: "80px" }}>
+                        <ul className="nav ">
+                          <li
+                            className="nav-item"
+                            style={{ marginRight: "15px" }}
+                          >
+                            <a
+                              className={`nav-link ${
+                                activeTab === "rent" ? "active" : ""
+                              }`}
+                              aria-current="page"
+                              href="#"
+                              onClick={() => handleTabClick("rent")}
+                            >
+                              Rent
+                            </a>
+                          </li>
+
+                          <li
+                            className="nav-item"
+                            style={{ marginRight: "15px" }}
+                          >
+                            <a
+                              className={`nav-link ${
+                                activeTab === "sell" ? "active" : ""
+                              }`}
+                              href="#"
+                              onClick={() => handleTabClick("sell")}
+                            >
+                              Sell
+                            </a>
+                          </li>
+
+                          <li className="nav-item">
+                            <a
+                              className={`nav-link ${
+                                activeTab === "sharing" ? "active" : ""
+                              }`}
+                              href="#"
+                              onClick={() => handleTabClick("sharing")}
+                            >
+                              Sharing
+                            </a>
+                          </li>
+                        </ul>
+                      </div> */}
+                      <div className="row" style={{ marginTop: "80px" }}>
+                        {properties.length > 0
+                          ? properties.map((item: any, i: any) => (
+                              <PropertyCard property={item} key={i} />
+                            ))
+                          : "no data found"}
+                      </div>
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </div>

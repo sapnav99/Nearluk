@@ -27,3 +27,49 @@
   background-color: rgba(63, 219, 209, 1);
   color: black;
 }
+.nav .nav-item{
+ 
+  box-shadow: 0px 4px 20px 0px #0000001a;
+  
+}
+.nav-item .nav-link.active{
+  
+border-bottom: solid 3px #7ED8CC;
+}
+.line-with-dot {
+  margin-bottom: 7px;
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background-color: #95f1ca; 
+}
+
+.line-with-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px; 
+  height: 10px;
+  background-color: #6bc59e; 
+  border-radius: 50%;
+  transform: translate(-90%, -50%);
+}
+.line-with-reversedot {
+  margin-bottom: 7px;
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background-color: #95f1ca; 
+}
+.line-with-reversedot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px; 
+  height: 10px;
+  background-color: #6bc59e; 
+  border-radius: 50%;
+  transform: translate(-15%, -50%);
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import './Toggle.css'
 interface ToggleSwitchProps {
   Name: string;
+  
 }
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ Name }) => {

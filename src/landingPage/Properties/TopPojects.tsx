@@ -9,12 +9,16 @@ import "swiper/css/hash-navigation";
 import 'swiper/css/virtual';
 import right from "../../assets/images/Right.png";
 import left from "../../assets/images/Left.png";
-import car from "../../assets/images/car 1.png";
-import elevator from "../../assets/images/elevator 1.png";
-import swimming from "../../assets/images/swimming 1.png";
 import "./EventSpace.css";
+import { useDispatch } from "react-redux";
+import { allpropdataactions } from "../../pages/Home/redux/action";
+
 
 const TopProjects = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allpropdataactions.fetchAllProperty([]));
+  }, []);
   const [propertyArray, setPropertyArray] = useState([]);
 
   useEffect(() => {
@@ -100,22 +104,24 @@ const TopProjects = () => {
                                       {item?.property?.building_name || "N/A"}
                                       </a>
                                     </h5>
-                                    <p>{item?.property?.locality}</p>
+                                    <p
+                                    style={{
+                                      whiteSpace: "nowrap",
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                    }}
+                                  >
+                                    {item?.property?.locality || "N/A"}
+                                  </p>
                                     <div className="we-video-info">
                                     <ul>
-                                      <li>
-                                        <img src={car} alt="" />
-                                        Car parking
-                                      </li>
-                                      <li>
-                                        <img src={elevator} alt="" />
-                                        Lift
-                                      </li>
-                                      <li>
-                                        <img src={swimming} alt="" />
-
-                                        <span>Swimming pool</span>
-                                      </li>
+                                      {item?.amenities?.map(
+                                        (amenity: any, index: any) => (
+                                          <li key={index}>
+                                             {amenity?.label}
+                                          </li>
+                                        )
+                                      )}
                                     </ul>
                                     </div>
                                   </div>

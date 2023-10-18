@@ -1,11 +1,38 @@
 import "./Searchfilter.css";
+import "./MultiselectDropdown.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
 import { Col, InputNumber, Row, Slider } from "antd";
-import { BsChevronDown } from "react-icons/bs";
+import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
+
+interface City {
+  name: string;
+  value: string;
+}
 export default function SearchFilters() {
+  const [selectedFacing, setselectedFacing] = useState<City | null>(null);
+  const [selectedFurnishing, setselectedFurnishing] = useState<City | null>(
+    null
+  );
+  const furnish: City[] = [
+    { value: "1", name: "Unfurnished" },
+    { value: "2", name: " Semi-Furnished" },
+    { value: "3", name: "Furnished" },
+  ];
+  const facing: City[] = [
+    { value: "1", name: "East" },
+    { value: "2", name: " West" },
+    { value: "3", name: "North" },
+    { value: "4", name: "South" },
+  ];
+  const [isConstructionopen, setisConstructionopen] = useState(false);
   const [minValue, setMinValue] = useState<number | undefined>(undefined);
   const [maxValue, setMaxValue] = useState<number | undefined>(undefined);
   const [budgetDropdownOpen, setBudgetDropdownOpen] = useState(false);
+  const toggleConstructionDropdown = () => {
+    setisConstructionopen(!isConstructionopen);
+  };
   const togglePriceDropdown = () => {
     setBudgetDropdownOpen(!budgetDropdownOpen);
   };
@@ -38,19 +65,12 @@ export default function SearchFilters() {
             <input
               type="text"
               className="selector"
-              placeholder="Budget"
-              style={{ fontWeight: 400 }}
+              placeholder="Area"
+              style={{ fontWeight: "400", paddingLeft:"10px", color:"black" }}
               onClick={togglePriceDropdown}
             />
-            <BsChevronDown
-              onClick={togglePriceDropdown}
-              style={{
-                marginTop: "10px",
-                marginRight: "6px",
-                fontSize: "12px",
-                color: "black",
-              }}
-            />
+            <FontAwesomeIcon icon={faAngleDown} style={{fontSize:"17px", padding:"10px"}} onClick={togglePriceDropdown}/>
+            
           </div>
 
           {budgetDropdownOpen && (
@@ -61,7 +81,7 @@ export default function SearchFilters() {
                     range
                     min={1}
                     max={10000}
-                    style={{ marginLeft: "30px" }}
+                    style={{ marginLeft: "30px"}}
                     onChange={onSliderChange}
                     value={[
                       minValue !== undefined ? minValue : 1,
@@ -97,79 +117,48 @@ export default function SearchFilters() {
             </div>
           )}
         </div>
+        
       </div>
+
       <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1" className="options">
-              Furnishing Status
-            </option>
-            <option value="2" className="options">
-              Unfurnished
-            </option>
-            <option value="3" className="options">
-              Semi-Furnished
-            </option>
-            <option value="4" className="options">
-              Furnished
-            </option>
-          </select>
+        <div className="selector">
+          <MultiSelect
+            value={selectedFurnishing}
+            onChange={(e: MultiSelectChangeEvent) =>
+              setselectedFurnishing(e.value)
+            }
+            options={furnish}
+            optionLabel="name"
+            placeholder="Furnishing Status"
+            maxSelectedLabels={3}
+          />
         </div>
       </div>
 
       <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1">Localities</option>
-            <option value="2">Unfurnished</option>
-            <option value="3">Semi-Furnished</option>
-            <option value="4">Furnished</option>
-          </select>
+        <div className="selector">
+          <MultiSelect
+            value={selectedFacing}
+            onChange={(e: MultiSelectChangeEvent) => setselectedFacing(e.value)}
+            options={facing}
+            optionLabel="name"
+            placeholder="Facing"
+            maxSelectedLabels={3}
+          />
         </div>
       </div>
       <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1">Aminities</option>
-            <option value="2">Water Storage</option>
-            <option value="3">Power Backup</option>
-            <option value="4">Security/Fire Alarm</option>
-          </select>
-        </div>
-      </div>
-      <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1">Facing</option>
-            <option value="2">East</option>
-            <option value="3">West</option>
-            <option value="4">North</option>
-            <option value="4">South</option>
-            <option value="4">North West</option>
-            <option value="4">North East</option>
-            <option value="4">South West</option>
-            <option value="4">South East</option>
-          </select>
-        </div>
-      </div>
-      <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1">Sale Type</option>
-            <option value="2">Unfurnished</option>
-            <option value="3">Semi-Furnished</option>
-            <option value="4">Furnished</option>
-          </select>
-        </div>
-      </div>
-      <div className="dropdown-container">
-        <div>
-          <select className="selector">
-            <option value="1">Construction Age</option>
-            <option value="2">10 years</option>
-            <option value="3">20 Years</option>
-            <option value="4">30 Years</option>
-          </select>
+        <div className="selector">
+          <div style={{display:"flex", justifyContent:"space-between"}}>
+          <p onClick={toggleConstructionDropdown}>Construction Age</p>
+          <FontAwesomeIcon icon={faAngleDown} style={{fontSize:"17px", padding:"10px"}}/>
+          </div>
+         
+          {isConstructionopen && (
+            <div className="ageslider">
+              <Slider defaultValue={30} tooltip={{ open: true }} />
+            </div>
+          )}
         </div>
       </div>
     </div>

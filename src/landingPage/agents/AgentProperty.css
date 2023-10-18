@@ -1,3 +1,8 @@
+
+.agentImages{
+  width: 250px;
+  height: 200px;
+}
 .blog-posts{
     /* margin-bottom: 0px;  */
     display: flex;

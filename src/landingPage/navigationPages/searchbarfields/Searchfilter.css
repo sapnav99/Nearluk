@@ -43,7 +43,7 @@
 }
 
 .selector {
-  border-radius: 5px;
+  border-radius: 10px;
   width: 250px;
   height: 35px;
   background-color: #d1d1d1;
@@ -51,15 +51,19 @@
   color: black;
 }
 
-.selector option {
-  background-color: white;
+.selector p {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
   color: black;
+  font-weight: 400;
 }
-
-
-.selector option:hover {
-  background-color: red;
-  color: black;
+.ageslider{
+  
+  padding: 10px;
+  background-color: #d1d1d1;
+  border-radius: 10px;
 }
 
 .selected-items {
@@ -81,4 +85,32 @@
 
 .areadropdown {
   background-color: #d1d1d1;
+   border-radius: 10px;
+   margin-top: 5px;
+}
+
+.p-multiselect {
+  display: flex;
+  justify-content: space-between;
+}
+
+.p-multiselect-label-container {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.p-multiselect-trigger {
+  padding-right: 10px;
+}
+.p-multiselect-items-wrapper{
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+.p-multiselect-item{
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background-color: white;
+  margin: 5px 5px 5px 5px;
+  padding-left: 5px;
+  font-weight: 500;
+  height: 25px;
 }

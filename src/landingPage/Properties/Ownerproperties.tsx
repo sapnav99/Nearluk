@@ -1,5 +1,4 @@
-// import villa2 from "../../assets/images/villa2.jpg";
-import profile from "../../assets/images/profilePhoto.jpg";
+
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -64,7 +63,7 @@ const Ownerproperties = () => {
                     EffectFade,
                     Virtual,
                   ]}
-                  spaceBetween={-650}
+                  spaceBetween={-680}
                   slidesPerView={1}
                   autoplay={{ delay: 2000, disableOnInteraction: false }}
                   navigation={{
@@ -104,7 +103,7 @@ const Ownerproperties = () => {
                                   <div style={{ display: "flex" }}>
                                     <div className="post-by">
                                       <figure>
-                                        <img src={profile} alt="" />
+                                        <img src="images/resources/user7.jpg" alt="" />
                                       </figure>
                                       <div
                                         style={{
@@ -145,18 +144,27 @@ const Ownerproperties = () => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="prise">
+                                    <div className="prise" style={{height:"fit-content"}}>
                                       <span>
                                         &#8377;{item?.property?.expected_price}
                                       </span>
                                     </div>
                                   </div>
-                                  <h5 className="course-title">
+                                  <h6 className="course-title">
                                     <a href="course-detail.html" title="">
                                       {item?.property?.building_name || "N/A"}
                                     </a>
-                                  </h5>
-                                  <p>{item?.property?.locality}</p>
+                                  </h6>
+                                  <p
+                                    style={{
+                                      whiteSpace: "nowrap",
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                    }}
+                                  >
+                                    {item?.property?.locality || "N/A"}
+                                  </p>
+
                                   <div className="we-video-info">
                                     <ul style={{ width: "100%" }}>
                                       <li>
@@ -247,7 +255,7 @@ const Ownerproperties = () => {
                                       <li>
                                         <button
                                           style={{
-                                            marginLeft:"28px",
+                                            marginLeft: "28px",
                                             backgroundColor: "#3FDBD1",
                                             borderRadius: "25px",
                                             paddingBlock: "5px",

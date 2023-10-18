@@ -1,0 +1,60 @@
+/* MultiselectDropdown.css */
+.multiselect-dropdown {
+    position: relative;
+  }
+  
+  .selected-options {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .selected-option {
+    background-color: #3FDBD1;
+    color: #fff;
+    padding: 3px 8px;
+    margin: 10px 0px 5px 0px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .selected-option span {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+  
+  .multidropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .multidropdown-button {
+    background-color: #3FDBD1;
+    color: #fff;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .multidropdown-content {
+    display: block; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+  
+  .multidropdown-option {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .multidropdown-option:hover {
+    background-color: #ddd;
+  }
+  
+  .selected {
+    background-color: #ddd;
+  }
+  

@@ -5365,12 +5365,13 @@ input[type="checkbox"] {
   border: 0 none;
 }
 .prise {
-  /* float: right; */
+  background-color: #EDEDED;
 }
 .prise > span {
-  color: #92929e;
-  font-size: 18px;
+  color: black;
+  font-size: 16px;
   font-weight: 500;
+  background-color: #EDEDED;
 }
 .course:hover .prise > span {
   color: #62626e;
