@@ -52,7 +52,17 @@ const AgentProperties = () => {
                   <img src={left} alt="" />
                 </div>
                 <div className="col-lg-10" style={{ marginTop: "40px" }}>
-                  <div className="main-title">Agent Properties</div>
+                  <div className="main-title">
+                    Agent Properties{" "}
+                    <a
+                      title=""
+                      href="#"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
+                    >
+                      View all
+                    </a>
+                  </div>
                   <Swiper
                     modules={[
                       Pagination,
@@ -80,7 +90,7 @@ const AgentProperties = () => {
                                 <figure>
                                   {item?.property?.image_gallery && (
                                     <img
-                                    className="agentImages"
+                                      className="agentImages"
                                       src={
                                         item?.property?.image_gallery[0]
                                           ?.serveruri

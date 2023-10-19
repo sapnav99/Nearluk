@@ -11,10 +11,7 @@ import popular from "../../assets/images/popular.png";
 const PopularAgents = () => {
   return (
     <div>
-      <div
-        className="gap"
-       
-      >
+      <div className="gap">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -27,20 +24,29 @@ const PopularAgents = () => {
                   <img src={left} alt="" />
                 </div>
                 <div className="col-lg-10">
-                <h4 className="main-title">Popular Agents</h4>
-                <Swiper
-                  modules={[Pagination, Autoplay, Navigation, EffectFade]}
-                  spaceBetween={-350}
-                  slidesPerView={2}
-                  autoplay={{ delay: 2000, disableOnInteraction: false }}
-                  navigation={{
-                    nextEl: ".nextagent",
-                    prevEl: ".prevagent",
-                  }}
-                  pagination={{ clickable: true }}
+                  <h4 className="main-title">
+                    Popular Agents{" "}
+                    <a
+                      title=""
+                      href="#"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
+                    >
+                      View all
+                    </a>
+                  </h4>
+                  <Swiper
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
+                    spaceBetween={-350}
+                    slidesPerView={2}
+                    autoplay={{ delay: 2000, disableOnInteraction: false }}
+                    navigation={{
+                      nextEl: ".nextagent",
+                      prevEl: ".prevagent",
+                    }}
+                    pagination={{ clickable: true }}
                     loop={true}
-                >
-                 
+                  >
                     <SwiperSlide>
                       <div
                         className="widget stick-widget col-lg-5"
@@ -61,7 +67,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -96,7 +102,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -131,7 +137,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -166,7 +172,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -201,7 +207,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -236,7 +242,7 @@ const PopularAgents = () => {
                               display: "flex",
                               flexDirection: "column",
                               fontSize: "12px",
-                              marginLeft:"40px"
+                              marginLeft: "40px",
                             }}
                           >
                             <span>
@@ -251,9 +257,9 @@ const PopularAgents = () => {
                         </div>
                       </div>
                     </SwiperSlide>
-                    </Swiper>
-                  </div>
-               
+                  </Swiper>
+                </div>
+
                 <div
                   className="nextagent col-lg-1"
                   slot="container-end"

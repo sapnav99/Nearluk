@@ -1,23 +1,18 @@
-import searchlocation from "../../assets/images/searchlocation.png";
+import searchlocation from "../../../assets/images/searchlocation.png";
 import ToggleSwitch from "./Toggle";
-import Apis from "../../api/apiServices";
+import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./Searchresult.css";
 import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
-import PropertyCard from "../../components/propertycard/PropertyCard";
-import { searchActions } from "./redux/action";
+import PropertyCard from "../../../components/propertycard/PropertyCard";
+import { searchActions } from "../redux/action";
 import SelectedItems from "./searchbarfields/Allfilters";
 
 const SearchResult = () => {
-  // const [activeTab, setActiveTab] = useState("rent");
-
-  // const handleTabClick = (tab: string) => {
-  //   setActiveTab(tab);
-  // };
-
+  
   const dispatch = useDispatch();
   const { state } = useLocation();
 

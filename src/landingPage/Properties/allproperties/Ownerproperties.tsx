@@ -1,4 +1,3 @@
-
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,11 +13,16 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
 import "swiper/css/virtual";
-import right from "../../assets/images/Right.png";
-import left from "../../assets/images/Left.png";
-import Apis from "../../api/apiServices";
+import right from "../../../assets/images/Right.png";
+import left from "../../../assets/images/Left.png";
+import Apis from "../../../api/apiServices";
+import { useNavigate } from "react-router-dom";
 
 const Ownerproperties = () => {
+  const navigate = useNavigate();
+  const handleOwnerClick = (owner: any) => {
+    navigate("./viewall", { state: { ownerProperty: owner } });
+  };
   const [propertyArray, setPropertyArray] = useState([]);
 
   useEffect(() => {
@@ -54,7 +58,18 @@ const Ownerproperties = () => {
               </div>
               {/* <div className="d-flex justify-content-center align-items-center "> */}
               <div className="col-lg-10">
-                <div className="main-title">Owner Properties</div>
+                <div className="main-title">
+                  Owner Properties{" "}
+                  <a
+                    title=""
+                    href="viewall"
+                    onClick={()=>handleOwnerClick('ownerProperty')}
+                    className="view-all"
+                    style={{ fontSize: "14px" }}
+                  >
+                    View all
+                  </a>
+                </div>
                 <Swiper
                   modules={[
                     Pagination,
@@ -103,7 +118,10 @@ const Ownerproperties = () => {
                                   <div style={{ display: "flex" }}>
                                     <div className="post-by">
                                       <figure>
-                                        <img src="images/resources/user7.jpg" alt="" />
+                                        <img
+                                          src="images/resources/user7.jpg"
+                                          alt=""
+                                        />
                                       </figure>
                                       <div
                                         style={{
@@ -144,7 +162,10 @@ const Ownerproperties = () => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="prise" style={{height:"fit-content"}}>
+                                    <div
+                                      className="prise"
+                                      style={{ height: "fit-content" }}
+                                    >
                                       <span>
                                         &#8377;{item?.property?.expected_price}
                                       </span>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Apis from "../../api/apiServices";
+import Apis from "../../../api/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation, EffectFade, Virtual } from "swiper/modules";
 import "swiper/css";
@@ -7,11 +7,11 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
 import 'swiper/css/virtual';
-import right from "../../assets/images/Right.png";
-import left from "../../assets/images/Left.png";
+import right from "../../../assets/images/Right.png"
+import left from "../../../assets/images/Left.png"
 import "./EventSpace.css";
 import { useDispatch } from "react-redux";
-import { allpropdataactions } from "../../pages/Home/redux/action";
+import { allpropdataactions } from "../../../pages/Home/redux/action";
 
 
 const TopProjects = () => {

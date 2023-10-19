@@ -1,6 +1,5 @@
-
-import Apis from "../../api/apiServices";
 import { useState, useEffect } from "react";
+import Apis from "../../../api/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Pagination,
@@ -13,13 +12,21 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
-import right from "../../assets/images/Right.png";
-import left from "../../assets/images/Left.png";
-import "./EventSpace.css";
+import "swiper/css/virtual";
+import right from "../../../assets/images/Right.png";
+import left from "../../../assets/images/Left.png";
+import "../event/EventSpace.css";
 import { useDispatch } from "react-redux";
-import { allpropdataactions } from "../../pages/Home/redux/action";
+import { allpropdataactions } from "../../../pages/Home/redux/action";
+import { useNavigate } from "react-router-dom";
 
-const RecentSearches = () => {
+
+const Trending = () => {
+  const navigate = useNavigate();
+  const handleTrendingClick = (trending: any) => {
+    navigate("./viewall", { state: { propertyTrending: trending } });
+  };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allpropdataactions.fetchAllProperty([]));
@@ -43,37 +50,49 @@ const RecentSearches = () => {
     fetchData();
   }, []);
   console.log(propertyArray);
+
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div id="page-contents" className="row merged20">
                 <div
-                  className="prevrecent col-lg-1"
+                  className="prevtop col-lg-1"
                   slot="container-start"
                   style={{ marginTop: "160px" }}
                 >
                   <img src={left} alt="" />
                 </div>
-                {/* <div className="d-flex justify-content-center align-items-center "> */}
+
                 <div className="col-lg-10 ">
-                  <h4 className="main-title">You Recent Searches </h4>
+                  <h4 className="main-title">
+                    Trending in Hyderabad{" "}
+                    <a
+                      title=""
+                      href="viewall"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
+                      onClick={()=>handleTrendingClick("propertyTrending")}
+                    >
+                      View all
+                    </a>
+                  </h4>
                   <Swiper
                     modules={[
                       Pagination,
-                      Virtual,
                       Autoplay,
                       Navigation,
                       EffectFade,
+                      Virtual,
                     ]}
                     spaceBetween={-650}
                     slidesPerView={1}
                     autoplay={{ delay: 2000, disableOnInteraction: false }}
                     navigation={{
-                      nextEl: ".nextrecent",
-                      prevEl: ".prevrecent",
+                      nextEl: ".nexttop",
+                      prevEl: ".prevtop",
                     }}
                     pagination={{ clickable: true }}
                     loop={true}
@@ -82,8 +101,11 @@ const RecentSearches = () => {
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       {propertyArray.length > 0
                         ? propertyArray.map((item: any, i: any) => (
-                            <SwiperSlide key={i}>
-                              <div className="col-lg-4 col-md-6 col-sm-6">
+                            <SwiperSlide>
+                              <div
+                                className="col-lg-4 col-md-6 col-sm-6"
+                                key={i}
+                              >
                                 <div className="course">
                                   <figure>
                                     {item?.property?.image_gallery && (
@@ -99,7 +121,7 @@ const RecentSearches = () => {
                                       className="icofont-book-mark"
                                       title="bookmark"
                                     ></i>
-                                    <em>Best seller</em>
+                                    {/* <em>Best seller</em> */}
                                     <span className="rate-result">
                                       <i className="icofont-star"></i> 4.5
                                     </span>
@@ -120,15 +142,17 @@ const RecentSearches = () => {
                                     >
                                       {item?.property?.locality || "N/A"}
                                     </p>
-                                    <ul>
-                                      {item?.amenities?.map(
-                                        (amenity: any, index: any) => (
-                                          <li key={index}>
-                                             {amenity?.label}
-                                          </li>
-                                        )
-                                      )}
-                                    </ul>
+                                    <div className="we-video-info">
+                                      <ul>
+                                        {item?.amenities?.map(
+                                          (amenity: any, index: any) => (
+                                            <li key={index}>
+                                              {amenity?.label}
+                                            </li>
+                                          )
+                                        )}
+                                      </ul>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -139,7 +163,7 @@ const RecentSearches = () => {
                   </Swiper>
                 </div>
                 <div
-                  className="nextrecent col-lg-1"
+                  className="nexttop col-lg-1"
                   slot="container-end"
                   style={{ marginTop: "160px" }}
                 >
@@ -155,4 +179,4 @@ const RecentSearches = () => {
   );
 };
 
-export default RecentSearches;
+export default Trending;

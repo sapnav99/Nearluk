@@ -16,7 +16,8 @@ import PropertyDetaing from "../pages/propertydetailingpage/PropertyDetailing";
 
 import { useSelector } from "react-redux";
 import HeaderBeforeLogin from "../components/header/Header1";
-import SearchResult from "../landingPage/navigationPages/SearchResultPage";
+import SearchResult from "../landingPage/navigationPages/searchfilters/SearchResultPage";
+import Viewall from "../landingPage/navigationPages/viewallpage/ViewallPage";
 
 export default function AppRoutes() {
   const isLoggedIn = useSelector(
@@ -29,7 +30,8 @@ export default function AppRoutes() {
         <Route index path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/searchresult/" element={<SearchResult />} />
+        <Route path="/searchresult" element={<SearchResult />} />
+        <Route path="/viewall" element={<Viewall />} />
       </Routes>
     );
   };

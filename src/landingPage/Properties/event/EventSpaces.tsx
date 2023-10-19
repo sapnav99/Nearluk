@@ -1,4 +1,4 @@
-import events1 from "../../assets/images/events1.png";
+import events1 from "../../../assets/images/events1.png";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -9,11 +9,11 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/hash-navigation";
-import right from "../../assets/images/Right.png";
-import left from "../../assets/images/Left.png";
-import car from "../../assets/images/car 1.png";
-import elevator from "../../assets/images/elevator 1.png";
-import swimming from "../../assets/images/swimming 1.png";
+import right from "../../../assets/images/Right.png";
+import left from "../../../assets/images/Left.png";
+import car from "../../../assets/images/car 1.png";
+import elevator from "../../../assets/images/elevator 1.png";
+import swimming from "../../../assets/images/swimming 1.png";
 import "./EventSpace.css";
 
 const EventSpaces = () => {
@@ -39,7 +39,17 @@ const EventSpaces = () => {
                     className="main-wraper"
                     style={{ marginBottom: "-80px" }}
                   > */}
-                  <h4 className="main-title">Event spaces in Hyderabad</h4>
+                  <h4 className="main-title">
+                    Event spaces in Hyderabad{" "}
+                    <a
+                      title=""
+                      href="#"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
+                    >
+                      View all
+                    </a>
+                  </h4>
                   <Swiper
                     modules={[Pagination, Autoplay, Navigation, EffectFade]}
                     spaceBetween={-650}
@@ -77,23 +87,22 @@ const EventSpaces = () => {
                                 </h5>
                                 <p>3BHK, Gachibowli</p>
                                 <div className="we-video-info">
-                                <ul>
-                                  <li>
-                                    <img src={car} alt="" />
-                                    Car parking
-                                  </li>
-                                  <li>
-                                    <img src={elevator} alt="" />
-                                    Lift
-                                  </li>
-                                  <li>
-                                    <img src={swimming} alt="" />
+                                  <ul>
+                                    <li>
+                                      <img src={car} alt="" />
+                                      Car parking
+                                    </li>
+                                    <li>
+                                      <img src={elevator} alt="" />
+                                      Lift
+                                    </li>
+                                    <li>
+                                      <img src={swimming} alt="" />
 
-                                    <span>Swimming pool</span>
-                                  </li>
-                                </ul>
+                                      <span>Swimming pool</span>
+                                    </li>
+                                  </ul>
                                 </div>
-                               
                               </div>
                             </div>
                           </div>
