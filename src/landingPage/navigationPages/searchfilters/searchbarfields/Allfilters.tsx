@@ -1,13 +1,14 @@
 const SelectedItems = ({ searchData }: any) => {
-  const isCityEntered = searchData.city && searchData.city.trim() !== "";
   if (!searchData) {
     return null;
   }
+  console.log(searchData)
+  const isCityEntered = searchData.city && searchData.city.trim() !== "";
+ 
   const isPriceRangeSelected =
-    searchData.priceRange &&
-    searchData.priceRange.length === 2 &&
-    searchData.priceRange[0] !== 0 &&
-    searchData.priceRange[1] !== 50000000;
+   
+    searchData.minprise!== 0 &&
+    searchData.maxprise <= 500000000;
   const isBHKselected = searchData.bhk;
   const isPostedbySelected = searchData.posted_by;
   const isConstructionStatus = searchData.construction_status;
@@ -25,7 +26,9 @@ const SelectedItems = ({ searchData }: any) => {
       )}
       <div className="selected-items">
         {isPriceRangeSelected && (
-          <p className="selected-item">{searchData.priceRange.join(" to ")}</p>
+          <p className="selected-item">
+            {`${searchData.minprise} to ${searchData.maxprise}`}
+          </p>
         )}
       </div>
       <div className="selected-items">

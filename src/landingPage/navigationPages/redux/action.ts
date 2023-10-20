@@ -12,7 +12,14 @@ const setAllSearchdata=(data:any)=>{
         payload:data,
     }
 }
+const searchFailed=(data:any)=>{
+    return{
+        type:getAllSearchproperty.SEARCH_REQ_FAILED,
+        payload:data,
+    }
+}
 export const searchActions={
     fetchAllSearchdata,
     setAllSearchdata,
+    searchFailed
 };

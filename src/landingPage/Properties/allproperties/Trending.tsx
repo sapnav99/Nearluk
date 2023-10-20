@@ -100,7 +100,7 @@ const Trending = () => {
                   >
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       {propertyArray.length > 0
-                        ? propertyArray.map((item: any, i: any) => (
+                        ? propertyArray.slice(0, 5).map((item: any, i: any) => (
                             <SwiperSlide>
                               <div
                                 className="col-lg-4 col-md-6 col-sm-6"

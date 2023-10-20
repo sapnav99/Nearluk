@@ -88,7 +88,7 @@ const NewlyLaunched = () => {
                   >
                     <div style={{ display: "flex", marginBottom: "-60px" }}>
                       {properties.length > 0
-                        ? properties.map((item: any, i: any) =>
+                        ? properties.slice(0, 5).map((item: any, i: any) =>
                             item.newProperty.length > 0
                               ? item.newProperty.map(
                                   (newItem: any, index: any) => (

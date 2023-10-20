@@ -3,16 +3,31 @@ import ToggleSwitch from "./Toggle";
 import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Searchresult.css";
+
 import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
 import PropertyCard from "../../../components/propertycard/PropertyCard";
 import { searchActions } from "../redux/action";
 import SelectedItems from "./searchbarfields/Allfilters";
-
 const SearchResult = () => {
-  
+  const searchResponse=useSelector(
+    (state:any)=>state.searchReducer.searchRes
+  )
+  console.log(searchResponse)
+  const [filters, setFilters] = useState({
+    selectedFacing: "",
+    selectedFurnishing: "",
+    minValue: "",
+    maxValue: "",
+    constructionAge: "",
+  });
+
+  console.log(filters);
+  const handleFiltersChange = (filters: any) => {
+    setFilters(filters);
+  };
   const dispatch = useDispatch();
   const { state } = useLocation();
 
@@ -20,13 +35,19 @@ const SearchResult = () => {
   console.log(searchData);
   const [properties, setProperties] = useState([]);
 
-  useEffect(() => {
+  
     const fetchData = async () => {
       try {
-        const response = await Apis.get("/property/search", {
-          params: {
-            city: searchData.city,
-          },
+        const response = await Apis.post("/property/search", {
+          city: searchData.city,
+          property_sub_type: searchData.selectedItems.join(","),
+          max_price: searchData.maxprise,
+          min_price: searchData.minprise,
+          bhk: searchData.bhk,
+          availability: searchData.construction_status,
+          posted_by: searchData.posted_by,
+          facing: filters.selectedFacing ,
+          property_age: filters.constructionAge,
         });
 
         setProperties(response?.data?.data);
@@ -36,9 +57,9 @@ const SearchResult = () => {
         console.error("Error fetching properties:", error);
       }
     };
-
+    useEffect(() => {
     fetchData();
-  }, [searchData]);
+  }, [searchData, filters]);
 
   console.log("data of 0", properties[0]);
   useEffect(() => {}, [properties]);
@@ -82,8 +103,11 @@ const SearchResult = () => {
                       </div>
 
                       <div>
-                        <SearchFilters />
+                        <SearchFilters onFiltersChange={handleFiltersChange} />
                       </div>
+                      {/* <div>
+                        <button onClick={fetchData}>Apply Filters</button>
+                      </div> */}
                     </div>
                   </aside>
                 </div>
@@ -103,7 +127,6 @@ const SearchResult = () => {
                     <div style={{ display: "flex" }}>
                       <h5>{properties.length} Properties near you</h5>
                       <div>
-                        
                         <span style={{ marginLeft: "90px", fontSize: "12px" }}>
                           With Photos <ToggleSwitch Name="photos" />
                         </span>

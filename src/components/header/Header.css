@@ -4,6 +4,9 @@
 .list2 > li :hover {
   color: #1095a3;
 }
+.list2{
+  padding-left: 10px !important;
+}
 .nl-search-location {
   width: 380px;
   height: 0px;

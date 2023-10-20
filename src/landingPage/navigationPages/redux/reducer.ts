@@ -16,6 +16,12 @@ const searchReducer=(state=initialState, action:any)=>{
                     searchPropertyLoader:false,
                     searchProperty:action.payload,
                 };
+                case getAllSearchproperty.SEARCH_REQ_FAILED:
+                    return{
+                        ...state,
+                        searchPropertyLoader:false,
+                        searchRes:action.payload,
+                    }
                 default:
                     return state;
     }

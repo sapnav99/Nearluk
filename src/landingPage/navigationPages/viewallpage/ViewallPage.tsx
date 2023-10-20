@@ -23,14 +23,17 @@ const Viewall = () => {
   }, []);
 
   const [propertyArray, setPropertyArray] = useState([]);
+
   const [properties, setProperties] = useState([]);
+
   const [homeProperties, setHomeProperties] = useState([]);
   const [propertyCategories, setPropertyCategories] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataSearch = async () => {
       try {
-        const response = await Apis.get("/property/search", {
+        const response = await Apis.post("/property/search", {
           params: {
             city: city,
           },
@@ -43,28 +46,31 @@ const Viewall = () => {
       }
     };
 
-    fetchData();
+    fetchDataSearch();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await Apis.get(
-          "/property/getAllProperty?city=hyderabad"
-        );
+  const fetchDataGetall = async () => {
+    try {
+      const response = await Apis.get(
+        `/property/getAllProperty?city=hyderabad&pageNumber=${page}&pageSize=10`
+      );
 
-        setProperties(response?.data?.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+      setProperties(response?.data?.data);
+      console.log(properties);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    fetchDataGetall();
+  }, [page]);
+  const handlePageChange = (newPage: any) => {
+    setPage(newPage);
+  };
+
+  useEffect(() => {
+    const fetchDataHome = async () => {
       try {
         const response = await Apis.get("/property/home");
 
@@ -74,14 +80,14 @@ const Viewall = () => {
       }
     };
 
-    fetchData();
+    fetchDataHome();
   }, []);
   console.log(homeProperties);
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataCategory = async () => {
       try {
         const response = await Apis.get(
-          `/property/propertyByCategory?sub_category=${propertyCategory}&pageNumber=1&pageSize=10`
+          `/property/propertyByCategory?sub_category=${propertyCategory}&pageNumber=${page}&pageSize=10`
         );
 
         setPropertyCategories(response?.data?.data);
@@ -91,10 +97,10 @@ const Viewall = () => {
       }
     };
 
-    fetchData();
-  }, []);
+    fetchDataCategory();
+  }, [page]);
   console.log(propertyCategories);
-  
+
   return (
     <div className="d-flex align-items-center justify-content-center">
       <div className="col-lg-8">
@@ -127,11 +133,26 @@ const Viewall = () => {
             ? properties.map((item: any, i: any) => (
                 <PropertyCard property={item} key={i} />
               ))
-              : ownerProperty && properties.length > 0
-              ? properties.map((item: any, i: any) => (
-                  <PropertyCard property={item} key={i} />
-                ))
+            : ownerProperty && properties.length > 0
+            ? properties.map((item: any, i: any) => (
+                <PropertyCard property={item} key={i} />
+              ))
             : "No data found"}
+        </div>
+        <div className="pagination">
+          <button
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1}
+          >
+            Previous
+          </button>
+          <span>Page {page}</span>
+          <button
+            onClick={() => handlePageChange(page + 1)}
+            disabled={properties.length < 1}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

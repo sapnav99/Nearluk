@@ -51,7 +51,15 @@
   color: black;
 }
 
-.selector p {
+.selector input{
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  color: black !important;
+  font-weight: 400;
+}
+.selector p{
   background-color: #d1d1d1;
   border-radius: 10px;
   padding-left: 10px;

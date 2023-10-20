@@ -137,8 +137,7 @@ const HeaderBeforeLogin = () => {
           </ul>
          
           <ul className="web_elements list2">
-            <li > <a href="/">Home</a></li>
-           
+            <li > <a href="/">Home</a></li>          
             <li>
               <a>
                 Properties <BsChevronDown />
@@ -187,7 +186,7 @@ const HeaderBeforeLogin = () => {
                 </li>
               </ul>
             </li>
-            <li style={{marginRight:"400px"}}>
+            <li style={{marginRight:"260px"}}>
               <a>
                 More
                 <BsChevronDown />{" "}

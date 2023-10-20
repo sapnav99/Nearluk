@@ -11,7 +11,7 @@ const searchProperty=function * searchProperty(action: any){
         yield put(searchActions.setAllSearchdata(data.data ||[]));  
     }catch(error:any){
         yield put(
-            searchActions.setAllSearchdata({
+            searchActions.searchFailed({
                 code:error.response.status,
                 msg:error.response.data,
             })

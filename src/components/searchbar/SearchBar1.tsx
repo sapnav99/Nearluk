@@ -6,6 +6,7 @@ import "./SearchBar1.css";
 import {  Slider} from "antd";
 import { useNavigate } from "react-router-dom";
 
+
 type PropertyType =
   | "Flat"
   | "Independent House"
@@ -89,14 +90,12 @@ export default function SearchBarBeforeLogin() {
     }
   };
 
-  // console.log(`Selected BHK: ${selectedBHK}`);
-  // console.log(`Selected Construction Status: ${selectedConstructionStatus}`);
-  // console.log(`Selected Posted By: ${selectedPostedBy}`);
+ 
 
   const collectUserData = () => {
-    const selectedBHK = bhkStatus;
-    const selectedConstructionStatus = ConstrStatus;
-    const selectedPostedBy = PostedStatus;
+    const selectedBHK = bhkStatus.toString();
+    const selectedConstructionStatus = ConstrStatus.toString();
+    const selectedPostedBy = PostedStatus.toString();
 
     const locationInput = document.querySelector(
       ".nl-searchlocation__input"
@@ -110,9 +109,11 @@ export default function SearchBarBeforeLogin() {
       bhk: `${selectedBHK}`,
       construction_status: `${selectedConstructionStatus}`,
       posted_by: `${selectedPostedBy}`,
-      city: locationInput.value,
+      city: locationInput.value.toString(),
       selectedItems: selectedItems,
-      priceRange: sliderValue,
+      minprise:minSliderValue,
+      maxprise: maxSliderValue,
+      
     };
     const selectedItemsString = selectedItems
       .map((item) => encodeURIComponent(item))
