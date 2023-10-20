@@ -10,10 +10,20 @@ const userPropDetailsById = (payload: any) => {
 const signup = (payload: Object) => api.post(`/users/signup`, payload);
 const getAllProductApi = () => api.get("/property/getAllProperty");
 const getNearuDataApi = (payload: any) => {
-  console.log("from Api", payload);
   const params = new URLSearchParams(payload).toString();
   return api.get(`/property/nearu?${params}`);
 };
+
+const googleCityAutoComplete = (place: any) => {
+  const params = new URLSearchParams(place).toString()
+  return api.get(`/property/city?${params}`)
+}
+
+const googleLocalityAutoComplete = (place: string) => 
+  api.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&key=AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg`)
+
+
+
 
 const Apis = {
   login,
@@ -22,6 +32,8 @@ const Apis = {
   userPropDetailsById,
   signup,
   getNearuDataApi,
+  googleCityAutoComplete,
+  googleLocalityAutoComplete
 };
 
 export default Apis;

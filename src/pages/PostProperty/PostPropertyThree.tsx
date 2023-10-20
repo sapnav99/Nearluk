@@ -2,6 +2,7 @@ import React, { useState, useRef, useMemo } from "react";
 import {
   ownerShipData,
   proximityFeaturesData,
+  propertyDocumentsData
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -11,9 +12,19 @@ import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import PropChipWithCheckBox from "../../components/Property/PropChipWithCheckBox/PropChipWithCheckBox";
 import Api from "../../api/apiServices";
-type Props = {};
+import { Button, message, } from "antd";
+import {useSelector} from "react-redux"
+import { FiUploadCloud } from "react-icons/fi";
 
-const PostPropertyThree: React.FC = (props: Props) => {
+
+
+type stepThreeProps = {
+  current: any;
+  steps: any;
+  setCurrent: any
+}
+
+const PostPropertyThree: React.FC<stepThreeProps> = ({current,steps,setCurrent}:stepThreeProps) => {
   const [ownerShip, setOwnerShip] = useState(ownerShipData);
   const [imagePreview, setImagePreview] = useState<
     (File | { url: string; serveruri: any })[]
@@ -21,6 +32,7 @@ const PostPropertyThree: React.FC = (props: Props) => {
   const [proximatyFeature, setProximatyFeature] = useState(
     proximityFeaturesData
   );
+  const [propertyDocuments, setPropertyDocuments] = useState(propertyDocumentsData)
   const [showCategory, setShowCategory] = useState({
     key: "",
     isOpened: false,
@@ -44,6 +56,12 @@ const PostPropertyThree: React.FC = (props: Props) => {
     property_highlights: "",
   });
 
+  const totalData = useSelector((state: any) => state?.PostpropertyReducer?.propertyState)
+
+  const documentRef = useRef()
+
+  console.log("total data at step three", totalData)
+
   const otherStepThreeData = useMemo(
     () => ({
       promimaty_feature: proximatyFeature.filter(
@@ -66,6 +84,7 @@ const PostPropertyThree: React.FC = (props: Props) => {
 
   const handleImageSelect = async (e: any) => {
     const formData: any = new FormData();
+    console.log("image file",e.target.files[0])
 
     formData.append("file", e.target.files[0]);
     const urlOfServer = await uploadtoServer(formData);
@@ -91,6 +110,10 @@ const PostPropertyThree: React.FC = (props: Props) => {
 
   const generateAiDescription = async () => {
     
+  }
+
+  const uploadFileHandler = (e: any) => {
+    console.log("file", e.target.files[0])
   }
 
 
@@ -277,6 +300,56 @@ const PostPropertyThree: React.FC = (props: Props) => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="document__contianer">
+        <div className="document__wrapper">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Document Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              propertyDocuments.map((item: any) => (
+              <tr>
+              <td style={{color: "#3FDBD1"}} >{item.label}</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td><input ref={documentRef} type="file" style={{display: "none"}} onChange={uploadFileHandler}  />
+              <FiUploadCloud style={{cursor: "pointer"}} onClick={() => documentRef?.current?.click()} /></td>
+            </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div style={{ marginTop: 24 }}>
+        {current < steps.length - 1 && (
+          <Button type="primary" onClick={() => setCurrent((prev: any) => prev + 1)}>
+            Next
+          </Button>
+        )}
+        {current === steps.length - 1 && (
+          <Button
+            type="primary"
+            onClick={() => message.success("Processing complete!")}
+          >
+            Done
+          </Button>
+        )}
+        {current > 0 && (
+          <Button
+            style={{ margin: "0 8px" }}
+            onClick={() => setCurrent((prev: any) => prev - 1)}
+          >
+            Previous
+          </Button>
+        )}
       </div>
     </div>
   );

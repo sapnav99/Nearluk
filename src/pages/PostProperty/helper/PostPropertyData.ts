@@ -878,3 +878,21 @@ export const proximityFeaturesData = [
   },
   { key: "noise_free_community", label: "Noise Free Community", active: false },
 ];
+
+export const propertyDocumentsData = [
+  { key: "sale_deed", label: "Sale Deed", uploaded: false, status: false },
+  { key: "link_documents", label: "Link Documents", uploaded: false,status: false  },
+  {
+    key: "market_value_certificate",
+    label: "Market Value Certificate",
+    uploaded: false,
+    status: false 
+  },
+  { key: "latest_ec", label: "Latest EC", uploaded: false,status: false  },
+  { key: "approved_plan_copy", label: "Approved Plan Copy", uploaded: false,status: false  },
+  { key: "electricity_bill", label: "Electricity Bill", uploaded: false,status: false  },
+  { key: "property_tax", label: "Property Tax", uploaded: false,status: false  },
+  { key: "owner_aadhar_card", label: "Owner Aadhar Card", uploaded: false,status: false  },
+  { key: "owner_pan_card", label: "Owner Pan Card", uploaded: false,status: false  },
+  { key: "others", label: "Others", uploaded: false,status: false  },
+];

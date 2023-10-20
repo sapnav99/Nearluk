@@ -25,10 +25,21 @@ import { Select } from "antd";
 import PropChipWithCheckBox from "../../components/Property/PropChipWithCheckBox/PropChipWithCheckBox";
 import FurnishingStatusModal from "./helper/FurnishingStatusModal.tsx/FurnishingStatusModal";
 import SemiFurnishedStatusModal from "./helper/SemiFurnishedStatusModal/SemiFurnishedStatusModal";
+import { Button, message, } from "antd";
+import {useSelector,useDispatch} from "react-redux"
+import { DatePicker } from 'antd';
+import type { DatePickerProps } from 'antd';
+import { postpropertyAction } from "./redux/action";
 
 // type animitiestype = { label: string; key: string; active: boolean }[];
 
-const PostPropertyTwo: React.FC = () => {
+type stepTwoProps = {
+  current: any;
+  steps: any;
+  setCurrent: any
+}
+
+const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:stepTwoProps) => {
   const [propertyDetails, setPropertyDetails] = useState(propertyDetailsData);
   const [balconies, setBalconies] = useState(balconiesData);
   const [bathRooms, setBatchRooms] = useState(bathroomsData);
@@ -63,14 +74,18 @@ const PostPropertyTwo: React.FC = () => {
     total_floors: "",
     facing: "",
     property_age: "",
-    property_extras: "",
     possession_date: "",
     water_source: "",
     floor_types: "",
     width_of_facing_road: "",
     width_of_facing_road_units: "",
   });
+
+  const dispatch = useDispatch()
   // console.log(stepTwoData);
+
+  const stepOneData = useSelector((state: any) => state?.PostpropertyReducer?.propertyState)
+  // console.log("step one data from step two", stepOneData)
 
   const otherStepTwoData = useMemo(
     () => ({
@@ -98,10 +113,10 @@ const PostPropertyTwo: React.FC = () => {
       parkingConut,
     ]
   );
-  console.log("other step two data", otherStepTwoData);
+  
+  const totalState = {...stepOneData,...stepTwoData,...otherStepTwoData}
 
   const handleChange = (value: { value: string; label: React.ReactNode }) => {
-    // console.log(value.value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
     setStepTwoData({
       ...stepTwoData,
       floor_no: value.value,
@@ -112,7 +127,6 @@ const PostPropertyTwo: React.FC = () => {
     value: string;
     label: React.ReactNode;
   }) => {
-    // console.log(value.value);
     setStepTwoData({
       ...stepTwoData,
       property_age: value.value,
@@ -123,7 +137,6 @@ const PostPropertyTwo: React.FC = () => {
     value: string;
     label: React.ReactNode;
   }) => {
-    // console.log(value.value);
     setStepTwoData({
       ...stepTwoData,
       facing: value.value,
@@ -134,7 +147,6 @@ const PostPropertyTwo: React.FC = () => {
     value: string;
     label: React.ReactNode;
   }) => {
-    // console.log(value.value);
     setStepTwoData({
       ...stepTwoData,
       builtup_units: value.value,
@@ -198,6 +210,13 @@ const PostPropertyTwo: React.FC = () => {
       ...stepTwoData,
       water_source: key,
     });
+  };
+
+  const onChange: DatePickerProps['onChange'] = (_, dateString) => {
+    setStepTwoData({
+      ...stepTwoData,
+      possession_date: dateString
+    })
   };
 
   const typeOfFloorChangeHandler = (value: {
@@ -410,6 +429,7 @@ const PostPropertyTwo: React.FC = () => {
               />
             );
           })}
+          <DatePicker onChange={onChange} />
         </div>
       </SectionHoc>
       <div>
@@ -502,7 +522,6 @@ const PostPropertyTwo: React.FC = () => {
                     ...stepTwoData,
                     furnishing_status: item.key,
                   });
-                  console.log(item.key);
                   if (item.key === "furnished") {
                     setOpenFurnishingModal(true);
                   } else if (item.key === "semi_frunished") {
@@ -642,6 +661,33 @@ const PostPropertyTwo: React.FC = () => {
             options={widthOfFacingRoadData}
           />
         </div>
+      </div>
+      <div style={{ marginTop: 24 }}>
+        {current < steps.length - 1 && (
+          <Button type="primary" onClick={() => {
+            dispatch(postpropertyAction.SetPropertyState(totalState))
+            setCurrent((prev: any) => prev + 1)
+            // console.log(" step two data", {...stepTwoData,...otherStepTwoData})
+            }}>
+            Next
+          </Button>
+        )}
+        {current === steps.length - 1 && (
+          <Button
+            type="primary"
+            onClick={() => message.success("Processing complete!")}
+          >
+            Done
+          </Button>
+        )}
+        {current > 0 && (
+          <Button
+            style={{ margin: "0 8px" }}
+            onClick={() => setCurrent((prev: any) => prev - 1)}
+          >
+            Previous
+          </Button>
+        )}
       </div>
     </div>
   );

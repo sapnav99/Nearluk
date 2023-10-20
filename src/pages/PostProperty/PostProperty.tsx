@@ -298,32 +298,10 @@ const PostProperty: React.FC = () => {
                 {/* time part */}
                 <div className="col-lg-6">
                   <Steps current={current} items={items} />
-                  {current === 0 && <PostPropertyOne />}
-                  {current === 1 && <PostPropertyTwo />}
-                  {current === 2 && <PostPropertyThree />}
-                  <div style={{ marginTop: 24 }}>
-                    {current < steps.length - 1 && (
-                      <Button type="primary" onClick={() => next()}>
-                        Next
-                      </Button>
-                    )}
-                    {current === steps.length - 1 && (
-                      <Button
-                        type="primary"
-                        onClick={() => message.success("Processing complete!")}
-                      >
-                        Done
-                      </Button>
-                    )}
-                    {current > 0 && (
-                      <Button
-                        style={{ margin: "0 8px" }}
-                        onClick={() => prev()}
-                      >
-                        Previous
-                      </Button>
-                    )}
-                  </div>
+                  {current === 0 && <PostPropertyOne current={current} setCurrent={setCurrent} steps={steps} />}
+                  {current === 1 && <PostPropertyTwo current={current} setCurrent={setCurrent} steps={steps} />}
+                  {current === 2 && <PostPropertyThree current={current} setCurrent={setCurrent} steps={steps} />}
+                 
                 </div>
                 <div className="col-lg-3">
                   <aside className="sidebar static right">
