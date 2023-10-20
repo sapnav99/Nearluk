@@ -298,10 +298,27 @@ const PostProperty: React.FC = () => {
                 {/* time part */}
                 <div className="col-lg-6">
                   <Steps current={current} items={items} />
-                  {current === 0 && <PostPropertyOne current={current} setCurrent={setCurrent} steps={steps} />}
-                  {current === 1 && <PostPropertyTwo current={current} setCurrent={setCurrent} steps={steps} />}
-                  {current === 2 && <PostPropertyThree current={current} setCurrent={setCurrent} steps={steps} />}
-                 
+                  {current === 0 && (
+                    <PostPropertyOne
+                      current={current}
+                      setCurrent={setCurrent}
+                      steps={steps}
+                    />
+                  )}
+                  {current === 1 && (
+                    <PostPropertyTwo
+                      current={current}
+                      setCurrent={setCurrent}
+                      steps={steps}
+                    />
+                  )}
+                  {current === 2 && (
+                    <PostPropertyThree
+                      current={current}
+                      setCurrent={setCurrent}
+                      steps={steps}
+                    />
+                  )}
                 </div>
                 <div className="col-lg-3">
                   <aside className="sidebar static right">

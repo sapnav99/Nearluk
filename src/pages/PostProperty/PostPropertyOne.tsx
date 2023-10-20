@@ -10,18 +10,22 @@ import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import useDebounce from "../../hooks/useDebounce";
-import { AutoComplete } from 'antd';
+import { AutoComplete } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { postpropertyAction } from "./redux/action";
-import { Button, message, } from "antd";
+import { Button, message } from "antd";
 
 type stepOneProps = {
   current: any;
   steps: any;
-  setCurrent: any
-}
+  setCurrent: any;
+};
 
-const PostPropertyOne: React.FC<stepOneProps> = ({current,steps,setCurrent}: stepOneProps) => {
+const PostPropertyOne: React.FC<stepOneProps> = ({
+  current,
+  steps,
+  setCurrent,
+}: stepOneProps) => {
   const [iwant, setIwant] = useState(data);
   const [ptype, setPtype] = useState([]);
   const [subptype, setSubptype] = useState([]);
@@ -44,34 +48,44 @@ const PostPropertyOne: React.FC<stepOneProps> = ({current,steps,setCurrent}: ste
     property_type: "",
     property_sub_type: "",
     gated_community: "",
-    
   });
-  const otherStepOneData = useMemo(() => ({
-    location: [currentPosition?.lat, currentPosition?.lng],
-  }),[currentPosition])
+  const otherStepOneData = useMemo(
+    () => ({
+      location: [currentPosition?.lat, currentPosition?.lng],
+    }),
+    [currentPosition]
+  );
 
-  const totalStepOneData = {...stepOneData, ...otherStepOneData}
+  const totalStepOneData = { ...stepOneData, ...otherStepOneData };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // const [toogleCity, setToogleCity] = useState(false);
   // const [toogleState, setToogleState] = useState(false);
   // const [toogleLocality, setToogleLocality] = useState(false);
-  const [searchCity, setSearchCity] = useState('')
-  const [searchState, setSearchState] = useState('')
-  const [searchLocality, setSeachLocality] = useState('')
-  const debouncedSearchCity = useDebounce(searchCity, 500)
-  const debouncedSearchState = useDebounce(searchState, 500)
-  const debouncedLocality = useDebounce(searchLocality, 500)
+  const [searchCity, setSearchCity] = useState("");
+  const [searchState, setSearchState] = useState("");
+  const [searchLocality, setSeachLocality] = useState("");
+  const debouncedSearchCity = useDebounce(searchCity, 500);
+  const debouncedSearchState = useDebounce(searchState, 500);
+  const debouncedLocality = useDebounce(searchLocality, 500);
 
-// console.log(debouncedSearchCity)
+  // console.log(debouncedSearchCity)
   const [options, setOptions] = useState<{ value: string }[]>([]);
 
-const citySearchData = useSelector((state: any) => state?.PostpropertyReducer?.getCity)
-const stateSearchData = useSelector((state: any) => state?.PostpropertyReducer?.getState)
-const localitySearchData = useSelector((state: any) => state?.PostpropertyReducer?.getLocality)
+  const citySearchData = useSelector(
+    (state: any) => state?.PostpropertyReducer?.getCity
+  );
+  console.log(citySearchData);
+  const stateSearchData = useSelector(
+    (state: any) => state?.PostpropertyReducer?.getState
+  );
+  console.log(stateSearchData);
+  const localitySearchData = useSelector(
+    (state: any) => state?.PostpropertyReducer?.getLocality
+  );
 
-// console.log("state data",stateSearchData)
+  // console.log("state data",stateSearchData)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position: any) => {
@@ -81,27 +95,30 @@ const localitySearchData = useSelector((state: any) => state?.PostpropertyReduce
     });
   }, []);
   useEffect(() => {
-    if(debouncedSearchCity){
-      dispatch(postpropertyAction.fetchCityData({
-        city: searchCity
-      }))
+    if (debouncedSearchCity) {
+      dispatch(
+        postpropertyAction.fetchCityData({
+          city: searchCity,
+        })
+      );
     }
-  },[debouncedSearchCity])
+  }, [debouncedSearchCity]);
 
   useEffect(() => {
-    if(debouncedSearchState){
-      dispatch(postpropertyAction.fetchStateData({
-        state: searchState
-      }))
+    if (debouncedSearchState) {
+      dispatch(
+        postpropertyAction.fetchStateData({
+          state: searchState,
+        })
+      );
     }
-  },[debouncedSearchState])
-  
-  useEffect(() => {
-    if(debouncedLocality){
-      dispatch(postpropertyAction.fetchLocalityData(searchLocality))
-    }
-  },[debouncedLocality])
+  }, [debouncedSearchState]);
 
+  useEffect(() => {
+    if (debouncedLocality) {
+      dispatch(postpropertyAction.fetchLocalityData(searchLocality));
+    }
+  }, [debouncedLocality]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg",
@@ -117,8 +134,15 @@ const localitySearchData = useSelector((state: any) => state?.PostpropertyReduce
   const handleCitySelect = (value: string) => {
     setStepOneData({
       ...stepOneData,
-      city: value
-    })
+      city: value,
+    });
+  };
+
+  const handleStateHandler = (value: string) => {
+    setStepOneData({
+      ...stepOneData,
+      state: value,
+    });
   };
 
   return (
@@ -236,33 +260,38 @@ const localitySearchData = useSelector((state: any) => state?.PostpropertyReduce
         <div className="prop__input_container">
           <div className="actocomplete">
             <AutoComplete
-            id="actocomplete"
-            options={citySearchData.map((item: any) => ({value: item.city}))}
-            style={{ width: 200, margin: "10px" }}
-            onSearch={(text) => setSearchCity(text)}
-            placeholder="Select City"
-            allowClear={false}
-            onSelect={handleCitySelect} 
-          />
+              id="actocomplete"
+              options={citySearchData?.map((item: any) => ({
+                value: item?.city,
+              }))}
+              // options={options}
+              style={{ width: 200, margin: "10px" }}
+              onSearch={(text) => setSearchCity(text)}
+              placeholder="Select City"
+              allowClear={false}
+              onSelect={handleCitySelect}
+            />
           </div>
-          <div style={{margin: "10px"}}>
-          <AutoComplete
-            options={options}
-            style={{ width: 200, margin: "10px" }}
-            onSearch={(text) => setSeachLocality(text)}
-            placeholder="Select Locality"
-            allowClear={false}
-            
-          />
+          <div style={{ margin: "10px" }}>
+            <AutoComplete
+              options={options}
+              style={{ width: 200, margin: "10px" }}
+              onSearch={(text) => setSeachLocality(text)}
+              placeholder="Select Locality"
+              allowClear={false}
+            />
           </div>
-          <div >
-          <AutoComplete
-            options={options}
-            style={{ width: 200, margin: "10px" }}
-            onSearch={(text) => setSearchState(text)}
-            placeholder="Select State"
-            allowClear={false}
-          />
+          <div>
+            <AutoComplete
+              options={stateSearchData?.map((item: any) => ({
+                value: item?.state,
+              }))}
+              style={{ width: 200, margin: "10px" }}
+              onSearch={(text) => setSearchState(text)}
+              placeholder="Select State"
+              allowClear={false}
+              onSelect={handleStateHandler}
+            />
           </div>
           <PropInput
             placeholder="Project or Build Name"
@@ -346,10 +375,13 @@ const localitySearchData = useSelector((state: any) => state?.PostpropertyReduce
       </div>
       <div style={{ marginTop: 24 }}>
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => {
-            dispatch(postpropertyAction.SetPropertyState(totalStepOneData))
-            setCurrent((prev: any) => prev + 1)
-          }}>
+          <Button
+            type="primary"
+            onClick={() => {
+              dispatch(postpropertyAction.SetPropertyState(totalStepOneData));
+              setCurrent((prev: any) => prev + 1);
+            }}
+          >
             Next
           </Button>
         )}

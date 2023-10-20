@@ -15,15 +15,14 @@ const getNearuDataApi = (payload: any) => {
 };
 
 const googleCityAutoComplete = (place: any) => {
-  const params = new URLSearchParams(place).toString()
-  return api.get(`/property/city?${params}`)
-}
+  const params = new URLSearchParams(place).toString();   
+  return api.get(`/property/city?${params}`);
+};
 
-const googleLocalityAutoComplete = (place: string) => 
-  api.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&key=AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg`)
-
-
-
+const googleLocalityAutoComplete = (place: string) =>
+  api.get(
+    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&key=AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg`
+  );
 
 const Apis = {
   login,
@@ -33,7 +32,7 @@ const Apis = {
   signup,
   getNearuDataApi,
   googleCityAutoComplete,
-  googleLocalityAutoComplete
+  googleLocalityAutoComplete,
 };
 
 export default Apis;

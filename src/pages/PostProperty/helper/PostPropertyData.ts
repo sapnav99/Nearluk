@@ -880,19 +880,117 @@ export const proximityFeaturesData = [
 ];
 
 export const propertyDocumentsData = [
-  { key: "sale_deed", label: "Sale Deed", uploaded: false, status: false },
-  { key: "link_documents", label: "Link Documents", uploaded: false,status: false  },
+  {
+    key: "sale_deed",
+    label: "Sale Deed",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "link_documents",
+    label: "Link Documents",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
   {
     key: "market_value_certificate",
     label: "Market Value Certificate",
     uploaded: false,
-    status: false 
+    status: false,
+    uploadOn: "",
   },
-  { key: "latest_ec", label: "Latest EC", uploaded: false,status: false  },
-  { key: "approved_plan_copy", label: "Approved Plan Copy", uploaded: false,status: false  },
-  { key: "electricity_bill", label: "Electricity Bill", uploaded: false,status: false  },
-  { key: "property_tax", label: "Property Tax", uploaded: false,status: false  },
-  { key: "owner_aadhar_card", label: "Owner Aadhar Card", uploaded: false,status: false  },
-  { key: "owner_pan_card", label: "Owner Pan Card", uploaded: false,status: false  },
-  { key: "others", label: "Others", uploaded: false,status: false  },
+  {
+    key: "latest_ec",
+    label: "Latest EC",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "approved_plan_copy",
+    label: "Approved Plan Copy",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "electricity_bill",
+    label: "Electricity Bill",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "property_tax",
+    label: "Property Tax",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "owner_aadhar_card",
+    label: "Owner Aadhar Card",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "owner_pan_card",
+    label: "Owner Pan Card",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+  {
+    key: "others",
+    label: "Others",
+    uploaded: false,
+    status: false,
+    uploadOn: "",
+  },
+];
+
+export const imgCategory = [
+  {
+    label: "BATHROOM",
+    value: "BATHROOM",
+    key: "bathroom",
+  },
+  {
+    label: "HALL",
+    value: "HALL",
+    key: "hall",
+  },
+  {
+    label: "BEDROOM",
+    value: "BEDROOM",
+    key: "bedroom",
+  },
+  {
+    label: "DRAWING ROOM",
+    value: "DRAWING ROOM",
+    key: "drawing_room",
+  },
+  {
+    label: "DINING HALL",
+    value: "DINING HALL",
+    key: "dining_hall",
+  },
+  {
+    label: "GUEST ROOM",
+    value: "GUEST ROOM",
+    key: "guest_room",
+  },
+  {
+    label: "KITCHEN",
+    value: "KITCHEN",
+    key: "kichen",
+  },
+  {
+    label: "BASEMENT",
+    value: "BASEMENT",
+    key: "basement",
+  },
 ];
