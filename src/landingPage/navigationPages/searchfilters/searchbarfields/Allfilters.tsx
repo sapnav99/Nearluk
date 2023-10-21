@@ -4,7 +4,7 @@ const SelectedItems = ({ searchData }: any) => {
   }
   console.log(searchData)
   const isCityEntered = searchData.city && searchData.city.trim() !== "";
- 
+ const isSelectedItem=searchData.selectedItems
   const isPriceRangeSelected =
    
     searchData.minprise!== 0 &&
@@ -15,15 +15,7 @@ const SelectedItems = ({ searchData }: any) => {
   return (
     <div className="selected-items">
       {isCityEntered && <p className="selected-item">{searchData.city}</p>}
-      {searchData.selectedItems.length > 0 && (
-        <div className="selected-items">
-          {searchData.selectedItems.map((item: any, index: any) => (
-            <p key={index} className="selected-item">
-              {item}
-            </p>
-          ))}
-        </div>
-      )}
+     {isSelectedItem && <p className="selected-item">{searchData.selectedItems}</p>}
       <div className="selected-items">
         {isPriceRangeSelected && (
           <p className="selected-item">

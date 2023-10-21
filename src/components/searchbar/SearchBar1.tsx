@@ -3,24 +3,12 @@ import microphone from "../../assets/images/Microphone.png";
 import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
-import {  Slider} from "antd";
+import { Slider } from "antd";
 import { useNavigate } from "react-router-dom";
 
-
-type PropertyType =
-  | "Flat"
-  | "Independent House"
-  | "Villa"
-  | "Guest House"
-  | "Studio Apartment"
-  | "Farm House"
-  | "Service Apartment"
-  | "Hostel"
-  | "Co-Working Spaces"
-  | "Event Spaces";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
- 
+
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
@@ -30,17 +18,15 @@ export default function SearchBarBeforeLogin() {
   ]);
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
-  
-  
+
   const handleChange = (value: number | [number, number]) => {
     if (Array.isArray(value)) {
       setSliderValue(value);
       setMinSliderValue(value[0]);
       setMaxSliderValue(value[1]);
-      
     }
   };
-  const [selectedItems, setSelectedItems] = useState<PropertyType[]>([]);
+  const [selectedItems, setSelectedItems] = useState("");
   const [bhkStatus, setBHKStatus] = useState("");
   const [ConstrStatus, setConstrStatus] = useState("");
   const [PostedStatus, setPostedStatus] = useState("");
@@ -80,19 +66,12 @@ export default function SearchBarBeforeLogin() {
     setConstructionDropdownOpen(false);
     setPostedByDropdownOpen(false);
   };
-  const handleItemClick = (item: PropertyType) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems((prevSelectedItems) =>
-        prevSelectedItems.filter((selectedItem) => selectedItem !== item)
-      );
-    } else {
-      setSelectedItems((prevSelectedItems) => [...prevSelectedItems, item]);
-    }
+  const handleItemClick = (item: any) => {
+    setSelectedItems(item);
   };
 
- 
-
   const collectUserData = () => {
+    
     const selectedBHK = bhkStatus.toString();
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
@@ -111,21 +90,19 @@ export default function SearchBarBeforeLogin() {
       posted_by: `${selectedPostedBy}`,
       city: locationInput.value.toString(),
       selectedItems: selectedItems,
-      minprise:minSliderValue,
+      minprise: minSliderValue,
       maxprise: maxSliderValue,
-      
     };
-    const selectedItemsString = selectedItems
-      .map((item) => encodeURIComponent(item))
-      .join(",");
-    navigate(
-      `/searchresult/?city=${locationInput.value}&priceRange=${sliderValue}
-      &selectedItems=${selectedItemsString}&bhk=${selectedBHK}construction_status=${selectedConstructionStatus}
-      &posted_by=${selectedPostedBy}`,
-      {
-        state: { searchData: userData },
-      }
-    );
+    const selectedItemsString = selectedItems.toString();
+    const queryString = `city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
+
+    const mainUrl = `/searchresult/?${queryString}`;
+    navigate(mainUrl, {
+      state: { searchData: userData },
+    });
+
+   
+
     console.log(userData);
 
     return userData;
@@ -136,8 +113,6 @@ export default function SearchBarBeforeLogin() {
   const handleTabClick = (tabName: any) => {
     setActiveTab(tabName);
   };
-
-  
 
   const toggleDropdown = () => {
     setDropdownVisibility(!isDropdownVisible);
@@ -168,10 +143,7 @@ export default function SearchBarBeforeLogin() {
         justifyContent: "center",
       }}
     >
-      <div
-        className="p-2"
-        // style={{ backgroundColor: "white", borderRadius: "20px" }}
-      >
+      <div className="p-2">
         <div className="tabcontainer">
           <ul
             className={`nav  `}
@@ -569,7 +541,6 @@ export default function SearchBarBeforeLogin() {
                       value={sliderValue}
                       min={0}
                       max={50000000}
-                     
                       onChange={handleChange}
                       onAfterChange={handleChange}
                       tooltip={{
@@ -598,9 +569,7 @@ export default function SearchBarBeforeLogin() {
               </span>
               <span
                 className="nl-search__btn_text"
-                onClick={() => {
-                  collectUserData();
-                }}
+                onClick={collectUserData}
               >
                 Search
               </span>

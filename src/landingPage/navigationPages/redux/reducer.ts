@@ -1,25 +1,34 @@
 import { getAllSearchproperty } from "./type";
 
-const initialState={}
+const initialState = {
+    loading: false,
+    searchProperty: null,
+    searchRes: null,
+  };
 
 const searchReducer=(state=initialState, action:any)=>{
     switch(action.type){
         case getAllSearchproperty.FETCH_ALL_PROPERTY:
             return{
                 ...state,
-                searchPropertyLoader:true,
+                loading:true,
                 searchProperty:action.payload,
             };
             case getAllSearchproperty.SET_ALL_PROPERTY:
                 return{
                     ...state,
-                    searchPropertyLoader:false,
+                    loading:false,
                     searchProperty:action.payload,
                 };
+                case getAllSearchproperty.SET_FILTERS:
+                    return{
+                        ...state,
+                        ...action.payload,
+                    }
                 case getAllSearchproperty.SEARCH_REQ_FAILED:
                     return{
                         ...state,
-                        searchPropertyLoader:false,
+                        loading:false,
                         searchRes:action.payload,
                     }
                 default:

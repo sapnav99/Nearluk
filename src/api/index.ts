@@ -10,14 +10,14 @@ const userPropDetailsById = (payload: any) => {
 };
 const signup = (payload: Object) => api.post(`/users/signup`, payload);
 const getAllProductApi = () => api.get("/property/getAllProperty");
-const getSearchApi=(payload: Object)=>api.post("/property/search", payload);
+const search=(payload: Object)=>api.post("/property/search", payload);
 const Apis = {
   login,
   postProperty,
   getAllProductApi,
   userPropDetailsById,
   signup,
-  getSearchApi,
+  search,
 };
 
 export default Apis;

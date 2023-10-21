@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({}) => {
   );
 
   const handleButtonClick = () => {
-    navigate("/");
+    navigate("/login");
     dispatch(LoginActions.loggedOut());
   };
   return (
@@ -208,7 +208,7 @@ const Header: React.FC<Props> = ({}) => {
             </li>
             <BiSupport/>
            
-            {isLoggedIn ? (
+            {isLoggedIn &&(
               <li>
                 <a href="#" title="">
                   <img
@@ -271,35 +271,17 @@ const Header: React.FC<Props> = ({}) => {
                     </a>
                   </li>
                   <li className="logout">
-                    <a href="/" title="" onClick={handleButtonClick}>
+                    <a href="/login" title="" onClick={handleButtonClick}>
                       <i className="icofont-power"></i> Logout
                     </a>
                   </li>
                 </ul>
               </li>
-            ) : (
-              ""
-            )}
+            ) }
 
             <li>
               <div className="add-prop">
-                {!isLoggedIn && (
-                  <button
-                    type="button"
-                    className="btn "
-                    style={{
-                      backgroundColor: "white",
-                      borderRadius: "25px",
-                      color: "black",
-                      fontWeight: "700",
-                      width: 100,
-                      border: "solid 0.5px #03B6C3",
-                    }}
-                    onClick={() => navigate("/login")}
-                  >
-                    Login
-                  </button>
-                )}
+               
               </div>
             </li>
           </ul>

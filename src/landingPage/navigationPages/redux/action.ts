@@ -1,3 +1,4 @@
+
 import { getAllSearchproperty } from "./type";
 
 const fetchAllSearchdata=(data:any)=>{
@@ -18,8 +19,15 @@ const searchFailed=(data:any)=>{
         payload:data,
     }
 }
+const filters=(data:any)=>{
+    return{
+        type:getAllSearchproperty.SET_FILTERS,
+        payload:data,
+    }
+}
 export const searchActions={
     fetchAllSearchdata,
     setAllSearchdata,
-    searchFailed
+    searchFailed,
+    filters
 };

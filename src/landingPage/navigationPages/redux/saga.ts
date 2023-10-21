@@ -7,14 +7,16 @@ const searchProperty=function * searchProperty(action: any){
     try{
         const payload = action.payload;
     console.log(payload);
-        const {data} = yield call(Apis.getSearchApi, payload);
-        yield put(searchActions.setAllSearchdata(data.data ||[]));  
+        const {data} = yield call(Apis.search, payload);
+        yield put(searchActions.setAllSearchdata(data ||[]));  
     }catch(error:any){
+        const options = {
+            code: error?.response?.status,
+            error: error?.response?.data,
+          };
+          console.log(options);
         yield put(
-            searchActions.searchFailed({
-                code:error.response.status,
-                msg:error.response.data,
-            })
+            searchActions.searchFailed(options)
         )
     }
 }

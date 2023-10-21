@@ -9,6 +9,7 @@ export const loginTypes = {
 };
 
 
+
 export const signupTypes = {
   FETCH_SIGNUP_REQ: "FETCH_SIGNUP_REQ",
   SET_SIGNUP_REQ: "SET_SIGNUP_REQ",

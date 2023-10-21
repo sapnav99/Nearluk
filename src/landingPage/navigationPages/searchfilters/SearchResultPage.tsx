@@ -2,26 +2,38 @@ import searchlocation from "../../../assets/images/searchlocation.png";
 import ToggleSwitch from "./Toggle";
 import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Searchresult.css";
-
 import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
 import PropertyCard from "../../../components/propertycard/PropertyCard";
 import { searchActions } from "../redux/action";
 import SelectedItems from "./searchbarfields/Allfilters";
+
+interface AllData {
+  city?: string;
+  selectedItems?: string;
+  bhk?: string;
+  construction_status?: string;
+  posted_by?: string;
+  selectedFacing?: string;
+  constructionAge?: string;
+}
+
 const SearchResult = () => {
-  const searchResponse=useSelector(
-    (state:any)=>state.searchReducer.searchRes
-  )
-  console.log(searchResponse)
+ 
+  const searchResponse = useSelector(
+    (state: any) => state?.searchReducer?.searchRes
+  );
+  console.log(searchResponse);
+  const { facing, property_age } = useParams();
   const [filters, setFilters] = useState({
-    selectedFacing: "",
+    selectedFacing:facing|| "",
     selectedFurnishing: "",
     minValue: "",
     maxValue: "",
-    constructionAge: "",
+    constructionAge:property_age || "",
   });
 
   console.log(filters);
@@ -29,38 +41,65 @@ const SearchResult = () => {
     setFilters(filters);
   };
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(searchActions.fetchAllSearchdata([]));
+  }, []);
   const { state } = useLocation();
-
+ 
   const searchData = state ? state.searchData : null;
-  console.log(searchData);
+  console.log("filter", searchData);
+  
+  let allData: AllData = {};
+
+  if (searchData.city != "") {
+    allData.city = searchData.city;
+  }
+  if (searchData.selectedItems != "") {
+    allData.selectedItems = searchData.selectedItems;
+  }
+  if (searchData.bhk != "") {
+    allData.bhk = searchData.bhk;
+  }
+  if (searchData.construction_status != "") {
+    allData.construction_status = searchData.construction_status;
+  }
+  if (searchData.posted_by != "") {
+    allData.posted_by = searchData.posted_by;
+  }
+  if (filters.selectedFacing != "") {
+    allData.selectedFacing = filters.selectedFacing;
+  }
+  if (filters.constructionAge != "") {
+    allData.constructionAge = filters.constructionAge;
+  }
+  console.log(allData);
+
   const [properties, setProperties] = useState([]);
 
-  
-    const fetchData = async () => {
-      try {
-        const response = await Apis.post("/property/search", {
-          city: searchData.city,
-          property_sub_type: searchData.selectedItems.join(","),
-          max_price: searchData.maxprise,
-          min_price: searchData.minprise,
-          bhk: searchData.bhk,
-          availability: searchData.construction_status,
-          posted_by: searchData.posted_by,
-          facing: filters.selectedFacing ,
-          property_age: filters.constructionAge,
-        });
+  const fetchData = async () => {
+    try {
+      const response = await Apis.post("/property/search", {
+        city: allData.city,
+        property_sub_type: allData.selectedItems,
+        max_price: searchData.maxprise,
+        min_price: searchData.minprise,
+        bhk: allData.bhk,
+        availability: allData.construction_status,
+        posted_by: allData.posted_by,
+        facing: allData.selectedFacing?.toString(),
+        property_age: allData.constructionAge,
+      });
 
-        setProperties(response?.data?.data);
-
-        dispatch(searchActions.fetchAllSearchdata([]));
-      } catch (error) {
-        console.error("Error fetching properties:", error);
-      }
-    };
-    useEffect(() => {
+      setProperties(response?.data?.data);
+    } catch (error) {
+      console.error("Error fetching properties:", error);
+    }
+  };
+  useEffect(() => {
     fetchData();
-  }, [searchData, filters]);
-
+  }, [searchData,  filters]);
+ 
+  
   console.log("data of 0", properties[0]);
   useEffect(() => {}, [properties]);
 

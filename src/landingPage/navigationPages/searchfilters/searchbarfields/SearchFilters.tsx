@@ -18,13 +18,17 @@ export default function SearchFilters({ onFiltersChange }: any) {
     { value: "west", name: " West" },
     { value: "north", name: "North" },
     { value: "south", name: "South" },
+    { value: "southeast", name: "South-East" },
+    { value: "southwest", name: "South-West" },
+    { value: "northeast", name: "North-East" },
+    { value: "northwest", name: "North-West" },
   ];
   const [isConstructionopen, setisConstructionopen] = useState(false);
   const [minValue, setMinValue] = useState<number | undefined>(undefined);
   const [maxValue, setMaxValue] = useState<number | undefined>(undefined);
   const [AreaDropdownOpen, setAreaDropdownOpen] = useState(false);
   const [constructionAge, setConstructionAge] = useState<number | undefined>(
-    100
+    10
   );
 
   const toggleConstructionDropdown = () => {
@@ -40,7 +44,7 @@ export default function SearchFilters({ onFiltersChange }: any) {
   };
   const onConstrSliderChange = (value: number) => {
     setConstructionAge(value);
-    onFiltersChange({constructionAge: value.toString() });
+    onFiltersChange({ constructionAge: value.toString() });
   };
   const onMinChange = (newValue: number | null | undefined) => {
     if (newValue !== null && newValue !== undefined) {
@@ -55,11 +59,10 @@ export default function SearchFilters({ onFiltersChange }: any) {
   };
 
   const handleFacingChange = (e: MultiSelectChangeEvent) => {
-    setselectedFacing(e.value );
-  
+    setselectedFacing(e.value);
+
     onFiltersChange({ selectedFacing: e.value });
   };
-  
 
   const handleFurnishingChange = (e: MultiSelectChangeEvent) => {
     setselectedFurnishing(e.value);
@@ -173,7 +176,7 @@ export default function SearchFilters({ onFiltersChange }: any) {
           {isConstructionopen && (
             <div className="ageslider">
               <Slider
-                defaultValue={30}
+                defaultValue={3}
                 tooltip={{ open: true }}
                 onChange={onConstrSliderChange}
                 value={constructionAge}
