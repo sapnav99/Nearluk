@@ -13,10 +13,10 @@ const PropChipWithCheckBox: React.FC<checkBoxProps> = ({
   return (
     <div
       style={{
-        backgroundColor: item?.active ? "cyan" : "#D2D2D2",
+        backgroundColor: item?.active ? "gray" : "#D2D2D2",
         background: "gray",
         padding: "10px", // Add 'px' for the padding
-        borderRadius: "10px", // Add 'px' for the border radius
+        borderRadius: "25px", // Add 'px' for the border radius
         boxShadow: "3px 3px 5px 0px rgba(0,0,0,0.75)", // Add a shadow effect
         borderWidth: "2px", // Add 'px' for the border width
         margin: "10px",

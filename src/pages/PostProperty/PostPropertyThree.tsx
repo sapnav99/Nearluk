@@ -16,6 +16,8 @@ import Api from "../../api/apiServices";
 import { Button, message, Select } from "antd";
 import { useSelector } from "react-redux";
 import { FiUploadCloud } from "react-icons/fi";
+import { AiOutlineCheck } from "react-icons/ai";
+import moment from "moment";
 import { AiFillStar, AiOutlineStar, AiFillDelete } from "react-icons/ai";
 type stepThreeProps = {
   current: any;
@@ -71,8 +73,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     (state: any) => state?.PostpropertyReducer?.propertyState
   );
 
-  const documentRef: any = useRef();
+  const date = new Date();
+  // const documentRef: any = useRef();
+  const documentRefs: any = [];
 
+  console.log(propertyDocuments);
   // console.log("total data at step three", totalData);
 
   const otherStepThreeData = useMemo(
@@ -81,8 +86,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         (item: any) => item.active === true
       ),
       image_gallery: imagePreview,
+      propertyy_document: propertyDocuments.filter(
+        (item: any) => item.status === true
+      ),
     }),
-    [proximatyFeature, imagePreview]
+    [proximatyFeature, imagePreview, propertyDocuments]
   );
 
   const hideInputRef: any = useRef();
@@ -105,24 +113,22 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     // console.log("image file", e.target.files[0]);
 
     formData.append("file", e.target.files[0]);
-    // const urlOfServer = await uploadtoServer(formData);
+    const urlOfServer = await uploadtoServer(formData);
     // console.log(urlOfServer);
-    const urlOfServer = "image url";
-    setTimeout(() => {
-      if (urlOfServer) {
-        setImageLoader(false);
-        setImagePreview([
-          ...imagePreview,
-          {
-            url: URL.createObjectURL(e.target.files[0]),
-            serveruri: urlOfServer,
-            category: "",
-            id: Math.ceil(Math.random() * 10009),
-            featured: false,
-          },
-        ]);
-      }
-    }, 1500);
+    // const urlOfServer = "image url";
+    if (urlOfServer) {
+      setImageLoader(false);
+      setImagePreview([
+        ...imagePreview,
+        {
+          url: URL.createObjectURL(e.target.files[0]),
+          serveruri: urlOfServer,
+          category: "",
+          id: Math.ceil(Math.random() * 10009),
+          featured: false,
+        },
+      ]);
+    }
   };
 
   const activateProximatyFeature = (key: any) => {
@@ -139,16 +145,46 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   const upLoadFiletoServer = async (file: File) => {
     try {
       const response = await Api.post("property/upload-pdf", file);
+      // console.log("response", response);
       return response?.data?.data;
     } catch (err) {}
   };
 
   const uploadFileHandler = async (e: any, item: any) => {
-    console.log("file", e.target.files[0]);
-    console.log(item);
+    e.stopPropagation();
+    // console.log("file", e.target.files[0]);
+    // console.log(item);
     const formData: any = new FormData();
     formData.append("file", e.target.files[0]);
-    // const serverUri = await upLoadFiletoServer(formData);
+    const serverUri = await upLoadFiletoServer(formData);
+    // console.log("serverUri", serverUri);
+    if (serverUri) {
+      const shallow = [...propertyDocuments];
+      const mapped: any = shallow.map((child: any) => {
+        if (child.key === item.key) {
+          (child.uploaded = true),
+            (child.status = true),
+            (child.uploadOn = moment(date).format("YYYY-MM-DD")),
+            (child.serverUri = serverUri);
+        }
+        return child;
+      });
+      setPropertyDocuments(mapped);
+    }
+  };
+
+  const handleDeleteFile = (item: any) => {
+    const shallow = [...propertyDocuments];
+    const mapped: any = shallow.map((child: any) => {
+      if (child.key === item.key) {
+        (child.uploaded = false),
+          (child.status = false),
+          (child.uploadOn = ""),
+          (child.serverUri = "");
+      }
+      return child;
+    });
+    setPropertyDocuments(mapped);
   };
 
   return (
@@ -173,7 +209,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         </div>
       </SectionHoc>
       <div className="price__details">
-        <h6>Price Details</h6>
+        <h6 className="property__title">Price Details</h6>
         <div className="price__detailing__container">
           <PropInput
             placeholder="Expected Price"
@@ -260,7 +296,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         </div>
         <hr />
         <div>
-          <h6>Property Photo</h6>
+          <h6 className="property__title">Property Photo</h6>
           <div className="property__photo_button_container">
             <Button
               className="property_photo__button"
@@ -426,7 +462,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
           <hr />
         </div>
         <div>
-          <h6>Property Description</h6>
+          <h6 className="property__title">Property Description</h6>
           <div className="property__description__container">
             <p onClick={generateAiDescription}>Generate With Ai</p>
             <textarea
@@ -447,7 +483,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
           <hr />
         </div>
         <div>
-          <h6>Property Highlights</h6>
+          <h6 className="property__title" >Property Highlights</h6>
           <textarea
             name="postContent"
             rows={8}
@@ -469,6 +505,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
             {proximatyFeature.map((item: any) => (
               <PropChipWithCheckBox
                 item={item}
+                key={item.key}
                 onChange={() => activateProximatyFeature(item.key)}
               />
             ))}
@@ -489,26 +526,35 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
               </tr>
             </thead>
             <tbody>
-              {propertyDocuments.map((item: any) => (
+              {propertyDocuments.map((item: any, index: number) => (
                 <tr key={item.key}>
                   <td style={{ color: "#3FDBD1" }}>{item.label}</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>- -</td>
+                  <td>
+                    {item.status ? <AiOutlineCheck color="green" /> : "--"}
+                  </td>
+                  <td>{item.uploadOn ? item.uploadOn : "--"}</td>
                   <td>
                     <input
-                      ref={documentRef}
+                      ref={(ele) => (documentRefs[index] = ele)}
                       type="file"
                       style={{ display: "none" }}
                       onChange={(event) => uploadFileHandler(event, item)}
                     />
-                    <FiUploadCloud
-                      style={{ cursor: "pointer" }}
-                      onClick={(e: any) => {
-                        e.stopPropagation();
-                        documentRef.current.click();
-                      }}
-                    />
+                    {item.status ? (
+                      <AiFillDelete
+                        style={{ cursor: "pointer", color: "red" }}
+                        onClick={() => handleDeleteFile(item)}
+                      />
+                    ) : (
+                      <FiUploadCloud
+                        style={{ cursor: "pointer" }}
+                        onClick={(e: any) => {
+                          e.stopPropagation();
+                          documentRefs[index].click();
+                        }}
+                      />
+                    )}
                   </td>
                 </tr>
               ))}

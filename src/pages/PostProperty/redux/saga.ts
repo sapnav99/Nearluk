@@ -39,6 +39,7 @@ const getAllLocalityReq = function* getAllLocalityReq(action: any) {
   try {
     const payload = action.payload;
     const { data } = yield call(Apis.googleLocalityAutoComplete, payload);
+    console.log("from saga",data)
     yield put(postpropertyAction.setLocalityData(data?.predictions || []));
   } catch (err) {
     yield put(

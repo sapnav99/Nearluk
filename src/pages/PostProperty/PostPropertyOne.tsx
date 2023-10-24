@@ -3,6 +3,7 @@ import {
   data,
   gatedCommunityData,
   transationTypeData,
+  genderData,
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -34,6 +35,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   const [currentPosition, setCurrentPosition] =
     useState<google.maps.LatLngLiteral | null>(null);
   const [map, setMap] = useState(/** @type google.maps.GoogleMap */ null);
+  const [gender, setGender] = useState(genderData);
   const [stepOneData, setStepOneData] = useState({
     city: "",
     building_name: "",
@@ -48,6 +50,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     property_type: "",
     property_sub_type: "",
     gated_community: "",
+    gender: "",
   });
   const otherStepOneData = useMemo(
     () => ({
@@ -76,11 +79,11 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   const citySearchData = useSelector(
     (state: any) => state?.PostpropertyReducer?.getCity
   );
-  console.log(citySearchData);
+  // console.log(citySearchData);
   const stateSearchData = useSelector(
     (state: any) => state?.PostpropertyReducer?.getState
   );
-  console.log(stateSearchData);
+  // console.log(stateSearchData);
   const localitySearchData = useSelector(
     (state: any) => state?.PostpropertyReducer?.getLocality
   );
@@ -231,6 +234,27 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
         </div>
         <hr />
       </div>
+      {stepOneData.iwant === "find-a-flatemate" && (
+        <SectionHoc title="Gender Type">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {gender?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setGender(activateItemByKey(gender, item.key));
+                    setStepOneData({
+                      ...stepOneData,
+                      gender: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+          </div>
+        </SectionHoc>
+      )}
       <SectionHoc title="Transaction Type">
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {trasactionType?.map((item: any, i) => {
@@ -406,4 +430,4 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   );
 };
 
-export default PostPropertyOne;
+export default React.memo(PostPropertyOne);

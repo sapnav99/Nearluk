@@ -15,7 +15,7 @@ const getNearuDataApi = (payload: any) => {
 };
 
 const googleCityAutoComplete = (place: any) => {
-  const params = new URLSearchParams(place).toString();   
+  const params = new URLSearchParams(place).toString();
   return api.get(`/property/city?${params}`);
 };
 

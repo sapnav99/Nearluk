@@ -13,10 +13,16 @@ export const data: Category[] = [
         label: "Residential",
         child: [
           {
+            label: "Flat",
+            child: [],
+            key: "flat",
+            active: true,
+          },
+          {
             label: "Appartment",
             child: [],
             key: "appartment",
-            active: true,
+            active: false,
           },
           {
             label: "Villa",
@@ -25,27 +31,21 @@ export const data: Category[] = [
             active: false,
           },
           {
-            label: "Plot",
+            label: "Service Apartments",
             child: [],
-            key: "plot",
+            key: "service-apartments",
             active: false,
           },
           {
-            label: "Builder Floor",
+            label: "Farm House",
             child: [],
-            key: "builder-floor",
+            key: "farm-house",
             active: false,
           },
           {
-            label: "Pent House",
+            label: "Guest House",
             child: [],
-            key: "pent-house",
-            active: false,
-          },
-          {
-            label: "Land",
-            child: [],
-            key: "land",
+            key: "guest-house",
             active: false,
           },
           {
@@ -108,34 +108,71 @@ export const data: Category[] = [
         active: false,
       },
       {
-        label: "Agricultural",
+        label: "Land/Plot",
         child: [
           {
-            label: "Villa",
+            label: "Residential",
             child: [],
-            key: "villa",
+            key: "residential",
             active: false,
           },
           {
-            label: "Independent House",
+            label: "Commercial",
             child: [],
-            key: "independent-house",
+            key: "commercial",
             active: false,
           },
           {
-            label: "Appartment",
+            label: "Industrial",
             child: [],
-            key: "appartment",
+            key: "industrial",
             active: false,
           },
           {
-            label: "Land",
+            label: "Agricultural",
             child: [],
-            key: "land",
+            key: "agricultural",
+            active: false,
+          },
+          {
+            label: "Farm",
+            child: [],
+            key: "farm",
+            active: false,
+          },
+          {
+            label: "Institution",
+            child: [],
+            key: "institution",
             active: false,
           },
         ],
-        key: "agricultural",
+        key: "land_plot",
+        active: false,
+      },
+      {
+        label: "Office Space",
+        child: [
+          {
+            label: "Ready to use",
+            child: [],
+            key: "ready-to-use",
+            active: false,
+          },
+          {
+            label: "Bare-Shell",
+            child: [],
+            key: "bare-shell",
+            active: false,
+          },
+          {
+            label: "Co-working",
+            child: [],
+            key: "co-working",
+            active: false,
+          },
+        ],
+        key: "office_space",
         active: false,
       },
     ],
@@ -209,13 +246,43 @@ export const data: Category[] = [
     label: "Find a Flatemate",
     child: [
       {
-        label: "Residential",
+        label: "Flat",
         child: [],
-        key: "residential",
+        key: "flat",
+        active: false,
+      },
+      {
+        label: "Independent House",
+        child: [],
+        key: "independent-house",
+        active: false,
+      },
+      {
+        label: "Villa",
+        child: [],
+        key: "villa",
+        active: false,
+      },
+      {
+        label: "Service Apartment",
+        child: [],
+        key: "service-apartment",
+        active: false,
+      },
+      {
+        label: "Studio Apartment",
+        child: [],
+        key: "studio-apartment",
         active: false,
       },
     ],
-    key: "find_flate_mate",
+    key: "find-a-flatemate",
+    active: false,
+  },
+  {
+    label: "List a Business",
+    child: [],
+    key: "list-a-bussiness",
     active: false,
   },
 ];
@@ -629,6 +696,11 @@ export const propertyFeaturesData = [
     key: "natural_light",
     active: false,
   },
+  {
+    label: "Central AC ",
+    key: "central-ac ",
+    active: false,
+  },
 ];
 
 export const SocietyBuildingFeaturesData = [
@@ -992,5 +1064,83 @@ export const imgCategory = [
     label: "BASEMENT",
     value: "BASEMENT",
     key: "basement",
+  },
+];
+
+export const bedRoomsForStudioAppartmentsData = [
+  {
+    label: "1BHK",
+    key: "1bhk",
+    active: false,
+  },
+];
+
+export const bathRoomForStudioAppartmentData = [
+  {
+    label: "1",
+    key: "1",
+    active: false,
+  },
+];
+
+export const noiseLevelData = [
+  {
+    label: "High",
+    key: "high",
+    active: false,
+  },
+  {
+    label: "Medium",
+    key: "medium",
+    active: false,
+  },
+  {
+    label: "Low",
+    key: "low",
+    active: false,
+  },
+];
+
+export const genderData = [
+  {
+    label: "Male",
+    key: "male",
+    active: false,
+  },
+  {
+    label: "Female",
+    key: "female",
+    active: false,
+  },
+  {
+    label: "Other",
+    key: "other",
+    active: false,
+  },
+];
+
+export const availabilityForFindaFlatemateData = [
+  {
+    label: "Ready to move",
+    key: "ready-to-move",
+    active: false,
+  },
+];
+
+export const propensityData = [
+  {
+    label: "Vegetarian",
+    key: "vegetarian",
+    active: false,
+  },
+  {
+    label: "Non-Vegetarian",
+    key: "non-vegetarian",
+    active: false,
+  },
+  {
+    label: "Vegan",
+    key: "vegan",
+    active: false,
   },
 ];

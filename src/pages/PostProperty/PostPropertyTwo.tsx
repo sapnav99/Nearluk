@@ -18,6 +18,11 @@ import {
   widthOfFacingRoadData,
   parkingData,
   visitorParkingData,
+  bedRoomsForStudioAppartmentsData,
+  bathRoomForStudioAppartmentData,
+  noiseLevelData,
+  availabilityForFindaFlatemateData,
+  propensityData,
 } from "./helper/PostPropertyData";
 import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
@@ -25,10 +30,10 @@ import { Select } from "antd";
 import PropChipWithCheckBox from "../../components/Property/PropChipWithCheckBox/PropChipWithCheckBox";
 import FurnishingStatusModal from "./helper/FurnishingStatusModal.tsx/FurnishingStatusModal";
 import SemiFurnishedStatusModal from "./helper/SemiFurnishedStatusModal/SemiFurnishedStatusModal";
-import { Button, message, } from "antd";
-import {useSelector,useDispatch} from "react-redux"
-import { DatePicker } from 'antd';
-import type { DatePickerProps } from 'antd';
+import { Button, message } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { DatePicker } from "antd";
+import type { DatePickerProps } from "antd";
 import { postpropertyAction } from "./redux/action";
 
 // type animitiestype = { label: string; key: string; active: boolean }[];
@@ -36,10 +41,14 @@ import { postpropertyAction } from "./redux/action";
 type stepTwoProps = {
   current: any;
   steps: any;
-  setCurrent: any
-}
+  setCurrent: any;
+};
 
-const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:stepTwoProps) => {
+const PostPropertyTwo: React.FC<stepTwoProps> = ({
+  current,
+  steps,
+  setCurrent,
+}: stepTwoProps) => {
   const [propertyDetails, setPropertyDetails] = useState(propertyDetailsData);
   const [balconies, setBalconies] = useState(balconiesData);
   const [bathRooms, setBatchRooms] = useState(bathroomsData);
@@ -58,6 +67,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
   const [openSemiFurnishedModal, setSemiFurnishedModal] = useState(false);
   const [parkingConut, setParkingCount] = useState(parkingData);
   const [visitorCount, setVisitorCount] = useState(visitorParkingData);
+  const [bedRoomForStudioAppartment, setBedRoomForStuidioAppartment] = useState(
+    bedRoomsForStudioAppartmentsData
+  );
+  const [availabilityForFindaFlatemate, setAvailabilityForFindaFlatemate] =
+    useState(availabilityForFindaFlatemateData);
+  const [bathRoomForStudioAppartment, setBathRoomForStudioAppartment] =
+    useState(bathRoomForStudioAppartmentData);
+  const [noiseLevel, setNoiseLevel] = useState(noiseLevelData);
+  const [propensity, setPropensity] = useState(propensityData);
   const [stepTwoData, setStepTwoData] = useState({
     builtup_area: "",
     carpet_area: "",
@@ -79,13 +97,17 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
     floor_types: "",
     width_of_facing_road: "",
     width_of_facing_road_units: "",
+    noise: "",
+    propensity: "",
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // console.log(stepTwoData);
 
-  const stepOneData = useSelector((state: any) => state?.PostpropertyReducer?.propertyState)
-  // console.log("step one data from step two", stepOneData)
+  const stepOneData = useSelector(
+    (state: any) => state?.PostpropertyReducer?.propertyState
+  );
+  console.log("step one data from step two", stepOneData.property_sub_type);
 
   const otherStepTwoData = useMemo(
     () => ({
@@ -113,8 +135,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
       parkingConut,
     ]
   );
-  
-  const totalState = {...stepOneData,...stepTwoData,...otherStepTwoData}
+
+  const totalState = { ...stepOneData, ...stepTwoData, ...otherStepTwoData };
 
   const handleChange = (value: { value: string; label: React.ReactNode }) => {
     setStepTwoData({
@@ -212,11 +234,37 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
     });
   };
 
-  const onChange: DatePickerProps['onChange'] = (_, dateString) => {
+  const activeCheckboxNoiseLevel = (key: any) => {
+    const shallowCopy = [...noiseLevel];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key && !item.active,
+    }));
+    setNoiseLevel(updatedArry);
     setStepTwoData({
       ...stepTwoData,
-      possession_date: dateString
-    })
+      noise: key,
+    });
+  };
+
+  const activeCheckboxPropensity = (key: any) => {
+    const shallowCopy = [...propensity];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key && !item.key,
+    }));
+    setPropensity(updatedArry);
+    setStepTwoData({
+      ...stepTwoData,
+      propensity: key,
+    });
+  };
+
+  const onChange: DatePickerProps["onChange"] = (_, dateString) => {
+    setStepTwoData({
+      ...stepTwoData,
+      possession_date: dateString,
+    });
   };
 
   const typeOfFloorChangeHandler = (value: {
@@ -300,23 +348,41 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
     <div>
       <SectionHoc title="Property Details">
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {propertyDetails?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setPropertyDetails(
-                    activateItemByKey(propertyDetails, item.key)
-                  );
-                  setStepTwoData({
-                    ...stepTwoData,
-                    bhk: item.key,
-                  });
-                }}
-              />
-            );
-          })}
+          {stepOneData.property_sub_type === "studio-appartment"
+            ? bedRoomForStudioAppartment?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setBedRoomForStuidioAppartment(
+                        activateItemByKey(bedRoomForStudioAppartment, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        bhk: item.key,
+                      });
+                    }}
+                  />
+                );
+              })
+            : propertyDetails?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setPropertyDetails(
+                        activateItemByKey(propertyDetails, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        bhk: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
         </div>
       </SectionHoc>
       <SectionHoc title="Balconies">
@@ -340,21 +406,39 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
       </SectionHoc>
       <SectionHoc title="Bath Rooms">
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {bathRooms?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setBatchRooms(activateItemByKey(bathRooms, item.key));
-                  setStepTwoData({
-                    ...stepTwoData,
-                    bathrooms: item.key,
-                  });
-                }}
-              />
-            );
-          })}
+          {stepOneData.property_sub_type === "studio-appartment"
+            ? bathRoomForStudioAppartment?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setBathRoomForStudioAppartment(
+                        activateItemByKey(bathRoomForStudioAppartment, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        bathrooms: item.key,
+                      });
+                    }}
+                  />
+                );
+              })
+            : bathRooms?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setBatchRooms(activateItemByKey(bathRooms, item.key));
+                      setStepTwoData({
+                        ...stepTwoData,
+                        bathrooms: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
         </div>
       </SectionHoc>
       <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
@@ -408,32 +492,71 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         {otherRooms.map((item) => (
           <PropChipWithCheckBox
             item={item}
+            key={item.key}
             onChange={() => activeCheckboxForOtherRooms(item.key)}
           />
         ))}
       </div>
       <SectionHoc title="Availability">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {availability?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setAvailability(activateItemByKey(availability, item.key));
-                  setStepTwoData({
-                    ...stepTwoData,
-                    availablity: item.key,
-                  });
-                }}
-              />
-            );
-          })}
-          <DatePicker onChange={onChange} />
-        </div>
+        {stepOneData.iwant === "find-a-flatemate" ? (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {availabilityForFindaFlatemate?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setAvailabilityForFindaFlatemate(
+                      activateItemByKey(availabilityForFindaFlatemate, item.key)
+                    );
+                    setStepTwoData({
+                      ...stepTwoData,
+                      availablity: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+            <DatePicker onChange={onChange} />
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {availability?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setAvailability(activateItemByKey(availability, item.key));
+                    setStepTwoData({
+                      ...stepTwoData,
+                      availablity: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+            <DatePicker onChange={onChange} />
+          </div>
+        )}
       </SectionHoc>
+      {stepOneData.iwant === "find-a-flatemate" && (
+        <div className="propensity">
+          <h5 className="property__title">Propensity</h5>
+          <div className="propensity__container">
+            <div className="propensity__wrapper">
+              {propensity.map((item: any) => (
+                <PropChipWithCheckBox
+                  item={item}
+                  onChange={() => activeCheckboxPropensity(item.key)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       <div>
-        <h5>Property Area</h5>
+        <h5 className="property__title">Property Area</h5>
         <div className="propertyarea__container">
           <div className="proparea__values_wrapper">
             <PropInput
@@ -546,7 +669,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         </div>
       </SectionHoc>
       <div className="property__features">
-        <h5>Property Features</h5>
+        <h5 className="property__title">Property Features</h5>
         <div className="property__features_wrapper">
           {propertyFeatures.map((item) => (
             <PropChipWithCheckBox
@@ -555,10 +678,23 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
             />
           ))}
         </div>
+        {stepOneData.property_sub_type === "studio-appartment" && (
+          <>
+            <h6>Noise Level</h6>
+            <div className="property__features_wrapper">
+              {noiseLevel.map((item: any) => (
+                <PropChipWithCheckBox
+                  item={item}
+                  onChange={() => activeCheckboxNoiseLevel(item.key)}
+                />
+              ))}
+            </div>
+          </>
+        )}
         <hr />
       </div>
       <div className="property__building_features">
-        <h5>Society Building Features</h5>
+        <h5 className="property__title">Society Building Features</h5>
         <div className="property__building_features_container">
           {societyBuildingFeatures.map((item: any) => (
             <PropChipWithCheckBox
@@ -570,7 +706,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         <hr />
       </div>
       <div className="water_sources">
-        <h5>Water Sources</h5>
+        <h5 className="property__title">Water Sources</h5>
         <div className="water__sources_container">
           {waterSources.map((item: any) => (
             <PropChipWithCheckBox
@@ -582,7 +718,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         <hr />
       </div>
       <div className="parking">
-        <h5>Parking</h5>
+        <h5 className="property__title">Parking</h5>
         <div className="parking__container">
           {parkingConut.map((item: any) => (
             <div className="car__parking">
@@ -621,7 +757,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         <hr />
       </div>
       <div className="type__of_floor">
-        <h6>Type of Flooring</h6>
+        <h6 className="property__title">Type of Flooring</h6>
         <Select
           labelInValue
           defaultValue={{
@@ -636,7 +772,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
         <hr />
       </div>
       <div className="width__of_roadfacing">
-        <h6>Width of Road Facing</h6>
+        <h6 className="property__title">Width of Road Facing</h6>
         <div className="width__of_roadfacing_container">
           <PropInput
             placeholder="Enter Value"
@@ -664,11 +800,14 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({current,steps,setCurrent}:step
       </div>
       <div style={{ marginTop: 24 }}>
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => {
-            dispatch(postpropertyAction.SetPropertyState(totalState))
-            setCurrent((prev: any) => prev + 1)
-            // console.log(" step two data", {...stepTwoData,...otherStepTwoData})
-            }}>
+          <Button
+            type="primary"
+            onClick={() => {
+              dispatch(postpropertyAction.SetPropertyState(totalState));
+              setCurrent((prev: any) => prev + 1);
+              // console.log(" step two data", {...stepTwoData,...otherStepTwoData})
+            }}
+          >
             Next
           </Button>
         )}

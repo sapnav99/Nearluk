@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./postproperty.css";
 // import Chip from "../../components/Chip/Chip"
-import { Button, message, Steps } from "antd";
+import { Steps } from "antd";
 import PostPropertyOne from "./PostPropertyOne";
 import PostPropertyTwo from "./PostPropertyTwo";
 import PostPropertyThree from "./PostPropertyThree";
@@ -24,20 +24,20 @@ const steps = [
 const PostProperty: React.FC = () => {
   // const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
-  const [stepOne, setStepOne] = useState(true);
-  const [stepTwo, setStepTwo] = useState(false);
+  // const [stepOne, setStepOne] = useState(true);
+  // const [stepTwo, setStepTwo] = useState(false);
 
-  const next = () => {
-    setCurrent(current + 1);
-    setStepOne(false);
-    setStepTwo(true);
-  };
+  // const next = () => {
+  //   setCurrent(current + 1);
+  //   setStepOne(false);
+  //   setStepTwo(true);
+  // };
 
-  const prev = () => {
-    setCurrent(current - 1);
-    setStepOne(true);
-    setStepTwo(false);
-  };
+  // const prev = () => {
+  //   setCurrent(current - 1);
+  //   setStepOne(true);
+  //   setStepTwo(false);
+  // };
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
