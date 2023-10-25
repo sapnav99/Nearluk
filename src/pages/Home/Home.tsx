@@ -5,16 +5,21 @@ import Sectionbar from "../../components/sectionbar/Sectionbar";
 import { useDispatch, useSelector } from "react-redux";
 import { allpropdataactions } from "./redux/action";
 import { ThreeCircles } from "react-loader-spinner";
-import "./index.css"
+import "./index.css";
 import useExternalScripts from "../../hooks/useExternalScripts";
 
-
 const Home = () => {
-  useExternalScripts({ urls: ["js/owl.carousel.min.js",] });
+  useExternalScripts({ urls: ["js/owl.carousel.min.js"] });
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allpropdataactions.fetchAllProperty([]));
   }, []);
+
+  const allProperty = useSelector(
+    (state: any) => state?.homeReducer?.allProperty
+  );
+
+  console.log(allProperty);
 
   const loader: any = useSelector(
     (state: any) => state?.homeReducer?.allPropertyLoader

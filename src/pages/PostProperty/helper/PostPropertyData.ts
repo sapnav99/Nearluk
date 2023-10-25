@@ -281,7 +281,70 @@ export const data: Category[] = [
   },
   {
     label: "List a Business",
-    child: [],
+    child: [
+      {
+        label: "Event Spaces",
+        child: [],
+        key: "event-spaces",
+        active: false,
+      },
+      {
+        label: "Parking",
+        child: [
+          {
+            label: "2&3 Vehicle Parking",
+            child: [],
+            key: "2&3-vehicle-parking",
+            active: false,
+          },
+          {
+            label: "4&6 Vehicle Parking",
+            child: [],
+            key: "4&6-vehicle-parking",
+            active: false,
+          },
+          {
+            label: "Bus/Truck/Heavy Vehicle",
+            child: [],
+            key: "bus/truck/heavy-vehicle",
+            active: false,
+          },
+        ],
+        key: "parking",
+        active: false,
+      },
+      {
+        label: "Play Ground",
+        child: [
+          {
+            label: "In-door",
+            child: [],
+            key: "in-door",
+            active: false,
+          },
+          {
+            label: "Out-door",
+            child: [],
+            key: "out-door",
+            active: false,
+          },
+        ],
+        key: "play-ground",
+        active: false,
+      },
+      {
+        label: "Hostel",
+        child: [],
+        key: "hostel",
+        active: false,
+      },
+      {
+        label: "Co-Working Space",
+        child: [],
+        key: "co-working-space",
+        active: false,
+      },
+    ],
     key: "list-a-bussiness",
     active: false,
   },
@@ -1141,6 +1204,292 @@ export const propensityData = [
   {
     label: "Vegan",
     key: "vegan",
+    active: false,
+  },
+];
+
+export const professionDetailsData = [
+  {
+    label: "IT-Software",
+    key: "it-software",
+    active: false,
+  },
+  {
+    label: "Non-IT",
+    key: "non-it",
+    active: false,
+  },
+  {
+    label: "Business",
+    key: "business",
+    active: false,
+  },
+  {
+    label: "Student",
+    key: "student",
+    active: false,
+  },
+  {
+    label: "Others",
+    key: "others",
+    active: false,
+  },
+];
+
+export const transationTypeforParkingData = [
+  {
+    label: "Book Days",
+    key: "book-days",
+    active: false,
+  },
+  {
+    label: "Book Hourly",
+    key: "book-hourly",
+    active: false,
+  },
+  {
+    label: "Book Monthly",
+    key: "book-monthly",
+    active: false,
+  },
+];
+
+export const propertyDetailsForparkingData = [
+  {
+    label: "Open Parking",
+    key: "open-parking",
+    active: false,
+  },
+  {
+    label: "Closed Parking",
+    key: "closed-parking",
+    active: false,
+  },
+];
+
+export const parkingRoomsData = [
+  {
+    label: "Locker Room",
+    key: "locker-room",
+    active: false,
+  },
+];
+
+export const parkingAvailabilityData = [
+  {
+    label: "Available to park",
+    key: "available-to-park",
+    active: false,
+  },
+];
+
+export const selectOpenGroundsData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+  {
+    label: "6",
+    value: "6",
+    key: "6",
+  },
+  {
+    label: "7",
+    value: "7",
+    key: "7",
+  },
+  {
+    label: "8",
+    value: "8",
+    key: "8",
+  },
+  {
+    label: "9",
+    value: "9",
+    key: "9",
+  },
+  {
+    label: "10",
+    value: "10",
+    key: "10",
+  },
+  {
+    label: "10+",
+    value: "10+",
+    key: "10+",
+  },
+];
+export const selectBoxGroundsData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+  {
+    label: "6",
+    value: "6",
+    key: "6",
+  },
+  {
+    label: "7",
+    value: "7",
+    key: "7",
+  },
+  {
+    label: "8",
+    value: "8",
+    key: "8",
+  },
+  {
+    label: "9",
+    value: "9",
+    key: "9",
+  },
+  {
+    label: "10",
+    value: "10",
+    key: "10",
+  },
+  {
+    label: "10+",
+    value: "10+",
+    key: "10+",
+  },
+];
+export const selectPavilianData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+  {
+    label: "6",
+    value: "6",
+    key: "6",
+  },
+  {
+    label: "7",
+    value: "7",
+    key: "7",
+  },
+  {
+    label: "8",
+    value: "8",
+    key: "8",
+  },
+  {
+    label: "9",
+    value: "9",
+    key: "9",
+  },
+  {
+    label: "10",
+    value: "10",
+    key: "10",
+  },
+  {
+    label: "10+",
+    value: "10+",
+    key: "10+",
+  },
+];
+
+export const selectChangingRoomData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+  
+];
+export const selectWashRoomData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+];
+
+export const playGroundAvailabilityData = [
+  {
+    label: "Available",
+    key: "available",
     active: false,
   },
 ];

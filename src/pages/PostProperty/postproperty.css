@@ -40,7 +40,19 @@
   border-radius: 25px;
 }
 :where(.css-dev-only-do-not-override-amq5gd).ant-select-single {
-  height: 28px;
+  height: 40px;
+}
+:where(.css-dev-only-do-not-override-amq5gd).ant-select-single:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border-radius: 25px;
+}
+:where(
+    .css-dev-only-do-not-override-amq5gd
+  ).ant-select-single.ant-select-show-arrow
+  .ant-select-selection-item {
+  font-weight: 600;
 }
 .map-container {
   width: 100%;
@@ -172,4 +184,24 @@
   margin-bottom: 30px;
   border-bottom: 5px solid #3fdbd1;
   width: fit-content;
+}
+.propensity__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.profession_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.parking__price_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.paly__gorund_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex: wrap;
 }

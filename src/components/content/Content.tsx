@@ -12,7 +12,7 @@ export default function Content() {
     (state: any) => state?.homeReducer?.allProperty
   );
 
-  // console.log("allproperties =>",allProperty)
+  console.log("allproperties =>", allProperty);
 
   useEffect(() => {
     const fetchMoreItems = () => {

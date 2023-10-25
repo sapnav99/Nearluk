@@ -23,6 +23,16 @@ import {
   noiseLevelData,
   availabilityForFindaFlatemateData,
   propensityData,
+  professionDetailsData,
+  propertyDetailsForparkingData,
+  parkingRoomsData,
+  parkingAvailabilityData,
+  selectOpenGroundsData,
+  selectBoxGroundsData,
+  selectPavilianData,
+  selectChangingRoomData,
+  selectWashRoomData,
+  playGroundAvailabilityData,
 } from "./helper/PostPropertyData";
 import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
@@ -76,6 +86,19 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     useState(bathRoomForStudioAppartmentData);
   const [noiseLevel, setNoiseLevel] = useState(noiseLevelData);
   const [propensity, setPropensity] = useState(propensityData);
+  const [professionDetails, setProfessionDetails] = useState(
+    professionDetailsData
+  );
+  const [parkingPropertyDetails, setParkingPropertyDetails] = useState(
+    propertyDetailsForparkingData
+  );
+  const [parkingRooms, setParkingRooms] = useState(parkingRoomsData);
+  const [parkingAvailability, setParkingAvailability] = useState(
+    parkingAvailabilityData
+  );
+  const [playGroundAvailability, setPlayGroundAvailability] = useState(
+    playGroundAvailabilityData
+  );
   const [stepTwoData, setStepTwoData] = useState({
     builtup_area: "",
     carpet_area: "",
@@ -99,10 +122,31 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     width_of_facing_road_units: "",
     noise: "",
     propensity: "",
+    drinking: false,
+    smoking: false,
+    profession: "",
+    parking_details: "",
+    parking_area: "",
+    parking_capacity: "",
+    parking_price_per_hour: "",
+    parking_price_per_day: "",
+    parking_price_per_month: "",
+    parking_other_price: "",
+    parking_booking_amount: "",
+    parking_price_per_charging: "",
+    no_of_open_ground: "",
+    no_of_box_grouunds: "",
+    pavilian: "",
+    changing_rooms: "",
+    wash_rooms: "",
+    ground_area: "",
+    ground_area_units: "",
+    ground_seating_capacity: "",
+    ground_seating_units: "",
   });
 
   const dispatch = useDispatch();
-  // console.log(stepTwoData);
+  // console.log("propensity :", propensity);
 
   const stepOneData = useSelector(
     (state: any) => state?.PostpropertyReducer?.propertyState
@@ -124,6 +168,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       ),
       visito_parking: visitorCount[0].count,
       car_parking: parkingConut[0].count,
+      parking_rooms: parkingRooms.filter((item: any) => item.active === true),
     }),
     [
       otherRooms,
@@ -133,6 +178,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       semiFurnishedItemObj,
       visitorCount,
       parkingConut,
+      parkingRooms,
     ]
   );
 
@@ -142,6 +188,56 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     setStepTwoData({
       ...stepTwoData,
       floor_no: value.value,
+    });
+  };
+
+  const handleOpenGroundChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      no_of_open_ground: value.value,
+    });
+  };
+
+  const handleBoxGroundChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      no_of_box_grouunds: value.value,
+    });
+  };
+
+  const handlePavilianChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      pavilian: value.value,
+    });
+  };
+
+  const handleChangingRoomsChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      changing_rooms: value.value,
+    });
+  };
+
+  const handleWashRoomsChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      wash_rooms: value.value,
     });
   };
 
@@ -165,6 +261,27 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     });
   };
 
+  const propertySmokingChangeHandler = (value: {
+    value: boolean;
+    label: React.ReactNode;
+  }) => {
+    console.log(value.value);
+    setStepTwoData({
+      ...stepTwoData,
+      smoking: value.value,
+    });
+  };
+
+  const propertyDrinkingChangeHandler = (value: {
+    value: boolean;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      drinking: value.value,
+    });
+  };
+
   const buidupAreaChangeHandler = (value: {
     value: string;
     label: React.ReactNode;
@@ -172,6 +289,26 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     setStepTwoData({
       ...stepTwoData,
       builtup_units: value.value,
+    });
+  };
+
+  const groundAreaChangeHandler = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      ground_area_units: value.value,
+    });
+  };
+
+  const groundSeatingCapacityChangeHandler = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      ground_seating_units: value.value,
     });
   };
 
@@ -201,6 +338,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       active: item.key === key ? !item.active : item.active,
     }));
     setOtherRooms(updatedArry);
+  };
+
+  const activeCheckboxForParkingRooms = (key: any) => {
+    const shallowCopy = [...parkingRooms];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setParkingRooms(updatedArry);
   };
 
   const activeCheckboxpropertyFeatures = (key: any) => {
@@ -251,12 +397,25 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     const shallowCopy = [...propensity];
     const updatedArry = shallowCopy.map((item: any) => ({
       ...item,
-      active: item.key === key && !item.key,
+      active: item.key === key && !item.active,
     }));
     setPropensity(updatedArry);
     setStepTwoData({
       ...stepTwoData,
       propensity: key,
+    });
+  };
+
+  const activeCheckboxProfessionDetails = (key: any) => {
+    const shallowCopy = [...professionDetails];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key && !item.active,
+    }));
+    setProfessionDetails(updatedArry);
+    setStepTwoData({
+      ...stepTwoData,
+      profession: key,
     });
   };
 
@@ -346,101 +505,240 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   // console.log("step two Data", stepTwoData);
   return (
     <div>
-      <SectionHoc title="Property Details">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {stepOneData.property_sub_type === "studio-appartment"
-            ? bedRoomForStudioAppartment?.map((item: any, i) => {
-                return (
-                  <Chip
-                    item={item}
-                    key={i}
-                    onClick={() => {
-                      setBedRoomForStuidioAppartment(
-                        activateItemByKey(bedRoomForStudioAppartment, item.key)
-                      );
-                      setStepTwoData({
-                        ...stepTwoData,
-                        bhk: item.key,
-                      });
-                    }}
-                  />
-                );
-              })
-            : propertyDetails?.map((item: any, i) => {
-                return (
-                  <Chip
-                    item={item}
-                    key={i}
-                    onClick={() => {
-                      setPropertyDetails(
-                        activateItemByKey(propertyDetails, item.key)
-                      );
-                      setStepTwoData({
-                        ...stepTwoData,
-                        bhk: item.key,
-                      });
-                    }}
-                  />
-                );
-              })}
-        </div>
-      </SectionHoc>
-      <SectionHoc title="Balconies">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {balconies?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setBalconies(activateItemByKey(balconies, item.key));
-                  setStepTwoData({
-                    ...stepTwoData,
-                    balconies: item.key,
-                  });
+      {stepOneData.property_type === "play-ground" && (
+        <div className="play__ground_details_container">
+          <h6 className="property__title">Play Ground Details</h6>
+          <div className="paly__gorund_details_wrapper">
+            <div className="play__ground_details_select_container">
+              <label
+                style={{ margin: 0, fontWeight: 700 }}
+                htmlFor="openGroundsSelect"
+              >
+                No of open grounds
+              </label>
+              <Select
+                id="openGroundsSelect"
+                labelInValue
+                defaultValue={{
+                  label: "No. of Open Grounds",
+                  value: "",
+                  key: "",
                 }}
+                style={{ width: 160, margin: 5, borderRadius: 25 }}
+                onChange={handleOpenGroundChange}
+                options={selectOpenGroundsData}
               />
-            );
-          })}
+            </div>
+            <div className="play__ground_details_select_container">
+              <label
+                style={{ margin: 0, fontWeight: 700 }}
+                htmlFor="boxGroundsSelect"
+              >
+                No of open grounds
+              </label>
+              <Select
+                id="boxGroundsSelect"
+                labelInValue
+                defaultValue={{
+                  label: "No. of box grounds",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 5, borderRadius: 25 }}
+                onChange={handleBoxGroundChange}
+                options={selectBoxGroundsData}
+              />
+            </div>
+            <div className="play__ground_details_select_container">
+              <label style={{ margin: 0, fontWeight: 700 }} htmlFor="pavilian">
+                Pavilian
+              </label>
+              <Select
+                id="pavilian"
+                labelInValue
+                defaultValue={{
+                  label: "pavilian",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 5, borderRadius: 25 }}
+                onChange={handlePavilianChange}
+                options={selectPavilianData}
+              />
+            </div>
+            <div className="play__ground_details_select_container">
+              <label
+                style={{ margin: 0, fontWeight: 700 }}
+                htmlFor="changingRoom"
+              >
+                Changing Rooms
+              </label>
+              <Select
+                id="changingRoom"
+                labelInValue
+                defaultValue={{
+                  label: "Changing rooms",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 5, borderRadius: 25 }}
+                onChange={handleChangingRoomsChange}
+                options={selectChangingRoomData}
+              />
+            </div>
+            <div className="play__ground_details_select_container">
+              <label style={{ margin: 0, fontWeight: 700 }} htmlFor="washRoom">
+                Wash Rooms
+              </label>
+              <Select
+                id="washRoom"
+                labelInValue
+                defaultValue={{
+                  label: "wash rooms",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 5, borderRadius: 25 }}
+                onChange={handleWashRoomsChange}
+                options={selectWashRoomData}
+              />
+            </div>
+          </div>
+          <hr />
         </div>
-      </SectionHoc>
-      <SectionHoc title="Bath Rooms">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {stepOneData.property_sub_type === "studio-appartment"
-            ? bathRoomForStudioAppartment?.map((item: any, i) => {
-                return (
-                  <Chip
-                    item={item}
-                    key={i}
-                    onClick={() => {
-                      setBathRoomForStudioAppartment(
-                        activateItemByKey(bathRoomForStudioAppartment, item.key)
-                      );
-                      setStepTwoData({
-                        ...stepTwoData,
-                        bathrooms: item.key,
-                      });
-                    }}
-                  />
-                );
-              })
-            : bathRooms?.map((item: any, i) => {
-                return (
-                  <Chip
-                    item={item}
-                    key={i}
-                    onClick={() => {
-                      setBatchRooms(activateItemByKey(bathRooms, item.key));
-                      setStepTwoData({
-                        ...stepTwoData,
-                        bathrooms: item.key,
-                      });
-                    }}
-                  />
-                );
-              })}
-        </div>
-      </SectionHoc>
+      )}
+      {!(stepOneData.property_type === "play-ground") && (
+        <SectionHoc title="Property Details">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {stepOneData.property_sub_type === "studio-appartment"
+              ? bedRoomForStudioAppartment?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setBedRoomForStuidioAppartment(
+                          activateItemByKey(
+                            bedRoomForStudioAppartment,
+                            item.key
+                          )
+                        );
+                        setStepTwoData({
+                          ...stepTwoData,
+                          bhk: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })
+              : stepOneData.property_type === "parking"
+              ? parkingPropertyDetails?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setParkingPropertyDetails(
+                          activateItemByKey(parkingPropertyDetails, item.key)
+                        );
+                        setStepTwoData({
+                          ...stepTwoData,
+                          parking_details: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })
+              : propertyDetails?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setPropertyDetails(
+                          activateItemByKey(propertyDetails, item.key)
+                        );
+                        setStepTwoData({
+                          ...stepTwoData,
+                          bhk: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })}
+          </div>
+        </SectionHoc>
+      )}
+
+      {!(
+        stepOneData.property_type === "parking" ||
+        stepOneData.property_type === "play-ground"
+      ) && (
+        <SectionHoc title="Balconies">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {balconies?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setBalconies(activateItemByKey(balconies, item.key));
+                    setStepTwoData({
+                      ...stepTwoData,
+                      balconies: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+          </div>
+        </SectionHoc>
+      )}
+      {!(
+        stepOneData.property_type === "parking" ||
+        stepOneData.property_type === "play-ground"
+      ) && (
+        <SectionHoc title="Bath Rooms">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {stepOneData.property_sub_type === "studio-appartment"
+              ? bathRoomForStudioAppartment?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setBathRoomForStudioAppartment(
+                          activateItemByKey(
+                            bathRoomForStudioAppartment,
+                            item.key
+                          )
+                        );
+                        setStepTwoData({
+                          ...stepTwoData,
+                          bathrooms: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })
+              : bathRooms?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setBatchRooms(activateItemByKey(bathRooms, item.key));
+                        setStepTwoData({
+                          ...stepTwoData,
+                          bathrooms: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })}
+          </div>
+        </SectionHoc>
+      )}
       <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
         <PropInput
           placeholder="Type No of Floors"
@@ -475,28 +773,39 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           onChange={propertyAgeChangeHandle}
           options={selectFloorData}
         />
-        <Select
-          labelInValue
-          defaultValue={{
-            label: "Select Facing",
-            value: "",
-            key: "",
-          }}
-          style={{ width: 160, margin: 10 }}
-          onChange={propertyFacingChangeHandler}
-          options={facingData}
-        />
+        {!(stepOneData.property_type === "play-ground") && (
+          <Select
+            labelInValue
+            defaultValue={{
+              label: "Select Facing",
+              value: "",
+              key: "",
+            }}
+            style={{ width: 160, margin: 10 }}
+            onChange={propertyFacingChangeHandler}
+            options={facingData}
+          />
+        )}
       </div>
       <hr />
       <div className="other__rooms_container">
-        {otherRooms.map((item) => (
-          <PropChipWithCheckBox
-            item={item}
-            key={item.key}
-            onChange={() => activeCheckboxForOtherRooms(item.key)}
-          />
-        ))}
+        {stepOneData.property_type === "parking"
+          ? parkingRooms.map((item) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activeCheckboxForParkingRooms(item.key)}
+              />
+            ))
+          : otherRooms.map((item) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activeCheckboxForOtherRooms(item.key)}
+              />
+            ))}
       </div>
+      <hr />
       <SectionHoc title="Availability">
         {stepOneData.iwant === "find-a-flatemate" ? (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -508,6 +817,48 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                   onClick={() => {
                     setAvailabilityForFindaFlatemate(
                       activateItemByKey(availabilityForFindaFlatemate, item.key)
+                    );
+                    setStepTwoData({
+                      ...stepTwoData,
+                      availablity: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+            <DatePicker onChange={onChange} />
+          </div>
+        ) : stepOneData.property_type === "parking" ? (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {parkingAvailability?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setParkingAvailability(
+                      activateItemByKey(parkingAvailability, item.key)
+                    );
+                    setStepTwoData({
+                      ...stepTwoData,
+                      availablity: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+            <DatePicker onChange={onChange} />
+          </div>
+        ) : stepOneData.property_type === "play-ground" ? (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {playGroundAvailability?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setPlayGroundAvailability(
+                      activateItemByKey(playGroundAvailability, item.key)
                     );
                     setStepTwoData({
                       ...stepTwoData,
@@ -548,127 +899,393 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
               {propensity.map((item: any) => (
                 <PropChipWithCheckBox
                   item={item}
+                  key={item.key}
                   onChange={() => activeCheckboxPropensity(item.key)}
                 />
               ))}
             </div>
+            <hr />
           </div>
+          <div className="somking__container">
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Smoking",
+                value: false,
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={propertySmokingChangeHandler}
+              options={[
+                {
+                  label: "Yes",
+                  value: true,
+                  key: "yes",
+                },
+                {
+                  label: "No",
+                  value: false,
+                  key: "no",
+                },
+              ]}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Drinking",
+                value: false,
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={propertyDrinkingChangeHandler}
+              options={[
+                {
+                  label: "Yes",
+                  value: true,
+                  key: "yes",
+                },
+                {
+                  label: "No",
+                  value: false,
+                  key: "no",
+                },
+              ]}
+            />
+            <hr />
+          </div>
+        </div>
+      )}
+      {stepOneData.iwant === "find-a-flatemate" && (
+        <div className="profession__details_container">
+          <h5 className="property__title">Profession Details</h5>
+          <div className="profession_details_wrapper">
+            {professionDetails.map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activeCheckboxProfessionDetails(item.key)}
+              />
+            ))}
+          </div>
+          <hr />
         </div>
       )}
       <div>
         <h5 className="property__title">Property Area</h5>
         <div className="propertyarea__container">
-          <div className="proparea__values_wrapper">
-            <PropInput
-              placeholder="Build Area"
-              value={stepTwoData.builtup_area}
-              type="number"
-              onChange={(e: any) => {
-                setStepTwoData({
-                  ...stepTwoData,
-                  builtup_area: e.target.value,
-                });
-              }}
-            />
-            <Select
-              labelInValue
-              defaultValue={{
-                label: "units",
-                value: "",
-                key: "",
-              }}
-              style={{ width: 160, margin: 10 }}
-              onChange={buidupAreaChangeHandler}
-              options={propertyAraeUnits}
-            />
-          </div>
-          <div className="proparea__values_wrapper">
-            <PropInput
-              placeholder="Carpet Area"
-              value={stepTwoData.carpet_area}
-              type="number"
-              onChange={(e: any) => {
-                setStepTwoData({
-                  ...stepTwoData,
-                  carpet_area: e.target.value,
-                });
-              }}
-            />
-            <Select
-              labelInValue
-              defaultValue={{
-                label: "units",
-                value: "",
-                key: "",
-              }}
-              style={{ width: 160, margin: 10 }}
-              onChange={carpetAreaChangeHandler}
-              options={propertyAraeUnits}
-            />
-          </div>
-          <div className="proparea__values_wrapper">
-            <PropInput
-              placeholder="Undivided Share"
-              value={stepTwoData.undivided_share}
-              type="number"
-              onChange={(e: any) => {
-                setStepTwoData({
-                  ...stepTwoData,
-                  undivided_share: e.target.value,
-                });
-              }}
-            />
-            <Select
-              labelInValue
-              defaultValue={{
-                label: "units",
-                value: "",
-                key: "",
-              }}
-              style={{ width: 160, margin: 10 }}
-              onChange={undividedAreaChangeHandler}
-              options={propertyAraeUnits}
-            />
-          </div>
-        </div>
-      </div>
-      <SectionHoc title="Furnishing Status">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {furnished?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setFurnished(activateItemByKey(furnished, item.key));
-                  setStepTwoData({
-                    ...stepTwoData,
-                    furnishing_status: item.key,
-                  });
-                  if (item.key === "furnished") {
-                    setOpenFurnishingModal(true);
-                  } else if (item.key === "semi_frunished") {
-                    setSemiFurnishedModal(true);
-                  }
+          {stepOneData.property_type === "parking" ? (
+            <>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Total Parking Area"
+                  value={stepTwoData.parking_area}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      parking_area: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={buidupAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Total Parking Capacity"
+                  value={stepTwoData.parking_capacity}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      parking_capacity: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={buidupAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+            </>
+          ) : stepOneData.property_type === "play-ground" ? (
+            <>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Ground Area"
+                  value={stepTwoData.ground_area}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      ground_area: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={groundAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Ground seating capacity"
+                  value={stepTwoData.ground_seating_capacity}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      ground_seating_capacity: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={groundSeatingCapacityChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Build Area"
+                  value={stepTwoData.builtup_area}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      builtup_area: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={buidupAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+              <div className="proparea__values_wrapper">
+                <PropInput
+                  placeholder="Carpet Area"
+                  value={stepTwoData.carpet_area}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      carpet_area: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={carpetAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+              <div
+                className="proparea__values_wrapper"
+                style={{
+                  display:
+                    stepOneData.iwant === "find-a-flatemate" ? "none" : "flex",
                 }}
+              >
+                <PropInput
+                  placeholder="Undivided Share"
+                  value={stepTwoData.undivided_share}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      undivided_share: e.target.value,
+                    });
+                  }}
+                />
+                <Select
+                  labelInValue
+                  defaultValue={{
+                    label: "units",
+                    value: "",
+                    key: "",
+                  }}
+                  style={{ width: 160, margin: 10 }}
+                  onChange={undividedAreaChangeHandler}
+                  options={propertyAraeUnits}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        <hr />
+      </div>
+      {!(
+        stepOneData.property_type === "parking" ||
+        stepOneData.property_type === "play-ground"
+      ) && (
+        <SectionHoc title="Furnishing Status">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {furnished?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setFurnished(activateItemByKey(furnished, item.key));
+                    setStepTwoData({
+                      ...stepTwoData,
+                      furnishing_status: item.key,
+                    });
+                    if (item.key === "furnished") {
+                      setOpenFurnishingModal(true);
+                    } else if (item.key === "semi_frunished") {
+                      setSemiFurnishedModal(true);
+                    }
+                  }}
+                />
+              );
+            })}
+            <div>
+              <FurnishingStatusModal
+                openFurnishingModal={openFurnishingModal}
+                setOpenFurnishingModal={setOpenFurnishingModal}
+                setFurnishingItemsObj={setFurnishingItemsObj}
               />
-            );
-          })}
-          <div>
-            <FurnishingStatusModal
-              openFurnishingModal={openFurnishingModal}
-              setOpenFurnishingModal={setOpenFurnishingModal}
-              setFurnishingItemsObj={setFurnishingItemsObj}
+              <SemiFurnishedStatusModal
+                openSemiFurnishedModal={openSemiFurnishedModal}
+                setSemiFurnishedModal={setSemiFurnishedModal}
+                setSemiFurnishedItemObj={setSemiFurnishedItemObj}
+              />
+            </div>
+          </div>
+        </SectionHoc>
+      )}
+
+      {stepOneData.property_type === "parking" && (
+        <div className="parking__price_details_container">
+          <h6 className="property__title">Price Details</h6>
+          <div className="parking__price_details_wrapper">
+            <PropInput
+              placeholder="Price per Hour"
+              value={stepTwoData.parking_price_per_hour}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_price_per_hour: e.target.value,
+                });
+              }}
             />
-            <SemiFurnishedStatusModal
-              openSemiFurnishedModal={openSemiFurnishedModal}
-              setSemiFurnishedModal={setSemiFurnishedModal}
-              setSemiFurnishedItemObj={setSemiFurnishedItemObj}
+            <PropInput
+              placeholder="Price per Day"
+              value={stepTwoData.parking_price_per_day}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_price_per_day: e.target.value,
+                });
+              }}
+            />
+            <PropInput
+              placeholder="Price per Month"
+              value={stepTwoData.parking_price_per_month}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_price_per_month: e.target.value,
+                });
+              }}
+            />
+            <PropInput
+              placeholder="Other price"
+              value={stepTwoData.parking_other_price}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_other_price: e.target.value,
+                });
+              }}
+            />
+            <PropInput
+              placeholder="Booking Amount"
+              value={stepTwoData.parking_booking_amount}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_booking_amount: e.target.value,
+                });
+              }}
+            />
+            <PropInput
+              placeholder="Price per Charging"
+              value={stepTwoData.parking_price_per_charging}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  parking_price_per_charging: e.target.value,
+                });
+              }}
             />
           </div>
         </div>
-      </SectionHoc>
-      <div className="property__features">
+      )}
+
+      <div
+        className="property__features"
+        style={{
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "play-ground"
+              ? "none"
+              : "block",
+        }}
+      >
         <h5 className="property__title">Property Features</h5>
         <div className="property__features_wrapper">
           {propertyFeatures.map((item) => (
@@ -693,7 +1310,16 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         )}
         <hr />
       </div>
-      <div className="property__building_features">
+      <div
+        className="property__building_features"
+        style={{
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "play-ground"
+              ? "none"
+              : "block",
+        }}
+      >
         <h5 className="property__title">Society Building Features</h5>
         <div className="property__building_features_container">
           {societyBuildingFeatures.map((item: any) => (
@@ -705,7 +1331,16 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </div>
         <hr />
       </div>
-      <div className="water_sources">
+      <div
+        className="water_sources"
+        style={{
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "play-ground"
+              ? "none"
+              : "block",
+        }}
+      >
         <h5 className="property__title">Water Sources</h5>
         <div className="water__sources_container">
           {waterSources.map((item: any) => (
@@ -717,7 +1352,12 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </div>
         <hr />
       </div>
-      <div className="parking">
+      <div
+        className="parking"
+        style={{
+          display: stepOneData.property_type === "parking" ? "none" : "block",
+        }}
+      >
         <h5 className="property__title">Parking</h5>
         <div className="parking__container">
           {parkingConut.map((item: any) => (
@@ -756,7 +1396,16 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </div>
         <hr />
       </div>
-      <div className="type__of_floor">
+      <div
+        className="type__of_floor"
+        style={{
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "play-ground"
+              ? "none"
+              : "block",
+        }}
+      >
         <h6 className="property__title">Type of Flooring</h6>
         <Select
           labelInValue
@@ -771,7 +1420,16 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         />
         <hr />
       </div>
-      <div className="width__of_roadfacing">
+      <div
+        className="width__of_roadfacing"
+        style={{
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "play-ground"
+              ? "none"
+              : "block",
+        }}
+      >
         <h6 className="property__title">Width of Road Facing</h6>
         <div className="width__of_roadfacing_container">
           <PropInput

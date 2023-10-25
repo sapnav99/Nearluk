@@ -67,11 +67,16 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     request_ar_vr: false,
     property_description: "",
     property_highlights: "",
+    price_per_sharing: "",
+    food_charges: false,
+    booking_amount: "",
   });
 
   const totalData = useSelector(
     (state: any) => state?.PostpropertyReducer?.propertyState
   );
+
+  console.log("flatemate from step thrtee", totalData.iwant);
 
   const date = new Date();
   // const documentRef: any = useRef();
@@ -189,329 +194,412 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
 
   return (
     <div>
-      <SectionHoc title="Ownership Type">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {ownerShip?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setOwnerShip(activateItemByKey(ownerShip, item.key));
+      {!(totalData.property_type === "parking") && (
+        <SectionHoc title="Ownership Type">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {ownerShip?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setOwnerShip(activateItemByKey(ownerShip, item.key));
+                    setStepThreeData({
+                      ...stepThreeData,
+                      ownership: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+          </div>
+        </SectionHoc>
+      )}
+
+      <div
+        className="price__details"
+        style={{
+          display: totalData.property_type === "parking" ? "none" : "block",
+        }}
+      >
+        <h6 className="property__title">Price Details</h6>
+        <div className="price__detailing__container">
+          {totalData.iwant === "find-a-flatemate" ? (
+            <>
+              <PropInput
+                placeholder="Price per Sharing"
+                value={stepThreeData.price_per_sharing}
+                onChange={(e: any) => {
                   setStepThreeData({
                     ...stepThreeData,
-                    ownership: item.key,
+                    price_per_sharing: e.target.value,
                   });
                 }}
               />
-            );
-          })}
-        </div>
-      </SectionHoc>
-      <div className="price__details">
-        <h6 className="property__title">Price Details</h6>
-        <div className="price__detailing__container">
-          <PropInput
-            placeholder="Expected Price"
-            value={stepThreeData.expected_price}
-            onChange={(e: any) => {
-              setStepThreeData({
-                ...stepThreeData,
-                expected_price: e.target.value,
-              });
-            }}
-          />
-          <PropInput
-            placeholder="Mainatinace per Month"
-            value={stepThreeData.maintainance_per_month}
-            onChange={(e: any) => {
-              setStepThreeData({
-                ...stepThreeData,
-                maintainance_per_month: e.target.value,
-              });
-            }}
-          />
-          <PropInput
-            placeholder="Token Amount"
-            value={stepThreeData.token_amount}
-            onChange={(e: any) => {
-              setStepThreeData({
-                ...stepThreeData,
-                token_amount: e.target.value,
-              });
-            }}
-          />
+              <PropInput
+                placeholder="Mainatinace per Month"
+                value={stepThreeData.maintainance_per_month}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    maintainance_per_month: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Booking Amount"
+                value={stepThreeData.booking_amount}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    booking_amount: e.target.value,
+                  });
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <PropInput
+                placeholder="Expected Price"
+                value={stepThreeData.expected_price}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    expected_price: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Mainatinace per Month"
+                value={stepThreeData.maintainance_per_month}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    maintainance_per_month: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Token Amount"
+                value={stepThreeData.token_amount}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    token_amount: e.target.value,
+                  });
+                }}
+              />
+            </>
+          )}
         </div>
         <div className="price__details__checkbox_container">
-          <Checkbox
-            onChange={(e: CheckboxChangeEvent) => {
-              setStepThreeData({
-                ...stepThreeData,
-                negotiable: e.target.checked,
-              });
-            }}
-          >
-            Price Negotiable
-          </Checkbox>
-          <Checkbox
-            onChange={(e: CheckboxChangeEvent) => {
-              setStepThreeData({
-                ...stepThreeData,
-                loan: e.target.checked,
-              });
-            }}
-          >
-            Currently Under Loan
-          </Checkbox>
-          <Checkbox
-            onChange={(e: CheckboxChangeEvent) => {
-              setStepThreeData({
-                ...stepThreeData,
-                all_inclusive_price: e.target.checked,
-              });
-            }}
-          >
-            All Inclusive Price
-          </Checkbox>
-          <Checkbox
-            onChange={(e: CheckboxChangeEvent) => {
-              setStepThreeData({
-                ...stepThreeData,
-                annual_dues_pay: e.target.checked,
-              });
-            }}
-          >
-            Annual Dues Paid
-          </Checkbox>
-          <Checkbox
-            onChange={(e: CheckboxChangeEvent) => {
-              setStepThreeData({
-                ...stepThreeData,
-                tax_excluded: e.target.checked,
-              });
-            }}
-          >
-            Tax Excluded
-          </Checkbox>
+          {totalData.iwant === "find-a-flatemate" ? (
+            <>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    negotiable: e.target.checked,
+                  });
+                }}
+              >
+                Price Negotiable
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    all_inclusive_price: e.target.checked,
+                  });
+                }}
+              >
+                All Inclusive Price
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    food_charges: e.target.checked,
+                  });
+                }}
+              >
+                Food charges
+              </Checkbox>
+            </>
+          ) : (
+            <>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    negotiable: e.target.checked,
+                  });
+                }}
+              >
+                Price Negotiable
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    loan: e.target.checked,
+                  });
+                }}
+              >
+                Currently Under Loan
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    all_inclusive_price: e.target.checked,
+                  });
+                }}
+              >
+                All Inclusive Price
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    annual_dues_pay: e.target.checked,
+                  });
+                }}
+              >
+                Annual Dues Paid
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    tax_excluded: e.target.checked,
+                  });
+                }}
+              >
+                Tax Excluded
+              </Checkbox>
+            </>
+          )}
         </div>
-        <hr />
-        <div>
-          <h6 className="property__title">Property Photo</h6>
-          <div className="property__photo_button_container">
-            <Button
-              className="property_photo__button"
-              onClick={() => hideInputRef?.current.click()}
-              loading={imageLoader}
-            >
-              +Add picture
-            </Button>
-            <input
-              type="file"
-              ref={hideInputRef}
-              onChange={handleImageSelect}
-              style={{ display: "none" }}
-            />
-            <p className="property_photo_text">
-              Property Listings with more than 5 images get 3x more views.
-              <br />
-              More Images = Higher chances of Leads.
-              <br />
-              Accepted formats are .jpg, .gif, .bmp & .png and Maximum size
-              allowed 10 MB
-            </p>
-          </div>
-          <div
-            style={{
-              marginTop: 20,
-              display: "flex",
-              flexDirection: "row",
-              gap: 10,
-              overflowX: "scroll",
-              overflowY: "hidden",
-            }}
-          >
-            {imagePreview.map((item: any) => {
-              return (
-                <div>
-                  <div
-                    style={{
-                      width: 150,
-                      height: 150,
-                      backgroundImage: `url(${item.url})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  >
-                    {item.category && (
-                      <p
-                        style={{
-                          position: "relative",
-                          top: 10,
-                          left: 1,
-                          backgroundColor: "white",
-                          padding: 2,
-                          borderRadius: 10,
-                          width: "auto",
-                          textAlign: "center",
-                          color: "#000",
-                          fontSize: 12,
-                          fontWeight: 800,
-                        }}
-                      >
-                        {item.category}
-                      </p>
-                    )}
-                  </div>
+      </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      marginBottom: 10,
-                      marginTop: 10,
-                      gap: 8,
+      <hr />
+      <div>
+        <h6 className="property__title">Property Photo</h6>
+        <div className="property__photo_button_container">
+          <Button
+            className="property_photo__button"
+            onClick={() => hideInputRef?.current.click()}
+            loading={imageLoader}
+          >
+            +Add picture
+          </Button>
+          <input
+            type="file"
+            ref={hideInputRef}
+            onChange={handleImageSelect}
+            style={{ display: "none" }}
+          />
+          <p className="property_photo_text">
+            Property Listings with more than 5 images get 3x more views.
+            <br />
+            More Images = Higher chances of Leads.
+            <br />
+            Accepted formats are .jpg, .gif, .bmp & .png and Maximum size
+            allowed 10 MB
+          </p>
+        </div>
+        <div
+          style={{
+            marginTop: 20,
+            display: "flex",
+            flexDirection: "row",
+            gap: 10,
+            overflowX: "scroll",
+            overflowY: "hidden",
+          }}
+        >
+          {imagePreview.map((item: any) => {
+            return (
+              <div>
+                <div
+                  style={{
+                    width: 150,
+                    height: 150,
+                    backgroundImage: `url(${item.url})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  {item.category && (
+                    <p
+                      style={{
+                        position: "relative",
+                        top: 10,
+                        left: 1,
+                        backgroundColor: "white",
+                        padding: 2,
+                        borderRadius: 10,
+                        width: "auto",
+                        textAlign: "center",
+                        color: "#000",
+                        fontSize: 12,
+                        fontWeight: 800,
+                      }}
+                    >
+                      {item.category}
+                    </p>
+                  )}
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: 10,
+                    marginTop: 10,
+                    gap: 8,
+                  }}
+                >
+                  <Select
+                    style={{ width: 100 }}
+                    placeholder="Search to Select"
+                    defaultValue={{
+                      label: "Select Fllor No ",
+                      value: "",
+                      key: "",
                     }}
-                  >
-                    <Select
-                      style={{ width: 100 }}
-                      placeholder="Search to Select"
-                      defaultValue={{
-                        label: "Select Fllor No ",
-                        value: "",
-                        key: "",
-                      }}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "").includes(input)
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      onChange={(e) => {
-                        const shallow = [...imagePreview];
-                        const mapped = shallow.map((child: any) => {
-                          if (item.id === child.id) {
-                            child.category = e;
-                          }
-                          return child;
-                        });
-                        setImagePreview(mapped);
-                      }}
-                      options={imgCategory}
-                    />
-                    <div>
-                      {item.featured ? (
-                        <AiFillStar
-                          style={{
-                            fontSize: 20,
-                            margin: 0,
-                          }}
-                          onClick={() => {
-                            const shallow = [...imagePreview];
-                            const filtered = shallow.map((child: any) => ({
-                              ...child,
-                              featured: item.id === child.id,
-                            }));
-                            // console.log(filtered);
-                            setImagePreview(filtered);
-                          }}
-                        />
-                      ) : (
-                        <AiOutlineStar
-                          style={{
-                            fontSize: 20,
-                            margin: 0,
-                          }}
-                          onClick={() => {
-                            const shallow = [...imagePreview];
-                            const filtered = shallow.map((child: any) => ({
-                              ...child,
-                              featured: item.id === child.id,
-                            }));
-                            // console.log(filtered);
-                            setImagePreview(filtered);
-                          }}
-                          title="Set as Feature Image"
-                        />
-                      )}
-                    </div>
-                    <div>
-                      <AiFillDelete
+                    filterOption={(input, option) =>
+                      (option?.label ?? "").includes(input)
+                    }
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
+                    }
+                    onChange={(e) => {
+                      const shallow = [...imagePreview];
+                      const mapped = shallow.map((child: any) => {
+                        if (item.id === child.id) {
+                          child.category = e;
+                        }
+                        return child;
+                      });
+                      setImagePreview(mapped);
+                    }}
+                    options={imgCategory}
+                  />
+                  <div>
+                    {item.featured ? (
+                      <AiFillStar
                         style={{
                           fontSize: 20,
                           margin: 0,
                         }}
                         onClick={() => {
                           const shallow = [...imagePreview];
-                          const filtered = shallow.filter(
-                            (child: any) => item.id !== child.id
-                          );
+                          const filtered = shallow.map((child: any) => ({
+                            ...child,
+                            featured: item.id === child.id,
+                          }));
                           // console.log(filtered);
                           setImagePreview(filtered);
                         }}
                       />
-                    </div>
+                    ) : (
+                      <AiOutlineStar
+                        style={{
+                          fontSize: 20,
+                          margin: 0,
+                        }}
+                        onClick={() => {
+                          const shallow = [...imagePreview];
+                          const filtered = shallow.map((child: any) => ({
+                            ...child,
+                            featured: item.id === child.id,
+                          }));
+                          // console.log(filtered);
+                          setImagePreview(filtered);
+                        }}
+                        title="Set as Feature Image"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <AiFillDelete
+                      style={{
+                        fontSize: 20,
+                        margin: 0,
+                      }}
+                      onClick={() => {
+                        const shallow = [...imagePreview];
+                        const filtered = shallow.filter(
+                          (child: any) => item.id !== child.id
+                        );
+                        // console.log(filtered);
+                        setImagePreview(filtered);
+                      }}
+                    />
                   </div>
                 </div>
-              );
-            })}
-          </div>
-          <hr />
+              </div>
+            );
+          })}
         </div>
-        <div>
-          <h6 className="property__title">Property Description</h6>
-          <div className="property__description__container">
-            <p onClick={generateAiDescription}>Generate With Ai</p>
-            <textarea
-              name="postContent"
-              rows={8}
-              cols={70}
-              className="textarea_text"
-              style={{ backgroundColor: "#ECECEC" }}
-              value={stepThreeData.property_description}
-              onChange={(e) => {
-                setStepThreeData({
-                  ...stepThreeData,
-                  property_description: e.target.value,
-                });
-              }}
-            />
-          </div>
-          <hr />
-        </div>
-        <div>
-          <h6 className="property__title" >Property Highlights</h6>
+        <hr />
+      </div>
+      <div>
+        <h6 className="property__title">Property Description</h6>
+        <div className="property__description__container">
+          <p onClick={generateAiDescription}>Generate With Ai</p>
           <textarea
             name="postContent"
             rows={8}
             cols={70}
             className="textarea_text"
             style={{ backgroundColor: "#ECECEC" }}
-            value={stepThreeData.property_highlights}
+            value={stepThreeData.property_description}
             onChange={(e) => {
               setStepThreeData({
                 ...stepThreeData,
-                property_highlights: e.target.value,
+                property_description: e.target.value,
               });
             }}
           />
-          <hr />
         </div>
-        <div>
-          <div className="proximaty__feature__container">
-            {proximatyFeature.map((item: any) => (
-              <PropChipWithCheckBox
-                item={item}
-                key={item.key}
-                onChange={() => activateProximatyFeature(item.key)}
-              />
-            ))}
-          </div>
-          <hr />
+        <hr />
+      </div>
+      <div>
+        <h6 className="property__title">Property Highlights</h6>
+        <textarea
+          name="postContent"
+          rows={8}
+          cols={70}
+          className="textarea_text"
+          style={{ backgroundColor: "#ECECEC" }}
+          value={stepThreeData.property_highlights}
+          onChange={(e) => {
+            setStepThreeData({
+              ...stepThreeData,
+              property_highlights: e.target.value,
+            });
+          }}
+        />
+        <hr />
+      </div>
+      <div>
+        <div className="proximaty__feature__container">
+          {proximatyFeature.map((item: any) => (
+            <PropChipWithCheckBox
+              item={item}
+              key={item.key}
+              onChange={() => activateProximatyFeature(item.key)}
+            />
+          ))}
         </div>
+        <hr />
       </div>
       <div className="document__contianer">
         <div className="document__wrapper">

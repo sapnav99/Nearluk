@@ -4,6 +4,7 @@ import {
   gatedCommunityData,
   transationTypeData,
   genderData,
+  transationTypeforParkingData,
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -36,6 +37,9 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     useState<google.maps.LatLngLiteral | null>(null);
   const [map, setMap] = useState(/** @type google.maps.GoogleMap */ null);
   const [gender, setGender] = useState(genderData);
+  const [parkingTransation, setParkingTransation] = useState(
+    transationTypeforParkingData
+  );
   const [stepOneData, setStepOneData] = useState({
     city: "",
     building_name: "",
@@ -51,6 +55,8 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     property_sub_type: "",
     gated_community: "",
     gender: "",
+    parking_transation_type: "",
+    parking_name: "",
   });
   const otherStepOneData = useMemo(
     () => ({
@@ -213,7 +219,11 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
           })}
         </div>
       </SectionHoc>
-      <div>
+      <div
+        style={{
+          display: stepOneData.property_type === "parking" ? "none" : "block",
+        }}
+      >
         <div
           style={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}
         >
@@ -255,27 +265,55 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
           </div>
         </SectionHoc>
       )}
-      <SectionHoc title="Transaction Type">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {trasactionType?.map((item: any, i) => {
-            return (
-              <Chip
-                item={item}
-                key={i}
-                onClick={() => {
-                  setTransationType(
-                    activateItemByKey(trasactionType, item.key)
-                  );
-                  setStepOneData({
-                    ...stepOneData,
-                    transaction_type: item.key,
-                  });
-                }}
-              />
-            );
-          })}
-        </div>
-      </SectionHoc>
+      {stepOneData.property_type === "parking" ? (
+        <>
+          <SectionHoc title="Transaction Type">
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {parkingTransation?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setParkingTransation(
+                        activateItemByKey(parkingTransation, item.key)
+                      );
+                      setStepOneData({
+                        ...stepOneData,
+                        parking_transation_type: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </SectionHoc>
+        </>
+      ) : (
+        <>
+          <SectionHoc title="Transaction Type">
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {trasactionType?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setTransationType(
+                        activateItemByKey(trasactionType, item.key)
+                      );
+                      setStepOneData({
+                        ...stepOneData,
+                        transaction_type: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </SectionHoc>
+        </>
+      )}
 
       {/* laocality */}
 
@@ -317,17 +355,32 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
               onSelect={handleStateHandler}
             />
           </div>
-          <PropInput
-            placeholder="Project or Build Name"
-            value={stepOneData.building_name}
-            type="text"
-            onChange={(e: any) => {
-              setStepOneData({
-                ...stepOneData,
-                building_name: e.target.value,
-              });
-            }}
-          />
+          {stepOneData.property_type === "parking" ? (
+            <PropInput
+              placeholder="Parking Name"
+              value={stepOneData.parking_name}
+              type="text"
+              onChange={(e: any) => {
+                setStepOneData({
+                  ...stepOneData,
+                  parking_name: e.target.value,
+                });
+              }}
+            />
+          ) : (
+            <PropInput
+              placeholder="Project or Build Name"
+              value={stepOneData.building_name}
+              type="text"
+              onChange={(e: any) => {
+                setStepOneData({
+                  ...stepOneData,
+                  building_name: e.target.value,
+                });
+              }}
+            />
+          )}
+
           <PropInput
             placeholder="Block NO"
             value={stepOneData.block_no}
