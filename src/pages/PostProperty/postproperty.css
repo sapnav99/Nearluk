@@ -205,3 +205,61 @@
   align-items: center;
   flex: wrap;
 }
+.playground__feature_container {
+  margin: 10px;
+}
+.playgropund__feature_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.eventspace__features_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.evnetspace__type_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hall__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lawn__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hostel__room_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.other__rooms_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.food_details_wrapper{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.room__area_wrapper{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hostel__room_amenity_wrapper{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

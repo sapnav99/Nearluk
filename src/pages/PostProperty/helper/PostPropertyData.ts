@@ -1461,7 +1461,6 @@ export const selectChangingRoomData = [
     value: "4",
     key: "4",
   },
-  
 ];
 export const selectWashRoomData = [
   {
@@ -1490,6 +1489,516 @@ export const playGroundAvailabilityData = [
   {
     label: "Available",
     key: "available",
+    active: false,
+  },
+];
+
+export const playgroundfeaturesData = [
+  {
+    label: "Recently Renovated",
+    key: "recently-renovated",
+    active: false,
+  },
+  {
+    label: "Central AC",
+    key: "central-ac",
+    active: false,
+  },
+  {
+    label: "Water Purifier",
+    key: "water-purifier",
+    active: false,
+  },
+  {
+    label: "Internet/Wi-Fi connectivity",
+    key: "internet/wi-fi-connectivity",
+    active: false,
+  },
+];
+
+export const eventSpaceFeaturesData = [
+  {
+    label: "Resorts",
+    key: "resorts",
+    active: false,
+  },
+  {
+    label: "Banquet Hall",
+    key: "banquet-hall",
+    active: false,
+  },
+  {
+    label: "Lawn",
+    key: "lawn",
+    active: false,
+  },
+  {
+    label: "Function Halls",
+    key: "function-halls",
+    active: false,
+  },
+  {
+    label: "Wedding Venue",
+    key: "wedding-vnue",
+    active: false,
+  },
+  {
+    label: "Farm House",
+    key: "farm-house",
+    active: false,
+  },
+  {
+    label: "Resort",
+    key: "resort",
+    active: false,
+  },
+  {
+    label: "Mini Hall",
+    key: "mini-hall",
+    active: false,
+  },
+  {
+    label: "Kalyana Mandapam",
+    key: "kalyana-mandapam",
+    active: false,
+  },
+  {
+    label: "Fort and Palace",
+    key: "fort-and-palace",
+    active: false,
+  },
+  {
+    label: "Convention Hall",
+    key: "convention-hall",
+    active: false,
+  },
+  {
+    label: "Pool Side",
+    key: "pool-side",
+    active: false,
+  },
+  {
+    label: "Roof Top",
+    key: "roof-top",
+    active: false,
+  },
+  {
+    label: "3 Star Hotel",
+    key: "3-star-hotel",
+    active: false,
+  },
+  {
+    label: "5 Star Hotel",
+    key: "5 Star Hotel",
+    active: false,
+  },
+  {
+    label: "7 Star Hotel",
+    key: "7-star-hotel",
+    active: false,
+  },
+  {
+    label: "Destination Wedding",
+    key: "destination-wedding",
+    active: false,
+  },
+];
+
+export const evnetTypeData = [
+  {
+    label: "Birthday Parties",
+    key: "birthday-parties",
+    active: false,
+  },
+  {
+    label: "Corporate Parties",
+    key: "corporate-parties",
+    active: false,
+  },
+  {
+    label: "Kids Birthday",
+    key: "kids-birthday",
+    active: false,
+  },
+  {
+    label: "Pre Wedding",
+    key: "pre-wedding",
+    active: false,
+  },
+  {
+    label: "Pre Wedding",
+    key: "pre-wedding",
+    active: false,
+  },
+  {
+    label: "Kitty Parties",
+    key: "kitty-parties",
+    active: false,
+  },
+  {
+    label: "Wedding Anniversaries",
+    key: "wedding-anniversaries",
+    active: false,
+  },
+  {
+    label: "Farewell & Retirement Parties",
+    key: "farewell-&-retirement-parties",
+    active: false,
+  },
+  {
+    label: "Festival Parties",
+    key: "festival-parties",
+    active: false,
+  },
+  {
+    label: "Sweet Sixteen Parties",
+    key: "sweet-sixteen-parties",
+    active: false,
+  },
+];
+
+export const decorationData = [
+  {
+    label: "In House decoration",
+    key: "in-house-decoration",
+    active: false,
+  },
+  {
+    label: "Out side decoration Allowed",
+    key: "out-side-decoration-allowed",
+    active: false,
+  },
+];
+
+export const djData = [
+  {
+    label: "In House DJ",
+    key: "in-house-dj",
+    active: false,
+  },
+  {
+    label: "Outside DJ Allowed",
+    key: "outside-dj-allowed",
+    active: false,
+  },
+];
+
+export const photoShootData = [
+  {
+    label: "In house Photoshoot",
+    key: "in-house-photoshoot",
+    active: false,
+  },
+  {
+    label: "Outside Photoshoot Allowed",
+    key: "outside-photoshoot-allowed",
+    active: false,
+  },
+];
+
+export const eventSpacingAmenitiesData = [
+  {
+    label: "Maintenance Staff",
+    key: "maintenance-staff",
+    active: false,
+  },
+  {
+    label: "Water Storage",
+    key: "water-storage",
+    active: false,
+  },
+  {
+    label: "Power Backup",
+    key: "power-backup",
+    active: false,
+  },
+  {
+    label: "Security/Fire alarm",
+    key: "security/fire-alarm",
+    active: false,
+  },
+  {
+    label: "Intercom Facilities",
+    key: "intercom-facilities ",
+    active: false,
+  },
+  {
+    label: "Lifts",
+    key: "lifts",
+    active: false,
+  },
+  {
+    label: "Internet/Wi-Fi connectivity",
+    key: "internet/wi-fi-connectivity",
+    active: false,
+  },
+  {
+    label: "Water  Purifier",
+    key: "water-Purifier",
+    active: false,
+  },
+  {
+    label: "Recently Renovated",
+    key: "recently-renovated",
+    active: false,
+  },
+  {
+    label: "Private Garden",
+    key: "private-garden",
+    active: false,
+  },
+  {
+    label: "Spacious Interiors",
+    key: "spacious-interiors ",
+    active: false,
+  },
+  {
+    label: "Piped Gas",
+    key: "piped-gas",
+    active: false,
+  },
+  {
+    label: "Wash rooms",
+    key: "wash-rooms",
+    active: false,
+  },
+  {
+    label: "Air Conditioning",
+    key: "air-conditioning",
+    active: false,
+  },
+];
+
+export const foodTypeData = [
+  {
+    label: "Vegetarian",
+    key: "vegetarian",
+    active: false,
+  },
+  {
+    label: "Non Vegetarian",
+    key: "non-vegetarian",
+    active: false,
+  },
+  {
+    label: "Outside Food Allowed",
+    key: "outside-food-allowed",
+    active: false,
+  },
+  {
+    label: "Food preparation facility",
+    key: "food-preparation-facility",
+    active: false,
+  },
+  {
+    label: "Food available on order",
+    key: "food-available-on-order",
+    active: false,
+  },
+];
+
+export const beverageData = [
+  {
+    label: "Beverage available on order.",
+    key: "beverage-available-on-order.",
+    active: false,
+  },
+  {
+    label: "OutSide Beverage Allowed",
+    key: "outSide-beverage-allowed",
+    active: false,
+  },
+  {
+    label: "Smoking Allowed",
+    key: "smoking-allowed",
+    active: false,
+  },
+];
+
+export const eventSpaceBookingTypeData = [
+  {
+    label: "Per Hour",
+    key: "per-hour",
+    active: false,
+  },
+  {
+    label: "Per Day",
+    key: "per-day",
+    active: false,
+  },
+];
+
+export const hostelSharingData = [
+  {
+    label: "1",
+    key: "1",
+    active: false,
+  },
+  {
+    label: "2",
+    key: "2",
+    active: false,
+  },
+  {
+    label: "3",
+    key: "3",
+    active: false,
+  },
+  {
+    label: "4",
+    key: "4",
+    active: false,
+  },
+  {
+    label: "5",
+    key: "5",
+    active: false,
+  },
+  {
+    label: "5+",
+    key: "5+",
+    active: false,
+  },
+];
+
+export const selectHostelRoomsData = [
+  {
+    label: "1",
+    value: "1",
+    key: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+    key: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+    key: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+    key: "4",
+  },
+  {
+    label: "5",
+    value: "5",
+    key: "5",
+  },
+  {
+    label: "6",
+    value: "6",
+    key: "6",
+  },
+  {
+    label: "7",
+    value: "7",
+    key: "7",
+  },
+  {
+    label: "8",
+    value: "8",
+    key: "8",
+  },
+  {
+    label: "9",
+    value: "9",
+    key: "9",
+  },
+  {
+    label: "10",
+    value: "10",
+    key: "10",
+  },
+  {
+    label: "10+",
+    value: "10+",
+    key: "10+",
+  },
+];
+
+export const hostelAvailabilityData = [
+  {
+    label: "Ready To Book",
+    key: "ready-to-book",
+    active: false,
+  },
+];
+
+export const foodDetailsData = [
+  {
+    label: "Vegetarian",
+    key: "vegetarian",
+    active: false,
+  },
+  {
+    label: "Non-Vegetarian",
+    key: "non-vegetarian",
+    active: false,
+  },
+];
+
+export const hostelRoomAmenitiesData = [
+  {
+    label: "AC",
+    key: "ac",
+    active: false,
+  },
+  {
+    label: "TV ",
+    key: "tv",
+    active: false,
+  },
+  {
+    label: "Fan",
+    key: "fan",
+    active: false,
+  },
+  {
+    label: "Lights",
+    key: "lights",
+    active: false,
+  },
+  {
+    label: "Beds With Mattress",
+    key: "beds-with-mattress",
+    active: false,
+  },
+  {
+    label: "Wardrobe",
+    key: "wardrobe",
+    active: false,
+  },
+  {
+    label: "Geyser",
+    key: "geyser",
+    active: false,
+  },
+  {
+    label: "Induction Stove",
+    key: "induction-stove",
+    active: false,
+  },
+  {
+    label: "Fridge",
+    key: "fridge",
+    active: false,
+  },
+  {
+    label: "Work Table and Chairs",
+    key: "work-table-and-chairs",
+    active: false,
+  },
+  {
+    label: "Intercom Facilities ",
+    key: "intercom-facilities",
+    active: false,
+  },
+  {
+    label: "Guest Chair",
+    key: "guest-chair",
     active: false,
   },
 ];

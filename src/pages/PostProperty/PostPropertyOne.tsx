@@ -5,6 +5,8 @@ import {
   transationTypeData,
   genderData,
   transationTypeforParkingData,
+  eventSpaceFeaturesData,
+  evnetTypeData,
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -16,6 +18,7 @@ import { AutoComplete } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { postpropertyAction } from "./redux/action";
 import { Button, message } from "antd";
+import PropChipWithCheckBox from "../../components/Property/PropChipWithCheckBox/PropChipWithCheckBox";
 
 type stepOneProps = {
   current: any;
@@ -40,6 +43,10 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   const [parkingTransation, setParkingTransation] = useState(
     transationTypeforParkingData
   );
+  const [eventSpaceFeatures, setEventSpaceFeatures] = useState(
+    eventSpaceFeaturesData
+  );
+  const [eventType, setEventType] = useState(evnetTypeData);
   const [stepOneData, setStepOneData] = useState({
     city: "",
     building_name: "",
@@ -57,12 +64,33 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     gender: "",
     parking_transation_type: "",
     parking_name: "",
+    event_type: "",
+    other_evnet_type: "",
+    hallone_seating: "",
+    hallone_floating: "",
+    halltwo_seating: "",
+    halltwo_floating: "",
+    hallthree_seating: "",
+    hallthree_floating: "",
+    hallfour_seating: "",
+    hallfour_floating: "",
+    lawnone_seating: "",
+    lawnone_floating: "",
+    lawntwo_seating: "",
+    lawntwo_floating: "",
+    lawnthree_seating: "",
+    lawnthree_floating: "",
+    lawnfour_seating: "",
+    lawnfour_floating: "",
   });
   const otherStepOneData = useMemo(
     () => ({
       location: [currentPosition?.lat, currentPosition?.lng],
+      eaventspace_features: eventSpaceFeatures.filter(
+        (item: any) => item.active === true
+      ),
     }),
-    [currentPosition]
+    [currentPosition, eventSpaceFeatures]
   );
 
   const totalStepOneData = { ...stepOneData, ...otherStepOneData };
@@ -154,6 +182,28 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     });
   };
 
+  const activateEventspaceFeature = (key: any) => {
+    const shallowCopy = [...eventSpaceFeatures];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setEventSpaceFeatures(updatedArry);
+  };
+
+  const activateEventType = (key: any) => {
+    const shallowCopy = [...eventType];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key && !item.active,
+    }));
+    setEventType(updatedArry);
+    setStepOneData({
+      ...stepOneData,
+      event_type: key,
+    });
+  };
+
   return (
     <div>
       <SectionHoc title="I Want to">
@@ -221,7 +271,12 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       </SectionHoc>
       <div
         style={{
-          display: stepOneData.property_type === "parking" ? "none" : "block",
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "hostel"
+              ? "none"
+              : "block",
         }}
       >
         <div
@@ -244,27 +299,28 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
         </div>
         <hr />
       </div>
-      {stepOneData.iwant === "find-a-flatemate" && (
-        <SectionHoc title="Gender Type">
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {gender?.map((item: any, i) => {
-              return (
-                <Chip
-                  item={item}
-                  key={i}
-                  onClick={() => {
-                    setGender(activateItemByKey(gender, item.key));
-                    setStepOneData({
-                      ...stepOneData,
-                      gender: item.key,
-                    });
-                  }}
-                />
-              );
-            })}
-          </div>
-        </SectionHoc>
-      )}
+      {stepOneData.iwant === "find-a-flatemate" ||
+        (stepOneData.property_type === "hostel" && (
+          <SectionHoc title="Gender Type">
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {gender?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setGender(activateItemByKey(gender, item.key));
+                      setStepOneData({
+                        ...stepOneData,
+                        gender: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </SectionHoc>
+        ))}
       {stepOneData.property_type === "parking" ? (
         <>
           <SectionHoc title="Transaction Type">
@@ -289,6 +345,10 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
             </div>
           </SectionHoc>
         </>
+      ) : stepOneData.property_type === "event-spaces" ? (
+        <></>
+      ) : stepOneData.property_type === "hostel" ? (
+        <></>
       ) : (
         <>
           <SectionHoc title="Transaction Type">
@@ -316,6 +376,288 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       )}
 
       {/* laocality */}
+      {stepOneData.property_type === "event-spaces" && (
+        <div className="eventspace__features_container">
+          <h6 className="property__title">Event Space Features</h6>
+          <div className="eventspace__features_wrapper">
+            {eventSpaceFeatures.map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activateEventspaceFeature(item.key)}
+              />
+            ))}
+          </div>
+          <hr />
+        </div>
+      )}
+
+      {stepOneData.property_type === "event-spaces" && (
+        <div className="eventspace__type_container">
+          <h6 className="property__title">Event Type</h6>
+          <div className="evnetspace__type_wrapper">
+            {eventType.map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activateEventType(item.key)}
+              />
+            ))}
+          </div>
+          <div>
+            <PropInput
+              placeholder="Others"
+              value={stepOneData.other_evnet_type}
+              type="text"
+              onChange={(e: any) => {
+                setStepOneData({
+                  ...stepOneData,
+                  other_evnet_type: e.target.value,
+                });
+              }}
+            />
+          </div>
+          <hr />
+        </div>
+      )}
+
+      {stepOneData.property_type === "event-spaces" && (
+        <div className="event__areatype_container">
+          <h6 className="property__title">Area Type</h6>
+          <div className="indoor__container">
+            <h6>Indoor</h6>
+            <hr />
+            <div className="event__areatype_hallone_container">
+              <h6>Hall 1</h6>
+              <div className="hall__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.hallone_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallone_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.hallone_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallone_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="evnet__areatype_halltwo_container">
+              <h6>Hall 2</h6>
+              <div className="hall__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.halltwo_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      halltwo_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.halltwo_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      halltwo_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="evnet__areatype_hallthree_container">
+              <h6>Hall 3</h6>
+              <div className="hall__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.hallthree_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallthree_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.hallthree_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallthree_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="evnet__areatype_hallfour_container">
+              <h6>Hall 4</h6>
+              <div className="hall__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.hallfour_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallfour_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.hallfour_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      hallfour_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+          </div>
+          <div className="outdoor__conyainer">
+            <h6>Outdoor</h6>
+            <hr />
+            <div className="event__areatype_lawnone_container">
+              <h6>Lawn 1</h6>
+              <div className="lawn__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.lawnone_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnone_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.lawnone_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnone_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="event__areatype_lawntwo_container">
+              <h6>Lawn 2</h6>
+              <div className="lawn__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.lawntwo_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawntwo_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.lawntwo_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawntwo_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="evant__areatype_lawnthree_container">
+              <h6>Lawn 3</h6>
+              <div className="lawn__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.lawnthree_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnthree_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.lawnthree_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnthree_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="event__areatype_lawnfour_container">
+              <h6>Lawn 4</h6>
+              <div className="lawn__wrapper">
+                <PropInput
+                  placeholder="Seating"
+                  value={stepOneData.lawnfour_seating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnfour_seating: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Floating"
+                  value={stepOneData.lawnfour_floating}
+                  type="text"
+                  onChange={(e: any) => {
+                    setStepOneData({
+                      ...stepOneData,
+                      lawnfour_floating: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="prop__location">
         <h5 className="prop__title">Property Location</h5>

@@ -33,6 +33,18 @@ import {
   selectChangingRoomData,
   selectWashRoomData,
   playGroundAvailabilityData,
+  decorationData,
+  djData,
+  photoShootData,
+  eventSpacingAmenitiesData,
+  foodTypeData,
+  beverageData,
+  eventSpaceBookingTypeData,
+  hostelSharingData,
+  selectHostelRoomsData,
+  hostelAvailabilityData,
+  foodDetailsData,
+  hostelRoomAmenitiesData,
 } from "./helper/PostPropertyData";
 import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
@@ -99,6 +111,23 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const [playGroundAvailability, setPlayGroundAvailability] = useState(
     playGroundAvailabilityData
   );
+  const [decoration, setDecoration] = useState(decorationData);
+  const [dj, setDj] = useState(djData);
+  const [photoShoots, setPhotoShoots] = useState(photoShootData);
+  const [eventSpacingAmenities, setEventSpacingAmenities] = useState(
+    eventSpacingAmenitiesData
+  );
+  const [foodType, setFoodType] = useState(foodTypeData);
+  const [beverages, setBeverages] = useState(beverageData);
+  const [bookingType, setBookingType] = useState(eventSpaceBookingTypeData);
+  const [hostelSharing, setHostelSharing] = useState(hostelSharingData);
+  const [hostelAvailability, setHostelAvailability] = useState(
+    hostelAvailabilityData
+  );
+  const [foodDetails, setFoodDetails] = useState(foodDetailsData);
+  const [hostelRoomAmenities, setHostelRoomAmenities] = useState(
+    hostelRoomAmenitiesData
+  );
   const [stepTwoData, setStepTwoData] = useState({
     builtup_area: "",
     carpet_area: "",
@@ -143,6 +172,17 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     ground_area_units: "",
     ground_seating_capacity: "",
     ground_seating_units: "",
+    ac_rooms: "",
+    non_ac_rooms: "",
+    event_spacing_car_parking: "",
+    event_spacing_2wheel_parking: "",
+    event_spacing_visitor_parking: "",
+    event_spacing_wallet_parking: "",
+    booking_type: "",
+    hotel_sharing: "",
+    rooms_on_floor: "",
+    hostel_room_area: "",
+    hostel_room_units: "",
   });
 
   const dispatch = useDispatch();
@@ -169,6 +209,18 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       visito_parking: visitorCount[0].count,
       car_parking: parkingConut[0].count,
       parking_rooms: parkingRooms.filter((item: any) => item.active === true),
+      decorations: decoration.filter((item: any) => item.active === true),
+      dj: dj.filter((item: any) => item.active === true),
+      photoshoots: photoShoots.filter((item: any) => item.active === true),
+      event_spacing_amenities: eventSpacingAmenities.filter(
+        (item: any) => item.active === true
+      ),
+      food_type: foodType.filter((item: any) => item.active === true),
+      beverages: beverages.filter((item: any) => item.active === true),
+      fooddetails: foodDetails.filter((item: any) => item.active === true),
+      hostel_room_amenities: hostelRoomAmenities.filter(
+        (item: any) => item.active === true
+      ),
     }),
     [
       otherRooms,
@@ -179,6 +231,13 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       visitorCount,
       parkingConut,
       parkingRooms,
+      dj,
+      photoShoots,
+      eventSpacingAmenities,
+      foodType,
+      beverages,
+      foodDetails,
+      hostelRoomAmenities,
     ]
   );
 
@@ -190,6 +249,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       floor_no: value.value,
     });
   };
+  const handleHostelRoomChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      rooms_on_floor: value.value,
+    });
+  };
 
   const handleOpenGroundChange = (value: {
     value: string;
@@ -198,6 +266,16 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     setStepTwoData({
       ...stepTwoData,
       no_of_open_ground: value.value,
+    });
+  };
+
+  const handleWalletParkingChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      event_spacing_wallet_parking: value.value,
     });
   };
 
@@ -291,6 +369,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       builtup_units: value.value,
     });
   };
+  const HostelRoomAreaChangeHandler = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      hostel_room_units: value.value,
+    });
+  };
 
   const groundAreaChangeHandler = (value: {
     value: string;
@@ -349,6 +436,59 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     setParkingRooms(updatedArry);
   };
 
+  const activeCheckboxFordecorations = (key: any) => {
+    const shallowCopy = [...decoration];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setDecoration(updatedArry);
+  };
+
+  const activeCheckboxFordj = (key: any) => {
+    const shallowCopy = [...dj];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setDj(updatedArry);
+  };
+  const activeCheckboxForPhotoShoots = (key: any) => {
+    const shallowCopy = [...photoShoots];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setPhotoShoots(updatedArry);
+  };
+
+  const activeCheckboxForEventSpacingAmenities = (key: any) => {
+    const shallowCopy = [...eventSpacingAmenities];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setEventSpacingAmenities(updatedArry);
+  };
+
+  const activeCheckboxForFoodTypes = (key: any) => {
+    const shallowCopy = [...foodType];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setFoodType(updatedArry);
+  };
+
+  const activeCheckboxForBeverages = (key: any) => {
+    const shallowCopy = [...beverages];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setBeverages(updatedArry);
+  };
+
   const activeCheckboxpropertyFeatures = (key: any) => {
     const shallowCopy = [...propertyFeatures];
     const updatedArry = shallowCopy.map((item: any) => ({
@@ -356,6 +496,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       active: item.key === key ? !item.active : item.active,
     }));
     setPropertyFeatures(updatedArry);
+  };
+
+  const activeCheckboxhostelAmenities = (key: any) => {
+    const shallowCopy = [...hostelRoomAmenities];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setHostelRoomAmenities(updatedArry);
   };
 
   const activeCheckboxSocietyBuildingFeatures = (key: any) => {
@@ -404,6 +553,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       ...stepTwoData,
       propensity: key,
     });
+  };
+
+  const activeCheckboxFoodDetails = (key: any) => {
+    const shallowCopy = [...foodDetails];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setFoodDetails(updatedArry);
   };
 
   const activeCheckboxProfessionDetails = (key: any) => {
@@ -607,7 +765,11 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           <hr />
         </div>
       )}
-      {!(stepOneData.property_type === "play-ground") && (
+      {!(
+        stepOneData.property_type === "play-ground" ||
+        stepOneData.property_type === "event-spaces" ||
+        stepOneData.property_type === "hostel"
+      ) && (
         <SectionHoc title="Property Details">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {stepOneData.property_sub_type === "studio-appartment"
@@ -670,9 +832,37 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </SectionHoc>
       )}
 
+      {stepOneData.property_type === "hostel" && (
+        <div>
+          <h6 className="property__title">Hostel Details</h6>
+          <SectionHoc title="Sharing Type">
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {hostelSharing?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setHostelSharing(
+                        activateItemByKey(hostelSharing, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        hotel_sharing: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </SectionHoc>
+        </div>
+      )}
+
       {!(
         stepOneData.property_type === "parking" ||
-        stepOneData.property_type === "play-ground"
+        stepOneData.property_type === "play-ground" ||
+        stepOneData.property_type === "event-spaces"
       ) && (
         <SectionHoc title="Balconies">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -696,7 +886,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       )}
       {!(
         stepOneData.property_type === "parking" ||
-        stepOneData.property_type === "play-ground"
+        stepOneData.property_type === "play-ground" ||
+        stepOneData.property_type === "event-spaces"
       ) && (
         <SectionHoc title="Bath Rooms">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -739,238 +930,395 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           </div>
         </SectionHoc>
       )}
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-        <PropInput
-          placeholder="Type No of Floors"
-          value={stepTwoData.total_floors}
-          type="number"
-          onChange={(e: any) => {
-            setStepTwoData({
-              ...stepTwoData,
-              total_floors: e.target.value,
-            });
-          }}
-        />
-        <Select
-          labelInValue
-          defaultValue={{
-            label: "Select Fllor No ",
-            value: "",
-            key: "",
-          }}
-          style={{ width: 160, margin: 10 }}
-          onChange={handleChange}
-          options={selectFloorData}
-        />
-        <Select
-          labelInValue
-          defaultValue={{
-            label: "Property Age",
-            value: "",
-            key: "",
-          }}
-          style={{ width: 160, margin: 10 }}
-          onChange={propertyAgeChangeHandle}
-          options={selectFloorData}
-        />
-        {!(stepOneData.property_type === "play-ground") && (
-          <Select
-            labelInValue
-            defaultValue={{
-              label: "Select Facing",
-              value: "",
-              key: "",
-            }}
-            style={{ width: 160, margin: 10 }}
-            onChange={propertyFacingChangeHandler}
-            options={facingData}
-          />
-        )}
-      </div>
-      <hr />
-      <div className="other__rooms_container">
-        {stepOneData.property_type === "parking"
-          ? parkingRooms.map((item) => (
-              <PropChipWithCheckBox
-                item={item}
-                key={item.key}
-                onChange={() => activeCheckboxForParkingRooms(item.key)}
+      {!(
+        stepOneData.property_type === "event-spaces" ||
+        stepOneData.property_type === "hostel"
+      ) && (
+        <>
+          <div
+            style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+          >
+            <PropInput
+              placeholder="Type No of Floors"
+              value={stepTwoData.total_floors}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  total_floors: e.target.value,
+                });
+              }}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Select Fllor No ",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={handleChange}
+              options={selectFloorData}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Property Age",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={propertyAgeChangeHandle}
+              options={selectFloorData}
+            />
+            {!(stepOneData.property_type === "play-ground") && (
+              <Select
+                labelInValue
+                defaultValue={{
+                  label: "Select Facing",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 10 }}
+                onChange={propertyFacingChangeHandler}
+                options={facingData}
               />
-            ))
-          : otherRooms.map((item) => (
-              <PropChipWithCheckBox
-                item={item}
-                key={item.key}
-                onChange={() => activeCheckboxForOtherRooms(item.key)}
-              />
-            ))}
-      </div>
-      <hr />
-      <SectionHoc title="Availability">
-        {stepOneData.iwant === "find-a-flatemate" ? (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {availabilityForFindaFlatemate?.map((item: any, i) => {
-              return (
-                <Chip
-                  item={item}
-                  key={i}
-                  onClick={() => {
-                    setAvailabilityForFindaFlatemate(
-                      activateItemByKey(availabilityForFindaFlatemate, item.key)
-                    );
-                    setStepTwoData({
-                      ...stepTwoData,
-                      availablity: item.key,
-                    });
-                  }}
-                />
-              );
-            })}
-            <DatePicker onChange={onChange} />
+            )}
           </div>
-        ) : stepOneData.property_type === "parking" ? (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {parkingAvailability?.map((item: any, i) => {
-              return (
-                <Chip
-                  item={item}
-                  key={i}
-                  onClick={() => {
-                    setParkingAvailability(
-                      activateItemByKey(parkingAvailability, item.key)
-                    );
-                    setStepTwoData({
-                      ...stepTwoData,
-                      availablity: item.key,
-                    });
-                  }}
-                />
-              );
-            })}
-            <DatePicker onChange={onChange} />
+          <hr />
+        </>
+      )}
+
+      {stepOneData.property_type === "hostel" && (
+        <div className="hostel__room_container">
+          <div className="hostel__room_wrapper">
+            <PropInput
+              placeholder="Type No of Floors"
+              value={stepTwoData.total_floors}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  total_floors: e.target.value,
+                });
+              }}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Rooms on Floor",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={handleHostelRoomChange}
+              options={selectHostelRoomsData}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Property Age",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={propertyAgeChangeHandle}
+              options={selectFloorData}
+            />
           </div>
-        ) : stepOneData.property_type === "play-ground" ? (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {playGroundAvailability?.map((item: any, i) => {
-              return (
-                <Chip
-                  item={item}
-                  key={i}
-                  onClick={() => {
-                    setPlayGroundAvailability(
-                      activateItemByKey(playGroundAvailability, item.key)
-                    );
-                    setStepTwoData({
-                      ...stepTwoData,
-                      availablity: item.key,
-                    });
-                  }}
-                />
-              );
-            })}
-            <DatePicker onChange={onChange} />
-          </div>
-        ) : (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {availability?.map((item: any, i) => {
-              return (
-                <Chip
-                  item={item}
-                  key={i}
-                  onClick={() => {
-                    setAvailability(activateItemByKey(availability, item.key));
-                    setStepTwoData({
-                      ...stepTwoData,
-                      availablity: item.key,
-                    });
-                  }}
-                />
-              );
-            })}
-            <DatePicker onChange={onChange} />
-          </div>
-        )}
-      </SectionHoc>
-      {stepOneData.iwant === "find-a-flatemate" && (
-        <div className="propensity">
-          <h5 className="property__title">Propensity</h5>
-          <div className="propensity__container">
-            <div className="propensity__wrapper">
-              {propensity.map((item: any) => (
+          <hr />
+        </div>
+      )}
+
+      <div
+        className="other__rooms_container"
+        style={{
+          display:
+            stepOneData.property_type === "event-spaces" ? "none" : "block",
+        }}
+      >
+        <div className="other__rooms_wrapper">
+          {stepOneData.property_type === "parking"
+            ? parkingRooms.map((item) => (
                 <PropChipWithCheckBox
                   item={item}
                   key={item.key}
-                  onChange={() => activeCheckboxPropensity(item.key)}
+                  onChange={() => activeCheckboxForParkingRooms(item.key)}
+                />
+              ))
+            : otherRooms.map((item) => (
+                <PropChipWithCheckBox
+                  item={item}
+                  key={item.key}
+                  onChange={() => activeCheckboxForOtherRooms(item.key)}
                 />
               ))}
-            </div>
-            <hr />
-          </div>
-          <div className="somking__container">
-            <Select
-              labelInValue
-              defaultValue={{
-                label: "Smoking",
-                value: false,
-                key: "",
-              }}
-              style={{ width: 160, margin: 10 }}
-              onChange={propertySmokingChangeHandler}
-              options={[
-                {
-                  label: "Yes",
-                  value: true,
-                  key: "yes",
-                },
-                {
-                  label: "No",
-                  value: false,
-                  key: "no",
-                },
-              ]}
-            />
-            <Select
-              labelInValue
-              defaultValue={{
-                label: "Drinking",
-                value: false,
-                key: "",
-              }}
-              style={{ width: 160, margin: 10 }}
-              onChange={propertyDrinkingChangeHandler}
-              options={[
-                {
-                  label: "Yes",
-                  value: true,
-                  key: "yes",
-                },
-                {
-                  label: "No",
-                  value: false,
-                  key: "no",
-                },
-              ]}
-            />
-            <hr />
-          </div>
         </div>
+      </div>
+      <hr />
+      {!(stepOneData.property_type === "event-spaces") && (
+        <SectionHoc title="Availability">
+          {stepOneData.iwant === "find-a-flatemate" ? (
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {availabilityForFindaFlatemate?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setAvailabilityForFindaFlatemate(
+                        activateItemByKey(
+                          availabilityForFindaFlatemate,
+                          item.key
+                        )
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        availablity: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+              <DatePicker onChange={onChange} />
+            </div>
+          ) : stepOneData.property_type === "parking" ? (
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {parkingAvailability?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setParkingAvailability(
+                        activateItemByKey(parkingAvailability, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        availablity: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+              <DatePicker onChange={onChange} />
+            </div>
+          ) : stepOneData.property_type === "play-ground" ? (
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {playGroundAvailability?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setPlayGroundAvailability(
+                        activateItemByKey(playGroundAvailability, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        availablity: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+              <DatePicker onChange={onChange} />
+            </div>
+          ) : stepOneData.property_type === "hostel" ? (
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {hostelAvailability?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setHostelAvailability(
+                        activateItemByKey(hostelAvailability, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        availablity: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+              <DatePicker onChange={onChange} />
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {availability?.map((item: any, i) => {
+                return (
+                  <Chip
+                    item={item}
+                    key={i}
+                    onClick={() => {
+                      setAvailability(
+                        activateItemByKey(availability, item.key)
+                      );
+                      setStepTwoData({
+                        ...stepTwoData,
+                        availablity: item.key,
+                      });
+                    }}
+                  />
+                );
+              })}
+              <DatePicker onChange={onChange} />
+            </div>
+          )}
+        </SectionHoc>
       )}
-      {stepOneData.iwant === "find-a-flatemate" && (
-        <div className="profession__details_container">
-          <h5 className="property__title">Profession Details</h5>
-          <div className="profession_details_wrapper">
-            {professionDetails.map((item: any) => (
+      {stepOneData.property_type === "hostel" && (
+        <div className="food__details__container">
+          <h6 className="property__title">Food Details</h6>
+          <div className="food_details_wrapper">
+            {foodDetails.map((item: any) => (
               <PropChipWithCheckBox
                 item={item}
                 key={item.key}
-                onChange={() => activeCheckboxProfessionDetails(item.key)}
+                onChange={() => activeCheckboxFoodDetails(item.key)}
               />
             ))}
           </div>
           <hr />
         </div>
       )}
-      <div>
+      {stepOneData.iwant === "find-a-flatemate" ||
+        (stepOneData.property_type === "hostel" && (
+          <div className="propensity">
+            <h5 className="property__title">Propensity</h5>
+            <div className="propensity__container">
+              <div className="propensity__wrapper">
+                {propensity.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxPropensity(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="somking__container">
+              <Select
+                labelInValue
+                defaultValue={{
+                  label: "Smoking",
+                  value: false,
+                  key: "",
+                }}
+                style={{ width: 160, margin: 10 }}
+                onChange={propertySmokingChangeHandler}
+                options={[
+                  {
+                    label: "Yes",
+                    value: true,
+                    key: "yes",
+                  },
+                  {
+                    label: "No",
+                    value: false,
+                    key: "no",
+                  },
+                ]}
+              />
+              <Select
+                labelInValue
+                defaultValue={{
+                  label: "Drinking",
+                  value: false,
+                  key: "",
+                }}
+                style={{ width: 160, margin: 10 }}
+                onChange={propertyDrinkingChangeHandler}
+                options={[
+                  {
+                    label: "Yes",
+                    value: true,
+                    key: "yes",
+                  },
+                  {
+                    label: "No",
+                    value: false,
+                    key: "no",
+                  },
+                ]}
+              />
+              <hr />
+            </div>
+          </div>
+        ))}
+      {stepOneData.iwant === "find-a-flatemate" ||
+        (stepOneData.property_type === "hostel" && (
+          <div className="profession__details_container">
+            <h5 className="property__title">Profession Details</h5>
+            <div className="profession_details_wrapper">
+              {professionDetails.map((item: any) => (
+                <PropChipWithCheckBox
+                  item={item}
+                  key={item.key}
+                  onChange={() => activeCheckboxProfessionDetails(item.key)}
+                />
+              ))}
+            </div>
+            <hr />
+          </div>
+        ))}
+
+      {stepOneData.property_type === "hostel" && (
+        <div className="room__area__container">
+          <h6 className="property__title">Room Area</h6>
+          <div className="room__area_wrapper">
+            <PropInput
+              placeholder="Room Area"
+              value={stepTwoData.hostel_room_area}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  hostel_room_area: e.target.value,
+                });
+              }}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "units",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={HostelRoomAreaChangeHandler}
+              options={propertyAraeUnits}
+            />
+          </div>
+          <hr />
+        </div>
+      )}
+      {stepOneData.property_type === "hostel" && (
+        <div className="hostel__room_amenity_container">
+          <h6 className="property__title">Room Amenities</h6>
+          <div className="hostel__room_amenity_wrapper">
+            {hostelRoomAmenities.map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                onChange={() => activeCheckboxhostelAmenities(item.key)}
+              />
+            ))}
+          </div>
+          <hr />
+        </div>
+      )}
+      <div
+        style={{
+          display:
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "hostel"
+              ? "none"
+              : "block",
+        }}
+      >
         <h5 className="property__title">Property Area</h5>
         <div className="propertyarea__container">
           {stepOneData.property_type === "parking" ? (
@@ -1162,7 +1510,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       </div>
       {!(
         stepOneData.property_type === "parking" ||
-        stepOneData.property_type === "play-ground"
+        stepOneData.property_type === "play-ground" ||
+        stepOneData.property_type === "event-spaces" ||
+        stepOneData.property_type === "hostel"
       ) && (
         <SectionHoc title="Furnishing Status">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -1281,7 +1631,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         style={{
           display:
             stepOneData.property_type === "parking" ||
-            stepOneData.property_type === "play-ground"
+            stepOneData.property_type === "play-ground" ||
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "hostel"
               ? "none"
               : "block",
         }}
@@ -1315,7 +1667,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         style={{
           display:
             stepOneData.property_type === "parking" ||
-            stepOneData.property_type === "play-ground"
+            stepOneData.property_type === "play-ground" ||
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "hostel"
               ? "none"
               : "block",
         }}
@@ -1336,7 +1690,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         style={{
           display:
             stepOneData.property_type === "parking" ||
-            stepOneData.property_type === "play-ground"
+            stepOneData.property_type === "play-ground" ||
+            stepOneData.property_type === "event-spaces"
               ? "none"
               : "block",
         }}
@@ -1355,7 +1710,11 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       <div
         className="parking"
         style={{
-          display: stepOneData.property_type === "parking" ? "none" : "block",
+          display:
+            stepOneData.property_type === "parking" ||
+            stepOneData.property_type === "event-spaces"
+              ? "none"
+              : "block",
         }}
       >
         <h5 className="property__title">Parking</h5>
@@ -1401,7 +1760,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         style={{
           display:
             stepOneData.property_type === "parking" ||
-            stepOneData.property_type === "play-ground"
+            stepOneData.property_type === "play-ground" ||
+            stepOneData.property_type === "event-spaces"
               ? "none"
               : "block",
         }}
@@ -1425,7 +1785,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         style={{
           display:
             stepOneData.property_type === "parking" ||
-            stepOneData.property_type === "play-ground"
+            stepOneData.property_type === "play-ground" ||
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "hostel"
               ? "none"
               : "block",
         }}
@@ -1456,6 +1818,213 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           />
         </div>
       </div>
+      {stepOneData.property_type === "event-spaces" && (
+        <div className="event__spaces__steptwo_container">
+          <div className="venue__amenities_container">
+            <h6 className="property__title">Venue Amenities</h6>
+            <div className="room__details_container">
+              <h6>Room Details</h6>
+              <div className="details_wrapper">
+                <PropInput
+                  placeholder="AC Rooms"
+                  value={stepTwoData.ac_rooms}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      ac_rooms: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="Non AC Rooms"
+                  value={stepTwoData.non_ac_rooms}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      non_ac_rooms: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <hr />
+            </div>
+            <div className="decoration__container">
+              <h6>Decoration</h6>
+              <div className="details_wrapper">
+                {decoration.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxFordecorations(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="dj__container">
+              <h6>DJ</h6>
+              <div className="details_wrapper">
+                {dj.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxFordj(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="photoshoot__container">
+              <h6>Photoshoot</h6>
+              <div className="details_wrapper">
+                {photoShoots.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxForPhotoShoots(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="amenities__container">
+              <div className="details_wrapper">
+                {eventSpacingAmenities.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() =>
+                      activeCheckboxForEventSpacingAmenities(item.key)
+                    }
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="food__type_container">
+              <h6 className="property__title">Food Type</h6>
+              <div className="details_wrapper">
+                {foodType.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxForFoodTypes(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="beverage__container">
+              <h6 className="property__title">Beverage Details</h6>
+              <div className="details_wrapper">
+                {beverages.map((item: any) => (
+                  <PropChipWithCheckBox
+                    item={item}
+                    key={item.key}
+                    onChange={() => activeCheckboxForBeverages(item.key)}
+                  />
+                ))}
+              </div>
+              <hr />
+            </div>
+            <div className="eventspacing__parking__container">
+              <h6 className="property__title">Parking</h6>
+              <div className="details_wrapper">
+                <PropInput
+                  placeholder="No.of Car Parking"
+                  value={stepTwoData.event_spacing_car_parking}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      event_spacing_car_parking: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="No.of 2 Wheel Parking"
+                  value={stepTwoData.event_spacing_2wheel_parking}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      event_spacing_2wheel_parking: e.target.value,
+                    });
+                  }}
+                />
+                <PropInput
+                  placeholder="No.of Visitor Parking"
+                  value={stepTwoData.event_spacing_visitor_parking}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      event_spacing_visitor_parking: e.target.value,
+                    });
+                  }}
+                />
+                <div className="play__ground_details_select_container">
+                  <label
+                    style={{ margin: 0, fontWeight: 700 }}
+                    htmlFor="walletparkingSelect"
+                  >
+                    Wallet Parking
+                  </label>
+                  <Select
+                    id="walletparkingSelect"
+                    labelInValue
+                    defaultValue={{
+                      label: "Wallet Parking",
+                      value: "",
+                      key: "",
+                    }}
+                    style={{ width: 160, margin: 5, borderRadius: 25 }}
+                    onChange={handleWalletParkingChange}
+                    options={[
+                      {
+                        label: "Yes",
+                        value: "Yes",
+                        key: "yes",
+                      },
+                      {
+                        label: "No",
+                        value: "No",
+                        key: "no",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+          <div className="booking__type__container">
+            <SectionHoc title="Booking Type">
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
+                {bookingType?.map((item: any, i) => {
+                  return (
+                    <Chip
+                      item={item}
+                      key={i}
+                      onClick={() => {
+                        setBookingType(
+                          activateItemByKey(bookingType, item.key)
+                        );
+                        setStepTwoData({
+                          ...stepTwoData,
+                          booking_type: item.key,
+                        });
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            </SectionHoc>
+          </div>
+        </div>
+      )}
       <div style={{ marginTop: 24 }}>
         {current < steps.length - 1 && (
           <Button

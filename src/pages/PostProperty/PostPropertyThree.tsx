@@ -4,6 +4,7 @@ import {
   proximityFeaturesData,
   propertyDocumentsData,
   imgCategory,
+  playgroundfeaturesData,
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -50,6 +51,9 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   const [propertyDocuments, setPropertyDocuments] = useState(
     propertyDocumentsData
   );
+  const [playgroundFeatures, setPlaygroundFeatures] = useState(
+    playgroundfeaturesData
+  );
   const [stepThreeData, setStepThreeData] = useState({
     ownership: "",
     negotiable: false,
@@ -70,6 +74,19 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     price_per_sharing: "",
     food_charges: false,
     booking_amount: "",
+    hourly_booking: "",
+    per_day_booking: "",
+    monthly_subcription: "",
+    other_charges: "",
+    event_spacing_price_per_hour: "",
+    event_spacing_price_per_day: "",
+    event_spacing_food_per_plate: "",
+    event_spacing_decoration: "",
+    event_spacing_photoshoot: "",
+    event_spacing_dj: "",
+    event_spacing_booking: "",
+    event_spacing_other: "",
+    advance_deposi: "",
   });
 
   const totalData = useSelector(
@@ -94,8 +111,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
       propertyy_document: propertyDocuments.filter(
         (item: any) => item.status === true
       ),
+      playground_features: playgroundFeatures.filter(
+        (item: any) => item.active === true
+      ),
     }),
-    [proximatyFeature, imagePreview, propertyDocuments]
+    [proximatyFeature, imagePreview, propertyDocuments, playgroundFeatures]
   );
 
   const hideInputRef: any = useRef();
@@ -143,6 +163,15 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
       active: item.key === key ? !item.active : item.active,
     }));
     setProximatyFeature(updatedArry);
+  };
+
+  const activatePlaygroundFeature = (key: any) => {
+    const shallowCopy = [...playgroundFeatures];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setPlaygroundFeatures(updatedArry);
   };
 
   const generateAiDescription = async () => {};
@@ -194,7 +223,12 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
 
   return (
     <div>
-      {!(totalData.property_type === "parking") && (
+      {!(
+        totalData.property_type === "parking" ||
+        totalData.property_type === "play-ground" ||
+        totalData.property_type === "event-spaces" ||
+        totalData.property_type === "hostel"
+      ) && (
         <SectionHoc title="Ownership Type">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {ownerShip?.map((item: any, i) => {
@@ -215,7 +249,21 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
           </div>
         </SectionHoc>
       )}
-
+      {totalData.property_type === "play-ground" && (
+        <div className="playground__feature_container">
+          <h6 className="property__title">Play Ground Features</h6>
+          <div className="playgropund__feature_wrapper">
+            {playgroundFeatures.map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activatePlaygroundFeature(item.key)}
+              />
+            ))}
+          </div>
+          <hr />
+        </div>
+      )}
       <div
         className="price__details"
         style={{
@@ -257,6 +305,185 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
                 }}
               />
             </>
+          ) : totalData.property_type === "play-ground" ? (
+            <>
+              <PropInput
+                placeholder="Hourly booking"
+                value={stepThreeData.hourly_booking}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    hourly_booking: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Per day booking"
+                value={stepThreeData.per_day_booking}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    per_day_booking: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Monthly subscription"
+                value={stepThreeData.monthly_subcription}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    monthly_subcription: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Token Amount"
+                value={stepThreeData.token_amount}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    token_amount: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Other Charges"
+                value={stepThreeData.other_charges}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    other_charges: e.target.value,
+                  });
+                }}
+              />
+            </>
+          ) : totalData.property_type === "event-spaces" ? (
+            <>
+              <PropInput
+                placeholder="Per Hour"
+                value={stepThreeData.event_spacing_price_per_hour}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_price_per_hour: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Per Day"
+                value={stepThreeData.event_spacing_price_per_day}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_price_per_day: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Food per Plate"
+                value={stepThreeData.event_spacing_food_per_plate}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_food_per_plate: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Decoration"
+                value={stepThreeData.event_spacing_decoration}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_decoration: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Photoshoot"
+                value={stepThreeData.event_spacing_photoshoot}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_photoshoot: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="DJ"
+                value={stepThreeData.event_spacing_dj}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_dj: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Booking"
+                value={stepThreeData.event_spacing_booking}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_booking: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Booking"
+                value={stepThreeData.event_spacing_other}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    event_spacing_other: e.target.value,
+                  });
+                }}
+              />
+            </>
+          ) : totalData.property_type === "hostel" ? (
+            <>
+              <PropInput
+                placeholder="Price per Sharing"
+                value={stepThreeData.price_per_sharing}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    price_per_sharing: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Mainatinace per Month"
+                value={stepThreeData.maintainance_per_month}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    maintainance_per_month: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Token Amount"
+                value={stepThreeData.token_amount}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    token_amount: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Advance Deposit"
+                value={stepThreeData.advance_deposi}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    advance_deposi: e.target.value,
+                  });
+                }}
+              />
+            </>
           ) : (
             <>
               <PropInput
@@ -293,7 +520,8 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
           )}
         </div>
         <div className="price__details__checkbox_container">
-          {totalData.iwant === "find-a-flatemate" ? (
+          {totalData.iwant === "find-a-flatemate" ||
+          totalData.property_type === "play-ground" ? (
             <>
               <Checkbox
                 onChange={(e: CheckboxChangeEvent) => {
@@ -324,6 +552,30 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
                 }}
               >
                 Food charges
+              </Checkbox>
+            </>
+          ) : totalData.property_type === "event-spaces" ||
+            totalData.property_type === "hostel" ? (
+            <>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    negotiable: e.target.checked,
+                  });
+                }}
+              >
+                Price Negotiable
+              </Checkbox>
+              <Checkbox
+                onChange={(e: CheckboxChangeEvent) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    all_inclusive_price: e.target.checked,
+                  });
+                }}
+              >
+                All Inclusive Price
               </Checkbox>
             </>
           ) : (
