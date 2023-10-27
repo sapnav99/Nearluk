@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PropertyCard from "../propertycard/PropertyCard";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function Content() {
+type contentProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
+
+export default function Content({
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: contentProps) {
   const [properties, setProperties]: any = useState([]);
-  const [page, setPage] = useState(1);
-  const pageSize = 10;
 
   const allProperty = useSelector(
     (state: any) => state?.homeReducer?.allProperty
   );
 
-  console.log("allproperties =>", allProperty);
-
   useEffect(() => {
-    const fetchMoreItems = () => {
-      const newItems: any = allProperty.slice(
-        (page - 1) * pageSize,
-        page * pageSize
-      );
-      setProperties([...properties, ...newItems]);
-    };
-    fetchMoreItems();
-  }, [page]);
+    if (allProperty)
+      setProperties((prevProperties: any) => [
+        ...prevProperties,
+        ...allProperty,
+      ]);
+  }, [allProperty]);
 
   return (
     <section>
@@ -347,8 +350,10 @@ export default function Content() {
 
                   <InfiniteScroll
                     dataLength={properties.length}
-                    next={() => setPage((page) => page + 1)}
-                    hasMore={page * pageSize < allProperty?.length}
+                    next={() => {
+                      setPageNumber((pageNumber: any) => pageNumber + 1);
+                    }}
+                    hasMore={(pageNumber - 1) * pageSize < properties?.length}
                     loader={<h4>loadding...</h4>}
                   >
                     <div className="row">

@@ -7,6 +7,8 @@ import {
   transationTypeforParkingData,
   eventSpaceFeaturesData,
   evnetTypeData,
+  coworkingBookingData,
+  coworkingSpaceData,
 } from "./helper/PostPropertyData";
 import SectionHoc from "../../components/Property/SectionHoc";
 import Chip from "../../components/Chip/Chip";
@@ -47,6 +49,9 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     eventSpaceFeaturesData
   );
   const [eventType, setEventType] = useState(evnetTypeData);
+  const [coworkingBooking, setCoworkingBooking] =
+    useState(coworkingBookingData);
+  const [coworkingSpaces, setCoworkingSpaces] = useState(coworkingSpaceData);
   const [stepOneData, setStepOneData] = useState({
     city: "",
     building_name: "",
@@ -89,8 +94,14 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       eaventspace_features: eventSpaceFeatures.filter(
         (item: any) => item.active === true
       ),
+      coworking_booking: coworkingBooking.filter(
+        (item: any) => item.active === true
+      ),
+      coworking_spaces: coworkingSpaces.filter(
+        (item: any) => item.active === true
+      ),
     }),
-    [currentPosition, eventSpaceFeatures]
+    [currentPosition, eventSpaceFeatures, coworkingBooking, coworkingSpaces]
   );
 
   const totalStepOneData = { ...stepOneData, ...otherStepOneData };
@@ -191,6 +202,24 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     setEventSpaceFeatures(updatedArry);
   };
 
+  const activateCoworkingBooking = (key: any) => {
+    const shallowCopy = [...coworkingBooking];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setCoworkingBooking(updatedArry);
+  };
+
+  const activateCoworkingSpaces = (key: any) => {
+    const shallowCopy = [...coworkingSpaces];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setCoworkingSpaces(updatedArry);
+  };
+
   const activateEventType = (key: any) => {
     const shallowCopy = [...eventType];
     const updatedArry = shallowCopy.map((item: any) => ({
@@ -228,53 +257,88 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
           })}
         </div>
       </SectionHoc>
-      <SectionHoc title="Property Type">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {ptype?.map((item: any, i) => {
-            return (
-              <Chip
+      {ptype.length > 0 && (
+        <SectionHoc title="Property Type">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {ptype?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setSubptype(item?.child);
+                    setPtype(activateItemByKey(ptype, item.key));
+                    setStepOneData({
+                      ...stepOneData,
+                      property_type: item.key,
+                      property_sub_type: "",
+                    });
+                  }}
+                />
+              );
+            })}
+          </div>
+        </SectionHoc>
+      )}
+      {subptype.length > 0 && (
+        <SectionHoc title="">
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {subptype?.map((item: any, i) => {
+              return (
+                <Chip
+                  item={item}
+                  key={i}
+                  onClick={() => {
+                    setSubptype(item?.child);
+                    setSubptype(activateItemByKey(subptype, item.key));
+                    setStepOneData({
+                      ...stepOneData,
+                      property_sub_type: item.key,
+                    });
+                  }}
+                />
+              );
+            })}
+          </div>
+        </SectionHoc>
+      )}
+
+      {stepOneData.property_type === "co-working-space" && (
+        <div className="coworking__booking_container">
+          <div className="coworking__booking_wrapper">
+            {coworkingBooking.map((item: any) => (
+              <PropChipWithCheckBox
                 item={item}
-                key={i}
-                onClick={() => {
-                  setSubptype(item?.child);
-                  setPtype(activateItemByKey(ptype, item.key));
-                  setStepOneData({
-                    ...stepOneData,
-                    property_type: item.key,
-                    property_sub_type: "",
-                  });
-                }}
+                key={item.key}
+                onChange={() => activateCoworkingBooking(item.key)}
               />
-            );
-          })}
+            ))}
+          </div>
+          <hr />
         </div>
-      </SectionHoc>
-      <SectionHoc title="">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {subptype?.map((item: any, i) => {
-            return (
-              <Chip
+      )}
+      {stepOneData.property_type === "co-working-space" && (
+        <div className="coworking__spaces__container">
+          <h6 className="property__title">Co-Working Space Details</h6>
+          <div className="coworking__spaces__wrapper">
+            {coworkingSpaces.map((item: any) => (
+              <PropChipWithCheckBox
                 item={item}
-                key={i}
-                onClick={() => {
-                  setSubptype(item?.child);
-                  setSubptype(activateItemByKey(subptype, item.key));
-                  setStepOneData({
-                    ...stepOneData,
-                    property_sub_type: item.key,
-                  });
-                }}
+                key={item.key}
+                onChange={() => activateCoworkingSpaces(item.key)}
               />
-            );
-          })}
+            ))}
+          </div>
+          <hr />
         </div>
-      </SectionHoc>
+      )}
       <div
         style={{
           display:
             stepOneData.property_type === "parking" ||
             stepOneData.property_type === "event-spaces" ||
-            stepOneData.property_type === "hostel"
+            stepOneData.property_type === "hostel" ||
+            stepOneData.property_type === "co-working-space"
               ? "none"
               : "block",
         }}
@@ -348,6 +412,8 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       ) : stepOneData.property_type === "event-spaces" ? (
         <></>
       ) : stepOneData.property_type === "hostel" ? (
+        <></>
+      ) : stepOneData.property_type === "co-working-space" ? (
         <></>
       ) : (
         <>
@@ -669,7 +735,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
                 value: item?.city,
               }))}
               // options={options}
-              style={{ width: 200, margin: "10px" }}
+              style={{ width: 218, margin: "10px" }}
               onSearch={(text) => setSearchCity(text)}
               placeholder="Select City"
               allowClear={false}
@@ -679,7 +745,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
           <div style={{ margin: "10px" }}>
             <AutoComplete
               options={options}
-              style={{ width: 200, margin: "10px" }}
+              style={{ width: 218, margin: "10px" }}
               onSearch={(text) => setSeachLocality(text)}
               placeholder="Select Locality"
               allowClear={false}
@@ -690,7 +756,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
               options={stateSearchData?.map((item: any) => ({
                 value: item?.state,
               }))}
-              style={{ width: 200, margin: "10px" }}
+              style={{ width: 218, margin: "10px" }}
               onSearch={(text) => setSearchState(text)}
               placeholder="Select State"
               allowClear={false}

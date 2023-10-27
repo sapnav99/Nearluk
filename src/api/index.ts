@@ -8,7 +8,14 @@ const userPropDetailsById = (payload: any) => {
   return api.get(`/property/one?${params}`);
 };
 const signup = (payload: Object) => api.post(`/users/signup`, payload);
-const getAllProductApi = () => api.get("/property/getAllProperty");
+const getAllProductApi = (payload: any) => {
+  const params = new URLSearchParams();
+  params.append("pageNumber", payload.pageNumber);
+  params.append("pageSize", payload.pageSize);
+
+  // console.log("prams", params.toString());
+  return api.get(`/property/getAllProperty?${params.toString()}`);
+};
 const getNearuDataApi = (payload: any) => {
   const params = new URLSearchParams(payload).toString();
   return api.get(`/property/nearu?${params}`);
@@ -19,10 +26,11 @@ const googleCityAutoComplete = (place: any) => {
   return api.get(`/property/city?${params}`);
 };
 
-const googleLocalityAutoComplete = (place: string) =>
-  api.get(
+const googleLocalityAutoComplete = (place: string) => {
+  return api.get(
     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&key=AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg`
   );
+};
 
 const Apis = {
   login,

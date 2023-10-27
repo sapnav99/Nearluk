@@ -248,18 +248,51 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.food_details_wrapper{
+.food_details_wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
-.room__area_wrapper{
+.room__area_wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
-.hostel__room_amenity_wrapper{
+.hostel__room_amenity_wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
+.coworking__booking_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__spaces__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__spaces__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__availability_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__amenities_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.add__more_button {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #439977;
+  float: right;
 }

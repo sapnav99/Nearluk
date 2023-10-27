@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Content from "../../components/content/Content";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Sectionbar from "../../components/sectionbar/Sectionbar";
@@ -9,17 +9,13 @@ import "./index.css";
 import useExternalScripts from "../../hooks/useExternalScripts";
 
 const Home = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const pageSize = 10;
   useExternalScripts({ urls: ["js/owl.carousel.min.js"] });
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(allpropdataactions.fetchAllProperty([]));
-  }, []);
-
-  const allProperty = useSelector(
-    (state: any) => state?.homeReducer?.allProperty
-  );
-
-  console.log(allProperty);
+    dispatch(allpropdataactions.fetchAllProperty({ pageNumber, pageSize }));
+  }, [pageNumber]);
 
   const loader: any = useSelector(
     (state: any) => state?.homeReducer?.allPropertyLoader
@@ -51,7 +47,11 @@ const Home = () => {
     <div>
       <SearchBar />
       <Sectionbar />
-      <Content />
+      <Content
+        pageNumber={pageNumber}
+        pageSize={pageSize}
+        setPageNumber={setPageNumber}
+      />
     </div>
   );
 };

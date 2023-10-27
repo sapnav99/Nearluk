@@ -87,6 +87,12 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     event_spacing_booking: "",
     event_spacing_other: "",
     advance_deposi: "",
+    coworking_space_price_per_hour: "",
+    coworking_space_price_per_day: "",
+    coworking_space_price_per_month: "",
+    coworking_space_price_per_sharing: "",
+    coworking_space_price_per_booking: "",
+    coworking_space_price_per_seating: "",
   });
 
   const totalData = useSelector(
@@ -227,7 +233,8 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         totalData.property_type === "parking" ||
         totalData.property_type === "play-ground" ||
         totalData.property_type === "event-spaces" ||
-        totalData.property_type === "hostel"
+        totalData.property_type === "hostel" ||
+        totalData.property_type === "co-working-space"
       ) && (
         <SectionHoc title="Ownership Type">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -431,7 +438,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
                 }}
               />
               <PropInput
-                placeholder="Booking"
+                placeholder="Other"
                 value={stepThreeData.event_spacing_other}
                 onChange={(e: any) => {
                   setStepThreeData({
@@ -480,6 +487,69 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
                   setStepThreeData({
                     ...stepThreeData,
                     advance_deposi: e.target.value,
+                  });
+                }}
+              />
+            </>
+          ) : totalData.property_type === "co-working-space" ? (
+            <>
+              <PropInput
+                placeholder="Hourly Price"
+                value={stepThreeData.coworking_space_price_per_hour}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_hour: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Price Per Day"
+                value={stepThreeData.coworking_space_price_per_day}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_day: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Per Month"
+                value={stepThreeData.coworking_space_price_per_month}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_month: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Price Per Seating"
+                value={stepThreeData.coworking_space_price_per_sharing}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_sharing: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Booking Amount"
+                value={stepThreeData.coworking_space_price_per_booking}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_booking: e.target.value,
+                  });
+                }}
+              />
+              <PropInput
+                placeholder="Price Per Seating"
+                value={stepThreeData.coworking_space_price_per_seating}
+                onChange={(e: any) => {
+                  setStepThreeData({
+                    ...stepThreeData,
+                    coworking_space_price_per_seating: e.target.value,
                   });
                 }}
               />
@@ -555,7 +625,8 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
               </Checkbox>
             </>
           ) : totalData.property_type === "event-spaces" ||
-            totalData.property_type === "hostel" ? (
+            totalData.property_type === "hostel" ||
+            totalData.property_type === "co-working-space" ? (
             <>
               <Checkbox
                 onChange={(e: CheckboxChangeEvent) => {

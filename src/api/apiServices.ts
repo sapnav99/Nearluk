@@ -6,13 +6,15 @@ const axiosInstance = axios.create({
   baseURL,
   timeout: 60000,
   headers: {
-    "ngrok-skip-browser-warning": true,
+    // "ngrok-skip-browser-warning": true,
+    mode: "cors",
+    "Access-Control-Allow-Origin": "*",
   },
 });
 
-export const setJwtToken = (token: string) => {
-  axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-};
+// export const setJwtToken = (token: string) => {
+//   axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+// };
 
 export const setInterceptor = () => {
   axiosInstance.interceptors.response.use(

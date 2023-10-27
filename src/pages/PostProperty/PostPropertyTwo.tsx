@@ -45,6 +45,7 @@ import {
   hostelAvailabilityData,
   foodDetailsData,
   hostelRoomAmenitiesData,
+  coworkingAmenitiesData,
 } from "./helper/PostPropertyData";
 import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
@@ -128,6 +129,10 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const [hostelRoomAmenities, setHostelRoomAmenities] = useState(
     hostelRoomAmenitiesData
   );
+  const [coworkingAmenities, setCoworkingAmenities] = useState(
+    coworkingAmenitiesData
+  );
+  const [itemToShow, setItemToShow] = useState(6);
   const [stepTwoData, setStepTwoData] = useState({
     builtup_area: "",
     carpet_area: "",
@@ -183,6 +188,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     rooms_on_floor: "",
     hostel_room_area: "",
     hostel_room_units: "",
+    no_of_seats: "",
+    total_seating_capacity: "",
+    seating_capacity_units: "",
   });
 
   const dispatch = useDispatch();
@@ -221,6 +229,9 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       hostel_room_amenities: hostelRoomAmenities.filter(
         (item: any) => item.active === true
       ),
+      coworking_amenities: coworkingAmenities.filter(
+        (item: any) => item.active === true
+      ),
     }),
     [
       otherRooms,
@@ -238,6 +249,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       beverages,
       foodDetails,
       hostelRoomAmenities,
+      coworkingAmenities,
     ]
   );
 
@@ -249,6 +261,17 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       floor_no: value.value,
     });
   };
+
+  const handlecoworkingfloorChange = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      floor_no: value.value,
+    });
+  };
+
   const handleHostelRoomChange = (value: {
     value: string;
     label: React.ReactNode;
@@ -408,6 +431,17 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       carpet_units: value.value,
     });
   };
+
+  const coworkingSeatingAreaChangeHandler = (value: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    setStepTwoData({
+      ...stepTwoData,
+      seating_capacity_units: value.value,
+    });
+  };
+
   const undividedAreaChangeHandler = (value: {
     value: string;
     label: React.ReactNode;
@@ -443,6 +477,15 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       active: item.key === key ? !item.active : item.active,
     }));
     setDecoration(updatedArry);
+  };
+
+  const activeCheckboxForcoworkingAmenities = (key: any) => {
+    const shallowCopy = [...coworkingAmenities];
+    const updatedArry = shallowCopy.map((item: any) => ({
+      ...item,
+      active: item.key === key ? !item.active : item.active,
+    }));
+    setCoworkingAmenities(updatedArry);
   };
 
   const activeCheckboxFordj = (key: any) => {
@@ -768,7 +811,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       {!(
         stepOneData.property_type === "play-ground" ||
         stepOneData.property_type === "event-spaces" ||
-        stepOneData.property_type === "hostel"
+        stepOneData.property_type === "hostel" ||
+        stepOneData.property_type === "co-working-space"
       ) && (
         <SectionHoc title="Property Details">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -862,7 +906,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       {!(
         stepOneData.property_type === "parking" ||
         stepOneData.property_type === "play-ground" ||
-        stepOneData.property_type === "event-spaces"
+        stepOneData.property_type === "event-spaces" ||
+        stepOneData.property_type === "co-working-space"
       ) && (
         <SectionHoc title="Balconies">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -887,7 +932,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       {!(
         stepOneData.property_type === "parking" ||
         stepOneData.property_type === "play-ground" ||
-        stepOneData.property_type === "event-spaces"
+        stepOneData.property_type === "event-spaces" ||
+        stepOneData.property_type === "co-working-space"
       ) && (
         <SectionHoc title="Bath Rooms">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -932,7 +978,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       )}
       {!(
         stepOneData.property_type === "event-spaces" ||
-        stepOneData.property_type === "hostel"
+        stepOneData.property_type === "hostel" ||
+        stepOneData.property_type === "co-working-space"
       ) && (
         <>
           <div
@@ -987,6 +1034,49 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           </div>
           <hr />
         </>
+      )}
+      {stepOneData.property_type === "co-working-space" && (
+        <div className="coworking__sapces_floors_container">
+          <div className="coworking__spaces__wrapper">
+            <PropInput
+              placeholder="Type No of Floors"
+              value={stepTwoData.total_floors}
+              type="number"
+              onChange={(e: any) => {
+                setStepTwoData({
+                  ...stepTwoData,
+                  total_floors: e.target.value,
+                });
+              }}
+            />
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Property On Floor",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={handlecoworkingfloorChange}
+              options={selectFloorData}
+            />
+          </div>
+          <hr />
+          <div>
+            <Select
+              labelInValue
+              defaultValue={{
+                label: "Property Age",
+                value: "",
+                key: "",
+              }}
+              style={{ width: 160, margin: 10 }}
+              onChange={propertyAgeChangeHandle}
+              options={selectFloorData}
+            />
+          </div>
+          <hr />
+        </div>
       )}
 
       {stepOneData.property_type === "hostel" && (
@@ -1145,6 +1235,23 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
               })}
               <DatePicker onChange={onChange} />
             </div>
+          ) : stepOneData.property_type === "co-working-space" ? (
+            <div className="coworking__availability_container">
+              <div className="coworking__availability_wrapper">
+                <PropInput
+                  placeholder="No. of Seatings Available"
+                  value={stepTwoData.no_of_seats}
+                  type="number"
+                  onChange={(e: any) => {
+                    setStepTwoData({
+                      ...stepTwoData,
+                      no_of_seats: e.target.value,
+                    });
+                  }}
+                />
+                <DatePicker onChange={onChange} />
+              </div>
+            </div>
           ) : (
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               {availability?.map((item: any, i) => {
@@ -1185,7 +1292,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </div>
       )}
       {stepOneData.iwant === "find-a-flatemate" ||
-        (stepOneData.property_type === "hostel" && (
+        stepOneData.property_type === "hostel" ||
+        (stepOneData.property_type === "co-working-space" && (
           <div className="propensity">
             <h5 className="property__title">Propensity</h5>
             <div className="propensity__container">
@@ -1423,6 +1531,53 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                 />
               </div>
             </>
+          ) : stepOneData.property_type === "co-working-space" ? (
+            <>
+              <PropInput
+                placeholder="Carpet Area"
+                value={stepTwoData.carpet_area}
+                type="number"
+                onChange={(e: any) => {
+                  setStepTwoData({
+                    ...stepTwoData,
+                    carpet_area: e.target.value,
+                  });
+                }}
+              />
+              <Select
+                labelInValue
+                defaultValue={{
+                  label: "units",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 10 }}
+                onChange={carpetAreaChangeHandler}
+                options={propertyAraeUnits}
+              />
+              <PropInput
+                placeholder="Total Seating Capacity"
+                value={stepTwoData.total_seating_capacity}
+                type="number"
+                onChange={(e: any) => {
+                  setStepTwoData({
+                    ...stepTwoData,
+                    total_seating_capacity: e.target.value,
+                  });
+                }}
+              />
+              <Select
+                labelInValue
+                defaultValue={{
+                  label: "units",
+                  value: "",
+                  key: "",
+                }}
+                style={{ width: 160, margin: 10 }}
+                onChange={coworkingSeatingAreaChangeHandler}
+                options={propertyAraeUnits}
+              />
+            </>
           ) : (
             <>
               <div className="proparea__values_wrapper">
@@ -1512,7 +1667,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         stepOneData.property_type === "parking" ||
         stepOneData.property_type === "play-ground" ||
         stepOneData.property_type === "event-spaces" ||
-        stepOneData.property_type === "hostel"
+        stepOneData.property_type === "hostel" ||
+        stepOneData.property_type === "co-working-space"
       ) && (
         <SectionHoc title="Furnishing Status">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -1633,7 +1789,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
             stepOneData.property_type === "parking" ||
             stepOneData.property_type === "play-ground" ||
             stepOneData.property_type === "event-spaces" ||
-            stepOneData.property_type === "hostel"
+            stepOneData.property_type === "hostel" ||
+            stepOneData.property_type === "co-working-space"
               ? "none"
               : "block",
         }}
@@ -1669,7 +1826,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
             stepOneData.property_type === "parking" ||
             stepOneData.property_type === "play-ground" ||
             stepOneData.property_type === "event-spaces" ||
-            stepOneData.property_type === "hostel"
+            stepOneData.property_type === "hostel" ||
+            stepOneData.property_type === "co-working-space"
               ? "none"
               : "block",
         }}
@@ -1691,7 +1849,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           display:
             stepOneData.property_type === "parking" ||
             stepOneData.property_type === "play-ground" ||
-            stepOneData.property_type === "event-spaces"
+            stepOneData.property_type === "event-spaces" ||
+            stepOneData.property_type === "co-working-space"
               ? "none"
               : "block",
         }}
@@ -1755,6 +1914,31 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         </div>
         <hr />
       </div>
+      {stepOneData.property_type === "co-working-space" ? (
+        <div className="coworking__amenities_container">
+          <h6 className="property__title">Add Amenities</h6>
+          <div className="coworking__amenities_wrapper">
+            {coworkingAmenities.slice(0, itemToShow).map((item: any) => (
+              <PropChipWithCheckBox
+                item={item}
+                key={item.key}
+                onChange={() => activeCheckboxForcoworkingAmenities(item.key)}
+              />
+            ))}
+          </div>
+          {itemToShow < coworkingAmenities.length && (
+            <p
+              className="add__more_button"
+              onClick={() => setItemToShow(coworkingAmenities.length)}
+            >
+              Add More+..
+            </p>
+          )}
+          <hr />
+        </div>
+      ) : (
+        <></>
+      )}
       <div
         className="type__of_floor"
         style={{
@@ -1787,7 +1971,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
             stepOneData.property_type === "parking" ||
             stepOneData.property_type === "play-ground" ||
             stepOneData.property_type === "event-spaces" ||
-            stepOneData.property_type === "hostel"
+            stepOneData.property_type === "hostel" ||
+            stepOneData.property_type === "co-working-space"
               ? "none"
               : "block",
         }}

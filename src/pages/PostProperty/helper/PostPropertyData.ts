@@ -1,3 +1,5 @@
+import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
+
 interface Category {
   label: string;
   child: Category[]; // You can specify a more specific type if needed
@@ -1999,6 +2001,180 @@ export const hostelRoomAmenitiesData = [
   {
     label: "Guest Chair",
     key: "guest-chair",
+    active: false,
+  },
+];
+
+export const coworkingBookingData = [
+  {
+    label: "Per Hour",
+    key: "per-hour",
+    active: false,
+  },
+  {
+    label: "Per Day",
+    key: "per-day",
+    active: false,
+  },
+  {
+    label: "Per Month",
+    key: "per-month",
+    active: false,
+  },
+];
+
+export const coworkingSpaceData = [
+  {
+    label: "Flexi Desk",
+    key: "flexi-desk",
+    active: false,
+  },
+  {
+    label: "Guaranteed Desk",
+    key: "guaranteed-desk",
+    active: false,
+  },
+  {
+    label: "Bring your own device",
+    key: "bring-your-own-device",
+    active: false,
+  },
+];
+
+export const coworkingAmenitiesData = [
+  {
+    label: "Maintenance Staff ",
+    key: "maintenance-staff",
+    active: false,
+  },
+  {
+    label: "High-speed Internet/Wifi",
+    key: "high-speed-internet/wifi",
+    active: false,
+  },
+  {
+    label: "Tea,Coffee",
+    key: "tea,coffee",
+    active: false,
+  },
+  {
+    label: "Wellness room",
+    key: "wellness-room",
+    active: false,
+  },
+  {
+    label: "Network Suppor",
+    key: "network-suppor",
+    active: false,
+  },
+  {
+    label: "Game lounge",
+    key: "game-lounge",
+    active: false,
+  },
+  {
+    label: "Separate Restroom",
+    key: "separate-restroom",
+    active: false,
+  },
+  {
+    label: "Pantry Area",
+    key: "pantry-area",
+    active: false,
+  },
+  {
+    label: "Meeting/Conference Rooms",
+    key: "meeting/conference-rooms",
+    active: false,
+  },
+  {
+    label: "Dedicated Phone Booth",
+    key: "dedicated-phone-booth",
+    active: false,
+  },
+  {
+    label: "Event Space (Mention seating capacity)",
+    key: "Event-space-(mention-seating-capacity)",
+    active: false,
+  },
+  {
+    label: "Centralised Air Conditioners",
+    key: "centralised-air-conditioners",
+    active: false,
+  },
+  {
+    label: "Power slots",
+    key: "power-slots",
+    active: false,
+  },
+  {
+    label: "Power Backup Generator",
+    key: "power-backup-generator",
+    active: false,
+  },
+  {
+    label: "Lift/Elevator",
+    key: "lift/elevator",
+    active: false,
+  },
+  {
+    label: "Metro Connectivity",
+    key: "metro-connectivity",
+    active: false,
+  },
+  {
+    label: "Storage Space",
+    key: "storage-space",
+    active: false,
+  },
+  {
+    label: "Breakout & Recreational Area",
+    key: "breakout-&-recreational-area",
+    active: false,
+  },
+  {
+    label: "Lounge Area",
+    key: "lounge-area",
+    active: false,
+  },
+  {
+    label: "Fitness Centre",
+    key: "fitness-centre",
+    active: false,
+  },
+  {
+    label: "Security/ Fire alarm",
+    key: "security/fire-alarm",
+    active: false,
+  },
+  {
+    label: "Visitor Parking",
+    key: "visitor-parking",
+    active: false,
+  },
+  {
+    label: "Intercom Facilities ",
+    key: "intercom-facilities ",
+    active: false,
+  },
+  {
+    label: "Smoke Zone",
+    key: "smoke-zone",
+    active: false,
+  },
+  {
+    label: "Single Seater",
+    key: "single-seater",
+    active: false,
+  },
+  {
+    label: "Meeting & Conference Rooms",
+    key: "meeting-&-conference-rooms",
+    active: false,
+  },
+  {
+    label: "Phone Booth",
+    key: "phone-booth",
     active: false,
   },
 ];
