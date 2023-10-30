@@ -32,6 +32,7 @@ export default function AppRoutes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/searchresult" element={<SearchResult />} />
         <Route path="/viewall" element={<Viewall />} />
+        <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
       </Routes>
     );
   };
@@ -46,7 +47,7 @@ export default function AppRoutes() {
         <Route path="/books" element={<Books />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/groups" element={<Groups />} />
-        <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
+       
       </Routes>
     );
   };

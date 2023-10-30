@@ -1,4 +1,133 @@
 
+
+.search__wrap {
+  width: 820px;
+  height: 95px;
+  background-color: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 12px -9px rgba(0, 0, 0, 0.4);
+  border: 1px solid #909090;
+}
+.search__location {
+  float: left;
+  width: 300px;
+  height: 30px;
+  margin: 15px 8px 0 0;
+  /* border-right: 1px solid #d7d7d7; */
+  padding-left: 5px;
+  position: relative;
+  z-index: 5;
+  display: flex;
+}
+.location__icon {
+  color: #007478;
+}
+.search__location_wrap {
+  padding: 2px 0 12px 4px;
+  box-sizing: border-box;
+  width: 90%;
+}
+.searchlocation__input {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #606066;
+  border: none;
+  outline: none;
+  padding: 17px 0 15px 23px;
+  background: none;
+  margin-right: 12px;
+}
+.search__property {
+  float: left;
+  width: 350px;
+  height: 30px;
+  margin: 15px 8px 0 0;
+  /* border-right: 1px solid #d7d7d7; */
+  padding-left: 5px;
+  position: relative;
+  z-index: 5;
+  display: flex;
+}
+.searchlocation__propertyInput {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #606066;
+  border: none;
+  outline: none;
+  padding: 15px 0 15px 10px;
+  background: none;
+  margin-right: 12px;
+}
+.search__property {
+  float: left;
+  width: 150px;
+  height: 30px;
+  margin: 12px 16px 0 0;
+  /* border-right: 1px solid #d7d7d7; */
+  padding-left: 5px;
+  display: flex;
+  position: relative;
+}
+.search__title {
+  font-size: 16px;
+  color: #606060;
+  padding: 34px 30px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  line-height: 34px;
+  height: 48px;
+  position: absolute;
+  left: 26px;
+  bottom: -13px;
+}
+.search__budget {
+  float: left;
+  width: 150px;
+  height: 30px;
+  margin: 12px 0 0;
+  padding-left: 5px;
+  position: relative;
+  display: flex;
+}
+.search__button {
+  float: right;
+  width: 115px;
+  height: 75px;
+  /* border-radius: 26px; */
+  background-color: rgba(63, 219, 209, 1);
+  margin: 9px 6px 0 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 46px;
+  color: #fff;
+  position: relative;
+}
+.search_btn_wrap {
+  position: absolute;
+  left: 18px;
+  top: 13px;
+}
+.search__btn_text {
+}
+.search__btn_icon {
+  /* display: inline-block;
+  width: 11px;
+  height: 11px; */
+  /* border: 2px solid #fff; */
+  border-radius: 100%;
+  vertical-align: 2px;
+  position: relative;
+  margin-right: 5px;
+}
+
 .tabcontainer a.nav-link:active {
   background-color: rgba(63, 219, 209, 1) !important;
 }

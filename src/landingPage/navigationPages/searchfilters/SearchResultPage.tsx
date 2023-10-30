@@ -2,14 +2,13 @@ import searchlocation from "../../../assets/images/searchlocation.png";
 import ToggleSwitch from "./Toggle";
 import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Searchresult.css";
 import SearchTabs from "./searchbarfields/Searchtabs";
 import SearchFilters from "./searchbarfields/SearchFilters";
 import PropertyCard from "../../../components/propertycard/PropertyCard";
 import { searchActions } from "../redux/action";
-import SelectedItems from "./searchbarfields/Allfilters";
 
 interface AllData {
   city?: string;
@@ -19,69 +18,108 @@ interface AllData {
   posted_by?: string;
   selectedFacing?: string;
   constructionAge?: string;
+  maxPrise?: any;
+  minPrise?: any;
+}
+interface Property {
+  // Define the structure of your property object
+  // For instance:
+  id: number;
+  name: string;
+  // Other properties...
+  image_gallery: [];
 }
 
-
 const SearchResult = () => {
- 
   const searchResponse = useSelector(
     (state: any) => state?.searchReducer?.searchRes
   );
   console.log(searchResponse);
-  // const { facing, property_age } = useParams();
+
   const queryParams = new URLSearchParams(location.search);
   const [filters, setFilters] = useState(() => {
-    const storedFilters = localStorage.getItem('filters');
-    return storedFilters ? JSON.parse(storedFilters) : {
-      selectedFacing: '',
-      selectedFurnishing: '',
-      minValue: '',
-      maxValue: '',
-      constructionAge: '',
-    };
+    const storedFilters = localStorage.getItem("filters");
+    return storedFilters
+      ? JSON.parse(storedFilters)
+      : {
+          selectedFacing: "",
+          selectedFurnishing: "",
+          minValue: "",
+          maxValue: "",
+          constructionAge: "",
+        };
   });
 
   console.log(filters);
+
   const handleFiltersChange = (newFilters: any) => {
-    // Update the component's state
     setFilters(newFilters);
 
-    // Store the filters in localStorage for persistence
     localStorage.setItem("filters", JSON.stringify(newFilters));
 
-    // Add filters to the URL
     queryParams.set("selectedFacing", newFilters.selectedFacing);
     queryParams.set("constructionAge", newFilters.constructionAge);
 
-    // Replace the URL without a full page reload
     window.history.replaceState(null, "", `?${queryParams.toString()}`);
   };
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("filters");
+    };
+  }, []);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(searchActions.fetchAllSearchdata([]));
   }, []);
   const { state } = useLocation();
- 
-  const searchData = state && state.searchData !== undefined ? state.searchData : null;
+
+  const searchData =
+    state && state.searchData !== undefined ? state.searchData : null;
 
   console.log("filter", searchData);
-  
+
   let allData: AllData = {};
 
   if (searchData && searchData.city !== undefined && searchData.city !== "") {
     allData.city = searchData.city;
   }
-  if (searchData && searchData.selectedItems !== undefined && searchData.selectedItems != "") {
+  if (
+    searchData &&
+    searchData.selectedItems !== undefined &&
+    searchData.selectedItems != ""
+  ) {
     allData.selectedItems = searchData.selectedItems;
   }
   if (searchData && searchData.bhk !== undefined && searchData.bhk != "") {
     allData.bhk = searchData.bhk;
   }
-  if (searchData && searchData.construction_status !== undefined && searchData.construction_status != "") {
+  if (
+    searchData &&
+    searchData.construction_status !== undefined &&
+    searchData.construction_status != ""
+  ) {
     allData.construction_status = searchData.construction_status;
   }
-  if (searchData && searchData.posted_by !== undefined && searchData.posted_by != "") {
+  if (
+    searchData &&
+    searchData.posted_by !== undefined &&
+    searchData.posted_by != ""
+  ) {
     allData.posted_by = searchData.posted_by;
+  }
+  if (
+    searchData &&
+    searchData.maxPrise !== undefined &&
+    searchData.maxPrise != ""
+  ) {
+    allData.maxPrise = searchData.maxPrise;
+  }
+  if (
+    searchData &&
+    searchData.minPrise !== undefined &&
+    searchData.minPrise != ""
+  ) {
+    allData.minPrise = searchData.minPrise;
   }
   if (filters.selectedFacing != "") {
     allData.selectedFacing = filters.selectedFacing;
@@ -92,34 +130,65 @@ const SearchResult = () => {
   console.log(allData);
 
   const [properties, setProperties] = useState([]);
-
+  const [loading, setLoading] = useState(false);
+  const [noData, setNoData] = useState(false);
+  const [showPhotosOnly, setShowPhotosOnly] = useState(true);
+  const[photos, setPhotos]=useState<Property[]>([]);
+  console.log(photos);
   const fetchData = async () => {
     try {
+      setLoading(true);
       const response = await Apis.post("/property/search", {
         city: allData.city,
         property_sub_type: allData.selectedItems,
-        max_price: searchData.maxprise,
-        min_price: searchData.minprise,
+        max_price: allData.maxPrise,
+        min_price: allData.minPrise,
         bhk: allData.bhk,
         availability: allData.construction_status,
         posted_by: allData.posted_by,
         facing: allData.selectedFacing?.toString(),
         property_age: allData.constructionAge,
       });
+      setLoading(false);
 
+      let propertiesData: Property[] = response?.data?.data || [];
+     console.log("property", propertiesData[0].amenities[0].image_gallery?.length > 0);
+
+      if (showPhotosOnly) {
+        propertiesData = propertiesData.filter((property: Property) => {
+          // Check if image_gallery exists and has a length greater than 0
+          return Array.isArray(property.image_gallery) && property?.image_gallery.length > 0;
+        });
+      
+        console.log("Filtered data with photos:", propertiesData);
+      }
+      
       setProperties(response?.data?.data);
+      setNoData(response?.data?.data.length === 0);
     } catch (error) {
+      setLoading(false);
+      setNoData(true);
       console.error("Error fetching properties:", error);
     }
   };
   useEffect(() => {
     fetchData();
-  }, [searchData,  filters]);
- 
-  
+  }, [searchData, filters]);
+
   console.log("data of 0", properties[0]);
   useEffect(() => {}, [properties]);
+  const handleToggleChange = (toggleName: string, value: boolean) => {
+    if (toggleName === "photos") {
+      setShowPhotosOnly(value);
+    }
+    // Add more handlers for other toggle switches if needed
+  };
 
+  const [showLowerDiv, setShowLowerDiv] = useState(true);
+
+  const handleTabClick = () => {
+    setShowLowerDiv(false);
+  };
   return (
     <section>
       <div className="gap">
@@ -130,52 +199,21 @@ const SearchResult = () => {
                 <div className="col-lg-3">
                   <aside className="sidebar static left">
                     <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                          marginBottom: "15px",
-                        }}
-                      >
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <p className="line-with-reversedot"></p>
-                          <p className="line-with-dot"></p>
-                          <p className="line-with-reversedot"></p>
-                        </div>
-
-                        <h6 style={{ marginTop: "0px", marginLeft: "-50px" }}>
-                          Applied Filters
-                        </h6>
-                        <a style={{ marginRight: "30px", color: "#2F9F72" }}>
-                          Clear all
-                        </a>
-                      </div>
-
-                      <div>
-                        <SelectedItems searchData={searchData} />
-                      </div>
-
                       <div>
                         <SearchFilters onFiltersChange={handleFiltersChange} />
                       </div>
-                      {/* <div>
-                        <button onClick={fetchData}>Apply Filters</button>
-                      </div> */}
                     </div>
                   </aside>
                 </div>
                 <div className="col-lg-8">
                   <div
                     className="category-card "
-                    style={{ marginLeft: "720px" }}
+                    style={{ marginLeft: "720px", marginTop: "-57px" }}
                   >
                     <img src={searchlocation} alt="" />
                     <div className="info">
                       <label style={{ color: "gray", paddingTop: "10px" }}>
-                        Location: <span>Bachupally</span>
+                        Location: <span></span>
                       </label>
                     </div>
                   </div>
@@ -184,82 +222,55 @@ const SearchResult = () => {
                       <h5>{properties.length} Properties near you</h5>
                       <div>
                         <span style={{ marginLeft: "90px", fontSize: "12px" }}>
-                          With Photos <ToggleSwitch Name="photos" />
+                          With Photos{" "}
+                          <ToggleSwitch
+                            Name="photos"
+                            onChange={(value) =>
+                              handleToggleChange("photos", value)
+                            }
+                          />
                         </span>
-                        <span style={{ marginLeft: "12px", fontSize: "12px" }}>
+                        {/* <span style={{ marginLeft: "12px", fontSize: "12px" }}>
                           Verified Only <ToggleSwitch Name="verified" />
                         </span>
                         <span style={{ marginLeft: "12px", fontSize: "12px" }}>
                           Hide Seen <ToggleSwitch Name="seen" />
-                        </span>
+                        </span> */}
                       </div>
                     </div>
 
                     <div style={{ marginLeft: "-46px" }}>
-                      <SearchTabs />
+                      <SearchTabs onTabClick={handleTabClick} />
                     </div>
-                    <div
-                      style={{
-                        backgroundColor: "white",
-                        boxShadow: "10px 10px 10px 10px #0000001a",
-                        padding: "10px",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      {/* <div style={{ marginTop: "80px" }}>
-                        <ul className="nav ">
-                          <li
-                            className="nav-item"
-                            style={{ marginRight: "15px" }}
-                          >
-                            <a
-                              className={`nav-link ${
-                                activeTab === "rent" ? "active" : ""
-                              }`}
-                              aria-current="page"
-                              href="#"
-                              onClick={() => handleTabClick("rent")}
-                            >
-                              Rent
-                            </a>
-                          </li>
-
-                          <li
-                            className="nav-item"
-                            style={{ marginRight: "15px" }}
-                          >
-                            <a
-                              className={`nav-link ${
-                                activeTab === "sell" ? "active" : ""
-                              }`}
-                              href="#"
-                              onClick={() => handleTabClick("sell")}
-                            >
-                              Sell
-                            </a>
-                          </li>
-
-                          <li className="nav-item">
-                            <a
-                              className={`nav-link ${
-                                activeTab === "sharing" ? "active" : ""
-                              }`}
-                              href="#"
-                              onClick={() => handleTabClick("sharing")}
-                            >
-                              Sharing
-                            </a>
-                          </li>
-                        </ul>
-                      </div> */}
-                      <div className="row" style={{ marginTop: "80px" }}>
-                        {properties.length > 0
-                          ? properties.map((item: any, i: any) => (
+                    {showLowerDiv && (
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          boxShadow: "10px 10px 10px 10px #0000001a",
+                          padding: "10px",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        <div style={{ textAlign: "center", marginTop: "20px" }}>
+                          {loading && (
+                            <p style={{ color: "black", fontWeight: 400 }}>
+                              Loading...
+                            </p>
+                          )}
+                          {!loading && noData && (
+                            <p style={{ color: "black", fontWeight: 400 }}>
+                              No properties found
+                            </p>
+                          )}
+                        </div>
+                        <div className="row" style={{ marginTop: "10px" }}>
+                          {properties.length > 0 &&
+                            properties.map((item: any, i: any) => (
                               <PropertyCard property={item} key={i} />
-                            ))
-                          : "no data found"}
+                            ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -62,22 +62,18 @@ export default function SearchBarBeforeLogin() {
     setBHKStatus("");
     setConstrStatus("");
     setPostedStatus("");
-    setBHKDropdownOpen(false);
-    setConstructionDropdownOpen(false);
-    setPostedByDropdownOpen(false);
   };
   const handleItemClick = (item: any) => {
     setSelectedItems(item);
   };
 
   const collectUserData = () => {
-    
     const selectedBHK = bhkStatus.toString();
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
 
     const locationInput = document.querySelector(
-      ".nl-searchlocation__input"
+      ".searchlocation__input"
     ) as HTMLInputElement;
 
     if (!locationInput) {
@@ -100,8 +96,6 @@ export default function SearchBarBeforeLogin() {
     navigate(mainUrl, {
       state: { searchData: userData },
     });
-
-   
 
     console.log(userData);
 
@@ -282,9 +276,9 @@ export default function SearchBarBeforeLogin() {
           </ul>
         </div>
 
-        <div className="nl-search__wrap">
-          <div className="nl-search__location">
-            <div className="nl-search__location_wrap">
+        <div className="search__wrap">
+          <div className="search__location">
+            <div className="search__location_wrap">
               <label style={{ fontSize: "16px" }}>Location</label>
               <div
                 style={{
@@ -300,14 +294,14 @@ export default function SearchBarBeforeLogin() {
 
                 <input
                   type="text"
-                  className="nl-searchlocation__input"
+                  className="searchlocation__input"
                   placeholder="City/Location/Landmark/Pincode"
                 />
               </div>
             </div>
           </div>
-          <div className="nl-search__property" style={{ marginLeft: "-40px" }}>
-            <div className="nl-search__location_wrap">
+          <div className="search__property" style={{ marginLeft: "-40px" }}>
+            <div className="search__location_wrap">
               <label style={{ fontSize: "16px" }}>Property Type</label>
               <div
                 style={{
@@ -322,7 +316,7 @@ export default function SearchBarBeforeLogin() {
               >
                 <input
                   type="text"
-                  className="nl-searchlocation__propertyInput"
+                  className="searchlocation__propertyInput"
                   placeholder="Flat/Plot/Shop/Hostel"
                   onClick={togglePropertyDropdown}
                 />
@@ -455,8 +449,8 @@ export default function SearchBarBeforeLogin() {
               </div>
             </div>
           </div>
-          <div className="nl-search__property" style={{ marginLeft: "19px" }}>
-            <div className="nl-search__location_wrap">
+          <div className="search__property" style={{ marginLeft: "19px" }}>
+            <div className="search__location_wrap">
               <label style={{ fontSize: "16px" }}>Price</label>
               <div
                 style={{
@@ -471,7 +465,7 @@ export default function SearchBarBeforeLogin() {
               >
                 <input
                   type="text"
-                  className="nl-searchlocation__propertyInput"
+                  className="searchlocation__propertyInput"
                   placeholder="₹  Select Price Range"
                   onClick={togglePriceDropdown}
                 />
@@ -562,15 +556,12 @@ export default function SearchBarBeforeLogin() {
               width: "30px",
             }}
           />
-          <div className="nl-search__button">
-            <div className="nl-search_btn_wrap">
-              <span className="nl-search__btn_icon">
+          <div className="search__button">
+            <div className="search_btn_wrap">
+              <span className="search__btn_icon">
                 <i className="icofont-search"></i>
               </span>
-              <span
-                className="nl-search__btn_text"
-                onClick={collectUserData}
-              >
+              <span className="search__btn_text" onClick={collectUserData}>
                 Search
               </span>
             </div>
@@ -628,7 +619,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
-                    className="nl-searchlocation__propertyInput"
+                    className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={toggleBHKDropdown}
                     value={bhkStatus}
@@ -670,7 +661,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
-                    className="nl-searchlocation__propertyInput"
+                    className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={toggleConstructionDropdown}
                     value={ConstrStatus}
@@ -717,7 +708,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
-                    className="nl-searchlocation__propertyInput"
+                    className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={togglePostedByDropdown}
                     value={PostedStatus}

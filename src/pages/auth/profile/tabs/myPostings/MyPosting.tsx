@@ -7,8 +7,7 @@ const Posting:React.FC = () => {
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    // setSelectedAlbum(null);
-    // setAlbumImages([]); // Clear album images when switching tabs
+   
   };
   return (
     <div>

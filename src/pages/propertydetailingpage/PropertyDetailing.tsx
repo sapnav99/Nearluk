@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import "./proprtydetails.css";
 import Chip from "@mui/material/Chip";
 import ShareIcon from "@mui/icons-material/Share";
@@ -30,6 +30,8 @@ export default function PropertyDetaing({}: Props) {
   });
 
   console.log(params);
+ 
+  
   const userdata = useSelector((state: any) => state?.loginReducer);
   // console.log("log in user ==>", userdata?.user?.user?._id);
   useEffect(() => {
@@ -162,6 +164,7 @@ export default function PropertyDetaing({}: Props) {
                                     }}
                                   />
                                 </div>
+                               
                                 <div className="property__header__left">
                                   <button className="property__social__buttons">
                                     Share{" "}
@@ -175,7 +178,7 @@ export default function PropertyDetaing({}: Props) {
                               <div className="property__namimg_container">
                                 <div className="property__naming_rigth">
                                   <h1 className="property__name">
-                                    {data?.property?.property__name}
+                                    {data?.property?.property_name}
                                   </h1>
                                   <div className="property__naming_contacted">
                                     <p>
@@ -199,8 +202,8 @@ export default function PropertyDetaing({}: Props) {
                                 </div>
                                 <div className="property__naming_left">
                                   <div className="property__pricing">
-                                    <h4> &#8377; {formatedValue}</h4>
-                                    {data?.property?.negotiable ? (
+                                    <h4> ₹ {formatedValue}</h4>
+                                    {data?.property?.expected_price ? (
                                       <p>Negotiable</p>
                                     ) : (
                                       <p>Fixed</p>
@@ -220,7 +223,7 @@ export default function PropertyDetaing({}: Props) {
                                     <PersonIcon />
                                     <span className="owner">Owner</span>
                                     <h6>
-                                      {data?.property_owner?.fname}{" "}
+                                      {data?.property_owner?.fname}
                                       {data?.property_owner?.lname}
                                     </h6>
                                     <p>

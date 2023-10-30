@@ -4,6 +4,7 @@
 .leftContainer .nav-item a.nav-link.active {
   color: black;
   border-bottom: 3px solid #7ed8cc;
+  
 }
 .album-name {
   padding-top: 10px;

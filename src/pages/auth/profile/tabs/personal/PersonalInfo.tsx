@@ -17,6 +17,7 @@ import CommonButton from "../../../../../components/common/button/CommonButton";
 
 const PersonalInfo = () => {
   const userData = useSelector((state: any) => state.loginReducer.user);
+  
   const [editingFields, setEditingFields] = useState({
     location: "",
     facebookId: "",

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostProperty from "../postproperty/PostProperty";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
 import locationSymbol from "../../assets/images/Location.png";
-import { AiOutlineCaretDown, AiOutlineCaretRight } from 'react-icons/ai';
+import { BsChevronDown, BsChevronRight } from "react-icons/bs";
+
 import { BiSupport } from "react-icons/bi";
 import "./Header.css";
 type Props = {};
@@ -13,9 +14,9 @@ const Header: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-  const isLoggedIn = useSelector(
-    (state: any) => state?.loginReducer?.isLoggedIn
-  );
+  // const isLoggedIn = useSelector(
+  //   (state: any) => state?.loginReducer?.isLoggedIn
+  // );
 
   const handleButtonClick = () => {
     navigate("/login");
@@ -56,7 +57,7 @@ const Header: React.FC<Props> = ({}) => {
             </i>
           </div>
           <div className="add-prop">
-            {isLoggedIn ? (
+           
               <button
                 type="button"
                 className="btn button "
@@ -69,7 +70,7 @@ const Header: React.FC<Props> = ({}) => {
               >
                 Post Property
               </button>
-            ) : (
+           
               <div>
                 <button
                   type="button"
@@ -88,7 +89,7 @@ const Header: React.FC<Props> = ({}) => {
                   Login
                 </button>
               </div>
-            )}
+            
           </div>
         </div>
         <div className="restop-search">
@@ -104,7 +105,7 @@ const Header: React.FC<Props> = ({}) => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            {isLoggedIn ? (
+            
               <a href="/">
                 <img
                   src="images/main-logo-pic.png"
@@ -112,15 +113,9 @@ const Header: React.FC<Props> = ({}) => {
                   style={{ height: "45px", width: "145px" }}
                 />
               </a>
-            ) : (
-              <a href="/">
-                <img
-                  src="images/main-logo-pic.png"
-                  alt=""
-                  style={{ height: "45px", width: "145px" }}
-                />
-              </a>
-            )}
+          
+             
+         
           </div>
 
           <div className="nl-search-location">
@@ -158,7 +153,7 @@ const Header: React.FC<Props> = ({}) => {
           <ul className="web-elements">
             <li>
               <div className="add-prop">
-                {isLoggedIn && (
+                
                   <button
                     type="button"
                     className="btn button "
@@ -172,7 +167,7 @@ const Header: React.FC<Props> = ({}) => {
                   >
                     Post Property
                   </button>
-                )}
+               
               </div>
             </li>
             <li>
@@ -207,8 +202,7 @@ const Header: React.FC<Props> = ({}) => {
               <span></span>
             </li>
             <BiSupport/>
-           
-            {isLoggedIn &&(
+          
               <li>
                 <a href="#" title="">
                   <img
@@ -277,7 +271,7 @@ const Header: React.FC<Props> = ({}) => {
                   </li>
                 </ul>
               </li>
-            ) }
+          
 
             <li>
               <div className="add-prop">
@@ -286,8 +280,75 @@ const Header: React.FC<Props> = ({}) => {
             </li>
           </ul>
           <ul className="web_elements list2">
-            <li>{isLoggedIn ? <a href="/">Home</a> : <a href="/">Home</a>}</li>
+            <li > <a href="/">Home</a></li>          
             <li>
+              <a>
+                Properties <BsChevronDown />
+              </a>
+            </li>
+            <li>
+              <a>
+                Services
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>
+                    Rent Pay <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Rent</a>
+                    </li>
+                    <li>
+                      <a href="">Maintanance</a>
+                    </li>
+                    <li>
+                      <a href="">Advance Amount</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    Creditluk <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Loans</a>
+                    </li>
+                    <li>
+                      <a href="">Loan Calculator</a>
+                    </li>
+                    <li>
+                      <a href="">CIBIL</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Insights</a>
+                </li>
+              </ul>
+            </li>
+            <li style={{marginRight:"435px"}}>
+
+              <a>
+                More
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>For Business Owners</a>
+                </li>
+                <li>
+                  <a>For Builders </a>
+                </li>
+                <li>
+                  <a>For Property Consultants</a>
+                </li>
+              </ul>
+            </li>
+            
+          <li>
               <a style={{ marginLeft: "-6px" }}>
                 <i>
                   <span className="heartbeat"></span>
@@ -307,7 +368,7 @@ const Header: React.FC<Props> = ({}) => {
               <a>Near U</a>
             </li>
 
-            <li>
+            <li style={{marginRight:"25px"}}>
               <a
                 style={{ paddingRight: "6px" }}
                 href="live-stream.html"
@@ -350,51 +411,7 @@ const Header: React.FC<Props> = ({}) => {
               </a>
               <a>Auctions</a>
             </li>
-            <li>
-              <a>Services<AiOutlineCaretDown /> </a>
-              <ul className="dropdown2">
-                <li>
-                  <a>Rent Pay <AiOutlineCaretRight/></a>
-                  <ul className="dropdown3">
-                    <li>
-                      <a href="">Rent</a>
-                    </li>
-                    <li>
-                      <a href="">Maintanance</a>
-                    </li>
-                    <li>
-                      <a href="">Advance Amount</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Creditluk <AiOutlineCaretRight/></a>
-                  <ul className="dropdown3">
-                    <li>
-                      <a href="">Loans</a>
-                    </li>
-                    <li>
-                      <a href="">Loan Calculator</a>
-                    </li>
-                    <li>
-                      <a href="">CIBIL</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Insights</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>For Business Owners</a>
-            </li>
-            <li>
-              <a>For Builders</a>
-            </li>
-            <li>
-              <a>For Poperty Consultants</a>
-            </li>
+         
           </ul>
         </div>
       </header>

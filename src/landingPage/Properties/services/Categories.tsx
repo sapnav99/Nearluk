@@ -56,6 +56,7 @@ const Rent = () => {
   );
   const residentialpropertyLength = residentialProperties.length;
 
+  
   return (
     <div>
       <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>

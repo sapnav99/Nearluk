@@ -31,8 +31,7 @@ const Featured = () => {
         console.error("Error fetching properties:", error);
       }
     };
-
-    fetchData();
+ fetchData();
   }, []);
   console.log(properties);
   return (
@@ -77,7 +76,7 @@ const Featured = () => {
                     <div className="main2">
                       {properties.length > 0
                         ? properties.map((item: any, i: any) =>
-                            item.featuredTrue.length > 0 ? (
+                            item.featured.length > 0 ? (
                               <SwiperSlide key={i}>
                                 <div
                                   className="blog_posts col-lg-9 col-md-12 col-sm-12"
