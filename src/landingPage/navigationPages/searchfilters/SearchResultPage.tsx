@@ -2,7 +2,7 @@ import searchlocation from "../../../assets/images/searchlocation.png";
 import ToggleSwitch from "./Toggle";
 import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Searchresult.css";
 import SearchTabs from "./searchbarfields/Searchtabs";
@@ -21,24 +21,40 @@ interface AllData {
   constructionAge?: string;
 }
 
+
 const SearchResult = () => {
  
   const searchResponse = useSelector(
     (state: any) => state?.searchReducer?.searchRes
   );
   console.log(searchResponse);
-  const { facing, property_age } = useParams();
-  const [filters, setFilters] = useState({
-    selectedFacing:facing|| "",
-    selectedFurnishing: "",
-    minValue: "",
-    maxValue: "",
-    constructionAge:property_age || "",
+  // const { facing, property_age } = useParams();
+  const queryParams = new URLSearchParams(location.search);
+  const [filters, setFilters] = useState(() => {
+    const storedFilters = localStorage.getItem('filters');
+    return storedFilters ? JSON.parse(storedFilters) : {
+      selectedFacing: '',
+      selectedFurnishing: '',
+      minValue: '',
+      maxValue: '',
+      constructionAge: '',
+    };
   });
 
   console.log(filters);
-  const handleFiltersChange = (filters: any) => {
-    setFilters(filters);
+  const handleFiltersChange = (newFilters: any) => {
+    // Update the component's state
+    setFilters(newFilters);
+
+    // Store the filters in localStorage for persistence
+    localStorage.setItem("filters", JSON.stringify(newFilters));
+
+    // Add filters to the URL
+    queryParams.set("selectedFacing", newFilters.selectedFacing);
+    queryParams.set("constructionAge", newFilters.constructionAge);
+
+    // Replace the URL without a full page reload
+    window.history.replaceState(null, "", `?${queryParams.toString()}`);
   };
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,24 +62,25 @@ const SearchResult = () => {
   }, []);
   const { state } = useLocation();
  
-  const searchData = state ? state.searchData : null;
+  const searchData = state && state.searchData !== undefined ? state.searchData : null;
+
   console.log("filter", searchData);
   
   let allData: AllData = {};
 
-  if (searchData.city != "") {
+  if (searchData && searchData.city !== undefined && searchData.city !== "") {
     allData.city = searchData.city;
   }
-  if (searchData.selectedItems != "") {
+  if (searchData && searchData.selectedItems !== undefined && searchData.selectedItems != "") {
     allData.selectedItems = searchData.selectedItems;
   }
-  if (searchData.bhk != "") {
+  if (searchData && searchData.bhk !== undefined && searchData.bhk != "") {
     allData.bhk = searchData.bhk;
   }
-  if (searchData.construction_status != "") {
+  if (searchData && searchData.construction_status !== undefined && searchData.construction_status != "") {
     allData.construction_status = searchData.construction_status;
   }
-  if (searchData.posted_by != "") {
+  if (searchData && searchData.posted_by !== undefined && searchData.posted_by != "") {
     allData.posted_by = searchData.posted_by;
   }
   if (filters.selectedFacing != "") {

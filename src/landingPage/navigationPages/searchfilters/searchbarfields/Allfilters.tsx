@@ -3,15 +3,15 @@ const SelectedItems = ({ searchData }: any) => {
     return null;
   }
   console.log(searchData)
-  const isCityEntered = searchData.city && searchData.city.trim() !== "";
- const isSelectedItem=searchData.selectedItems
+  const isCityEntered = searchData && searchData.city !== undefined && searchData.city && searchData.city.trim() !== "";
+ const isSelectedItem=searchData && searchData.selectedItems !== undefined && searchData.selectedItems
   const isPriceRangeSelected =
    
     searchData.minprise!== 0 &&
     searchData.maxprise <= 500000000;
-  const isBHKselected = searchData.bhk;
-  const isPostedbySelected = searchData.posted_by;
-  const isConstructionStatus = searchData.construction_status;
+  const isBHKselected = searchData && searchData.bhk !== undefined && searchData.bhk;
+  const isPostedbySelected = searchData && searchData.posted_by !== undefined && searchData.posted_by;
+  const isConstructionStatus = searchData && searchData.construction_status !== undefined && searchData.construction_status;
   return (
     <div className="selected-items">
       {isCityEntered && <p className="selected-item">{searchData.city}</p>}
