@@ -88,6 +88,10 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     lawnfour_seating: "",
     lawnfour_floating: "",
   });
+  const propertyOwner = useSelector(
+    (state: any) => state.loginReducer.user?.user?._id
+  );
+  // console.log(propertyOwner);
   const otherStepOneData = useMemo(
     () => ({
       location: [currentPosition?.lat, currentPosition?.lng],
@@ -100,8 +104,15 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       coworking_spaces: coworkingSpaces.filter(
         (item: any) => item.active === true
       ),
+      propertyOwner: propertyOwner,
     }),
-    [currentPosition, eventSpaceFeatures, coworkingBooking, coworkingSpaces]
+    [
+      currentPosition,
+      eventSpaceFeatures,
+      coworkingBooking,
+      coworkingSpaces,
+      propertyOwner,
+    ]
   );
 
   const totalStepOneData = { ...stepOneData, ...otherStepOneData };
@@ -777,7 +788,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
             />
           ) : (
             <PropInput
-              placeholder="Project or Build Name"
+              placeholder="Project or Building Name"
               value={stepOneData.building_name}
               type="text"
               onChange={(e: any) => {

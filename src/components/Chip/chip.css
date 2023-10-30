@@ -2,12 +2,12 @@
 .chips {
   width: fit-content;
   border: 1px solid #9b9494;
-  height: 35px;
-  border-radius: 30px;
+  height: 26px;
+  border-radius: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 13px;
   color: #9b9494;
   cursor: pointer;
   margin: 3px;

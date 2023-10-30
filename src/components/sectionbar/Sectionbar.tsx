@@ -1,16 +1,10 @@
-import {useEffect} from "react"
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 // import $ from "jquery"
 
-
-
-
 export default function Sectionbar({}) {
-  
   useEffect(() => {
-    
     $(".page-caro").owlCarousel({
-      
       loop: true,
       margin: 10,
       nav: true,
@@ -27,12 +21,11 @@ export default function Sectionbar({}) {
       },
     });
 
-   
     return () => {
       $(".page-caro").owlCarousel("destroy");
     };
   }, []);
-    
+
   return (
     <section>
       <div className="white-bg">

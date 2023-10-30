@@ -20,8 +20,11 @@ const Home = () => {
   const loader: any = useSelector(
     (state: any) => state?.homeReducer?.allPropertyLoader
   );
+  const initialFetch = useSelector(
+    (state: any) => state?.homeReducer?.initialFetrchComplete
+  );
   // console.log(loader)
-  if (loader)
+  if (loader === true && initialFetch === false)
     return (
       <div className="full-screen-loader">
         <ThreeCircles
@@ -46,11 +49,11 @@ const Home = () => {
   return (
     <div>
       <SearchBar />
-      <Sectionbar />
+      {/* <Sectionbar /> */}
       <Content
         pageNumber={pageNumber}
-        pageSize={pageSize}
         setPageNumber={setPageNumber}
+        pageSize={pageSize}
       />
     </div>
   );

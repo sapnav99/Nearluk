@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import PropertyCard from "../propertycard/PropertyCard";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -21,11 +21,11 @@ export default function Content({
   );
 
   useEffect(() => {
-    if (allProperty)
-      setProperties((prevProperties: any) => [
-        ...prevProperties,
-        ...allProperty,
-      ]);
+    let newItems = allProperty;
+    if (newItems !== properties) {
+      console.log("netitems", newItems);
+      setProperties([...properties, ...newItems]);
+    }
   }, [allProperty]);
 
   return (
@@ -349,12 +349,17 @@ export default function Content({
                   </div> */}
 
                   <InfiniteScroll
-                    dataLength={properties.length}
+                    dataLength={properties?.length}
                     next={() => {
                       setPageNumber((pageNumber: any) => pageNumber + 1);
                     }}
                     hasMore={(pageNumber - 1) * pageSize < properties?.length}
                     loader={<h4>loadding...</h4>}
+                    endMessage={
+                      <p style={{ textAlign: "center" }}>
+                        <b>Yay! You have seen it all</b>
+                      </p>
+                    }
                   >
                     <div className="row">
                       {properties?.map((item: any) => (

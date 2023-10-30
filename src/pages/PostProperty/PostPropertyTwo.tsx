@@ -46,6 +46,7 @@ import {
   foodDetailsData,
   hostelRoomAmenitiesData,
   coworkingAmenitiesData,
+  furnishingItems,
 } from "./helper/PostPropertyData";
 import { activateItemByKey } from "./helper/PostPropertyHelper";
 import PropInput from "../../components/Property/PropInput/PropInput";
@@ -83,8 +84,8 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const [societyBuildingFeatures, setSocietyBuildingFeatures] = useState(
     SocietyBuildingFeaturesData
   );
-  const [furnishingItemsObj, setFurnishingItemsObj] = useState([]);
-  const [semiFurnishedItemObj, setSemiFurnishedItemObj] = useState([]);
+  const [furnishingItemsObj, setFurnishingItemsObj]: any = useState([]);
+  // const [semiFurnishedItemObj, setSemiFurnishedItemObj] = useState([]);
   const [waterSources, setWaterSources] = useState(waterSourcesData);
   const [openFurnishingModal, setOpenFurnishingModal] = useState(false);
   const [openSemiFurnishedModal, setSemiFurnishedModal] = useState(false);
@@ -136,12 +137,12 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const [stepTwoData, setStepTwoData] = useState({
     builtup_area: "",
     carpet_area: "",
-    availablity: "",
+    availability: "",
     undivided_share: "",
     undivided_share_units: "",
     builtup_units: "",
     carpet_units: "",
-    furnishing_status: "",
+    furnished_status: "",
     bhk: "",
     balconies: "",
     bathrooms: "",
@@ -199,11 +200,11 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const stepOneData = useSelector(
     (state: any) => state?.PostpropertyReducer?.propertyState
   );
-  console.log("step one data from step two", stepOneData.property_sub_type);
+  console.log("step one data from step two", stepOneData);
 
   const otherStepTwoData = useMemo(
     () => ({
-      aminities: otherRooms.filter((item: any) => item.active === true),
+      property_extras: otherRooms.filter((item: any) => item.active === true),
       property_features: propertyFeatures.filter(
         (item: any) => item.active === true
       ),
@@ -211,10 +212,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         (item: any) => item.active === true
       ),
       furnishing: furnishingItemsObj?.filter((item: any) => item?.count > 0),
-      semi_furnished: semiFurnishedItemObj?.filter(
-        (item: any) => item?.count > 0
-      ),
-      visito_parking: visitorCount[0].count,
+      visitor_parking: visitorCount[0].count,
       car_parking: parkingConut[0].count,
       parking_rooms: parkingRooms.filter((item: any) => item.active === true),
       decorations: decoration.filter((item: any) => item.active === true),
@@ -238,7 +236,6 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
       propertyFeatures,
       societyBuildingFeatures,
       furnishingItemsObj,
-      semiFurnishedItemObj,
       visitorCount,
       parkingConut,
       parkingRooms,
@@ -1164,7 +1161,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                       );
                       setStepTwoData({
                         ...stepTwoData,
-                        availablity: item.key,
+                        availability: item.key,
                       });
                     }}
                   />
@@ -1185,7 +1182,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                       );
                       setStepTwoData({
                         ...stepTwoData,
-                        availablity: item.key,
+                        availability: item.key,
                       });
                     }}
                   />
@@ -1206,7 +1203,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                       );
                       setStepTwoData({
                         ...stepTwoData,
-                        availablity: item.key,
+                        availability: item.key,
                       });
                     }}
                   />
@@ -1227,7 +1224,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                       );
                       setStepTwoData({
                         ...stepTwoData,
-                        availablity: item.key,
+                        availability: item.key,
                       });
                     }}
                   />
@@ -1265,7 +1262,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                       );
                       setStepTwoData({
                         ...stepTwoData,
-                        availablity: item.key,
+                        availability: item.key,
                       });
                     }}
                   />
@@ -1681,12 +1678,14 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
                     setFurnished(activateItemByKey(furnished, item.key));
                     setStepTwoData({
                       ...stepTwoData,
-                      furnishing_status: item.key,
+                      furnished_status: item.key,
                     });
                     if (item.key === "furnished") {
                       setOpenFurnishingModal(true);
+                      setFurnishingItemsObj(furnishingItems);
                     } else if (item.key === "semi_frunished") {
                       setSemiFurnishedModal(true);
+                      setFurnishingItemsObj(furnishingItems);
                     }
                   }}
                 />
@@ -1701,7 +1700,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
               <SemiFurnishedStatusModal
                 openSemiFurnishedModal={openSemiFurnishedModal}
                 setSemiFurnishedModal={setSemiFurnishedModal}
-                setSemiFurnishedItemObj={setSemiFurnishedItemObj}
+                setFurnishingItemsObj={setFurnishingItemsObj}
               />
             </div>
           </div>
@@ -1799,6 +1798,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         <div className="property__features_wrapper">
           {propertyFeatures.map((item) => (
             <PropChipWithCheckBox
+              key={item.key}
               item={item}
               onChange={() => activeCheckboxpropertyFeatures(item.key)}
             />
@@ -1810,6 +1810,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
             <div className="property__features_wrapper">
               {noiseLevel.map((item: any) => (
                 <PropChipWithCheckBox
+                  key={item.key}
                   item={item}
                   onChange={() => activeCheckboxNoiseLevel(item.key)}
                 />
@@ -1836,6 +1837,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
         <div className="property__building_features_container">
           {societyBuildingFeatures.map((item: any) => (
             <PropChipWithCheckBox
+              key={item.key}
               item={item}
               onChange={() => activeCheckboxSocietyBuildingFeatures(item.key)}
             />

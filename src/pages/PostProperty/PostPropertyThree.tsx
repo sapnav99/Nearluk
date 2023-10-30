@@ -99,7 +99,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     (state: any) => state?.PostpropertyReducer?.propertyState
   );
 
-  console.log("flatemate from step thrtee", totalData.iwant);
+  console.log("total steps data from  step three", totalData);
 
   const date = new Date();
   // const documentRef: any = useRef();
@@ -110,11 +110,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
 
   const otherStepThreeData = useMemo(
     () => ({
-      promimaty_feature: proximatyFeature.filter(
+      proximaty_feature: proximatyFeature.filter(
         (item: any) => item.active === true
       ),
       image_gallery: imagePreview,
-      propertyy_document: propertyDocuments.filter(
+      property_document: propertyDocuments.filter(
         (item: any) => item.status === true
       ),
       playground_features: playgroundFeatures.filter(

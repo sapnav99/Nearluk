@@ -6,13 +6,13 @@ import "./semifurnishedmodal.css";
 type FurnishingProps = {
   openSemiFurnishedModal: boolean;
   setSemiFurnishedModal: any;
-  setSemiFurnishedItemObj: any;
+  setFurnishingItemsObj: any;
 };
 
 const SemiFurnishedStatusModal: React.FC<FurnishingProps> = ({
   openSemiFurnishedModal,
   setSemiFurnishedModal,
-  setSemiFurnishedItemObj,
+  setFurnishingItemsObj,
 }: FurnishingProps) => {
   const [furnishingObj, setFurnishingObj] = useState(furnishingItems);
   //   const showModal = () => {
@@ -21,7 +21,7 @@ const SemiFurnishedStatusModal: React.FC<FurnishingProps> = ({
 
   const handleOk = () => {
     setSemiFurnishedModal(false);
-    setSemiFurnishedItemObj(furnishingObj);
+    setFurnishingItemsObj(furnishingObj);
   };
 
   const handleCancel = () => {

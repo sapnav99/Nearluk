@@ -12,8 +12,8 @@ const getAllPropertyReq = function* getAllPropertyReq(action: any) {
   } catch (err: any) {
     yield put(
       allpropdataactions.setAllProperty({
-        code: err.response.status,
-        msg: err.response.data,
+        code: err?.response?.status,
+        msg: err?.response?.data,
       })
     );
   }

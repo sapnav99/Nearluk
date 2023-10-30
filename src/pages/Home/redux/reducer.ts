@@ -1,6 +1,10 @@
 import { getAllpropdata } from "./type";
 
-const initialState = {};
+const initialState = {
+  allProperty: [],
+  allPropertyLoader: false,
+  initialFetrchComplete: false,
+};
 
 const homeReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -8,12 +12,12 @@ const homeReducer = (state = initialState, action: any) => {
       return {
         ...state,
         allPropertyLoader: true,
-        allProperty: action.payload,
       };
     case getAllpropdata.SET_ALL_PROPERTY:
       return {
         ...state,
         allPropertyLoader: false,
+        initialFetrchComplete: true,
         allProperty: action.payload,
       };
 
