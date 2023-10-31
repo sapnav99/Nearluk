@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import { postpropertyAction } from "./redux/action";
 import { ThreeDots } from "react-loader-spinner";
 import { AiFillStar, AiOutlineStar, AiFillDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 type stepThreeProps = {
   current: any;
   steps: any;
@@ -87,7 +88,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     event_spacing_food_per_plate: "",
     event_spacing_decoration: "",
     event_spacing_photoshoot: "",
-    event_spacing_dj: "",
+    dj: "",
     event_spacing_booking: "",
     event_spacing_other: "",
     advance_deposi: "",
@@ -109,6 +110,10 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   );
   const dicriptionLoader = useSelector(
     (state: any) => state?.PostpropertyReducer?.discriptionLoader
+  );
+
+  const response = useSelector(
+    (state: any) => state?.PostpropertyReducer?.response
   );
 
   // if (discription !== "") {
@@ -277,6 +282,19 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     setPropertyDocuments(mapped);
   };
 
+  if (response) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Property Posted Successfully Go to<Link to="/">Home</Link>{" "}
+      </div>
+    );
+  }
   return (
     <div>
       {!(
@@ -469,11 +487,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
               />
               <PropInput
                 placeholder="DJ"
-                value={stepThreeData.event_spacing_dj}
+                value={stepThreeData.dj}
                 onChange={(e: any) => {
                   setStepThreeData({
                     ...stepThreeData,
-                    event_spacing_dj: e.target.value,
+                    dj: e.target.value,
                   });
                 }}
               />
@@ -1051,9 +1069,24 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         {current === steps.length - 1 && (
           <Button
             type="primary"
-            onClick={() =>
-              dispatch(postpropertyAction.fetchPostProperty(allStepsData))
-            }
+            onClick={() => {
+              const filteredData = Object.keys(allStepsData).reduce(
+                (result: any, key) => {
+                  const value: any = allStepsData[key];
+                  if (
+                    (typeof value === "string" && value.trim() !== "") ||
+                    (Array.isArray(value) && value.length > 0) ||
+                    typeof value === "boolean"
+                  ) {
+                    result[key] = value;
+                  }
+                  return result;
+                },
+                {}
+              );
+              dispatch(postpropertyAction.fetchPostProperty(filteredData));
+              // console.log(filteredData);
+            }}
           >
             Done
           </Button>

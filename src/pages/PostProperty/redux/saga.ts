@@ -10,12 +10,13 @@ const getAllcityReq = function* getAllcityReq(action: any) {
     yield put(postpropertyAction.setCityData(data || []));
   } catch (err) {
     console.log(err);
-    yield put(
-      postpropertyAction.setCityData({
-        code: err?.response?.status,
-        msg: err?.response?.data,
-      })
-    );
+    // yield put(
+    //   postpropertyAction.setCityData({
+    //     code: err?.response?.status,
+    //     msg: err?.response?.data,
+    //   })
+    // );
+    console.log(err);
   }
 };
 
@@ -26,12 +27,13 @@ const getAllStateReq = function* getAllStateReq(action: any) {
     console.log("data from saga", data);
     yield put(postpropertyAction.setStateData(data || []));
   } catch (err) {
-    yield put(
-      postpropertyAction.setStateData({
-        code: err?.response?.status,
-        msg: err?.response?.data,
-      })
-    );
+    // yield put(
+    //   postpropertyAction.setStateData({
+    //     code: err?.response?.status,
+    //     msg: err?.response?.data,
+    //   })
+    // );
+    console.log(err);
   }
 };
 
@@ -41,12 +43,13 @@ const getAllLocalityReq = function* getAllLocalityReq(action: any) {
     const { data } = yield call(Apis.googleLocalityAutoComplete, payload);
     yield put(postpropertyAction.setLocalityData(data?.predictions || []));
   } catch (err) {
-    yield put(
-      postpropertyAction.setLocalityData({
-        code: err?.response?.status,
-        msg: err?.response?.data,
-      })
-    );
+    // yield put(
+    //   postpropertyAction.setLocalityData({
+    //     code: err?.response?.status,
+    //     msg: err?.response?.data,
+    //   })
+    // );
+    console.log(err);
   }
 };
 
@@ -72,6 +75,7 @@ const postPropertyOnServerReq = function* postPropertyOnServerReq(action: any) {
     const payload = action.payload;
     // console.log(payload);
     const { data } = yield call(Apis.postProperty, payload);
+    yield put(postpropertyAction.setResposeforPostProperty(data || {}));
     console.log(data);
   } catch (err) {
     console.log(err);
