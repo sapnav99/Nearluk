@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import "./footer.css";
 
 type Props = {};
 
@@ -26,7 +27,9 @@ const Footer: FC<Props> = ({}) => {
                     />
                     {/* <span>Nearluk</span> */}
                   </div>
-                  <p>NearLuk Technologies Private limited</p>
+                  <p className="nearluk__title">
+                    <strong>NearLuk Technologies Private Limited</strong>
+                  </p>
                   <p>
                     Subscribe our newsletter for getting notifications and
                     alerts
