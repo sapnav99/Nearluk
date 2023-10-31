@@ -17,7 +17,7 @@ import PostProperty from "../pages/PostProperty/PostProperty";
 import NearU from "../pages/Near-U/NearU";
 import TermsandConditions from "../pages/TermsandCondition/TermsandConditions";
 import PrivacyandPolicy from "../pages/PrivacyandPolicy/PrivacyandPolicy";
-
+import CancellationandRefundPolicy from "../pages/CancellationandRefundPolicy/CancellationandRefundPolicy";
 
 import { useSelector } from "react-redux";
 
@@ -32,8 +32,12 @@ export default function AppRoutes() {
         <Route index path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/termsandconditions" element={<TermsandConditions/>} />
-        <Route path="/privacyandpolicy" element={<PrivacyandPolicy/>} />
+        <Route path="/termsandconditions" element={<TermsandConditions />} />
+        <Route path="/privacyandpolicy" element={<PrivacyandPolicy />} />
+        <Route
+          path="/cancellationandrefundpolicy"
+          element={<CancellationandRefundPolicy />}
+        />
       </Routes>
     );
   };
@@ -53,6 +57,10 @@ export default function AppRoutes() {
         <Route path="/postproperty" element={<PostProperty />} />
         <Route path="/termsandconditions" element={<TermsandConditions />} />
         <Route path="/privacyandpolicy" element={<PrivacyandPolicy />} />
+        <Route
+          path="/CancellationandRefundPolicy"
+          element={<CancellationandRefundPolicy />}
+        />
       </Routes>
     );
   };
