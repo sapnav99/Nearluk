@@ -49,6 +49,22 @@ const SetPropertyState = (data: any) => {
   };
 };
 
+// for posting the post property
+
+const fetchPostProperty = (data: any) => {
+  return{
+    type: postpropertyTypes.FETCH_POST_PROPERTY,
+    payload: data
+  }
+}
+
+const setResposeforPostProperty = (data: any) => {
+  return{
+    type: postpropertyTypes.SET_RESPONSE_FOR_POST_PROPERTY,
+    payload: data
+  }
+}
+
 export const postpropertyAction = {
   fetchCityData,
   setCityData,
@@ -57,4 +73,6 @@ export const postpropertyAction = {
   fetchLocalityData,
   setLocalityData,
   SetPropertyState,
+  fetchPostProperty,
+  setResposeforPostProperty,
 };

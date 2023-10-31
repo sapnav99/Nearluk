@@ -47,6 +47,16 @@ const PostpropertyReducer = (state= [], action: any) => {
                 ...state,
                 propertyState: action.payload
             }
+        case postpropertyTypes.FETCH_POST_PROPERTY:
+            return{
+                ...state,
+                postPopertyloader: true,
+            }
+        case postpropertyTypes.SET_RESPONSE_FOR_POST_PROPERTY:
+            return{
+                ...state,
+                response: action.payload
+            }
         default:
             return state;
     }

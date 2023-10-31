@@ -1862,6 +1862,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
           {waterSources.map((item: any) => (
             <PropChipWithCheckBox
               item={item}
+              key={item.key}
               onChange={() => activeCheckboxWaterSources(item.key)}
             />
           ))}

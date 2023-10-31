@@ -105,7 +105,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   // const documentRef: any = useRef();
   const documentRefs: any = [];
 
-  console.log(propertyDocuments);
+  // console.log(propertyDocuments);
   // console.log("total data at step three", totalData);
 
   const otherStepThreeData = useMemo(
@@ -124,6 +124,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     [proximatyFeature, imagePreview, propertyDocuments, playgroundFeatures]
   );
 
+  const allStepsData = {
+    ...totalData,
+    ...stepThreeData,
+    ...otherStepThreeData,
+  };
   const hideInputRef: any = useRef();
   // console.log(imagePreview);
 
@@ -985,7 +990,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
         {current === steps.length - 1 && (
           <Button
             type="primary"
-            onClick={() => message.success("Processing complete!")}
+            onClick={() => console.log("all data", allStepsData)}
           >
             Done
           </Button>
