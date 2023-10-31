@@ -119,7 +119,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   // if (discription !== "") {
   //   setDiscriptionValue(discription);
   // }
-  console.log("discription", discription);
+  // console.log("discription", discription);
 
   const date = new Date();
   // const documentRef: any = useRef();

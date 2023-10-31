@@ -200,7 +200,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
   const stepOneData = useSelector(
     (state: any) => state?.PostpropertyReducer?.propertyState
   );
-  console.log("step one data from step two", stepOneData);
+  // console.log("step one data from step two", stepOneData);
 
   const otherStepTwoData = useMemo(
     () => ({
@@ -363,7 +363,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
     value: boolean;
     label: React.ReactNode;
   }) => {
-    console.log(value.value);
+    // console.log(value.value);
     setStepTwoData({
       ...stepTwoData,
       smoking: value.value,

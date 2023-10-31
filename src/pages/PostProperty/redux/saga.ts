@@ -24,7 +24,7 @@ const getAllStateReq = function* getAllStateReq(action: any) {
   try {
     const payload = action.payload;
     const { data } = yield call(Apis.googleCityAutoComplete, payload);
-    console.log("data from saga", data);
+    // console.log("data from saga", data);
     yield put(postpropertyAction.setStateData(data || []));
   } catch (err) {
     // yield put(
