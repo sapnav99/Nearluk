@@ -26,6 +26,7 @@ const Footer: FC<Props> = ({}) => {
                     />
                     {/* <span>Nearluk</span> */}
                   </div>
+                  <p>NearLuk Technologies Private limited</p>
                   <p>
                     Subscribe our newsletter for getting notifications and
                     alerts
@@ -35,7 +36,7 @@ const Footer: FC<Props> = ({}) => {
                       <i className="icofont-phone-circle"></i> 040-66445777
                     </span>
                     <span>
-                      <i className="icofont-email"></i> contact@unicsol.com
+                      <i className="icofont-email"></i> contact@nearluk.com
                     </span>
                     <span>
                       <i className="icofont-location-pin"></i> 202 & 203, 2nd
@@ -197,7 +198,8 @@ const Footer: FC<Props> = ({}) => {
           <div className="row">
             <div className="col-lg-12">
               <span className="">
-                &copy; copyright All rights reserved by Nearluk 2023
+                &copy; copyright All rights reserved by Nearluk Technologies
+                Private Limited
               </span>
             </div>
           </div>
