@@ -4,6 +4,7 @@ import PostProperty from "../postproperty/PostProperty";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
 
+
 import { GrLocation } from "react-icons/gr";
 import "./Header.css";
 type Props = {};
@@ -71,7 +72,9 @@ const Header: React.FC<Props> = ({}) => {
                   borderRadius: "25px",
                   fontWeight: "700",
                 }}
-                onClick={() => setOpenModal(true)}
+                onClick={() => {
+                  navigate("/postproperty");
+                } }
               >
                 Post Property
               </button>
