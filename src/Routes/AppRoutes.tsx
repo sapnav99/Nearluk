@@ -15,6 +15,9 @@ import LandingPage from "../landingPage/LandingPage";
 import PropertyDetaing from "../pages/propertydetailingpage/PropertyDetailing";
 import PostProperty from "../pages/PostProperty/PostProperty";
 import NearU from "../pages/Near-U/NearU";
+import TermsandConditions from "../pages/TermsandCondition/TermsandConditions";
+import PrivacyandPolicy from "../pages/PrivacyandPolicy/PrivacyandPolicy";
+
 
 import { useSelector } from "react-redux";
 
@@ -29,6 +32,8 @@ export default function AppRoutes() {
         <Route index path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/termsandconditions" element={<TermsandConditions/>} />
+        <Route path="/privacyandpolicy" element={<PrivacyandPolicy/>} />
       </Routes>
     );
   };
@@ -46,6 +51,8 @@ export default function AppRoutes() {
         <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
         <Route path="/nearu" element={<NearU />} />
         <Route path="/postproperty" element={<PostProperty />} />
+        <Route path="/termsandconditions" element={<TermsandConditions />} />
+        <Route path="/privacyandpolicy" element={<PrivacyandPolicy />} />
       </Routes>
     );
   };
