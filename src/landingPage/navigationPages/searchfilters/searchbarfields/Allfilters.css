@@ -1,0 +1,36 @@
+.selected-items {
+  display: flex;
+  flex-direction: column; 
+  width: fit-content;
+  background-color: rgba(63, 219, 209, 1);
+  border-radius: 5px;
+  color: black;
+  padding: 5px;
+    margin-right: 35px;
+  margin-bottom: 10px;
+
+  overflow: hidden;
+  transition: height 0.3s, margin-bottom 0.3s;
+}
+
+.selected-items.expanded {
+  height: auto; 
+  margin-bottom: 100px;
+}
+
+.selected-items p {
+  color: black;
+  font-weight: 400;
+}
+
+.toggle {
+    font-weight: 600;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.items {
+  margin-top: 5px;
+  display: block;
+  margin-left: 5px;
+}

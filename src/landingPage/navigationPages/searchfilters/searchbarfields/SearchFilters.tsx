@@ -4,15 +4,14 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Col, InputNumber, Row, Slider } from "antd";
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
-import SelectedItems from "../searchbarfields/Allfilters";
-import { useLocation } from "react-router-dom";
-
+// import SelectedItems from "../searchbarfields/Allfilters";
+// import { useLocation } from "react-router-dom";
 
 export default function SearchFilters({ onFiltersChange }: any) {
-  const { state } = useLocation();
+  // const { state } = useLocation();
 
-  const searchData =
-    state && state.searchData !== undefined ? state.searchData : null;
+  // const searchData =
+  //   state && state.searchData !== undefined ? state.searchData : null;
   const [selectedFacing, setselectedFacing] = useState(null);
   const [selectedFurnishing, setselectedFurnishing] = useState(null);
   const furnish = [
@@ -75,39 +74,11 @@ export default function SearchFilters({ onFiltersChange }: any) {
     setselectedFurnishing(e.value);
     onFiltersChange({ selectedFurnishing: e.value });
   };
-  const clearAll = () => {
-    setConstructionAge(0);
-    setMaxValue(0);
-    setMinValue(0);
-    setselectedFacing(null);
-    setselectedFurnishing(null);
-  };
+ 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: "15px",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <p className="line-with-reversedot"></p>
-          <p className="line-with-dot"></p>
-          <p className="line-with-reversedot"></p>
-        </div>
-
-        <h6 style={{ marginTop: "0px", marginLeft: "-50px" }}>
-          Applied Filters
-        </h6>
-        <a style={{ marginRight: "30px", color: "#2F9F72" }} onClick={clearAll}>
-          Clear all
-        </a>
-      </div>
-      <div>
-        <SelectedItems searchData={searchData} />
-      </div>
+     
+    
 
       <div
         className={`dropdown-container ${

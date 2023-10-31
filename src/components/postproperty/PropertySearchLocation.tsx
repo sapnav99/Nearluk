@@ -41,7 +41,8 @@ export default function PropertySearchLocation({
             <input
               {...getInputProps({
                 placeholder: "Search Places ...",
-                className: "location-search-input",
+                // className: "location-search-input",
+                className:"searchlocation__input",
               })}
             />
             <div className="autocomplete-dropdown-container">

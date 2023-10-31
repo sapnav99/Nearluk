@@ -35,7 +35,7 @@
   color: #606066;
   border: none;
   outline: none;
-  padding: 17px 0 15px 23px;
+  padding: 7px -1px 15px 23px;
   background: none;
   margin-right: 12px;
 }
@@ -58,9 +58,12 @@
   color: #606066;
   border: none;
   outline: none;
-  padding: 15px 0 15px 10px;
+  padding: 1px 0 15px 10px;
   background: none;
   margin-right: 12px;
+}
+.searchlocation__propertyInput:hover{
+  cursor: pointer;
 }
 .search__property {
   float: left;
@@ -115,8 +118,7 @@
   left: 18px;
   top: 13px;
 }
-.search__btn_text {
-}
+
 .search__btn_icon {
   /* display: inline-block;
   width: 11px;
@@ -152,7 +154,9 @@
     margin-top: 15px;
     margin-left: 390px !important;
   }
-  
+  .clear-all:hover{
+    cursor: pointer;
+  }
   .advanced > div {
     width: calc(33.33% - 10px);
     margin-bottom: 15px;
@@ -189,6 +193,9 @@
     width: 40;
     margin-right: 4px;
     margin-bottom: 8px;
+  }
+  .advanced2 > li:hover{
+    cursor: pointer;
   }
   .advanced2 > li:nth-child(3n) {
     margin-right: 0;
@@ -234,7 +241,8 @@
     font-size: 12px;
     text-align: left;
    border-radius: 50px;
-   color: rgba(161, 161, 161, 1);
+   color: black;
+   /* color: rgba(161, 161, 161, 1); */
    background-color: rgba(255, 255, 255, 1);
     display: inline-block;
     vertical-align: top;
@@ -244,6 +252,9 @@
     margin-right: 8px;
     margin-left: -25px;
     margin-bottom: 10px;
+  }
+  .propertyDropdown > li:hover{
+    cursor: pointer;
   }
   .propertyDropdown > li :active{
     background-color: rgba(63, 219, 209, 1);

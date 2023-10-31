@@ -42,7 +42,7 @@ const Footer: FC<Props> = ({}) => {
                         style={{ marginRight: "10px", marginBottom: "65px" }}
                       ></i>
                       <span>
-                        202 & 203, 2nd flooor, Block A, PSR Prime Towers, Beside
+                        202 & 203, 2nd floor, Block A, PSR Prime Towers, Beside
                         DLF Cyber City, Gachibowli, Hyderabad, Telangana, 500032
                       </span>
                     </span>

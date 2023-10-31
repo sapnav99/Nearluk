@@ -5,7 +5,7 @@ import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
 import { Slider } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import PropertySearchLocation from "../postproperty/PropertySearchLocation";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
 
@@ -34,7 +34,12 @@ export default function SearchBarBeforeLogin() {
   const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
     useState(false);
   const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
-
+  const [address, setAddress] = useState("");
+  const [coordinates, setCoordinates] = useState({
+    lat: null,
+    lng: null,
+  });
+  console.log(coordinates);
   const toggleBHKDropdown = () => {
     setBHKDropdownOpen(!isBHKDropdownOpen);
   };
@@ -72,10 +77,10 @@ export default function SearchBarBeforeLogin() {
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
 
-    const locationInput = document.querySelector(
-      ".searchlocation__input"
-    ) as HTMLInputElement;
-
+    // const locationInput = document.querySelector(
+    //   ".searchlocation__input"
+    // ) as HTMLInputElement;
+    const locationInput = address.split(",")[0].trim();
     if (!locationInput) {
       return;
     }
@@ -84,13 +89,13 @@ export default function SearchBarBeforeLogin() {
       bhk: `${selectedBHK}`,
       construction_status: `${selectedConstructionStatus}`,
       posted_by: `${selectedPostedBy}`,
-      city: locationInput.value.toString(),
+      city: locationInput,
       selectedItems: selectedItems,
       minprise: minSliderValue,
       maxprise: maxSliderValue,
     };
     const selectedItemsString = selectedItems.toString();
-    const queryString = `city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
+    const queryString = `city=${locationInput}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
 
     const mainUrl = `/searchresult/?${queryString}`;
     navigate(mainUrl, {
@@ -288,15 +293,13 @@ export default function SearchBarBeforeLogin() {
                   backgroundColor: "rgba(240, 240, 240, 1)",
                 }}
               >
-                {/* <span style={{ marginTop: "-3px" }}>
-                  <IoIosSearch style={{ fontSize: "1em" }} />
-                </span> */}
-
-                <input
-                  type="text"
-                  className="searchlocation__input"
-                  placeholder="City/Location/Landmark/Pincode"
-                />
+                <div className="searchlocation__input">
+                  <PropertySearchLocation
+                    address={address}
+                    setAddress={setAddress}
+                    setCoordinates={setCoordinates}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -314,12 +317,13 @@ export default function SearchBarBeforeLogin() {
                   backgroundColor: "rgba(240, 240, 240, 1)",
                 }}
               >
-                <input
-                  type="text"
+                <p
                   className="searchlocation__propertyInput"
-                  placeholder="Flat/Plot/Shop/Hostel"
                   onClick={togglePropertyDropdown}
-                />
+                >
+                  Flat/Plot/Shop/Hostel
+                </p>
+
                 <BsChevronDown
                   onClick={togglePropertyDropdown}
                   style={{ marginTop: "8px", marginRight: "6px" }}
@@ -331,7 +335,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Flat")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Flat")}
                     >
@@ -344,7 +348,7 @@ export default function SearchBarBeforeLogin() {
                           "Independent House"
                         )
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Independent House")}
                     >
@@ -355,7 +359,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Villa")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Villa")}
                     >
@@ -366,7 +370,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Guest House")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Guest House")}
                     >
@@ -379,7 +383,7 @@ export default function SearchBarBeforeLogin() {
                           "Studio Apartment"
                         )
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Studio Apartment")}
                     >
@@ -390,7 +394,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Farm House")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Farm House")}
                     >
@@ -398,12 +402,12 @@ export default function SearchBarBeforeLogin() {
                     </li>
                     <li
                       style={{
-                        marginRight: "20px",
+                        marginRight: "25px",
                         backgroundColor: selectedItems.includes(
                           "Service Apartment"
                         )
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Service Apartment")}
                     >
@@ -414,7 +418,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Hostel")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Hostel")}
                     >
@@ -427,7 +431,7 @@ export default function SearchBarBeforeLogin() {
                           "Co-Working Spaces"
                         )
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Co-Working Spaces")}
                     >
@@ -438,7 +442,7 @@ export default function SearchBarBeforeLogin() {
                         marginRight: "20px",
                         backgroundColor: selectedItems.includes("Event Spaces")
                           ? "rgba(63, 219, 209, 1)"
-                          : "transparent",
+                          : "rgb(204, 204, 204, 1)",
                       }}
                       onClick={() => handleItemClick("Event Spaces")}
                     >
@@ -463,12 +467,13 @@ export default function SearchBarBeforeLogin() {
                   backgroundColor: "rgba(240, 240, 240, 1)",
                 }}
               >
-                <input
-                  type="text"
+                <p
                   className="searchlocation__propertyInput"
-                  placeholder="₹  Select Price Range"
                   onClick={togglePriceDropdown}
-                />
+                >
+                  ₹ Select Price Range
+                </p>
+
                 <BsChevronDown
                   onClick={togglePriceDropdown}
                   style={{ marginTop: "8px", marginRight: "6px" }}
@@ -619,6 +624,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
+                    style={{paddingTop:"15px"}}
                     className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={toggleBHKDropdown}
@@ -631,6 +637,7 @@ export default function SearchBarBeforeLogin() {
                   />
                   {isBHKDropdownOpen && (
                     <ul className="advanced2">
+
                       <li>
                         <a onClick={() => handleBHKStatus("1BHK")}>1 BHK</a>
                       </li>
@@ -661,6 +668,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
+                    style={{paddingTop:"15px"}}
                     className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={toggleConstructionDropdown}
@@ -708,6 +716,7 @@ export default function SearchBarBeforeLogin() {
                 >
                   <input
                     type="text"
+                    style={{paddingTop:"15px"}}
                     className="searchlocation__propertyInput"
                     placeholder=""
                     onClick={togglePostedByDropdown}

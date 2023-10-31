@@ -73,19 +73,22 @@
   background-color: #d1d1d1;
   border-radius: 10px;
 }
-
+/* 
 .selected-items {
   display: flex;
-  flex-wrap: wrap;
+    width: fit-content;
+    height: 35px;
+    background-color: rgba(63, 219, 209, 1);
+    border-radius: 5px;
+    color: black;
+    padding: 9px;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
 }
 
-.selected-item {
-  background-color: rgba(63, 219, 209, 1);
+.selected-items p {
   color: black;
-  padding: 5px;
-  margin: 5px;
-  border-radius: 5px;
-}
+} */
 
 .dropdown-container.budget-open {
   margin-bottom: 100px;

@@ -6,9 +6,11 @@ import PropertyCard from "../../../../components/propertycard/PropertyCard";
 
 interface SearchTabsProps {
   onTabClick: (tab: string) => void;
+  searchData:any;
+  updatePropertyLength: (length: number) => void;
 }
 
-const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick }: any) => {
+const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updatePropertyLength }: any) => {
   const [activeTab, setActiveTab] = useState("");
 
   const handleTabClick = (tab: string) => {
@@ -16,18 +18,42 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick }: any) => {
     setActiveTab(tab);
   };
   const dispatch = useDispatch();
-  
+ 
   const [properties, setProperties] = useState([]);
+ 
   const [loading, setLoading] = useState(false);
   const [noData, setNoData] = useState(false);
+  const [page, setPage] = useState(1);
+  const handlePageChange = (newPage: any) => {
+    setPage(newPage);
+  };
   useEffect(() => {
     const fetchData = async (tab: string) => {
       try {
         setLoading(true);
-        const response = await Apis.get(`/property/propertyByCategory?sub_category=${tab}`);
+        
+        const response = await Apis.get(`/property/propertyByCategory?sub_category=${tab}&pageNumber=${page}&pageSize=10`
+        );
         setLoading(false);
         setProperties(response?.data?.data);
         setNoData(response?.data?.data.length === 0);
+        const response1 = await Apis.post(
+          "/property/search",
+          {
+            city: searchData.city,
+            property_sub_type: searchData.selectedItems,
+            max_price: searchData.maxPrise,
+            min_price: searchData.minPrise,
+            bhk: searchData.bhk,
+            availability: searchData.construction_status,
+            posted_by: searchData.posted_by,
+           
+          }
+         
+        );
+        setProperties(response1?.data?.data)
+        setNoData(response1?.data?.data.length === 0);
+       
       } catch (error) {
         setLoading(false);
         setNoData(true);
@@ -37,9 +63,15 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick }: any) => {
 
     fetchData(activeTab); 
     dispatch(allpropdataactions.fetchAllProperty([]));
-  }, [activeTab, dispatch]);
+  }, [activeTab, dispatch, page]);
+  console.log(properties)
+  const propertyLength = properties.length;
 
-  console.log(properties);
+  // When the properties length changes, update the length in the parent component (SearchResult)
+  useEffect(() => {
+    updatePropertyLength(propertyLength);
+  }, [propertyLength, updatePropertyLength]);
+
   
   return (
     <div>
@@ -98,6 +130,21 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick }: any) => {
                         <PropertyCard property={item} key={i} />
                       ))}
                   </div>
+                  <div className="pagination">
+          <button
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1}
+          >
+            Previous
+          </button>
+          <span>Page {page}</span>
+          <button
+            onClick={() => handlePageChange(page + 1)}
+            disabled={properties.length < 1}
+          >
+            Next
+          </button>
+        </div>
                 </div>
               )}
             </div>

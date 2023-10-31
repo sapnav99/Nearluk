@@ -1,15 +1,16 @@
 import searchlocation from "../../../assets/images/searchlocation.png";
-import ToggleSwitch from "./Toggle";
+
 import Apis from "../../../api/apiServices";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Searchresult.css";
+import "../searchfilters/searchbarfields/Searchfilter.css";
 import SearchTabs from "./searchbarfields/Searchtabs";
-import SearchFilters from "./searchbarfields/SearchFilters";
+
 import PropertyCard from "../../../components/propertycard/PropertyCard";
 import { searchActions } from "../redux/action";
-
+import SearchpageSidebar from "./searchbarfields/SearchpageSidebar";
 interface AllData {
   city?: string;
   selectedItems?: string;
@@ -20,14 +21,6 @@ interface AllData {
   constructionAge?: string;
   maxPrise?: any;
   minPrise?: any;
-}
-interface Property {
-  // Define the structure of your property object
-  // For instance:
-  id: number;
-  name: string;
-  // Other properties...
-  image_gallery: [];
 }
 
 const SearchResult = () => {
@@ -51,7 +44,9 @@ const SearchResult = () => {
   });
 
   console.log(filters);
-
+  // const clearAll = () => {
+  //   setFilters("");
+  // };
   const handleFiltersChange = (newFilters: any) => {
     setFilters(newFilters);
 
@@ -132,9 +127,10 @@ const SearchResult = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(false);
   const [noData, setNoData] = useState(false);
-  const [showPhotosOnly, setShowPhotosOnly] = useState(true);
-  const[photos, setPhotos]=useState<Property[]>([]);
-  console.log(photos);
+  // const [page, setPage] = useState(1);
+  // const handlePageChange = (newPage: any) => {
+  //   setPage(newPage);
+  // };
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -151,18 +147,6 @@ const SearchResult = () => {
       });
       setLoading(false);
 
-      let propertiesData: Property[] = response?.data?.data || [];
-     console.log("property", propertiesData[0].amenities[0].image_gallery?.length > 0);
-
-      if (showPhotosOnly) {
-        propertiesData = propertiesData.filter((property: Property) => {
-          // Check if image_gallery exists and has a length greater than 0
-          return Array.isArray(property.image_gallery) && property?.image_gallery.length > 0;
-        });
-      
-        console.log("Filtered data with photos:", propertiesData);
-      }
-      
       setProperties(response?.data?.data);
       setNoData(response?.data?.data.length === 0);
     } catch (error) {
@@ -177,17 +161,33 @@ const SearchResult = () => {
 
   console.log("data of 0", properties[0]);
   useEffect(() => {}, [properties]);
+  const [propertiesWithImages, setPropertiesWithImages] = useState<any[]>([]);
+
   const handleToggleChange = (toggleName: string, value: boolean) => {
-    if (toggleName === "photos") {
-      setShowPhotosOnly(value);
+    const tempPropertiesWithImages: any[] = [];
+
+    if (toggleName === "photos" && value && properties.length > 0) {
+      properties.forEach((item: any) => {
+        const imageGalleryLength = item.property.image_gallery.length;
+
+        if (imageGalleryLength > 0) {
+          tempPropertiesWithImages.push(item);
+        }
+      });
     }
-    // Add more handlers for other toggle switches if needed
+
+    setPropertiesWithImages(tempPropertiesWithImages);
   };
 
   const [showLowerDiv, setShowLowerDiv] = useState(true);
-
-  const handleTabClick = () => {
+  const handleClick = () => {
     setShowLowerDiv(false);
+  };
+  const [tabPropertyLength, setTabPropertyLength] = useState(0);
+  console.log(tabPropertyLength);
+
+  const updateTabPropertyLength = (length: number) => {
+    setTabPropertyLength(length);
   };
   return (
     <section>
@@ -198,11 +198,10 @@ const SearchResult = () => {
               <div id="page-contents" className="row merged20">
                 <div className="col-lg-3">
                   <aside className="sidebar static left">
-                    <div>
-                      <div>
-                        <SearchFilters onFiltersChange={handleFiltersChange} />
-                      </div>
-                    </div>
+                    <SearchpageSidebar
+                      handleToggleChange={handleToggleChange}
+                      handleFiltersChange={handleFiltersChange}
+                    />
                   </aside>
                 </div>
                 <div className="col-lg-8">
@@ -219,28 +218,24 @@ const SearchResult = () => {
                   </div>
                   <div>
                     <div style={{ display: "flex" }}>
-                      <h5>{properties.length} Properties near you</h5>
-                      <div>
-                        <span style={{ marginLeft: "90px", fontSize: "12px" }}>
-                          With Photos{" "}
-                          <ToggleSwitch
-                            Name="photos"
-                            onChange={(value) =>
-                              handleToggleChange("photos", value)
-                            }
-                          />
-                        </span>
-                        {/* <span style={{ marginLeft: "12px", fontSize: "12px" }}>
-                          Verified Only <ToggleSwitch Name="verified" />
-                        </span>
-                        <span style={{ marginLeft: "12px", fontSize: "12px" }}>
-                          Hide Seen <ToggleSwitch Name="seen" />
-                        </span> */}
-                      </div>
+                      <h5>
+                        {propertiesWithImages.length > 0 && (
+                          <span>
+                            {propertiesWithImages.length} Properties with Photos
+                          </span>
+                        )}
+                        {!propertiesWithImages.length && (
+                          <span>{properties.length} Properties near you</span>
+                        )}
+                      </h5>
                     </div>
 
                     <div style={{ marginLeft: "-46px" }}>
-                      <SearchTabs onTabClick={handleTabClick} />
+                      <SearchTabs
+                        onTabClick={handleClick}
+                        searchData={searchData}
+                        updatePropertyLength={updateTabPropertyLength}
+                      />
                     </div>
                     {showLowerDiv && (
                       <div
@@ -263,12 +258,34 @@ const SearchResult = () => {
                             </p>
                           )}
                         </div>
+
                         <div className="row" style={{ marginTop: "10px" }}>
                           {properties.length > 0 &&
-                            properties.map((item: any, i: any) => (
-                              <PropertyCard property={item} key={i} />
-                            ))}
+                            (propertiesWithImages.length === 0
+                              ? properties.map((item: any, i: any) => (
+                                  <PropertyCard property={item} key={i} />
+                                ))
+                              : propertiesWithImages.map(
+                                  (item: any, i: any) => (
+                                    <PropertyCard property={item} key={i} />
+                                  )
+                                ))}
                         </div>
+                        {/* <div className="pagination">
+                          <button
+                            onClick={() => handlePageChange(page - 1)}
+                            disabled={page === 1}
+                          >
+                            Previous
+                          </button>
+                          <span>Page {page}</span>
+                          <button
+                            onClick={() => handlePageChange(page + 1)}
+                            disabled={properties.length < 1}
+                          >
+                            Next
+                          </button>
+                        </div> */}
                       </div>
                     )}
                   </div>

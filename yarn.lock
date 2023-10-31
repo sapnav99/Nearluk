@@ -934,7 +934,7 @@
   resolved "https://registry.npmjs.org/@types/d3-timer/-/d3-timer-3.0.0.tgz"
   integrity sha512-HNB/9GHqu7Fo8AQiugyJbv6ZxYz58wef0esl4Mv828w1ZKpAshw/uFWVDUcIB9KKFeFKoxS3cHY07FFgtTRZ1g==
 
-"@types/google.maps@3.53.5":
+"@types/google.maps@*", "@types/google.maps@3.53.5":
   version "3.53.5"
   resolved "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.53.5.tgz"
   integrity sha512-HoRq4Te8J6krH7hj+TfdYepqegoKZCj3kkaK5gf+ySFSHLvyqYkDvkrtbcVJXQ6QBphQ0h1TF7p4J6sOh4r/zg==
@@ -984,6 +984,14 @@
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.2.8.tgz"
   integrity sha512-bAIvO5lN/U8sPGvs1Xm61rlRHHaq5rp5N3kp9C+NJ/Q41P8iqjkXSu0+/qu8POsjH9pNWb0OYabFez7taP7omw==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-places-autocomplete@^7.2.12":
+  version "7.2.12"
+  resolved "https://registry.npmjs.org/@types/react-places-autocomplete/-/react-places-autocomplete-7.2.12.tgz"
+  integrity sha512-PPoGjpIEqsAes0YzDPl3SJBzBEwAeQrNEB+vBX3/LiP+2nk+4Jc+/04MPV4QJ7esr2/bkFDN1X1sN1ErJzbcXQ==
+  dependencies:
+    "@types/google.maps" "*"
     "@types/react" "*"
 
 "@types/react-slick@^0.23.10":
