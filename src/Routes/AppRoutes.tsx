@@ -46,7 +46,8 @@ export default function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
-        
+        <Route path="/termsandconditions" element={<TermsandConditions />} />
+        <Route path="/privacyandpolicy" element={<PrivacyandPolicy />} />
       </Routes>
     );
   };
