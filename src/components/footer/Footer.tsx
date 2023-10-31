@@ -69,6 +69,11 @@ const Footer: FC<Props> = ({}) => {
                       <Link to="/termsandconditions">Terms & Conditions</Link>
                     </li>
                     <li>
+                      <Link to="/cancellationandrefundpolicy">
+                        Cancellation & Refund Policy
+                      </Link>
+                    </li>
+                    <li>
                       <a href="#" title="">
                         FAQ
                       </a>
