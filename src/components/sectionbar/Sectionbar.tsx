@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import useExternalScripts from "../../hooks/useExternalScripts";
 export default function Sectionbar({}) {
@@ -44,10 +45,43 @@ export default function Sectionbar({}) {
         </div>
       </div> */}
 
+=======
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+// import $ from "jquery"
+
+export default function Sectionbar({}) {
+  useEffect(() => {
+    $(".page-caro").owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        600: {
+          items: 3,
+        },
+        1000: {
+          items: 5,
+        },
+      },
+    });
+
+    return () => {
+      $(".page-caro").owlCarousel("destroy");
+    };
+  }, []);
+
+  return (
+    <section>
+>>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
       <div className="white-bg">
         <div className="container-fluid">
           <div className="menu-caro">
             <div className="row">
+<<<<<<< HEAD
               {/* <div className="col-lg-2">
 							<div className="sidemenu">
 								<i>
@@ -65,6 +99,8 @@ export default function Sectionbar({}) {
 									<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></i>
 							</div>
 						</div> */}
+=======
+>>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
               <div className="col-lg-8 m-auto">
                 <div className="page-caro">
                   <div className="link-item">

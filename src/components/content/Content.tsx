@@ -1,17 +1,32 @@
-
+import { useEffect, useState } from "react";
 import PropertyCard from "../propertycard/PropertyCard";
 import { useSelector } from "react-redux";
+import InfiniteScroll from "react-infinite-scroll-component";
 
+type contentProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
 
-export default function Content() {
- 
+export default function Content({
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: contentProps) {
+  const [properties, setProperties]: any = useState([]);
 
-  // useEffect(() => {
-  //   setAllData(dataFromApi);
-  // }, [dataFromApi]);
   const allProperty = useSelector(
     (state: any) => state?.homeReducer?.allProperty
   );
+
+  useEffect(() => {
+    let newItems = allProperty;
+    if (newItems !== properties) {
+      console.log("netitems", newItems);
+      setProperties([...properties, ...newItems]);
+    }
+  }, [allProperty]);
 
   return (
     <section>
@@ -333,11 +348,26 @@ export default function Content() {
                       <span>Emma Watson</span>
                     </div>
                   </div> */}
-                  <div className="row">
-                    {allProperty?.map((item: any) => (
-                      <PropertyCard key={item?._id} property={item} />
-                    ))}
-                  </div>
+
+                  <InfiniteScroll
+                    dataLength={properties?.length}
+                    next={() => {
+                      setPageNumber((pageNumber: any) => pageNumber + 1);
+                    }}
+                    hasMore={(pageNumber - 1) * pageSize < properties?.length}
+                    loader={<h4>loadding...</h4>}
+                    endMessage={
+                      <p style={{ textAlign: "center" }}>
+                        <b>Yay! You have seen it all</b>
+                      </p>
+                    }
+                  >
+                    <div className="row">
+                      {properties?.map((item: any) => (
+                        <PropertyCard key={item?._id} property={item} />
+                      ))}
+                    </div>
+                  </InfiniteScroll>
 
                   {/* your group */}
                 </div>

@@ -1,0 +1,7 @@
+const FETCH_NEARU_DATA = "FETCH_NEARU_DATA"
+const SET_NEARU_DATA = "SET_NEARU_DATA"
+
+export const nearuTypes = {
+    FETCH_NEARU_DATA,
+    SET_NEARU_DATA
+}

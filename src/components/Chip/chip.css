@@ -1,0 +1,16 @@
+/* chip css */
+.chips {
+  width: fit-content;
+  border: 1px solid #9b9494;
+  height: 26px;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+  color: #9b9494;
+  cursor: pointer;
+  margin: 3px;
+  font-size: 13px;
+  line-height: 13px;
+}

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -10,7 +11,7 @@ const Footer: FC<Props> = ({}) => {
           <div
             className="bg-image"
             style={{
-              backgroundImage: "url(images/resources/footer-bg.png)",
+              backgroundImage: "url(/images/resources/footer-bg.png)",
             }}
           ></div>
           <div className="container">
@@ -19,12 +20,13 @@ const Footer: FC<Props> = ({}) => {
                 <div className="web-info" style={{ marginTop: "-22px" }}>
                   <div className="logo">
                     <img
-                      src="images/main-logo-pic.png"
+                      src="/images/main-logo-pic.png"
                       alt=""
                       style={{ maxWidth: "200px", marginBottom: "-17px" }}
                     />
                     {/* <span>Nearluk</span> */}
                   </div>
+                  <p>NearLuk Technologies Private limited</p>
                   <p>
                     Subscribe our newsletter for getting notifications and
                     alerts
@@ -34,7 +36,7 @@ const Footer: FC<Props> = ({}) => {
                       <i className="icofont-phone-circle"></i> 040-66445777
                     </span>
                     <span>
-                      <i className="icofont-email"></i> contact@unicsol.com
+                      <i className="icofont-email"></i> contact@nearluk.com
                     </span>
                     <span style={{ display: "flex", alignItems: "center" }}>
                       <i
@@ -66,14 +68,10 @@ const Footer: FC<Props> = ({}) => {
                       </a>
                     </li>
                     <li>
-                      <a href="#" title="">
-                        Privacy
-                      </a>
+                      <Link to="/privacyandpolicy">Privacy Policy</Link>
                     </li>
                     <li>
-                      <a href="#" title="">
-                        Terms
-                      </a>
+                      <Link to="/termsandconditions">Terms & Conditions</Link>
                     </li>
                     <li>
                       <a href="#" title="">
@@ -202,14 +200,20 @@ const Footer: FC<Props> = ({}) => {
                     
                     <h5>Download App</h5>
                     <a href="#" title="">
-                      <img src="images/android.png" alt="" />
+                      <img src="/images/android.png" alt="" />
                     </a>
                     <a href="#" title="">
-                      <img src="images/apple.png" alt="" />
+                      <img src="/images/apple.png" alt="" />
                     </a>
+<<<<<<< HEAD
                     {/* <a href="#" title="">
                       <img src="images/windows.png" alt="" />
                     </a> */}
+=======
+                    <a href="#" title="">
+                      <img src="/images/windows.png" alt="" />
+                    </a>
+>>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
                   </div>
                 </div>
               </div>
@@ -223,7 +227,8 @@ const Footer: FC<Props> = ({}) => {
           <div className="row">
             <div className="col-lg-12">
               <span className="">
-                &copy; copyright All rights reserved by Nearluk 2023
+                &copy; copyright All rights reserved by Nearluk Technologies
+                Private Limited
               </span>
             </div>
           </div>

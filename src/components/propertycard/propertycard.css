@@ -1,0 +1,9 @@
+.locality__truncate p{
+  white-space: nowrap; 
+  width: 230px !important; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  font-size: 13px;
+  line-height: 15px;
+  margin: 3px;
+}

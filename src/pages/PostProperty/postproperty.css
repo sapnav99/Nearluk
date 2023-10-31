@@ -1,0 +1,298 @@
+.gatedcommunity__title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #000;
+  margin-right: 30px;
+}
+.prop__input_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.googlemap__container {
+  width: 100%;
+  height: 290px;
+  /* background-color: red; */
+}
+.ant-select-show-search:where(
+    .css-dev-only-do-not-override-amq5gd
+  ).ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border: none !important;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+  margin: 10px;
+}
+:where(.css-dev-only-do-not-override-amq5gd).ant-select:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector
+  .ant-select-selection-search-input {
+  border-radius: 25px;
+}
+:where(.css-dev-only-do-not-override-amq5gd).ant-select-single {
+  height: 40px;
+}
+:where(.css-dev-only-do-not-override-amq5gd).ant-select-single:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border-radius: 25px;
+}
+:where(
+    .css-dev-only-do-not-override-amq5gd
+  ).ant-select-single.ant-select-show-arrow
+  .ant-select-selection-item {
+  font-weight: 600;
+}
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+.propertyarea__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.proparea__values_wrapper {
+  display: flex;
+  align-items: center;
+}
+.other__rooms_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__features_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__building_features_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.water__sources_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.parking__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.car__parking {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.counter__part {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.visitor__parking {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.counter__part > button {
+  border: none;
+  background-color: #3fdbd1;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  margin: 10px;
+}
+.width__of_roadfacing_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.price__detailing__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.price__details__checkbox_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__photo_button_container {
+  background-color: #ececec;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.property_photo__button {
+  border: none;
+  border-radius: 25px;
+  background-color: #5e449b;
+  color: white;
+  width: 167px;
+  height: 37px;
+  font-family: poppins;
+  font-size: 12px;
+  font-weight: 500;
+}
+.property_photo_text {
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 400;
+}
+.textarea_text {
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+}
+.proximaty__feature__container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.property__description__container > p {
+  padding: 0;
+  margin: 0 3px;
+  float: right;
+  color: #3fdbd1;
+  font-size: 14px;
+  font-weight: 500;
+}
+.property__title {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 30px;
+  border-bottom: 5px solid #3fdbd1;
+  width: fit-content;
+}
+.propensity__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.profession_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.parking__price_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.paly__gorund_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex: wrap;
+}
+.playground__feature_container {
+  margin: 10px;
+}
+.playgropund__feature_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.eventspace__features_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.evnetspace__type_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hall__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lawn__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hostel__room_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.other__rooms_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.food_details_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.room__area_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hostel__room_amenity_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__booking_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__spaces__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__spaces__wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__availability_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.coworking__amenities_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.add__more_button {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #439977;
+  float: right;
+}

@@ -29,20 +29,18 @@ type proprtyTwoProps = {
   setStepOneData: any;
 };
 
-
 export default React.memo(function PostPropertyTwo({
   setStepOne,
   setStepTwo,
 
   setOpenModal,
-  
 }: proprtyTwoProps) {
   const [radioSelectValue, setRadioSelectvalue] = useState("");
   const [textareastr, setTextareastr] = useState("");
   const [imagePreview, setImagePreview] = useState<
     (File | { url: string; serveruri: any })[]
   >([]);
- 
+
   const [addAminities, setAddAminities] = useState(aminity);
   const [addOwnerShip, setAddOwnerShip] = useState(ownerShiptype);
   const [addAvailability, setAddAvailability] = useState(availability);
@@ -53,7 +51,7 @@ export default React.memo(function PostPropertyTwo({
   const [furnishingItemsObj, setFurnishingItemsObj] = useState([]);
   const [semiFurnishingItemsObj, setSemiFurnishingItemsObj] = useState(null);
   const [map, setMap] = useState(/** @type google.maps.GoogleMap */ null);
-console.log(map)
+  console.log(map);
   const [objectOne, setObjectOne] = useState({
     ownership: "",
     availablity: "",
@@ -171,7 +169,7 @@ console.log(map)
 
   const handleAddAminityRadio = (value: string) => {
     const newArry = [...addAminities];
-    const updatedAminitiesOtion = newArry.map((item:any) => ({
+    const updatedAminitiesOtion = newArry.map((item: any) => ({
       ...item,
       active: item.value === value ? !item.active : item.active,
     }));
@@ -180,7 +178,7 @@ console.log(map)
 
   const handleAddOwnerShipType = (value: string) => {
     const newArry = [...addOwnerShip];
-    const updatedArry = newArry.map((item:any) => ({
+    const updatedArry = newArry.map((item: any) => ({
       ...item,
       active: item.value === value,
     }));
@@ -193,7 +191,7 @@ console.log(map)
 
   const handleFurnishingStatus = (key: string) => {
     const newArry = [...addFurnishingStatus];
-    const updatedArry = newArry.map((item:any) => ({
+    const updatedArry = newArry.map((item: any) => ({
       ...item,
       active: item.key == key,
     }));
@@ -331,7 +329,7 @@ console.log(map)
       </div>
       <div>
         <h6>Ownership type</h6>
-        {addOwnerShip.map((item:any) => (
+        {addOwnerShip.map((item: any) => (
           <Chip
             key={item.value}
             style={{
@@ -346,7 +344,7 @@ console.log(map)
       </div>
       <div>
         <h6>Availability</h6>
-        {addAvailability.map((item:any) => (
+        {addAvailability.map((item: any) => (
           <Chip
             style={{
               margin: "8px",
@@ -368,7 +366,7 @@ console.log(map)
             placeholder="Expected Price"
             className="property__area_input m-1"
             value={objectOne.expected_price}
-            onChange={(e:any) =>
+            onChange={(e: any) =>
               setObjectOne({
                 ...objectOne,
                 expected_price: parseFloat(e.target.value),

@@ -4,6 +4,8 @@ import postPropertyReducer from "../components/postproperty/redux/reducer";
 import homeReducer from "../pages/Home/redux/reducer";
 import userPropDetailsReducer from "../pages/propertydetailingpage/redux/reducer";
 import searchReducer from "../landingPage/navigationPages/redux/reducer";
+import NearuReducer from "../pages/Near-U/redux/reducer";
+import PostpropertyReducer from "../pages/PostProperty/redux/reducer";
 export const rootReducer = combineReducers({
   postPropertyReducer,
   homeReducer,
@@ -11,6 +13,8 @@ export const rootReducer = combineReducers({
   userReducer,
   userPropDetailsReducer,
   searchReducer,
+  NearuReducer,
+  PostpropertyReducer
 });
 
 export const getRootReducer = () => rootReducer;
