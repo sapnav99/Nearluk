@@ -282,7 +282,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     setPropertyDocuments(mapped);
   };
 
-  if (response) {
+  if (response.status === true) {
     return (
       <div
         style={{
