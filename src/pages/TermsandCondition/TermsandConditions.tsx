@@ -1,4 +1,5 @@
 import React from "react";
+import "./termsandcondition.css";
 
 const TermsandConditions: React.FC = () => {
   return (
