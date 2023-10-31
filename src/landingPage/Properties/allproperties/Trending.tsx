@@ -49,7 +49,7 @@ const Trending = () => {
 
     fetchData();
   }, []);
-  console.log(propertyArray);
+
 
   return (
     <div>

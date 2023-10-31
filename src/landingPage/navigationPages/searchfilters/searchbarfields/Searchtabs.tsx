@@ -64,7 +64,7 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updateP
     fetchData(activeTab); 
     dispatch(allpropdataactions.fetchAllProperty([]));
   }, [activeTab, dispatch, page]);
-  console.log(properties)
+
   const propertyLength = properties.length;
 
   // When the properties length changes, update the length in the parent component (SearchResult)

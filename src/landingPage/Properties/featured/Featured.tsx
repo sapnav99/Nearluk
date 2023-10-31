@@ -33,7 +33,7 @@ const Featured = () => {
     };
  fetchData();
   }, []);
-  console.log(properties);
+ 
   return (
     <div>
       <div className="gap">

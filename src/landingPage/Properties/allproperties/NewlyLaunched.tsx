@@ -39,7 +39,7 @@ const NewlyLaunched = () => {
 
     fetchData();
   }, []);
-  console.log(properties);
+
   return (
     <div>
       <div className="gap" style={{ marginTop: "80px" }}>

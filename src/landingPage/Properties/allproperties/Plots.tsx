@@ -34,7 +34,7 @@ const Plots = () => {
 
     fetchData();
   }, []);
-  console.log(plots);
+
 
   return (
     <div>

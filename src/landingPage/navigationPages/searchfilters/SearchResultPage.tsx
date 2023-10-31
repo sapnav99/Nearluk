@@ -43,7 +43,7 @@ const SearchResult = () => {
         };
   });
 
-  console.log(filters);
+
   // const clearAll = () => {
   //   setFilters("");
   // };
@@ -71,7 +71,7 @@ const SearchResult = () => {
   const searchData =
     state && state.searchData !== undefined ? state.searchData : null;
 
-  console.log("filter", searchData);
+  
 
   let allData: AllData = {};
 

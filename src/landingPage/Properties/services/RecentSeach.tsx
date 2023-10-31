@@ -45,7 +45,7 @@ const navigate= useNavigate();
 
     fetchData();
   }, []);
-  console.log(propertyArray);
+
   return (
     <div>
       <div className="gap">

@@ -37,8 +37,7 @@ const TopProjects = () => {
 
     fetchData();
   }, []);
-  console.log(propertyArray);
-  
+
   return (
     <div>
       <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>

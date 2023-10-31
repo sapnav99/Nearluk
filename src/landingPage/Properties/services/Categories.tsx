@@ -46,7 +46,7 @@ const Rent = () => {
 
     fetchData();
   }, []);
-  // console.log(propertyArray);
+
   const commercialProperties = propertyArray.filter(
     (item: any) => item.property_type === "Commercial"
   );

@@ -33,7 +33,7 @@ const Ownerproperties = () => {
         );
 
         setPropertyArray(response?.data?.data);
-        console.log(response.data);
+     
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -41,7 +41,7 @@ const Ownerproperties = () => {
 
     fetchData();
   }, []);
-  console.log(propertyArray);
+
 
   return (
     <div className="gap">

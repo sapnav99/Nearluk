@@ -28,7 +28,7 @@ const AgentProperties = () => {
         );
 
         setPropertyArray(response?.data?.data);
-        console.log(response.data);
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -36,7 +36,7 @@ const AgentProperties = () => {
 
     fetchData();
   }, []);
-  console.log(propertyArray);
+  
   return (
     <div>
       <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>

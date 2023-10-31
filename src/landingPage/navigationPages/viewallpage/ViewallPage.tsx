@@ -40,7 +40,7 @@ const Viewall = () => {
         });
 
         setPropertyArray(response?.data?.data);
-        console.log(response.data);
+  
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -82,7 +82,7 @@ const Viewall = () => {
 
     fetchDataHome();
   }, []);
-  console.log(homeProperties);
+
   useEffect(() => {
     const fetchDataCategory = async () => {
       try {
