@@ -91,6 +91,9 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   const propertyOwner = useSelector(
     (state: any) => state.loginReducer.user?.user?._id
   );
+  // const propertyOwner = useSelector(
+  //   (state: any) => state.loginReducer.user?.user
+  // );
   // console.log(propertyOwner);
   const otherStepOneData = useMemo(
     () => ({
