@@ -6,21 +6,20 @@ import CommonButton from "../../../components/common/button/CommonButton";
 import CommonInput from "../../../components/common/input/CommonInput";
 
 import Apis from "../../../api/apiServices";
-type Props={
-  setStep?:any,
-  setOtpDetails?:any,
-  setMobNum?:any,
-  openNotification?:any,
-  navigate?:any,
-}
-const SentOtpBox:React.FC<Props> = ({
+type Props = {
+  setStep?: any;
+  setOtpDetails?: any;
+  setMobNum?: any;
+  openNotification?: any;
+  navigate?: any;
+};
+const SentOtpBox: React.FC<Props> = ({
   setStep,
   setOtpDetails,
   setMobNum,
   openNotification,
-
 }) => {
-  const [otpLoader, setOtpLoader]:any = useState(false);
+  const [otpLoader, setOtpLoader]: any = useState(false);
   const mobSchema = Yup.object().shape({
     mobile_no: Yup.string()
       .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits")
@@ -30,7 +29,7 @@ const SentOtpBox:React.FC<Props> = ({
     setMobNum(phoneNumber);
     setOtpLoader(true);
     try {
-      if (!phoneNumber || phoneNumber.length < 10) {
+      if (!phoneNumber || phoneNumber?.length < 10) {
         openNotification(
           "topRight",
           "error",
@@ -45,11 +44,11 @@ const SentOtpBox:React.FC<Props> = ({
       });
 
       if (response.data.Status === "Success") {
-        console.log("succs", response.data);
+        console.log("succs", response?.data);
         openNotification("topRight", "success", "OTP sent successfully!");
         setStep((step: any) => step + 1);
         setOtpLoader(false);
-        setOtpDetails(response.data.Details);
+        setOtpDetails(response?.data?.Details);
       } else {
         console.log("else");
 

@@ -15,7 +15,6 @@ const Header: React.FC<Props> = ({}) => {
   const isLoggedIn = useSelector(
     (state: any) => state?.loginReducer?.isLoggedIn
   );
-
   const handleButtonClick = () => {
     navigate("/");
     dispatch(LoginActions.loggedOut());

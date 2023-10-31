@@ -13,8 +13,11 @@ import Signup from "../pages/auth/signup1/Signup";
 import UserProfile from "../pages/auth/profile/UserProfile";
 import LandingPage from "../landingPage/LandingPage";
 import PropertyDetaing from "../pages/propertydetailingpage/PropertyDetailing";
+import PostProperty from "../pages/PostProperty/PostProperty";
+import NearU from "../pages/Near-U/NearU";
 import TermsandConditions from "../pages/TermsandCondition/TermsandConditions";
 import PrivacyandPolicy from "../pages/PrivacyandPolicy/PrivacyandPolicy";
+
 
 import { useSelector } from "react-redux";
 
@@ -22,7 +25,7 @@ export default function AppRoutes() {
   const isLoggedIn = useSelector(
     (state: any) => state?.loginReducer?.isLoggedIn
   );
-  console.log("this is for login ==>", isLoggedIn);
+
   const UnAuthRoutes = () => {
     return (
       <Routes>
@@ -46,6 +49,8 @@ export default function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/proprtydetail/:id" element={<PropertyDetaing />} />
+        <Route path="/nearu" element={<NearU />} />
+        <Route path="/postproperty" element={<PostProperty />} />
         <Route path="/termsandconditions" element={<TermsandConditions />} />
         <Route path="/privacyandpolicy" element={<PrivacyandPolicy />} />
       </Routes>
