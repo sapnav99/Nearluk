@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -61,14 +62,10 @@ const Footer: FC<Props> = ({}) => {
                       </a>
                     </li>
                     <li>
-                      <a href="#" title="">
-                        Privacy
-                      </a>
+                      <Link to="/privacyandpolicy">Privacy Policy</Link>
                     </li>
                     <li>
-                      <a href="#" title="">
-                        Terms
-                      </a>
+                      <Link to="/termsandconditions">Terms & Conditions</Link>
                     </li>
                     <li>
                       <a href="#" title="">
