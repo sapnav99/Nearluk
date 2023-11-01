@@ -3,11 +3,13 @@ import api from "./apiServices";
 /**Login API */
 const login = (payload: Object) => api.post(`/api/login`, payload);
 const postProperty = (payload: Object) => api.post("/property/add", payload);
+
 const userPropDetailsById = (payload: any) => {
   const params = new URLSearchParams(payload).toString();
   return api.get(`/property/one?${params}`);
 };
 const signup = (payload: Object) => api.post(`/users/signup`, payload);
+const search=(payload: Object)=>api.post("/property/search", payload);
 const getAllProductApi = (payload: any) => {
   const params = new URLSearchParams();
   params.append("pageNumber", payload.pageNumber);
@@ -42,6 +44,7 @@ const Apis = {
   getAllProductApi,
   userPropDetailsById,
   signup,
+  search,
   getNearuDataApi,
   googleCityAutoComplete,
   googleLocalityAutoComplete,

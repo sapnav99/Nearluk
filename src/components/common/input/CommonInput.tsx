@@ -15,6 +15,7 @@ type Props = {
   disabled?: any;
   className?: string;
   checked?: boolean;
+  style?:any;
 };
 
 const CommonInput: React.FC<Props> = React.memo(
@@ -30,6 +31,7 @@ const CommonInput: React.FC<Props> = React.memo(
     touched,
     errors,
     disabled,
+    style,
     className,
     checked,
   }) => {
@@ -47,6 +49,7 @@ const CommonInput: React.FC<Props> = React.memo(
           disabled={disabled}
           className={className}
           checked={checked}
+          style={style}
         />
         {errors && touched && (
           <div className="error">

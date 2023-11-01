@@ -24,7 +24,7 @@ const Login1:React.FC = () => {
   const loginResponse = useSelector(
     (state: any) => state?.loginReducer?.logRes
   );
-
+console.log(loginResponse)
   const openNotification = (
     placement: NotificationPlacement,
     type: NotificationType,

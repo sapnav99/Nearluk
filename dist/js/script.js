@@ -568,9 +568,9 @@ jQuery(document).ready(function ($) {
     $(".page-caro").owlCarousel({
       items: 6,
       loop: true,
-      margin: 0,
-      autoplay: false,
-      autoplayTimeout: 2500,
+      margin: -500,
+      autoplay: true,
+      autoplayTimeout: 2000,
       smartSpeed: 1000,
       autoplayHoverPause: true,
       nav: false,
@@ -584,7 +584,7 @@ jQuery(document).ready(function ($) {
           items: 5,
         },
         1000: {
-          items: 6,
+          items: 3,
         },
       },
     });

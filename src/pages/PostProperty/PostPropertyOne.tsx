@@ -95,6 +95,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   //   (state: any) => state.loginReducer.user?.user
   // );
   // console.log(propertyOwner);
+  console.log(map)
   const otherStepOneData = useMemo(
     () => ({
       location: [currentPosition?.lat, currentPosition?.lng],
@@ -127,13 +128,13 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
   // const [toogleLocality, setToogleLocality] = useState(false);
   const [searchCity, setSearchCity] = useState("");
   const [searchState, setSearchState] = useState("");
-  const [searchLocality, setSeachLocality] = useState("");
+  // const [searchLocality, setSeachLocality] = useState("");
   const debouncedSearchCity = useDebounce(searchCity, 500);
   const debouncedSearchState = useDebounce(searchState, 500);
-  const debouncedLocality = useDebounce(searchLocality, 500);
+  // const debouncedLocality = useDebounce(searchLocality, 500);
 
   // console.log(debouncedSearchCity)
-  const [options, setOptions] = useState<{ value: string }[]>([]);
+  // const [options, setOptions] = useState<{ value: string }[]>([]);
 
   const citySearchData = useSelector(
     (state: any) => state?.PostpropertyReducer?.getCity
@@ -143,9 +144,9 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     (state: any) => state?.PostpropertyReducer?.getState
   );
   // console.log(stateSearchData);
-  const localitySearchData = useSelector(
-    (state: any) => state?.PostpropertyReducer?.getLocality
-  );
+  // const localitySearchData = useSelector(
+  //   (state: any) => state?.PostpropertyReducer?.getLocality
+  // );
 
   // console.log("state data",stateSearchData)
 
@@ -176,11 +177,11 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
     }
   }, [debouncedSearchState]);
 
-  useEffect(() => {
-    if (debouncedLocality) {
-      dispatch(postpropertyAction.fetchLocalityData(searchLocality));
-    }
-  }, [debouncedLocality]);
+  // useEffect(() => {
+  //   if (debouncedLocality) {
+  //     dispatch(postpropertyAction.fetchLocalityData(searchLocality));
+  //   }
+  // }, [debouncedLocality]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyCEDp1k2rqt67lzxkvetaemDGp7ieO3rpg",
@@ -756,7 +757,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
               onSelect={handleCitySelect}
             />
           </div>
-          <div style={{ margin: "10px" }}>
+          {/* <div style={{ margin: "10px" }}>
             <AutoComplete
               options={options}
               style={{ width: 218, margin: "10px" }}
@@ -764,7 +765,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
               placeholder="Select Locality"
               allowClear={false}
             />
-          </div>
+          </div> */}
           <div>
             <AutoComplete
               options={stateSearchData?.map((item: any) => ({

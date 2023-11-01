@@ -1,0 +1,18 @@
+
+.group-box {
+  text-align: center;
+}
+
+.serviceImage{
+  max-width: 85px !important;
+  height: 85px;
+  margin-bottom: 10px;
+}
+.group-box button {
+ width: 100px;
+  padding: 10px;
+  background-color: #3FDBD1;
+  color: black;
+  border: none;
+  cursor: pointer;
+}

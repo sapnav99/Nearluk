@@ -1,45 +1,42 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import PostProperty from "../postproperty/PostProperty";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
+import locationSymbol from "../../assets/images/Location.png";
+import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
+import { BiSupport } from "react-icons/bi";
 
-import { GrLocation } from "react-icons/gr";
+// import { GrLocation } from "react-icons/gr";
 import "./Header.css";
 type Props = {};
 
 const Header: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false);
-  const isLoggedIn = useSelector(
-    (state: any) => state?.loginReducer?.isLoggedIn
-  );
+ 
+  // const isLoggedIn = useSelector(
+  //   (state: any) => state?.loginReducer?.isLoggedIn
+  // );
+
+
   const handleButtonClick = () => {
-    navigate("/");
+    navigate("/login");
     dispatch(LoginActions.loggedOut());
   };
   return (
     <>
-      <PostProperty openModal={openModal} setOpenModal={setOpenModal} />
+     
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="/images/main-logo-pic.png"
+            src="images/main-logo-pic.png"
             alt=""
             onClick={() => navigate("/")}
           />
         </div>
-        {/* <div className="user-avatar mobile">
-          <a href="profile.html" title="View Profile">
-            <img alt="" src="images/resources/user.jpg" />
-          </a>
-          <div className="name">
-            <h4>Danial Cardos</h4>
-            <span>Ontario, Canada</span>
-          </div>
-        </div> */}
+
         <div className="right-compact">
           <div className="sidemenu">
             <i>
@@ -63,7 +60,7 @@ const Header: React.FC<Props> = ({}) => {
             </i>
           </div>
           <div className="add-prop">
-            {isLoggedIn ? (
+           
               <button
                 type="button"
                 className="btn button "
@@ -78,7 +75,7 @@ const Header: React.FC<Props> = ({}) => {
               >
                 Post Property
               </button>
-            ) : (
+           
               <div>
                 <button
                   type="button"
@@ -97,7 +94,7 @@ const Header: React.FC<Props> = ({}) => {
                   Login
                 </button>
               </div>
-            )}
+            
           </div>
         </div>
         <div className="restop-search">
@@ -113,28 +110,21 @@ const Header: React.FC<Props> = ({}) => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            <a href="/">
-              <img
-                src="/images/main-logo-pic.png"
-                alt=""
-                style={{ height: "45px", width: "145px" }}
-              />
-            </a>
+            
+              <a href="/">
+                <img
+                  src="images/main-logo-pic.png"
+                  alt=""
+                  style={{ height: "45px", width: "145px" }}
+                />
+              </a>
+          
+             
+         
           </div>
 
           <div className="nl-search-location">
             <div className="searchicon">
-              <span
-                style={{
-                  marginTop: "-67px",
-                  marginLeft: "10px",
-                  color: "#1bdf1b",
-                  fontSize: "6em",
-                  paddingRight: "20px",
-                }}
-              >
-                .
-              </span>
               <div className="nl-search-location_wrap">
                 <input
                   type="text"
@@ -143,8 +133,6 @@ const Header: React.FC<Props> = ({}) => {
                 />
               </div>
             </div>
-
-            {/* <div className="nl-search__error"></div> */}
           </div>
           <div className="sidemenu" style={{ float: "right" }}>
             <i>
@@ -170,131 +158,58 @@ const Header: React.FC<Props> = ({}) => {
           <ul className="web-elements">
             <li>
               <div className="add-prop">
-                {isLoggedIn && (
+                
                   <button
                     type="button"
                     className="btn button "
                     style={{
                       backgroundColor: "#84D7E8",
                       borderRadius: "25px",
-                      fontWeight: "700",
+                      fontWeight: "500",
+                      letterSpacing: "1px",
                     }}
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => {
+                      navigate("/postproperty");
+                    } }
                   >
                     Post Property
                   </button>
-                )}
+               
               </div>
             </li>
-            {/* {isLoggedIn && (
-              <li>
-                <a href="index.html" title="Home" data-toggle="tooltip">
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-home"
-                    >
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                  </i>
-                </a>
-              </li>
-            )} */}
-            {/* {isLoggedIn && (
-              <li>
-                <a
-                  className="mesg-notif"
-                  href="#"
-                  title="Messages"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-message-square"
-                    >
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                  </i>
-                </a>
-                <span></span>
-              </li>
-            )} */}
-            {/* {isLoggedIn && (
-              <li>
-                <a
-                  className="mesg-notif"
-                  href="#"
-                  title="Notifications"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-bell"
-                    >
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                  </i>
-                </a>
-                <span></span>
-              </li>
-            )} */}
-            {/* {isLoggedIn && (
-              <li>
-                <a
-                  className="create"
-                  href="#"
-                  title="Add New"
-                  data-toggle="tooltip"
-                >
-                  <i>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-plus"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                  </i>
-                </a>
-              </li>
-            )} */}
-            {isLoggedIn && (
+            <li>
+              <a
+                className="mesg-notif"
+                href="#"
+                title="Notifications"
+                data-toggle="tooltip"
+                style={{
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-bell"
+                  >
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </i>
+              </a>
+              <span></span>
+            </li>
+            <BiSupport/>
+          
               <li>
                 <a href="#" title="">
                   <img
@@ -307,25 +222,7 @@ const Header: React.FC<Props> = ({}) => {
                       borderRadius: "50%",
                     }}
                   />
-                  <i>
-                    {/* <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-grid"
-                  >
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                  </svg> */}
-                  </i>
+                  <i></i>
                 </a>
                 <ul className="dropdown">
                   <li>
@@ -375,207 +272,134 @@ const Header: React.FC<Props> = ({}) => {
                     </a>
                   </li>
                   <li className="logout">
-                    <a href="/" title="" onClick={handleButtonClick}>
+                    <a href="/login" title="" onClick={handleButtonClick}>
                       <i className="icofont-power"></i> Logout
                     </a>
                   </li>
                 </ul>
               </li>
-            )}
-            {/* <img
-              src={support}
-              alt=""
-              style={{ height: "20px", width: "20px", color: "blue" }}
-            /> */}
-            {/* <FontAwesomeIcon icon={fa-sharp fa-light fa-headset} /> */}
-            <li>
-              <a
-                className="mesg-notif"
-                href="#"
-                title="Notifications"
-                data-toggle="tooltip"
-                style={{
-                  border: "none",
-                  background: "none",
-                }}
-              >
-                <i>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-bell"
-                  >
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                  </svg>
-                </i>
-              </a>
-              <span></span>
-            </li>
+          
+
             <li>
               <div className="add-prop">
-                {!isLoggedIn && (
-                  <button
-                    type="button"
-                    className="btn "
-                    style={{
-                      backgroundColor: "white",
-                      borderRadius: "25px",
-                      color: "black",
-                      fontWeight: "700",
-                      width: 100,
-                      border: "solid 0.5px #03B6C3",
-                    }}
-                    onClick={() => navigate("/login")}
-                  >
-                    Login
-                  </button>
-                )}
+               
               </div>
             </li>
-
-            <li>
-              {/* <div className="add-prop">
-                <button
-                  type="button"
-                  className="btn  "
-                  style={{
-                    backgroundColor: "#7ED7CF",
-                    borderRadius: "25px",
-                    fontWeight: "500",
-                    width: 160,
-                  }}
-                  onClick={() => navigate("/login")}
-                >
-                  Post Property
-                </button>
-              </div> */}
-            </li>
           </ul>
-
-          <ul
-            className="web_elements list2"
-            // style={{
-            //   color: "black",
-            //   fontWeight: 500,
-            //   fontSize: "14px",
-            //   marginRight: "-10px",
-            // }}
-          >
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-
-            <li>
-              <a>Rent Pay</a>
-              <ul className="dropdown2">
-                <li>
-                  <a href="">Rent</a>
-                </li>
-                <li>
-                  <a href="">Maintanance</a>
-                </li>
-                <li>
-                  <a href="">Advance Amount</a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a>Creditluk</a>
-              <ul className="dropdown2">
-                <li>
-                  <a href="">Loans</a>
-                </li>
-                <li>
-                  <a href="">Loan Calculator</a>
-                </li>
-                <li>
-                  <a href="">CIBIL</a>
-                </li>
-              </ul>
-            </li>
+          <ul className="web_elements list2">
+            <li > <a href="/">Home</a></li>          
             <li>
               <a>
-                Near U<span className="heartbeat"></span>
-                <span className="location">
-                  <GrLocation />
-                </span>
+                Properties <BsChevronDown />
               </a>
             </li>
-
-            <li>
-              <a>Services</a>
-              {/* <ul className="dropdown1">
-                <li>
-                  <a href="#" title="">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Auctions
-                  </a>
-                </li>
-                <li>
-                  <a className="invite-new" href="#" title="">
-                    Fo Business Owners
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="">
-                    Fo Builders
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    For Poperty Consultants
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Notifications
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Insights
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="">
-                    Sales Support
-                  </a>
-                </li>
-              </ul> */}
-            </li>
             <li>
               <a>
-                Auctions
-                <a
-                  href="live-stream.html"
-                  title="Go Live"
-                  data-toggle="tooltip"
-                >
+                Services
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>
+                    Rent Pay <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Rent</a>
+                    </li>
+                    <li>
+                      <a href="">Maintanance</a>
+                    </li>
+                    <li>
+                      <a href="">Advance Amount</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    Creditluk <BsChevronRight />
+                  </a>
+                  <ul className="dropdown3">
+                    <li>
+                      <a href="">Loans</a>
+                    </li>
+                    <li>
+                      <a href="">Loan Calculator</a>
+                    </li>
+                    <li>
+                      <a href="">CIBIL</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Insights</a>
+                </li>
+              </ul>
+            </li>
+            <li style={{marginRight:"435px"}}>
+
+              <a>
+                More
+                <BsChevronDown />{" "}
+              </a>
+              <ul className="dropdown2">
+                <li>
+                  <a>For Business Owners</a>
+                </li>
+                <li>
+                  <a>For Builders </a>
+                </li>
+                <li>
+                  <a>For Property Consultants</a>
+                </li>
+              </ul>
+            </li>
+            
+          <li>
+              <a style={{ marginLeft: "-6px" }}>
+                <i>
                   <span className="heartbeat"></span>
-                  <span className="dot">
-                    <i>
-                      <svg
-                        fill="#f00"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                        width="18px"
-                        height="18px"
-                      >
-                        <path
-                          d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
+                  <span className="location">
+                    <img
+                      src={locationSymbol}
+                      alt=""
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        marginRight: "5px",
+                      }}
+                    />
+                  </span>
+                </i>
+              </a>
+              <a>Near U</a>
+            </li>
+
+            <li style={{marginRight:"25px"}}>
+              <a
+                style={{ paddingRight: "6px" }}
+                href="live-stream.html"
+                title="Go Live"
+                data-toggle="tooltip"
+              >
+                <span
+                  className="heartbeat"
+                  style={{
+                    marginLeft: "1px",
+                    marginTop: "17px",
+                  }}
+                ></span>
+                <span className="location ">
+                  <i>
+                    <svg
+                      fill="#f00"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      width="18px"
+                      height="18px"
+                    >
+                      <path
+                        d="M 6.1015625 6.1015625 C 3.5675625 8.6345625 2 12.134 2 16 C 2 19.866 3.5675625 
                       23.365437 6.1015625 25.898438 L 7.5195312 24.480469 C 5.3465312 22.307469 4 19.308 4 16 
                       C 4 12.692 5.3465312 9.6925313 7.5195312 7.5195312 L 6.1015625 6.1015625 z M 25.898438 6.1015625 
                       L 24.480469 7.5195312 C 26.653469 9.6925312 28 12.692 28 16 C 28 19.308 26.653469 22.307469 
@@ -587,25 +411,14 @@ const Header: React.FC<Props> = ({}) => {
                         19.680266 20.947266 20.947266 L 22.363281 22.363281 C 23.992281 20.734281 25 18.485 25 16 
                         C 25 13.515 23.992281 11.265719 22.363281 9.6367188 z M 16 12 A 4 4 0 0 0 16 20 A 4 4 0 0 0 
                         16 12 z"
-                        />
-                      </svg>
-                    </i>
-                  </span>
-                </a>
+                      />
+                    </svg>
+                  </i>
+                </span>
               </a>
+              <a>Auctions</a>
             </li>
-            <li>
-              <a>For Business Owners</a>
-            </li>
-            <li>
-              <a>For Builders</a>
-            </li>
-            <li>
-              <a>For Poperty Consultants</a>
-            </li>
-            <li>
-              <a>Insights</a>
-            </li>
+         
           </ul>
         </div>
       </header>

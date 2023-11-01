@@ -43,7 +43,7 @@ const Footer: FC<Props> = ({}) => {
                     </span>
                     <span>
                       <i className="icofont-location-pin"></i> 202 & 203, 2nd
-                      flooor, Block A, PSR Prime Towers, Beside DLF Cyber City,
+                      floor, Block A, PSR Prime Towers, Beside DLF Cyber City,
                       Gachibowli, Hyderabad, Telangana, 500032
                     </span>
                   </div>

@@ -1,7 +1,58 @@
+
+.agentImages{
+  width: 250px;
+  height: 200px;
+}
 .blog-posts{
-    margin-bottom: 0px; 
+    
     display: flex;
 }
+.blog-post_meta{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-top: -8px;
+  
+}
+
+.more_details {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+  margin-left: -65px;
+}
+.more_details li {
+  position: relative;
+  display: inline-block;
+  float: none;
+  width: 33.333%;
+  font-size: 14px;
+  line-height: 24px;
+  color: #93959e;
+  padding-left: 28px;
+}
+.more_details li i {
+  position: absolute;
+  left: 0px;
+  top: 3px;
+  font-size: 14px;
+}
+.more_details li:before {
+  position: absolute;
+  content: "";
+  background-color: #e5e7ec;
+  width: 1px;
+  height: 18px;
+  top: 2px;
+  right: 12px;
+}
+.more_details li:last-child:before {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
     .main-wraper {
         height: 400px;

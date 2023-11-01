@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
 import Content from "../../components/content/Content";
-import SearchBar from "../../components/searchbar/SearchBar";
-import Sectionbar from "../../components/sectionbar/Sectionbar";
+// import Sectionbar from "../../components/sectionbar/Sectionbar";
 import { useDispatch, useSelector } from "react-redux";
 import { allpropdataactions } from "./redux/action";
 import { ThreeCircles } from "react-loader-spinner";
 import "./index.css";
 import useExternalScripts from "../../hooks/useExternalScripts";
+import SearchBarBeforeLogin from "../../components/searchbar/SearchBar1";
+import SearchBar from "../../components/searchbar/SearchBar";
 
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 10;
   useExternalScripts({ urls: ["js/owl.carousel.min.js"] });
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(allpropdataactions.fetchAllProperty({ pageNumber, pageSize }));
   }, [pageNumber]);
-
+  const isLoggedIn = useSelector(
+    (state: any) => state?.loginReducer?.isLoggedIn
+  );
   const loader: any = useSelector(
     (state: any) => state?.homeReducer?.allPropertyLoader
   );
@@ -48,8 +52,8 @@ const Home = () => {
 
   return (
     <div>
-      <SearchBar />
-      {/* <Sectionbar /> */}
+       {isLoggedIn? <SearchBar />:<SearchBarBeforeLogin/>}
+       {/* <SearchBarBeforeLogin/> */}
       <Content
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}

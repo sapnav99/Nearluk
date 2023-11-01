@@ -1,0 +1,26 @@
+.cityImages {
+  /* margin-left: 60px; */
+  width: 70px !important;
+  height: 65px;
+}
+.buttons {
+  width: 100px !important;
+  background-color: rgba(63, 219, 209, 1) !important;
+  /* margin-left: 90px; */
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    max-width: 100% !important;
+  }
+}
+@media only screen and (max-width: 667px) {
+  .container {
+    max-width: 700px !important;
+  }
+}
+@media only screen and (max-width: 736px) {
+  .container {
+    max-width: 1000px !important;
+  }
+}

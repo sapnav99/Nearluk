@@ -1,200 +1,183 @@
-
-import villa3 from "../../assets/images/villa3.jpg";
-import villa4 from "../../assets/images/villa4.jpg";
-import profile from "../../assets/images/profilePhoto.jpg";
-import car from "../../assets/images/car 1.png";
-import elevator from "../../assets/images/elevator 1.png";
-import swimming from "../../assets/images/swimming 1.png";
-import "../Properties/EventSpace.css";
-import './AgentProperty.css'
-
+import Apis from "../../api/apiServices";
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Pagination,
+  Autoplay,
+  Navigation,
+  EffectFade,
+  Virtual,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/hash-navigation";
+import "swiper/css/virtual";
+import right from "../../assets/images/Right.png";
+import left from "../../assets/images/Left.png";
+import "./AgentProperty.css";
 
 const AgentProperties = () => {
- 
+  const [propertyArray, setPropertyArray] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Apis.get(
+          "/property/propertyByCategory?sub_category=Residential"
+        );
+
+        setPropertyArray(response?.data?.data);
+      
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     <div>
-      <div className="gap">
+      <div className="gap" style={{ backgroundColor: "#E2FFFD" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div id="page-contents" className="row merged20"></div>
-              <div className="col-lg-12">
-                <div className="main-wraper" style={{ marginBottom: "-80px" }}>
-                  <div className="main-title">Agent Properties</div>
-                  <div style={{ display: "flex" }}>
-                    <div
-                      className="blog-posts col-sm-12 col-md-12"
-                      // style={{ marginBottom: "0px", display: "flex" }}
+              <div id="page-contents" className="row merged20">
+                <div
+                  className="prevagent col-lg-1"
+                  slot="container-start"
+                  style={{ marginTop: "90px" }}
+                >
+                  <img src={left} alt="" />
+                </div>
+                <div className="col-lg-10" style={{ marginTop: "40px" }}>
+                  <div className="main-title">
+                    Agent Properties{" "}
+                    <a
+                      title=""
+                      href="#"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
                     >
-                      <figure>
-                        <img src={villa3} alt="" style={{ width: "260px" }} />
-                      </figure>
-                      <div
-                        className="blog-post-meta"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <div className="post-by">
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <div className="course-cat">
-                            <span style={{ marginTop: "12px" }}>
-                              By: Sarah K
-                            </span>
-                            {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
-                          </div>
-                        </div>
-
-                        <h4>Modern villa with pool</h4>
-
-                        <ul className="more-details clearfix">
-                          <li
-                            style={{
-                              marginLeft: "-30px",
-                              width: "140px",
-                            }}
-                          >
-                            <img
-                              src={car}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            Car parking
-                          </li>
-                          <li style={{ marginLeft: "-35px", width: "95px" }}>
-                            <img
-                              src={elevator}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            Lift
-                          </li>
-                          <li
-                            style={{
-                              marginLeft: "-30px",
-                              display: "flex",
-                              width: "160px",
-                            }}
-                          >
-                            <img
-                              src={swimming}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            {/* <i className="fa-solid fa-chart-area"></i> */}
-                            <span>Swimming pool</span>
-                          </li>
-                          {/* <li>
-                                  <i className="fa-solid fa-plus"></i>23 more
-                                </li> */}
-                        </ul>
-                        {/* <span>
-                        <i className="icofont-clock-time"></i> january 23, 2021
-                      </span> */}
-                        {/* <a
-                        href="blog-detail.html"
-                        title=""
-                        className="button primary circle"
-                      >
-                        read more
-                      </a> */}
-                      </div>
-                    </div>
-                    <div
-                      className="blog-posts col-sm-12 col-md-12"
-                      style={{ marginBottom: "0px", display: "flex" }}
-                    >
-                      <figure>
-                        <img src={villa4} alt="" style={{ width: "260px" }} />
-                      </figure>
-                      <div
-                        className="blog-post-meta"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <div className="post-by">
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <div className="course-cat">
-                            <span style={{ marginTop: "12px" }}>
-                              By: Sarah K
-                            </span>
-                            {/* <a href="#" title="">
-                        HTML5
-                      </a> */}
-                          </div>
-                        </div>
-
-                        <h4>Modern villa with pool</h4>
-
-                        <ul className="more-details clearfix">
-                          <li
-                            style={{
-                              marginLeft: "-30px",
-                              width: "140px",
-                            }}
-                          >
-                            <img
-                              src={car}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            {/* <i className="fa-solid fa-bed"></i> */}
-                            Car parking
-                          </li>
-                          <li style={{ marginLeft: "-35px", width: "95px" }}>
-                            <img
-                              src={elevator}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            {/* <i className="fa-solid fa-shower"></i> */}
-                            Lift
-                          </li>
-                          <li
-                            style={{
-                              marginLeft: "-30px",
-                              display: "flex",
-                              width: "160px",
-                            }}
-                          >
-                            <img
-                              src={swimming}
-                              alt=""
-                              style={{ paddingRight: "5px" }}
-                            />
-                            {/* <i className="fa-solid fa-chart-area"></i> */}
-                            <span>Swimming pool</span>
-                          </li>
-                          {/* <li>
-                                  <i className="fa-solid fa-plus"></i>23 more
-                                </li> */}
-                        </ul>
-                        {/* <span>
-                        <i className="icofont-clock-time"></i> january 23, 2021
-                      </span> */}
-                        {/* <a
-                        href="blog-detail.html"
-                        title=""
-                        className="button primary circle"
-                      >
-                        read more
-                      </a> */}
-                      </div>
-                    </div>
+                      View all
+                    </a>
                   </div>
+                  <Swiper
+                    modules={[
+                      Pagination,
+                      Virtual,
+                      Autoplay,
+                      Navigation,
+                      EffectFade,
+                    ]}
+                    spaceBetween={-500}
+                    slidesPerView={1}
+                    autoplay={{ delay: 2000, disableOnInteraction: false }}
+                    navigation={{
+                      nextEl: ".nextagent",
+                      prevEl: ".prevagent",
+                    }}
+                    pagination={{ clickable: true }}
+                    loop={true}
+                    virtual
+                  >
+                    <div style={{ display: "flex", marginBottom: "-60px" }}>
+                      {propertyArray.length > 0
+                        ? propertyArray.map((item: any, i: any) => (
+                            <SwiperSlide key={i}>
+                              <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
+                                <figure>
+                                  {item?.property?.image_gallery && (
+                                    <img
+                                      className="agentImages"
+                                      src={
+                                        item?.property?.image_gallery[0]
+                                          ?.serveruri
+                                      }
+                                      alt=""
+                                    />
+                                  )}
+                                </figure>
+                                <div
+                                  className="blog-post_meta"
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexDirection: "column",
+                                  }}
+                                >
+                                  <div className="post-by">
+                                    <figure>
+                                      <img
+                                        src="images/resources/user7.jpg"
+                                        alt=""
+                                      />
+                                    </figure>
+                                    <div className="course-cat">
+                                      <span style={{ marginTop: "12px" }}>
+                                        By: {item?.property_owner?.fname}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <h6>
+                                    {item?.property?.building_name || "N/A"}
+                                  </h6>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: "row",
+                                    }}
+                                  >
+                                    <ul>
+                                      {item?.amenities?.map(
+                                        (amenity: any, index: any) => (
+                                          <li key={index}>{amenity?.label}</li>
+                                        )
+                                      )}
+                                    </ul>
+
+                                    {/* <ul
+                                      style={{
+                                        width: "85%",
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        listStyle: "none",
+                                        padding: 0,
+                                        marginTop: "10px",
+                                      }}
+                                    >
+                                      <li style={{ marginRight: "20px" }}>
+                                        <img src={car} alt="" />
+                                        Car parking
+                                      </li>
+                                      <li style={{ marginRight: "20px" }}>
+                                        <img src={elevator} alt="" />
+                                        Lift
+                                      </li>
+                                      <li style={{ marginRight: "20px" }}>
+                                        <img src={swimming} alt="" />
+
+                                        <span>Swimming pool</span>
+                                      </li>
+                                    </ul> */}
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          ))
+                        : "no data found"}
+                    </div>
+                  </Swiper>
+                </div>
+                <div
+                  className="nextagent col-lg-1"
+                  slot="container-end"
+                  style={{ marginTop: "90px" }}
+                >
+                  <img src={right} alt="" />
                 </div>
               </div>
             </div>

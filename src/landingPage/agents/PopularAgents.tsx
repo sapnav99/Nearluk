@@ -1,8 +1,13 @@
-
-import profile from "../../assets/images/profilePhoto.jpg";
-// import './Agents.css'
-
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/hash-navigation";
+import right from "../../assets/images/Right.png";
+import left from "../../assets/images/Left.png";
+import "./Agents.css";
+import popular from "../../assets/images/popular.png";
 const PopularAgents = () => {
   return (
     <div>
@@ -10,97 +15,257 @@ const PopularAgents = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div id="page-contents" className="row">
+              <div id="page-contents" className="row merged20">
                 <div
-                  className="main-wraper"
-                  style={{
-                    marginBottom: "-80px",
-                    width: "1160px",
-                    marginLeft: "30px",
-                  }}
+                  className="col-lg-1 prevagent"
+                  slot="container-start"
+                  style={{ marginTop: "60px" }}
                 >
-                  <div className="user-post" style={{ marginBottom: "30px" }}>
-                    <div className="friend-info">
-                      <h4 className="main-title">Popular Agents</h4>
-                      <ul
-                        className="suggested-caro"
-                        // style={{
-                        //   margin: 0,
-                        // }}
+                  <img src={left} alt="" />
+                </div>
+                <div className="col-lg-10">
+                  <h4 className="main-title">
+                    Popular Agents{" "}
+                    <a
+                      title=""
+                      href="#"
+                      className="view-all"
+                      style={{ fontSize: "14px" }}
+                    >
+                      View all
+                    </a>
+                  </h4>
+                  <Swiper
+                    modules={[Pagination, Autoplay, Navigation, EffectFade]}
+                    spaceBetween={-350}
+                    slidesPerView={2}
+                    autoplay={{ delay: 2000, disableOnInteraction: false }}
+                    navigation={{
+                      nextEl: ".nextagent",
+                      prevEl: ".prevagent",
+                    }}
+                    pagination={{ clickable: true }}
+                    loop={true}
+                  >
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
                       >
-                        <li >
-                          <figure>
-                            <img src={profile} alt="" />
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
+                      >
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
+                      >
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
+                      >
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
+                      >
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Amy Watson</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div
+                        className="widget stick-widget col-lg-5"
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: "13px",
+                        }}
+                      >
+                        <div className="followers">
+                          <figure className="figurea">
+                            <img alt="" src={popular} />
                           </figure>
-                          <span>Muhammad Khan</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                        <li>
-                          <figure>
-                            <img src={profile} alt="" />
-                          </figure>
-                          <span>Sadia Gill</span>
-                          {/* <ins>Department of Socilolgy</ins> */}
-                          <a href="#" title="" data-ripple="">
-                            <i className="icofont-phone"></i> Contact
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                          <div className="popular">
+                            <h6>Mitra Spaces Pvt Ltd</h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              fontSize: "12px",
+                              marginLeft: "40px",
+                            }}
+                          >
+                            <span>
+                              Dealing in : Rent/Lease Original Booking, Resale
+                            </span>
+                            <span>Member Since: 2022</span>
+                            <span>
+                              Properties Dealing: 100 Villas | 37 Plots | 2
+                              Flats | 1 House
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </div>
+
+                <div
+                  className="nextagent col-lg-1"
+                  slot="container-end"
+                  style={{ marginTop: "60px" }}
+                >
+                  <img src={right} alt="" />
                 </div>
               </div>
             </div>

@@ -1,0 +1,32 @@
+.rents>i>img{
+  width: 250px;
+  height: 170px;
+  border-radius: 20px;
+}
+
+/* .categ-card {
+  position: relative;
+} */
+
+.overlay-text {
+  position: absolute;
+  border-radius: 20px;
+  bottom: 0;
+  top: 0;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  width: 88%;
+  text-align: start;
+  color: white;
+}
+.overlay-text>p{
+  color: white;
+  font-size: 11px;
+  line-height: 6px;
+}
+.overlay-text>label{
+  padding-top: 115px;
+  font-size: 12px;
+  line-height: 1px;
+}

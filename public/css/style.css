@@ -1249,8 +1249,7 @@ header.transparent .topbar {
   padding: 3px 10px 3px 4px;
   vertical-align: middle;
 }
-.add-prop{
-  
+.add-prop {
 }
 .button {
   display: inline-block;
@@ -1266,7 +1265,7 @@ header.transparent .topbar {
   z-index: 1;
 }
 .button:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1277,7 +1276,7 @@ header.transparent .topbar {
   z-index: -2;
 }
 .button:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1361,8 +1360,7 @@ header.transparent .topbar {
   vertical-align: middle;
   width: 600px;
   margin-top: 5px;
-}
-.nl-search__wrap{
+}.nl-search__wrap{
   width: 780px;
   height: 52px;
   background-color: #fff;
@@ -1454,9 +1452,9 @@ position: absolute;
 left: 18px;
 top: -5px;
 }
-.nl-search__btn_text{
+/* .nl-search__btn_text{
 
-}
+} */
 .nl-search__btn_icon{
   /* display: inline-block;
   width: 11px;
@@ -1467,7 +1465,6 @@ top: -5px;
   position: relative;
   margin-right: 5px;
 }
-
 
 .searches > form {
   display: inline-block;
@@ -5311,8 +5308,7 @@ input[type="checkbox"] {
   bottom: -2px;
   right: -4px;
 }
-.postby-name{
-
+.postby-name {
 }
 .post-by > figure img {
   border: 1px solid #cacaca;
@@ -5346,12 +5342,13 @@ input[type="checkbox"] {
   border: 0 none;
 }
 .prise {
-  /* float: right; */
+  background-color: #EDEDED;
 }
 .prise > span {
-  color: #92929e;
-  font-size: 18px;
+  color: black;
+  font-size: 16px;
   font-weight: 500;
+  background-color: #EDEDED;
 }
 .course:hover .prise > span {
   color: #62626e;
@@ -8541,7 +8538,7 @@ aside.sidebar .widget .activity-meta > i {
   position: relative;
   border-bottom: 3px solid transparent;
 }
-.link-item  h6 {
+.link-item h6 {
   cursor: pointer;
   color: #303030;
   font-size: 14px;

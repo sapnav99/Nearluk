@@ -1,7 +1,5 @@
-
 import final from "../../assets/images/final letterhead 1.png";
-import './Services.css'
-
+import "./Services.css";
 
 const ServicesAd = () => {
   return (
@@ -10,31 +8,10 @@ const ServicesAd = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div id="page-contents" className="row merged20"></div>
-              <div className="col-lg-12">
-                <div className="main-wraper" style={{ marginBottom: "-80px" }}>
-                  <div
-                    className="blog-posts"
-                    // style={{ marginBottom: "0px", display: "flex" }}
-                  >
-                    <figure>
-                      <img
-                        src={final}
-                        alt=""
-                        style={{ width: "720px", height: "450px" }}
-                      />
-                    </figure>
-                    <div
-                      className="blog-post-meta"
-                      style={{
-                        textAlign: "right",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        marginLeft: "50px",
-                      }}
-                    >
+              <div id="page-contents" className="row merged20">
+                <div className="col-lg-12">
+                  <div className="blog-posts" style={{ marginBottom: "-80px" }}>
+                    <div className="blog-post-meta col-lg-4 col-md-12">
                       <h1 style={{ lineHeight: "60px" }}>Rent Services</h1>
                       <p
                         style={{
@@ -50,13 +27,21 @@ const ServicesAd = () => {
                       {/* <span>
                         <i className="icofont-clock-time"></i> january 23, 2021
                       </span> */}
-                      <a
-                        href="blog-detail.html"
-                        title=""
-                        className="button primary circle"
+                       <button
+                        style={{
+                          backgroundColor: "#3FDBD1",
+                          borderRadius: "20px",
+                          paddingBlock: "5px",
+                          width: "100px",
+                        }}
                       >
-                        Book Now
-                      </a>
+                        Book now
+                      </button>
+                    </div>
+                    <div className="col-lg-7 col-md-12">
+                      <figure>
+                        <img className="images" src={final} alt="" />
+                      </figure>
                     </div>
                   </div>
                 </div>
