@@ -1,13 +1,31 @@
-
+import { useEffect, useState } from "react";
 import "./Heading.css";
 import Typewriter from "typewriter-effect";
 
 export function Heading() {
+  const [margin, setMargin] = useState("margin-480"); // Initial margin value class
+
+  useEffect(() => {
+    function updateMargin() {
+      const deviceWidth = window.innerWidth;
+      const newMargin = deviceWidth <= 768 ? "margin-20" : "margin-480"; // Define your logic for margin change
+      setMargin(newMargin);
+    }
+
+    updateMargin(); // Set initial margin
+
+    window.addEventListener('resize', updateMargin);
+
+    return () => {
+      window.removeEventListener('resize', updateMargin);
+    };
+  }, []);
+
   return (
-    <div className="heading">
+    <div className={`heading ${margin}`}>
       <h3 style={{ color: "white" }}>
-        Find your{" "}
-        <span style={{ color: "rgba(144, 255, 211, 1)" }}> Dream Home</span>{" "}
+        Find your
+        <span style={{ color: "rgba(144, 255, 211, 1)" }}> Dream Home</span>
         with Nearluk
       </h3>
       <h6

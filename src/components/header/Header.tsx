@@ -325,7 +325,7 @@ const Header: React.FC<Props> = ({}) => {
                 </li>
               </ul>
             </li>
-            <li style={{ marginRight: "435px" }}>
+            <li >
               <a>
                 More
                 <BsChevronDown />{" "}

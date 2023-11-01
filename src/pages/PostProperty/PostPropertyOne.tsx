@@ -165,6 +165,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
         })
       );
     }
+    
   }, [debouncedSearchCity]);
 
   useEffect(() => {

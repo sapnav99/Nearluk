@@ -230,13 +230,13 @@ const HeaderBeforeLogin = () => {
                   </a>
                   <ul className="dropdown3">
                     <li>
-                      <a href="">Rent</a>
+                      <a href="/comingsoon">Rent</a>
                     </li>
                     <li>
-                      <a href="">Maintanance</a>
+                      <a href="/comingsoon">Maintanance</a>
                     </li>
                     <li>
-                      <a href="">Advance Amount</a>
+                      <a href="/comingsoon">Advance Amount</a>
                     </li>
                   </ul>
                 </li>
@@ -246,35 +246,35 @@ const HeaderBeforeLogin = () => {
                   </a>
                   <ul className="dropdown3">
                     <li>
-                      <a href="">Loans</a>
+                      <a href="/comingsoon">Loans</a>
                     </li>
                     <li>
-                      <a href="">Loan Calculator</a>
+                      <a href="/comingsoon">Loan Calculator</a>
                     </li>
                     <li>
-                      <a href="">CIBIL</a>
+                      <a href="/comingsoon">CIBIL</a>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a>Insights</a>
+                  <a href="/comingsoon">Insights</a>
                 </li>
               </ul>
             </li>
-            <li style={{marginRight:"400px"}}>
+            <li >
               <a>
                 More
                 <BsChevronDown />{" "}
               </a>
               <ul className="dropdown2">
                 <li>
-                  <a>For Business Owners</a>
+                  <a href="/comingsoon">For Business Owners</a>
                 </li>
                 <li>
-                  <a>For Builders </a>
+                  <a href="/comingsoon">For Builders </a>
                 </li>
                 <li>
-                  <a>For Property Consultants</a>
+                  <a href="/comingsoon">For Property Consultants</a>
                 </li>
               </ul>
             </li>
@@ -300,9 +300,9 @@ const HeaderBeforeLogin = () => {
             </li>
 
             <li>
-              <a
+              <a 
                 style={{ paddingRight: "6px" }}
-                href="live-stream.html"
+                href="/comingsoon"
                 title="Go Live"
                 data-toggle="tooltip"
               >

@@ -34,7 +34,7 @@ const Rent = () => {
     const fetchData = async () => {
       try {
         const response = await Apis.get(
-          "/property/getAllProperty?city=hyderabad&pageNumber=1&pageSize=10"
+          "/property/getAllProperty?city=hyderabad"
         );
 
         setPropertyArray(response?.data?.data);

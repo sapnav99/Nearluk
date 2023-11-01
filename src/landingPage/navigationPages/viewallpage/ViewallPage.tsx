@@ -52,7 +52,7 @@ const Viewall = () => {
   const fetchDataGetall = async () => {
     try {
       const response = await Apis.get(
-        `/property/getAllProperty?city=hyderabad&pageNumber=${page}&pageSize=10`
+        `/property/getAllProperty?city=hyderabad`
       );
 
       setProperties(response?.data?.data);

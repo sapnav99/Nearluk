@@ -23,6 +23,7 @@ import { useSelector } from "react-redux";
 import HeaderBeforeLogin from "../components/header/Header1";
 import SearchResult from "../landingPage/navigationPages/searchfilters/SearchResultPage";
 import Viewall from "../landingPage/navigationPages/viewallpage/ViewallPage";
+import { ComingSoon } from "../pages/default/ComingSoon";
 
 export default function AppRoutes() {
   const isLoggedIn = useSelector(
@@ -44,6 +45,7 @@ export default function AppRoutes() {
           path="/cancellationandrefundpolicy"
           element={<CancellationandRefundPolicy />}
         />
+        <Route path="/comingsoon" element={<ComingSoon/>}/>
       </Routes>
     );
   };
