@@ -5,11 +5,6 @@ const baseURL = BASE_URL;
 const axiosInstance = axios.create({
   baseURL,
   timeout: 60000,
-  // headers: {
-  //   // "ngrok-skip-br?owser-warning": true,
-  //   mode: "cors",
-  //   "Access-Control-Allow-Origin": "*",
-  // },
 });
 
 // export const setJwtToken = (token: string) => {
