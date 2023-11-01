@@ -5,7 +5,7 @@ import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
 import { Slider } from "antd";
 import { useNavigate } from "react-router-dom";
-import PropertySearchLocation from "../postproperty/PropertySearchLocation";
+// import PropertySearchLocation from "../postproperty/PropertySearchLocation";
 export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
 
@@ -13,13 +13,13 @@ export default function SearchBarBeforeLogin() {
   const [isPropertyDropdownOpen, setisPropertyDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setisPriceDropdownOpen] = useState(false);
 
-  const [sliderValue, setSliderValue] = useState<[number, number] | undefined>([
+  const [sliderValue, setSliderValue] = useState<any | undefined>([
     0, 10000000,
   ]);
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
   const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
 
-  const handleChange = (value: number | [number, number]) => {
+  const handleChange = (value: number | any) => {
     if (Array.isArray(value)) {
       setSliderValue(value);
       setMinSliderValue(value[0]);
@@ -34,12 +34,12 @@ export default function SearchBarBeforeLogin() {
   const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
     useState(false);
   const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
-  const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({
-    lat: null,
-    lng: null,
-  });
-  console.log(coordinates);
+  // const [address, setAddress] = useState("");
+  // const [coordinates, setCoordinates] = useState({
+  //   lat: null,
+  //   lng: null,
+  // });
+  // console.log(coordinates);
   const toggleBHKDropdown = () => {
     setBHKDropdownOpen(!isBHKDropdownOpen);
   };
@@ -77,10 +77,10 @@ export default function SearchBarBeforeLogin() {
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
 
-    // const locationInput = document.querySelector(
-    //   ".searchlocation__input"
-    // ) as HTMLInputElement;
-    const locationInput = address.split(",")[0].trim();
+    const locationInput = document.querySelector(
+      ".searchlocation__input"
+    ) as HTMLInputElement;
+    // const locationInput = address.split(",")[0].trim();
     if (!locationInput) {
       return;
     }
@@ -89,13 +89,13 @@ export default function SearchBarBeforeLogin() {
       bhk: `${selectedBHK}`,
       construction_status: `${selectedConstructionStatus}`,
       posted_by: `${selectedPostedBy}`,
-      city: locationInput,
+      city: locationInput.value.toString(),
       selectedItems: selectedItems,
       minprise: minSliderValue,
       maxprise: maxSliderValue,
     };
     const selectedItemsString = selectedItems.toString();
-    const queryString = `city=${locationInput}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
+    const queryString = `city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
 
     const mainUrl = `/searchresult/?${queryString}`;
     navigate(mainUrl, {
@@ -282,7 +282,7 @@ export default function SearchBarBeforeLogin() {
         </div>
 
         <div className="search__wrap">
-          <div className="search__location">
+        <div className="search__location">
             <div className="search__location_wrap">
               <label style={{ fontSize: "16px" }}>Location</label>
               <div
@@ -293,13 +293,15 @@ export default function SearchBarBeforeLogin() {
                   backgroundColor: "rgba(240, 240, 240, 1)",
                 }}
               >
-                <div className="searchlocation__input">
-                  <PropertySearchLocation
-                    address={address}
-                    setAddress={setAddress}
-                    setCoordinates={setCoordinates}
-                  />
-                </div>
+                {/* <span style={{ marginTop: "-3px" }}>
+                  <IoIosSearch style={{ fontSize: "1em" }} />
+                </span> */}
+
+                <input
+                  type="text"
+                  className="searchlocation__input"
+                  placeholder="City/Location/Landmark/Pincode"
+                />
               </div>
             </div>
           </div>

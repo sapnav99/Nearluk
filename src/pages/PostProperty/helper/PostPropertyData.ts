@@ -1,4 +1,4 @@
-import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
+
 
 interface Category {
   label: string;

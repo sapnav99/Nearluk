@@ -158,11 +158,11 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
   const uploadtoServer = async (file: File) => {
     try {
       const response = await Api.post("/property/uploadImage", file);
-      // console.log("response", response);
+      console.log("response", response);
       return response.data.data;
     } catch (err: any) {
       setImageLoader(false);
-      // console.log(err.response);
+      console.log(err.response);
     }
   };
 
@@ -282,7 +282,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
     setPropertyDocuments(mapped);
   };
 
-  if (response.status === true) {
+  if (response?.status === true) {
     return (
       <div
         style={{

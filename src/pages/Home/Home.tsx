@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <div>
        {isLoggedIn? <SearchBar />:<SearchBarBeforeLogin/>}
-      {/* <Sectionbar /> */}
+       {/* <SearchBarBeforeLogin/> */}
       <Content
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}

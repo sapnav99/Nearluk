@@ -64,9 +64,9 @@ const EventSpaces = () => {
                   >
                     <div className="row slider-container">
                       {propertyArray.map((_, index) => (
-                        <SwiperSlide>
+                          <SwiperSlide key={`slide_${index}`}>
                           <div className="col-lg-4 col-md-6 col-sm-6">
-                            <div className="course slide" key={index}>
+                            <div className="course slide" >
                               <figure>
                                 <img src={events1} alt="" />
                                 <i

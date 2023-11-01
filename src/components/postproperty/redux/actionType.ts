@@ -1,8 +1,0 @@
-export const SET_STEPS_DATA = "SET_STEPONE_DATA";
-
-export const propertyTypes = {
-  FETCH_POST_PROPERTY: "FETCH_POST_PROPERTY",
-  SET_STEPS_DATA: "SET_STEPONE_DATA",
-  TAKE_STEP_DATA: "TAKE_STEP_DATA",
-};
-

@@ -17,6 +17,7 @@ import "../event/EventSpace.css";
 
 const Plots = () => {
   const [plots, setPlots] = useState([]);
+  console.log(plots)
 
   useEffect(() => {
     const fetchData = async () => {

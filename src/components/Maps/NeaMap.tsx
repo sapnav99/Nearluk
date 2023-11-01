@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   GoogleMap,
   InfoWindow,
@@ -36,14 +36,14 @@ function Map() {
   });
   const [activeMarker, setActiveMarker] = useState(null);
 
-  const handleActiveMarker = (marker) => {
+  const handleActiveMarker = (marker: any) => {
     if (marker === activeMarker) {
       return;
     }
     setActiveMarker(marker);
   };
 
-  const handleOnLoad = (map) => {
+  const handleOnLoad = (map: any) => {
     const bounds = new google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import PostProperty from "../postproperty/PostProperty";
+
 import { useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
 import locationSymbol from "../../assets/images/Location.png";
@@ -15,7 +15,7 @@ type Props = {};
 const Header: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false);
+ 
   // const isLoggedIn = useSelector(
   //   (state: any) => state?.loginReducer?.isLoggedIn
   // );
@@ -27,7 +27,7 @@ const Header: React.FC<Props> = ({}) => {
   };
   return (
     <>
-      <PostProperty openModal={openModal} setOpenModal={setOpenModal} />
+     
       <div className="responsive-header">
         <div className="logo res">
           <img
@@ -168,7 +168,9 @@ const Header: React.FC<Props> = ({}) => {
                       fontWeight: "500",
                       letterSpacing: "1px",
                     }}
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => {
+                      navigate("/postproperty");
+                    } }
                   >
                     Post Property
                   </button>

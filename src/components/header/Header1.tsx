@@ -1,6 +1,6 @@
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
-import PostProperty from "../postproperty/PostProperty";
+
 import locationSymbol from "../../assets/images/Location.png";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
@@ -9,7 +9,7 @@ import "./Header.css";
 const HeaderBeforeLogin = () => {
   const navigate = useNavigate();
   
-  const [openModal, setOpenModal] = useState(false);
+
   // const [latitude, setLatitude] = useState<number | null>(null);
   // const [longitude, setLongitude] = useState<number | null>(null);
 
@@ -32,7 +32,7 @@ const HeaderBeforeLogin = () => {
   
   return (
     <>
-      <PostProperty openModal={openModal} setOpenModal={setOpenModal} />
+      
       <div className="responsive-header">
         <div className="logo res">
           <img
@@ -74,7 +74,7 @@ const HeaderBeforeLogin = () => {
                   borderRadius: "25px",
                   fontWeight: "700",
                 }}
-                onClick={() => setOpenModal(true)}
+                onClick={() => navigate("/login")}
               >
                 Post Property
               </button>

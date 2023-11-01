@@ -43,7 +43,7 @@ export default function SearchFilters({ onFiltersChange }: any) {
   const toggleAreaDropdown = () => {
     setAreaDropdownOpen(!AreaDropdownOpen);
   };
-  const onSliderChange = (values: [number, number]) => {
+  const onSliderChange = (values:any) => {
     setMinValue(values[0]);
     setMaxValue(values[1]);
     onFiltersChange({ minValue: values[0], maxValue: values[1] });
