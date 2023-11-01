@@ -3,15 +3,8 @@ import moment from "moment";
 import { fromateNumber } from "../../pages/propertydetailingpage/PropertyHelper";
 import "./propertycard.css";
 
-<<<<<<< HEAD
-const PropertyCard = ({ property }: any) => {
-  const navigate = useNavigate();
- 
-  
-=======
 const PropertyCard = ({ property, page }: any) => {
   // const navigate = useNavigate();
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
   return (
     <div
       className={
@@ -20,29 +13,22 @@ const PropertyCard = ({ property, page }: any) => {
           : "col-lg-6 col-md-4 col-sm-12"
       }
       onClick={() => {
-<<<<<<< HEAD
-        navigate(`/proprtydetail/${property._id}`);
-        
-=======
         const url = `/proprtydetail/${property._id}`;
         window.open(url, "_blank");
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
       }}
     >
       <div className="course">
         <figure>
-          {property?.property?.image_gallery && 
-          
           <img
-          src={
-            property?.property?.image_gallery[0]?.serveruri||
-             property?.property?.image_gallery[0]?.serveruri
-          }
-          alt="property image"
-
-        /> 
-          }
-          
+            src={
+              property?.property?.image_gallery[0]?.serveruri?.data ||
+              property?.property?.image_gallery[0]?.serveruri
+            }
+            alt="property image"
+            style={{
+              height: 260,
+            }}
+          />
           <i className="icofont-book-mark" title="bookmark" />
           <em>Verified</em>
           <span className="rate-result">
@@ -154,25 +140,16 @@ const PropertyCard = ({ property, page }: any) => {
             <div className="col-lg-4 mt-2 ">
               <span>
                 <b>
-<<<<<<< HEAD
-                  <span>₹</span> {property?.property?.expected_price}
-=======
                   <span>&#8377;</span>{" "}
                   {fromateNumber(property?.property?.expected_price)}
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
                 </b>
               </span>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="course-info">
-            {/* <span className="lecturez">
-=======
           {/* <div className="course-info">
             <span className="lecturez">
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
               <i className="icofont-film" /> 20 Lectures
-            </span> */}
+            </span>
 
             <span className="lecturez">
               <i className="icofont-film" /> car Parking

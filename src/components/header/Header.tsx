@@ -6,12 +6,9 @@ import { LoginActions } from "../../pages/auth/redux/actions";
 import locationSymbol from "../../assets/images/Location.png";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-<<<<<<< HEAD
 import { BiSupport } from "react-icons/bi";
-=======
 
-import { GrLocation } from "react-icons/gr";
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
+// import { GrLocation } from "react-icons/gr";
 import "./Header.css";
 type Props = {};
 
@@ -19,16 +16,11 @@ const Header: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-<<<<<<< HEAD
   // const isLoggedIn = useSelector(
   //   (state: any) => state?.loginReducer?.isLoggedIn
   // );
 
-=======
-  const isLoggedIn = useSelector(
-    (state: any) => state?.loginReducer?.isLoggedIn
-  );
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
+
   const handleButtonClick = () => {
     navigate("/login");
     dispatch(LoginActions.loggedOut());

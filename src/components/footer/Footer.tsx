@@ -41,15 +41,10 @@ const Footer: FC<Props> = ({}) => {
                     <span>
                       <i className="icofont-email"></i> contact@nearluk.com
                     </span>
-                    <span style={{ display: "flex", alignItems: "center" }}>
-                      <i
-                        className="icofont-location-pin"
-                        style={{ marginRight: "10px", marginBottom: "65px" }}
-                      ></i>
-                      <span>
-                        202 & 203, 2nd floor, Block A, PSR Prime Towers, Beside
-                        DLF Cyber City, Gachibowli, Hyderabad, Telangana, 500032
-                      </span>
+                    <span>
+                      <i className="icofont-location-pin"></i> 202 & 203, 2nd
+                      floor, Block A, PSR Prime Towers, Beside DLF Cyber City,
+                      Gachibowli, Hyderabad, Telangana, 500032
                     </span>
                   </div>
                 </div>
@@ -133,7 +128,7 @@ const Footer: FC<Props> = ({}) => {
                   </ul>
                 </div>
               </div>
-              {/* <div className="col-lg-2 col-md-4 col-sm-6">
+              <div className="col-lg-2 col-md-4 col-sm-6">
                 <div className="widget">
                   <div className="widget-title">
                     <h4>Follow Us</h4>
@@ -171,7 +166,7 @@ const Footer: FC<Props> = ({}) => {
                     </li>
                   </ul>
                 </div>
-              </div> */}
+              </div>
               <div className="col-lg-3 col-md-6 col-sm-6">
                 <div className="widget">
                   <div className="widget-title">
@@ -188,24 +183,6 @@ const Footer: FC<Props> = ({}) => {
                       it is a long established fact that a reader will be
                       distracted by.
                     </p>
-                    <h5>Follow Us</h5>
-                    <div style={{marginBottom:"10px"}}>
-                    <a href="#" title="" style={{paddingRight:"15px"}}>
-                      <i className="icofont-facebook"></i>
-                    </a>
-
-                    <a href="#" title="" style={{paddingRight:"15px"}}>
-                      <i className="icofont-twitter"></i>
-                    </a>
-
-                    <a href="#" title="" style={{paddingRight:"15px"}}>
-                      <i className="icofont-instagram"></i>
-                    </a>
-                    
-                    </div>
-                  
-
-                    
                     <h5>Download App</h5>
                     <a href="#" title="">
                       <img src="/images/android.png" alt="" />
@@ -213,15 +190,9 @@ const Footer: FC<Props> = ({}) => {
                     <a href="#" title="">
                       <img src="/images/apple.png" alt="" />
                     </a>
-<<<<<<< HEAD
-                    {/* <a href="#" title="">
-                      <img src="images/windows.png" alt="" />
-                    </a> */}
-=======
                     <a href="#" title="">
                       <img src="/images/windows.png" alt="" />
                     </a>
->>>>>>> c2168557dbbff43624c391e5688c0923aa2b99fc
                   </div>
                 </div>
               </div>
