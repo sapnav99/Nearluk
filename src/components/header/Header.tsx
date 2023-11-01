@@ -15,11 +15,10 @@ type Props = {};
 const Header: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+
   // const isLoggedIn = useSelector(
   //   (state: any) => state?.loginReducer?.isLoggedIn
   // );
-
 
   const handleButtonClick = () => {
     navigate("/login");
@@ -27,11 +26,10 @@ const Header: React.FC<Props> = ({}) => {
   };
   return (
     <>
-     
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="images/main-logo-pic.png"
+            src="/images/main-logo-pic.png"
             alt=""
             onClick={() => navigate("/")}
           />
@@ -60,41 +58,39 @@ const Header: React.FC<Props> = ({}) => {
             </i>
           </div>
           <div className="add-prop">
-           
+            <button
+              type="button"
+              className="btn button "
+              style={{
+                backgroundColor: "#84D7E8",
+                borderRadius: "25px",
+                fontWeight: "700",
+              }}
+              onClick={() => {
+                navigate("/postproperty");
+              }}
+            >
+              Post Property
+            </button>
+
+            <div>
               <button
                 type="button"
-                className="btn button "
+                className="btn "
                 style={{
-                  backgroundColor: "#84D7E8",
+                  backgroundColor: "white",
                   borderRadius: "25px",
+                  color: "black",
                   fontWeight: "700",
+                  width: 150,
+                  border: "solid 0.5px #03B6C3",
                 }}
-                onClick={() => {
-                  navigate("/postproperty");
-                } }
+                onClick={() => navigate("/login")}
+                // onClick={() => setOpenModal(true)}
               >
-                Post Property
+                Login
               </button>
-           
-              <div>
-                <button
-                  type="button"
-                  className="btn "
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "25px",
-                    color: "black",
-                    fontWeight: "700",
-                    width: 150,
-                    border: "solid 0.5px #03B6C3",
-                  }}
-                  onClick={() => navigate("/login")}
-                  // onClick={() => setOpenModal(true)}
-                >
-                  Login
-                </button>
-              </div>
-            
+            </div>
           </div>
         </div>
         <div className="restop-search">
@@ -110,17 +106,13 @@ const Header: React.FC<Props> = ({}) => {
       <header className="">
         <div className="topbar stick">
           <div className="logo">
-            
-              <a href="/">
-                <img
-                  src="images/main-logo-pic.png"
-                  alt=""
-                  style={{ height: "45px", width: "145px" }}
-                />
-              </a>
-          
-             
-         
+            <a href="/">
+              <img
+                src="images/main-logo-pic.png"
+                alt=""
+                style={{ height: "45px", width: "145px" }}
+              />
+            </a>
           </div>
 
           <div className="nl-search-location">
@@ -158,23 +150,21 @@ const Header: React.FC<Props> = ({}) => {
           <ul className="web-elements">
             <li>
               <div className="add-prop">
-                
-                  <button
-                    type="button"
-                    className="btn button "
-                    style={{
-                      backgroundColor: "#84D7E8",
-                      borderRadius: "25px",
-                      fontWeight: "500",
-                      letterSpacing: "1px",
-                    }}
-                    onClick={() => {
-                      navigate("/postproperty");
-                    } }
-                  >
-                    Post Property
-                  </button>
-               
+                <button
+                  type="button"
+                  className="btn button "
+                  style={{
+                    backgroundColor: "#84D7E8",
+                    borderRadius: "25px",
+                    fontWeight: "500",
+                    letterSpacing: "1px",
+                  }}
+                  onClick={() => {
+                    navigate("/postproperty");
+                  }}
+                >
+                  Post Property
+                </button>
               </div>
             </li>
             <li>
@@ -208,86 +198,85 @@ const Header: React.FC<Props> = ({}) => {
               </a>
               <span></span>
             </li>
-            <BiSupport/>
-          
-              <li>
-                <a href="#" title="">
-                  <img
-                    src="/images/profilepic/profilepic_01.jpg"
-                    alt="name"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "fill",
-                      borderRadius: "50%",
-                    }}
-                  />
-                  <i></i>
-                </a>
-                <ul className="dropdown">
-                  <li>
-                    <a href="userprofile" title="">
-                      <i className="icofont-user-alt-3"></i> Your Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="add-new-course.html" title="">
-                      <i className="icofont-plus"></i> New Course
-                    </a>
-                  </li>
-                  <li>
-                    <a className="invite-new" href="#" title="">
-                      <i className="icofont-brand-slideshare"></i> Invite
-                      Collegue
-                    </a>
-                  </li>
-                  <li>
-                    <a href="pay-out.html" title="">
-                      <i className="icofont-price"></i> Payout
-                    </a>
-                  </li>
-                  <li>
-                    <a href="price-plan.html" title="">
-                      <i className="icofont-flash"></i> Upgrade
-                    </a>
-                  </li>
-                  <li>
-                    <a href="help-faq.html" title="">
-                      <i className="icofont-question-circle"></i> Help
-                    </a>
-                  </li>
-                  <li>
-                    <a href="settings.html" title="">
-                      <i className="icofont-gear"></i> Setting
-                    </a>
-                  </li>
-                  <li>
-                    <a href="privacy-n-policy.html" title="">
-                      <i className="icofont-notepad"></i> Privacy
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dark-mod" href="#" title="">
-                      <i className="icofont-moon"></i> Dark Mode
-                    </a>
-                  </li>
-                  <li className="logout">
-                    <a href="/login" title="" onClick={handleButtonClick}>
-                      <i className="icofont-power"></i> Logout
-                    </a>
-                  </li>
-                </ul>
-              </li>
-          
+            <BiSupport />
 
             <li>
-              <div className="add-prop">
-               
-              </div>
+              <a href="#" title="">
+                <img
+                  src="/images/profilepic/profilepic_01.jpg"
+                  alt="name"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "fill",
+                    borderRadius: "50%",
+                  }}
+                />
+                <i></i>
+              </a>
+              <ul className="dropdown">
+                <li>
+                  <a href="userprofile" title="">
+                    <i className="icofont-user-alt-3"></i> Your Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="add-new-course.html" title="">
+                    <i className="icofont-plus"></i> New Course
+                  </a>
+                </li>
+                <li>
+                  <a className="invite-new" href="#" title="">
+                    <i className="icofont-brand-slideshare"></i> Invite Collegue
+                  </a>
+                </li>
+                <li>
+                  <a href="pay-out.html" title="">
+                    <i className="icofont-price"></i> Payout
+                  </a>
+                </li>
+                <li>
+                  <a href="price-plan.html" title="">
+                    <i className="icofont-flash"></i> Upgrade
+                  </a>
+                </li>
+                <li>
+                  <a href="help-faq.html" title="">
+                    <i className="icofont-question-circle"></i> Help
+                  </a>
+                </li>
+                <li>
+                  <a href="settings.html" title="">
+                    <i className="icofont-gear"></i> Setting
+                  </a>
+                </li>
+                <li>
+                  <a href="privacy-n-policy.html" title="">
+                    <i className="icofont-notepad"></i> Privacy
+                  </a>
+                </li>
+                <li>
+                  <a className="dark-mod" href="#" title="">
+                    <i className="icofont-moon"></i> Dark Mode
+                  </a>
+                </li>
+                <li className="logout">
+                  <a href="/login" title="" onClick={handleButtonClick}>
+                    <i className="icofont-power"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div className="add-prop"></div>
             </li>
           </ul>
           <ul className="web_elements list2">
-            <li > <a href="/">Home</a></li>          
+            <li>
+              {" "}
+              <a href="/">Home</a>
+            </li>
             <li>
               <a>
                 Properties <BsChevronDown />
@@ -336,8 +325,7 @@ const Header: React.FC<Props> = ({}) => {
                 </li>
               </ul>
             </li>
-            <li style={{marginRight:"435px"}}>
-
+            <li style={{ marginRight: "435px" }}>
               <a>
                 More
                 <BsChevronDown />{" "}
@@ -354,8 +342,8 @@ const Header: React.FC<Props> = ({}) => {
                 </li>
               </ul>
             </li>
-            
-          <li>
+
+            <li>
               <a style={{ marginLeft: "-6px" }}>
                 <i>
                   <span className="heartbeat"></span>
@@ -375,7 +363,7 @@ const Header: React.FC<Props> = ({}) => {
               <a>Near U</a>
             </li>
 
-            <li style={{marginRight:"25px"}}>
+            <li style={{ marginRight: "25px" }}>
               <a
                 style={{ paddingRight: "6px" }}
                 href="live-stream.html"
@@ -418,7 +406,6 @@ const Header: React.FC<Props> = ({}) => {
               </a>
               <a>Auctions</a>
             </li>
-         
           </ul>
         </div>
       </header>
