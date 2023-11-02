@@ -1,5 +1,6 @@
 import Apis from "../../../api/apiServices";
 import { useState, useEffect } from "react";
+import '../../LandingPage.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Pagination,
@@ -18,6 +19,7 @@ import "../event/EventSpace.css";
 import { useDispatch } from "react-redux";
 import { allpropdataactions } from "../../../pages/Home/redux/action";
 import { useNavigate } from "react-router-dom";
+import ImageComponent from "../../image/ImageComponent";
 const RecentSearches = () => {
   const dispatch = useDispatch();
 const navigate= useNavigate();
@@ -98,15 +100,15 @@ const navigate= useNavigate();
                         ? propertyArray.slice(0, 5).map((item: any, i: any) => (
                             <SwiperSlide key={i}>
                               <div className="col-lg-4 col-md-6 col-sm-6">
-                                <div className="course">
+                                <div className="nearluk">
                                   <figure>
                                     {item?.property?.image_gallery && (
-                                      <img
-                                        src={
+                                      <ImageComponent
+                                        url={
                                           item?.property?.image_gallery[0]
                                             ?.serveruri
                                         }
-                                        alt=""
+                                        
                                       />
                                     )}
                                     <i

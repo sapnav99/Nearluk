@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { LoginActions } from "../../pages/auth/redux/actions";
 import locationSymbol from "../../assets/images/Location.png";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
-
+import logo from '../../assets/images/main-logo.png'
 import { BiSupport } from "react-icons/bi";
 
 // import { GrLocation } from "react-icons/gr";
@@ -29,7 +29,7 @@ const Header: React.FC<Props> = ({}) => {
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="/images/main-logo-pic.png"
+            src={logo}
             alt=""
             onClick={() => navigate("/")}
           />
@@ -108,7 +108,7 @@ const Header: React.FC<Props> = ({}) => {
           <div className="logo">
             <a href="/">
               <img
-                src="images/main-logo-pic.png"
+                src={logo}
                 alt=""
                 style={{ height: "45px", width: "145px" }}
               />

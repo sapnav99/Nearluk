@@ -31,6 +31,26 @@ const searchReducer=(state=initialState, action:any)=>{
                         loading:false,
                         searchRes:action.payload,
                     }
+                    case getAllSearchproperty.FETCH_CATEGORY_PROPERTY:
+                        return{
+                            ...state,
+                            loading:action.payload,
+                        }
+                        case getAllSearchproperty.SET_CATEGORY_PROPERTY:
+                            return{
+                                ...state,
+                                loading:action.payload,
+                            }
+                            case getAllSearchproperty.FETCH_HOME_PROPERTY:
+                        return{
+                            ...state,
+                            loading:action.payload,
+                        }
+                        case getAllSearchproperty.SET_HOME_PROPERTY:
+                            return{
+                                ...state,
+                                loading:action.payload,
+                            }
                 default:
                     return state;
     }

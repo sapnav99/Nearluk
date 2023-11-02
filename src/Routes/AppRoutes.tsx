@@ -10,7 +10,7 @@ import Groups from "../components/groups/Groups";
 import Topnavbar from "../components/topnavbar/Topnavbar";
 import Login1 from "../pages/auth/login/Login1";
 import Signup from "../pages/auth/signup1/Signup";
-import UserProfile from "../pages/auth/profile/UserProfile";
+import UserProfile from "../pages/profile/UserProfile";
 import LandingPage from "../landingPage/LandingPage";
 import PropertyDetaing from "../pages/propertydetailingpage/PropertyDetailing";
 import PostProperty from "../pages/PostProperty/PostProperty";

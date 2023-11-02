@@ -68,6 +68,11 @@ const PostpropertyReducer = (state = [], action: any) => {
         ...state,
         response: action.payload,
       };
+      case postpropertyTypes.CLEAR_RESPONSE:
+      return {
+        ...state,
+        response: "",
+      };
     default:
       return state;
   }

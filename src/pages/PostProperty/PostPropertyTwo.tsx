@@ -2219,6 +2219,7 @@ const PostPropertyTwo: React.FC<stepTwoProps> = ({
             type="primary"
             onClick={() => {
               dispatch(postpropertyAction.SetPropertyState(totalState));
+              dispatch(postpropertyAction.clearApiResponse())
               setCurrent((prev: any) => prev + 1);
               // console.log(" step two data", {...stepTwoData,...otherStepTwoData})
             }}

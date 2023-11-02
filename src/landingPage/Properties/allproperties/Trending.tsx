@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Apis from "../../../api/apiServices";
+import '../../LandingPage.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Pagination,
@@ -19,6 +20,7 @@ import "../event/EventSpace.css";
 import { useDispatch } from "react-redux";
 import { allpropdataactions } from "../../../pages/Home/redux/action";
 import { useNavigate } from "react-router-dom";
+import ImageComponent from "../../image/ImageComponent";
 
 
 const Trending = () => {
@@ -106,15 +108,15 @@ const Trending = () => {
                                 className="col-lg-4 col-md-6 col-sm-6"
                                 key={i}
                               >
-                                <div className="course">
+                                <div className="nearluk">
                                   <figure>
                                     {item?.property?.image_gallery && (
-                                      <img
-                                        src={
+                                      <ImageComponent
+                                        url={
                                           item?.property?.image_gallery[0]
                                             ?.serveruri
                                         }
-                                        alt=""
+                                        
                                       />
                                     )}
                                     <i

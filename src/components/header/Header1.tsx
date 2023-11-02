@@ -5,7 +5,7 @@ import locationSymbol from "../../assets/images/Location.png";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
 import "./Header.css";
-
+import logo from '../../assets/images/main-logo.png'
 const HeaderBeforeLogin = () => {
   const navigate = useNavigate();
   
@@ -36,7 +36,7 @@ const HeaderBeforeLogin = () => {
       <div className="responsive-header">
         <div className="logo res">
           <img
-            src="images/main-logo-pic.png"
+            src={logo}
             alt=""
             onClick={() => navigate("/")}
           />
@@ -115,7 +115,7 @@ const HeaderBeforeLogin = () => {
             
               <a href="/">
                 <img
-                  src="images/main-logo-pic.png"
+                  src={logo}
                   alt=""
                   style={{ height: "45px", width: "145px" }}
                 />

@@ -1,5 +1,6 @@
 import Apis from "../../api/apiServices";
 import { useState, useEffect } from "react";
+import '../LandingPage.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Pagination,
@@ -86,7 +87,7 @@ const AgentProperties = () => {
                       {propertyArray.length > 0
                         ? propertyArray.map((item: any, i: any) => (
                             <SwiperSlide key={i}>
-                              <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
+                              <div className="blogposts col-lg-6 col-sm-12 col-md-12">
                                 <figure>
                                   {item?.property?.image_gallery && (
                                     <img
@@ -100,7 +101,7 @@ const AgentProperties = () => {
                                   )}
                                 </figure>
                                 <div
-                                  className="blog-post_meta"
+                                  className="blogpost_meta"
                                   style={{
                                     display: "flex",
                                     alignItems: "center",
@@ -111,7 +112,7 @@ const AgentProperties = () => {
                                   <div className="post-by">
                                     <figure>
                                       <img
-                                        src="images/resources/user7.jpg"
+                                        src="public/images/profilepic/profilepic_01.jpg"
                                         alt=""
                                       />
                                     </figure>

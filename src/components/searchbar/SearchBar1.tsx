@@ -14,11 +14,14 @@ export default function SearchBarBeforeLogin() {
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState("");
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
+  const [searchCity, setSearchCity] = useState("");
+  const [searchState, setSearchState] = useState("");
+  const [searchLocality, setSearchLocality] = useState("");
   const [minSliderValue, setMinSliderValue] = useState<number>(0);
-    const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
-    const [sliderValue, setSliderValue] = useState<any | undefined>([
-      0, 10000000,
-    ]);
+  const [maxSliderValue, setMaxSliderValue] = useState<number>(10000000);
+  const [sliderValue, setSliderValue] = useState<any | undefined>([
+    0, 10000000,
+  ]);
   const [bhkStatus, setBHKStatus] = useState("");
   const [ConstrStatus, setConstrStatus] = useState("");
   const [PostedStatus, setPostedStatus] = useState("");
@@ -26,7 +29,7 @@ export default function SearchBarBeforeLogin() {
   const [isConstructionDropdownOpen, setConstructionDropdownOpen] =
     useState(false);
   const [isPostedByDropdownOpen, setPostedByDropdownOpen] = useState(false);
- 
+
   const toggleBHKDropdown = () => {
     setBHKDropdownOpen(!isBHKDropdownOpen);
   };
@@ -55,18 +58,14 @@ export default function SearchBarBeforeLogin() {
     setConstrStatus("");
     setPostedStatus("");
   };
-  
 
   const collectUserData = () => {
     const selectedBHK = bhkStatus.toString();
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
 
-    const locationInput = document.querySelector(
-      ".searchlocation__input"
-    ) as HTMLInputElement;
-    // const locationInput = address.split(",")[0].trim();
-    if (!locationInput) {
+    const locationInputValue = searchCity || searchState || searchLocality;
+    if (!locationInputValue) {
       return;
     }
 
@@ -74,13 +73,13 @@ export default function SearchBarBeforeLogin() {
       bhk: `${selectedBHK}`,
       construction_status: `${selectedConstructionStatus}`,
       posted_by: `${selectedPostedBy}`,
-      city: locationInput.value.toString(),
+      city: locationInputValue,
       selectedItems: selectedItems,
       minprise: minSliderValue,
       maxprise: maxSliderValue,
     };
     const selectedItemsString = selectedItems.toString();
-    const queryString = `city=${locationInput.value}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
+    const queryString = `city=${locationInputValue}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
 
     const mainUrl = `/searchresult/?${queryString}`;
     navigate(mainUrl, {
@@ -95,8 +94,7 @@ export default function SearchBarBeforeLogin() {
   const toggleDropdown = () => {
     setDropdownVisibility(!isDropdownVisible);
   };
- 
- 
+
   return (
     <section
       className="searchbar__section"
@@ -113,25 +111,32 @@ export default function SearchBarBeforeLogin() {
         </div>
 
         <div className="search__wrap">
-         <div>
-        <Location/>
-         </div>
           <div>
-            <PropertyType
-            selectedItems={selectedItems}
-            setSelectedItems={setSelectedItems}
+            <Location
+              searchCity={searchCity}
+              setSearchCity={setSearchCity}
+              searchState={searchState}
+              setSearchState={setSearchState}
+              searchLocality={searchLocality}
+              setSearchLocality={setSearchLocality}
             />
           </div>
-         <div>
-         <Price
-      minSliderValue={minSliderValue}
-      maxSliderValue={maxSliderValue}
-      setMinSliderValue={setMinSliderValue}
-      setMaxSliderValue={setMaxSliderValue}
-      sliderValue={sliderValue}
-      setSliderValue={setSliderValue}
-    />
-         </div>
+          <div>
+            <PropertyType
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+            />
+          </div>
+          <div>
+            <Price
+              minSliderValue={minSliderValue}
+              maxSliderValue={maxSliderValue}
+              setMinSliderValue={setMinSliderValue}
+              setMaxSliderValue={setMaxSliderValue}
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+            />
+          </div>
           <img
             src={microphone}
             alt=""

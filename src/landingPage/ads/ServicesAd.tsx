@@ -12,22 +12,24 @@ const ServicesAd = () => {
                 <div className="col-lg-12">
                   <div className="blog-posts" style={{ marginBottom: "-80px" }}>
                     <div className="blog-post-meta col-lg-4 col-md-12">
-                      <h1 style={{ lineHeight: "60px" }}>Rent Services</h1>
+                      <h1 style={{ lineHeight: "60px", marginLeft:"-45px" }}>Rent Services</h1>
                       <p
                         style={{
+                          width:"280px",
                           fontSize: "20px",
                           fontWeight: 500,
                           lineHeight: "35px",
+                          
                         }}
                       >
-                        Book play grounds to improve your <br />
+                        Book play grounds to improve your
                         sports skills at your nearby places.
                       </p>
 
                       {/* <span>
                         <i className="icofont-clock-time"></i> january 23, 2021
                       </span> */}
-                       <button
+                      <button
                         style={{
                           backgroundColor: "#3FDBD1",
                           borderRadius: "20px",

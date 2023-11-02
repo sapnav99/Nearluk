@@ -1,71 +1,89 @@
 
-.agentImages{
-  width: 250px;
-  height: 200px;
-}
-.blog-posts{
-    
-    display: flex;
-}
-.blog-post_meta{
-  
+.blogposts {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 5px;
-  margin-top: -8px;
-  
+  margin-bottom: 50px;
+  width: 100%;
 }
-
-.more_details {
-  position: relative;
-  display: block;
-  margin-bottom: 24px;
-  margin-left: -65px;
+.main-wraper .blogposts:nth-last-child(2) {
+  margin-bottom: 0;
 }
-.more_details li {
-  position: relative;
-  display: inline-block;
-  float: none;
-  width: 33.333%;
-  font-size: 14px;
-  line-height: 24px;
-  color: #93959e;
-  padding-left: 28px;
+.blogposts > figure {
+  display: flex;
+  margin-bottom: 0;
+  vertical-align: middle;
+  max-width: 340px;
 }
-.more_details li i {
-  position: absolute;
-  left: 0px;
-  top: 3px;
-  font-size: 14px;
+.blogpost_meta {
+  display: flex;
+  max-width: 50%;
+  padding-left: 15px;
+  vertical-align: middle;
 }
-.more_details li:before {
-  position: absolute;
-  content: "";
-  background-color: #e5e7ec;
-  width: 1px;
-  height: 18px;
-  top: 2px;
-  right: 12px;
+.blogpost_meta > span {
+  color: blue;
+  display: flex;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  margin-top: 5px;
 }
-.more_details li:last-child:before {
-  display: none;
+.blogpost_meta > h4 {
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  width: 100%;
 }
-
+.blogpost_meta > ul {
+  display: flex;
+  list-style: outside none none;
+  margin-bottom: 6px;
+  padding-left: 0;
+  width: 100%;
+}
+.blogpost_meta > ul > li {
+  color: #92929e;
+  display: flex;
+  margin-right: 20px;
+}
+.blogpost_meta > ul > li a {
+  display: flex;
+  font-size: 13px;
+  padding-left: 5px;
+}
+.blogpost_meta > a.button {
+  float: right;
+  border: 1px solid;
+}
+.blogpost_meta > a.button:hover {
+  background: #deebf3;
+}
+.blogpost_meta .expprise{
+  background-color: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+.main-wraper .uk-pagination {
+  margin: 0;
+}
+.blogposts > figure img {
+  border-radius: 6px;
+  width: 250px;
+  height: 200px; 
+}
 @media only screen and (max-width: 768px) {
     .main-wraper {
         height: 400px;
-      margin-bottom: -80px; /* Adjust margin for smaller screens */
+      margin-bottom: -80px; 
     }
   
-    .blog-posts {
+    .blogposts {
         height: 400px;
       flex-direction: column;
-      margin-bottom: 20px; /* Add some spacing between the items */
+      margin-bottom: 20px; 
     }
   
-    .blog-post-meta {
+    .blogpost_meta {
       text-align: center;
     }
   }

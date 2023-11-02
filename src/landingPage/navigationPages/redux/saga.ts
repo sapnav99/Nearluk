@@ -20,6 +20,24 @@ const searchProperty=function * searchProperty(action: any){
         )
     }
 }
+// const categoryProperty=function * categoryProperty(action: any){
+//     try{
+//         const payload = action.payload;
+//     console.log(payload);
+//         const {data} = yield call(Apis.category, payload);
+//         yield put(searchActions.setCategoryProperty(data ||[]));  
+//     }catch(error:any){
+//         const options = {
+//             code: error?.response?.status,
+//             error: error?.response?.data,
+//           };
+//           console.log(options);
+//         yield put(
+//             searchActions.searchFailed(options)
+//         )
+//     }
+// }
+
 export default function* searchSaga(){
     yield takeLatest(getAllSearchproperty.FETCH_ALL_PROPERTY, searchProperty )
 }

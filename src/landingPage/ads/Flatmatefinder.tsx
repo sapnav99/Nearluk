@@ -14,20 +14,32 @@ const FlatmateFinder = () => {
                     className="blog-posts col-lg-10"
                     style={{ marginBottom: "-80px" }}
                   >
-                    <div className="blog-post-meta col-lg-4 col-md-12" style={{marginTop:"10px"}}>
-                      <h1 style={{ lineHeight: "60px" }}>Find your Flatmate</h1>
+                    <div
+                      className="blog-post-meta col-lg-4 col-md-12"
+                      style={{ marginTop: "50px" }}
+                    >
+                      <label
+                        style={{
+                          lineHeight: "60px",
+                          marginLeft: "1px",
+                          fontSize: "40px",
+                          fontWeight: "700",
+                        }}
+                      >
+                        Find your Flatmate
+                      </label>
                       <p
                         style={{
+                          width: "280px",
                           fontSize: "20px",
                           fontWeight: 500,
                           lineHeight: "35px",
                         }}
                       >
-                        Book play grounds to improve your <br />
-                        sports skills at your nearby places.
+                        Book play grounds to improve your sports skills at your
+                        nearby places.
                       </p>
 
-                     
                       <button
                         style={{
                           backgroundColor: "#3FDBD1",
@@ -41,7 +53,11 @@ const FlatmateFinder = () => {
                     </div>
                     <div className="col-lg-7 col-md-12">
                       <figure>
-                        <img style={{width:"590px", marginLeft:"40px"}} src={flatmate} alt="" />
+                        <img
+                          style={{ width: "590px", marginLeft: "40px" }}
+                          src={flatmate}
+                          alt=""
+                        />
                       </figure>
                     </div>
                   </div>

@@ -1,0 +1,169 @@
+
+.nearluk {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+    box-shadow: -7.5pt 10px 10.5pt -3.75pt rgba(25, 42, 70, 0.13);
+  }
+  .nearluk > figure {
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+    width: 100%;
+  }
+  .nearluk > figure img {
+    border-radius: 7px 7px 0 0;
+    width: 100%;
+  }
+  .nearluk > figure > i {
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    top: -1.6px;
+  }
+  .nearluk > figure > em {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    left: -5px;
+    padding: 3px 10px;
+    position: absolute;
+    text-transform: capitalize;
+    top: 20px;
+    background-color: #3FDBD1;
+  }
+  .nearluk > figure .rate-result {
+    background: #fec42d none repeat scroll 0 0;
+    border-radius: 30px;
+    bottom: 15px;
+    color: #fff;
+    font-size: 11px;
+    left: 15px;
+    padding: 2px 10px;
+    position: absolute;
+  }
+  .nearluk-meta {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 10px;
+  }
+  
+.nearluk-cat {
+    display: inline-block;
+    line-height: 15px;
+    padding-left: 5px;
+    vertical-align: middle;
+    width: 122%;
+  }
+  .nearluk-cat > span {
+    color: #82828e;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: capitalize;
+    width: 100%;
+  }
+  .nearluk-cat > a {
+    border-right: 1px solid;
+    display: inline-block;
+    font-size: 11px;
+    line-height: 10px;
+    margin-right: 3px;
+    padding-right: 5px;
+  }
+  .nearluk-cat > a:last-child {
+    border: 0 none;
+  }
+  
+.nearluk:hover .prise > span {
+    color: #62626e;
+  }
+  .nearluk-title {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .nearluk-info {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+.nearluk-details {
+    display: inline-block;
+    width: 100%;
+  }
+  
+.nearluk-details > h4 {
+    display: inline-block;
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 74%;
+  }
+  .nearluk-price {
+    float: right;
+    font-size: 26px;
+    font-weight: 500;
+  }
+  .nearluk-price > del {
+    color: #92929e;
+    font-size: 14px;
+  }
+  
+.nearluk-details > a {
+    background: #fff;
+    border-radius: 30px;
+    color: #fff;
+    float: right;
+    font-weight: 500;
+    padding: 5px 20px;
+    border: 1px solid;
+  }
+  
+.nearluk-video {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .nearluk-video figure {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+  .nearluk-video figure img {
+    border-radius: 10px;
+    width: 100%;
+  }
+  .nearluk-video figure .play-btn {
+    background: rgba(8, 141, 205, 0.7) none repeat scroll 0 0;
+    border: 1px solid;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 30px;
+    left: 50%;
+    line-height: 60px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+  }
+  .nearluk-video figure .play-btn > i {
+    padding-left: 6px;
+  }
+  .nearluk-video > span {
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 15px;
+    width: 100%;
+  }

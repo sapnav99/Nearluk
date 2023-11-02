@@ -5,7 +5,7 @@ import MyLeads from "./tabs/myLeads/MyLeads";
 import Favourite from "./tabs/MyFavourites/MyFavourite";
 import Verify from "./tabs/verify/Verify";
 import "./UserProfile.css";
-import profilePhoto from "../../../assets/images/profilePhoto.jpg";
+import profilePhoto from '../../assets/images/profilePhoto.jpg'
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("personal");

@@ -1,6 +1,6 @@
-import "../../agents/AgentProperty.css";
 import { useState, useEffect } from "react";
 import "./NewlyLaunched.css";
+import "../../agents/AgentProperty.css";
 import Apis from "../../../api/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -62,7 +62,7 @@ const NewlyLaunched = () => {
                       href="viewall"
                       className="view-all"
                       style={{ fontSize: "14px" }}
-                      onClick={()=>handleNewlyClick("newProperty")}
+                      onClick={() => handleNewlyClick("newProperty")}
                     >
                       View all
                     </a>
@@ -93,7 +93,7 @@ const NewlyLaunched = () => {
                               ? item.newProperty.map(
                                   (newItem: any, index: any) => (
                                     <SwiperSlide key={i + index}>
-                                      <div className="blog-posts col-lg-6 col-sm-12 col-md-12">
+                                      <div className="blogposts col-lg-6 col-sm-12 col-md-12">
                                         <figure>
                                           {newItem?.property?.image_gallery && (
                                             <img
@@ -107,7 +107,7 @@ const NewlyLaunched = () => {
                                           )}
                                         </figure>
                                         <div
-                                          className="blog-post_meta"
+                                          className="blogpost_meta"
                                           style={{
                                             display: "flex",
                                             alignItems: "start",
@@ -118,8 +118,11 @@ const NewlyLaunched = () => {
                                         >
                                           <h6
                                             style={{
-                                              marginTop: "10px",
-                                              width: "100%",
+                                              marginTop: "30px",
+                                              width: "180px",
+                                              overflow: "hidden",
+                                              whiteSpace: "nowrap",
+                                              textOverflow: "ellipsis",
                                             }}
                                           >
                                             {newItem?.property?.building_name ||
@@ -127,29 +130,150 @@ const NewlyLaunched = () => {
                                           </h6>
                                           <label
                                             style={{
-                                              paddingLeft: "5px",
+                                              // paddingLeft: "5px",
                                               fontSize: "12px",
+                                              width:"180px",
+                                              overflow: "hidden",
+                                              whiteSpace: "nowrap",
+                                              textOverflow: "ellipsis",
                                             }}
                                           >
                                             {newItem.property.locality}
                                           </label>
                                           <div
-                                            className="we-video-info"
-                                            style={{
-                                              display: "flex",
-                                              flexDirection: "row",
-                                              justifyContent: "start",
-                                              alignItems: "start",
-                                            }}
+                                            className="expprise"
+                                            style={{ height: "fit-content" }}
                                           >
-                                            <ul>
-                                              {newItem?.amenities?.map(
-                                                (amenity: any, index: any) => (
-                                                  <li key={index}>
-                                                    {amenity?.label}
-                                                  </li>
-                                                )
-                                              )}
+                                            <span>
+                                              &#8377;
+                                              {
+                                                newItem?.property
+                                                  ?.expected_price
+                                              }
+                                            </span>
+                                          </div>
+                                          <div className="we-video-info">
+                                            <ul style={{ width: "100%" }}>
+                                              <li>
+                                                <button
+                                                  style={{
+                                                    // marginLeft: "20px",
+                                                    // marginTop:"10px",
+                                                    marginRight: "80px",
+                                                    marginBottom: "10px",
+                                                    backgroundColor: "#3FDBD1",
+                                                    borderRadius: "25px",
+                                                    paddingBlock: "5px",
+                                                    width: "100px",
+                                                  }}
+                                                >
+                                                  View Details
+                                                </button>
+                                              </li>
+                                              <li>
+                                                <span
+                                                  title="views"
+                                                  className="views"
+                                                >
+                                                  <i>
+                                                    <svg
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                      width={16}
+                                                      height={16}
+                                                      viewBox="0 0 24 24"
+                                                      fill="none"
+                                                      stroke="currentColor"
+                                                      strokeWidth={2}
+                                                      strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      className="feather feather-eye"
+                                                    >
+                                                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                      <circle
+                                                        cx={12}
+                                                        cy={12}
+                                                        r={3}
+                                                      />
+                                                    </svg>
+                                                  </i>
+                                                  <ins>1.2k</ins>
+                                                </span>
+                                              </li>
+                                              <li>
+                                                <span
+                                                  title="Comments"
+                                                  className="Recommend"
+                                                >
+                                                  <i>
+                                                    <svg
+                                                      className="feather feather-message-square"
+                                                      strokeLinejoin="round"
+                                                      strokeLinecap="round"
+                                                      strokeWidth={2}
+                                                      stroke="currentColor"
+                                                      fill="none"
+                                                      viewBox="0 0 24 24"
+                                                      height={16}
+                                                      width={16}
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                                    </svg>
+                                                  </i>
+                                                  <ins>54</ins>
+                                                </span>
+                                              </li>
+
+                                              <li>
+                                                <span
+                                                  className="share-pst"
+                                                  title="Share"
+                                                >
+                                                  <i>
+                                                    <svg
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                      width={16}
+                                                      height={16}
+                                                      viewBox="0 0 24 24"
+                                                      fill="none"
+                                                      stroke="currentColor"
+                                                      strokeWidth={2}
+                                                      strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      className="feather feather-share-2"
+                                                    >
+                                                      <circle
+                                                        cx={18}
+                                                        cy={5}
+                                                        r={3}
+                                                      />
+                                                      <circle
+                                                        cx={6}
+                                                        cy={12}
+                                                        r={3}
+                                                      />
+                                                      <circle
+                                                        cx={18}
+                                                        cy={19}
+                                                        r={3}
+                                                      />
+                                                      <line
+                                                        x1="8.59"
+                                                        y1="13.51"
+                                                        x2="15.42"
+                                                        y2="17.49"
+                                                      />
+                                                      <line
+                                                        x1="15.41"
+                                                        y1="6.51"
+                                                        x2="8.59"
+                                                        y2="10.49"
+                                                      />
+                                                    </svg>
+                                                  </i>
+                                                  <ins>205</ins>
+                                                </span>
+                                              </li>
                                             </ul>
                                           </div>
                                         </div>

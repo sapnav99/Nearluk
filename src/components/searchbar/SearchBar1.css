@@ -34,17 +34,24 @@
   width: 90%;
 }
 .searchlocation__input {
-  width: 100%;
+  width: 95%;
   height: 30px;
   line-height: 30px;
   font-size: 14px;
   color: #606066;
   border: none;
   outline: none;
-  padding: 7px -1px 15px 23px;
+  padding: 7px -1px 15px 30px;
   background: none;
   margin-right: 12px;
+  margin-left: 8px;
+  margin-top: 5px;
 }
+.searchlocation__input:hover{
+  background-color: rgb(239 239 239);
+  box-shadow: none;
+}
+
 .search_property {
   float: left;
   width: 157px;
@@ -137,9 +144,6 @@
   margin-right: 5px;
 }
 
-.tabcontainer{
-  
-}
 .tabcontainer a.nav-link:active {
   background-color: rgba(63, 219, 209, 1) !important;
 }

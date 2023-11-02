@@ -15,7 +15,6 @@ export default function Content({
   setPageNumber,
 }: contentProps) {
   const [properties, setProperties]: any = useState([]);
-
   const allProperty = useSelector(
     (state: any) => state?.homeReducer?.allProperty
   );
@@ -27,6 +26,7 @@ export default function Content({
       setProperties([...properties, ...newItems]);
     }
   }, [allProperty]);
+console.log(allProperty)
 
   return (
     <section>

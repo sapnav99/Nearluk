@@ -25,9 +25,37 @@ const filters=(data:any)=>{
         payload:data,
     }
 }
+const fetchCategoryProperty=(data:any)=>{
+    return{
+        type:getAllSearchproperty.FETCH_CATEGORY_PROPERTY,
+        payload:data,
+    }
+    }
+    const setCategoryProperty=(data:any)=>{
+        return {
+            type:getAllSearchproperty.SET_CATEGORY_PROPERTY,
+            payload:data,
+        }
+    }
+    const fetchHomeProperty = (data:any)=>{
+        return{
+            type:getAllSearchproperty.FETCH_HOME_PROPERTY,
+            payload:data,
+        }
+    }
+    const setHomeProperty = (data:any)=>{
+        return{
+         type:getAllSearchproperty.SET_HOME_PROPERTY,
+         payload:data,
+        }
+    }
 export const searchActions={
     fetchAllSearchdata,
     setAllSearchdata,
     searchFailed,
-    filters
+    filters,
+    fetchCategoryProperty,
+    setCategoryProperty,
+    fetchHomeProperty,
+    setHomeProperty,
 };
