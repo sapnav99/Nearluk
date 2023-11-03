@@ -17,32 +17,41 @@ import "swiper/css/virtual";
 import right from "../../../assets/images/Right.png";
 import left from "../../../assets/images/Left.png";
 import "../event/EventSpace.css";
-import { useDispatch } from "react-redux";
-import { allpropdataactions } from "../../../pages/Home/redux/action";
+
 import { useNavigate } from "react-router-dom";
 import ImageComponent from "../../image/ImageComponent";
 
+type trendingProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
 
-const Trending = () => {
+
+const Trending = (
+  {
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: trendingProps) => {
+  
+  const [propertyArray, setPropertyArray] = useState([]);
+  
   const navigate = useNavigate();
   const handleTrendingClick = (trending: any) => {
     navigate("./viewall", { state: { propertyTrending: trending } });
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(allpropdataactions.fetchAllProperty([]));
-  }, []);
-  const [propertyArray, setPropertyArray] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Apis.get(
-          "/property/getAllProperty?city=hyderabad"
+          `/property/getAllProperty?city=hyderabad&pageNumber=${pageNumber}&pageSize=${pageSize}`
         );
 
         setPropertyArray(response?.data?.data);
+        setPageNumber(pageNumber)
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -50,8 +59,7 @@ const Trending = () => {
     };
 
     fetchData();
-  }, []);
-
+  }, [pageNumber, pageSize]);
 
   return (
     <div>
@@ -103,10 +111,11 @@ const Trending = () => {
                     <div className="row" style={{ marginBottom: "-80px" }}>
                       {propertyArray.length > 0
                         ? propertyArray.slice(0, 5).map((item: any, i: any) => (
-                            <SwiperSlide>
+                            <SwiperSlide key={i}>
+
                               <div
                                 className="col-lg-4 col-md-6 col-sm-6"
-                                key={i}
+                                
                               >
                                 <div className="nearluk">
                                   <figure>

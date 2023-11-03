@@ -6,6 +6,7 @@ import userPropDetailsSaga from "../pages/propertydetailingpage/redux/saga";
 import NearuDataSaga from "../pages/Near-U/redux/saga";
 import PostPropertySaga from "../pages/PostProperty/redux/saga"
 import { useridSaga } from "../pages/profile/redux/saga";
+import { watchFiltersSaga } from "../landingPage/navigationPages/searchfilters/redux/saga";
 function* watchAndLog() {
   yield takeEvery("*", function* logger(action) {
     const state: SelectEffect = yield select();
@@ -22,7 +23,8 @@ export default function* root() {
     fork(searchSaga),
     fork(NearuDataSaga),
     fork(PostPropertySaga),
-    fork(useridSaga)
+    fork(useridSaga),
+    fork(watchFiltersSaga),
   ];
   if (process.env.NODE_ENV === "development") {
     allForks.unshift(fork(watchAndLog));

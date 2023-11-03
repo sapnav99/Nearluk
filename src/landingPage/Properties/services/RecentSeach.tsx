@@ -16,29 +16,38 @@ import "swiper/css/hash-navigation";
 import right from "../../../assets/images/Right.png";
 import left from "../../../assets/images/Left.png";
 import "../event/EventSpace.css";
-import { useDispatch } from "react-redux";
-import { allpropdataactions } from "../../../pages/Home/redux/action";
 import { useNavigate } from "react-router-dom";
 import ImageComponent from "../../image/ImageComponent";
-const RecentSearches = () => {
-  const dispatch = useDispatch();
+
+type recentProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
+
+
+const RecentSearches = ({
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: recentProps) => {
+  
 const navigate= useNavigate();
   const handleRecentClick = (recentProperties:any) => {
     navigate('./viewall', { state: { recentProperty: recentProperties } });
   };
-  useEffect(() => {
-    dispatch(allpropdataactions.fetchAllProperty([]));
-  }, []);
+
   const [propertyArray, setPropertyArray] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Apis.get(
-          "/property/getAllProperty?city=hyderabad"
+          `/property/getAllProperty?city=hyderabad&pageNumber=${pageNumber}&pageSize=${pageSize}`
         );
 
         setPropertyArray(response?.data?.data);
+        setPageNumber(pageNumber)
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,8 +55,7 @@ const navigate= useNavigate();
     };
 
     fetchData();
-  }, []);
-
+  }, [pageNumber, pageSize]);
   return (
     <div>
       <div className="gap">

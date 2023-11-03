@@ -1,19 +1,11 @@
 import SelectedItems from "./Allfilters";
 import SearchFilters from "./SearchFilters";
 import ToggleSwitch from "../Toggle";
+import { useSelector } from "react-redux";
 
-import { useLocation } from "react-router-dom";
-
-export default function SearchpageSidebar({
-  handleToggleChange,
-  handleFiltersChange,
-}: any) {
-  
-  const { state } = useLocation();
-
-  const searchData =
-    state && state.searchData !== undefined ? state.searchData : null;
-
+export default function SearchpageSidebar({ handleToggleChange }: any) {
+  const filterData = useSelector((state: any) => state.filtersReducer);
+  console.log("filterData", filterData);
   return (
     <div>
       <div>
@@ -39,9 +31,11 @@ export default function SearchpageSidebar({
             Clear all
           </a>
         </div>
-        <div><SelectedItems searchData={searchData} /></div>
         <div>
-          <SearchFilters onFiltersChange={handleFiltersChange} />
+          <SelectedItems />
+        </div>
+        <div>
+          <SearchFilters />
 
           <div className="selector">
             <p style={{ display: "flex" }}>

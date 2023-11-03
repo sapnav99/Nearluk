@@ -18,7 +18,20 @@ import { allpropdataactions } from "../../../pages/Home/redux/action";
 import Apis from "../../../api/apiServices";
 import { useNavigate } from "react-router-dom";
 
-const Rent = () => {
+type categoryProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
+
+
+const Rent = (
+  {
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: categoryProps
+) => {
   const navigate = useNavigate();
   const handleCategoryClick = (category: any) => {
     navigate("./viewall", { state: { propertyCategory: category } });
@@ -34,10 +47,11 @@ const Rent = () => {
     const fetchData = async () => {
       try {
         const response = await Apis.get(
-          "/property/getAllProperty?city=hyderabad"
+          `/property/getAllProperty?city=hyderabad&pageNumber=${pageNumber}&pageSize=${pageSize}`
         );
 
         setPropertyArray(response?.data?.data);
+        setPageNumber(pageNumber)
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -45,7 +59,7 @@ const Rent = () => {
     };
 
     fetchData();
-  }, []);
+  }, [pageNumber, pageSize]);
 
   const commercialProperties = propertyArray.filter(
     (item: any) => item.property_type === "Commercial"

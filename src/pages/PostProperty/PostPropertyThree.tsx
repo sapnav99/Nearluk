@@ -1084,7 +1084,7 @@ const PostPropertyThree: React.FC<stepThreeProps> = ({
                 },
                 {}
               );
-              dispatch(postpropertyAction.fetchPostProperty(JSON.stringify(filteredData)));
+              dispatch(postpropertyAction.fetchPostProperty(filteredData));
               console.log(filteredData);
             }}
           >

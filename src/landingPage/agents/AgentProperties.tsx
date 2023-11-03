@@ -112,7 +112,7 @@ const AgentProperties = () => {
                                   <div className="post-by">
                                     <figure>
                                       <img
-                                        src="public/images/profilepic/profilepic_01.jpg"
+                                        src="/images/profilepic/profilepic_01.jpg"
                                         alt=""
                                       />
                                     </figure>

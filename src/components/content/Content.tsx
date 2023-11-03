@@ -9,6 +9,7 @@ type contentProps = {
   setPageNumber: any;
 };
 
+
 export default function Content({
   pageNumber,
   pageSize,

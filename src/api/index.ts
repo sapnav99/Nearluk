@@ -1,6 +1,5 @@
 import api from "./apiServices";
 
-/**Login API */
 const login = (payload: Object) => api.post(`/api/login`, payload);
 const postProperty = (payload: Object) => api.post("/property/add", payload);
 
@@ -14,17 +13,20 @@ const useridProperty = (payload:any)=>{
   const params = new URLSearchParams(payload)
   return api.get(`/property/propertyByUserId/${params}`, payload);
 }
-const category=(payload:any)=>{
-  const params = new URLSearchParams(payload).toString();
-  return api.get(`/property/propertyByCategory?sub_category=${params}`)
+
+const category = (payload: any) => {
+  const params1 = new URLSearchParams();
+  const params = new URLSearchParams();
+  params.append("pageNumber", payload.pageNumber);
+  params.append("pageSize", payload.pageSize);
+  return api.get(`/property/propertyByCategory?sub_category=${params1}&${params.toString()}`);
 }
+
 const home = (payload:any)=>api.get("/property/home", payload)
 const getAllProductApi = (payload: any) => {
   const params = new URLSearchParams();
   params.append("pageNumber", payload.pageNumber);
   params.append("pageSize", payload.pageSize);
-
-  // console.log("prams", params.toString());
   return api.get(`/property/getAllProperty?${params.toString()}`);
 };
 const getNearuDataApi = (payload: any) => {

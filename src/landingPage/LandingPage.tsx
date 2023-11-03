@@ -16,15 +16,34 @@ import PopularAgents from "./agents/PopularAgents";
 import PopularBuilders from "./agents/PopularBuilders";
 import NewlyLaunched from "./Properties/allproperties/NewlyLaunched";
 import Allads from "./ads/Allads";
-
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import useExternalScripts from "../hooks/useExternalScripts";
+import { allpropdataactions } from "../pages/Home/redux/action";
+import { searchActions } from "./navigationPages/redux/action";
 const LandingPage = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const pageSize = 10;
+  useExternalScripts({ urls: ["js/owl.carousel.min.js"] });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allpropdataactions.fetchAllProperty({ pageNumber, pageSize }));
+  }, [pageNumber]);
+  useEffect(()=>{
+    dispatch(searchActions.fetchCategoryProperty({ pageNumber, pageSize }))
+  }, [pageNumber])
   return (
     <div>
       <ImageCarousel />
       <SearchProperty />
       <Featured />
-      <Rent />
-      <RecentSearches />
+      <Rent   pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        pageSize={pageSize}
+        />
+      <RecentSearches   pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        pageSize={pageSize}/>
       <Services />
       <Ownerproperties />
       <EventSpaces />
@@ -32,8 +51,12 @@ const LandingPage = () => {
       <AgentProperties />
       <Allads />
       {/* <TopProjects /> */}
-      <Trending />
-      <Plots />
+      <Trending   pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        pageSize={pageSize}/>
+      <Plots pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        pageSize={pageSize}/>
       <NewlyLaunched />
       <PopularBuilders />
       

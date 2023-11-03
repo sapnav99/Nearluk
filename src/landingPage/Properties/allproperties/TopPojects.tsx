@@ -21,6 +21,7 @@ const TopProjects = () => {
   }, []);
   const [propertyArray, setPropertyArray] = useState([]);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

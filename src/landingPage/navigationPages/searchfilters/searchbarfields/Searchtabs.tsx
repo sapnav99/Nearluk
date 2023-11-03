@@ -1,59 +1,65 @@
 import { useState, useEffect } from "react";
 import Apis from "../../../../api/apiServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allpropdataactions } from "../../../../pages/Home/redux/action";
 import PropertyCard from "../../../../components/propertycard/PropertyCard";
 
 interface SearchTabsProps {
   onTabClick: (tab: string) => void;
-  searchData:any;
+  
   updatePropertyLength: (length: number) => void;
+  activeTab: string;
+  setActiveTab: any;
 }
 
-const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updatePropertyLength }: any) => {
-  const [activeTab, setActiveTab] = useState("");
-
+const SearchTabs = ({
+  onTabClick,
+  
+  updatePropertyLength,
+  setActiveTab,
+  activeTab,
+}: SearchTabsProps) => {
   const handleTabClick = (tab: string) => {
     onTabClick(tab);
     setActiveTab(tab);
   };
+  console.log(activeTab)
   const dispatch = useDispatch();
- 
+const searchdata = useSelector((state:any)=>state.filtersReducer)
+// console.log("tab", searchdata)
   const [properties, setProperties] = useState([]);
- 
+
   const [loading, setLoading] = useState(false);
   const [noData, setNoData] = useState(false);
-  const [page, setPage] = useState(1);
-  const handlePageChange = (newPage: any) => {
-    setPage(newPage);
-  };
+  const [pageNumber, setPageNumber] = useState(1);
+  const pageSize = 10;
+  useEffect(() => {
+    dispatch(allpropdataactions.fetchAllProperty({ pageNumber, pageSize }));
+  }, [pageNumber]);
   useEffect(() => {
     const fetchData = async (tab: string) => {
       try {
         setLoading(true);
-        
-        const response = await Apis.get(`/property/propertyByCategory?sub_category=${tab}&pageNumber=${page}&pageSize=10`
+
+        const response = await Apis.get(
+          `/property/propertyByCategory?sub_category=${tab}&pageNumber=${pageNumber}&pageSize=${pageSize}`
         );
         setLoading(false);
+        setPageNumber(pageNumber);
         setProperties(response?.data?.data);
         setNoData(response?.data?.data.length === 0);
-        const response1 = await Apis.post(
-          "/property/search",
-          {
-            city: searchData.city,
-            property_sub_type: searchData.selectedItems,
-            max_price: searchData.maxPrise,
-            min_price: searchData.minPrise,
-            bhk: searchData.bhk,
-            availability: searchData.construction_status,
-            posted_by: searchData.posted_by,
-           
-          }
-         
-        );
-        setProperties(response1?.data?.data)
+        console.log("total", response?.data?.data)
+        const response1 = await Apis.post("/property/search", {
+          city: searchdata.city,
+          property_sub_type: searchdata.selectedItems || tab,
+          max_price: searchdata.maxPrise,
+          min_price: searchdata.minPrise,
+          bhk: searchdata.bhk,
+          availability: searchdata.construction_status,
+          posted_by: searchdata.posted_by,
+        });
+        setProperties(response1?.data?.data);
         setNoData(response1?.data?.data.length === 0);
-       
       } catch (error) {
         setLoading(false);
         setNoData(true);
@@ -61,18 +67,16 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updateP
       }
     };
 
-    fetchData(activeTab); 
-    dispatch(allpropdataactions.fetchAllProperty([]));
-  }, [activeTab, dispatch, page]);
+    fetchData(activeTab);
+  }, [activeTab, pageNumber, pageSize]);
 
   const propertyLength = properties.length;
 
-  // When the properties length changes, update the length in the parent component (SearchResult)
+  // console.log(properties)
   useEffect(() => {
     updatePropertyLength(propertyLength);
   }, [propertyLength, updatePropertyLength]);
 
-  
   return (
     <div>
       <div>
@@ -86,21 +90,34 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updateP
                 marginBottom: "20px",
               }}
             >
-             <ul className="nav flex-row">
-              
-              {['commercial', 'event', 'hostel', 'office', 'residential', 'playground', 'parking Spaces'].map((tabName, index) => (
-                <li className="nav-item" key={index} style={{ marginRight: '15px' }}>
-                  <a
-                    className={`nav-link ${activeTab === tabName ? 'active' : ''}`}
-                    aria-current="page"
-                    href="#"
-                    onClick={() => handleTabClick(tabName)}
+              <ul className="nav flex-row">
+                {[
+                  "commercial",
+                  "event",
+                  "hostel",
+                  "office",
+                  "residential",
+                  "playground",
+                  "parking Spaces",
+                ].map((tabName, index) => (
+                  <li
+                    className="nav-item"
+                    key={index}
+                    style={{ marginRight: "15px" }}
                   >
-                    {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                  </a>
-                </li>
-              ))}
-            </ul>
+                    <a
+                      className={`nav-link ${
+                        activeTab === tabName ? "active" : ""
+                      }`}
+                      aria-current="page"
+                      href="#"
+                      onClick={() => handleTabClick(tabName)}
+                    >
+                      {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-lg-12 col-sm-12">
               {activeTab === "commercial" && (
@@ -130,21 +147,6 @@ const SearchTabs: React.FC<SearchTabsProps> = ({ onTabClick, searchData, updateP
                         <PropertyCard property={item} key={i} />
                       ))}
                   </div>
-                  <div className="pagination">
-          <button
-            onClick={() => handlePageChange(page - 1)}
-            disabled={page === 1}
-          >
-            Previous
-          </button>
-          <span>Page {page}</span>
-          <button
-            onClick={() => handlePageChange(page + 1)}
-            disabled={properties.length < 1}
-          >
-            Next
-          </button>
-        </div>
                 </div>
               )}
             </div>

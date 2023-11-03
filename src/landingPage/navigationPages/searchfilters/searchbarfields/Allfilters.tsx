@@ -1,47 +1,48 @@
 import { useState } from "react";
 import "./Allfilters.css";
-
-const SelectedItems = ({ searchData }: any) => {
-  if (!searchData) {
+import { useSelector } from "react-redux";
+const SelectedItems = () => {
+  const searchdata = useSelector((state:any)=>state.filtersReducer)
+  if (!searchdata) {
     return null;
   }
 
   const displayedItems = [];
 
   if (
-    searchData &&
-    searchData.city !== undefined &&
-    searchData.city &&
-    searchData.city.trim() !== ""
+    searchdata &&
+    searchdata.city !== undefined &&
+    searchdata.city &&
+    searchdata.city.trim() !== ""
   ) {
-    displayedItems.push(searchData.city);
+    displayedItems.push(searchdata.city);
   }
   if (
-    searchData &&
-    searchData.selectedItems !== undefined &&
-    searchData.selectedItems
+    searchdata &&
+    searchdata.selectedItems !== undefined &&
+    searchdata.selectedItems
   ) {
-    displayedItems.push(searchData.selectedItems);
+    displayedItems.push(searchdata.selectedItems);
   }
-  if (searchData.minprise !== 0 && searchData.maxprise <= 500000000) {
-    displayedItems.push(`${searchData.minprise} to ${searchData.maxprise}`);
+  if (searchdata.minprise !== 0 && searchdata.maxprise <= 500000000) {
+    displayedItems.push(`${searchdata.minprise} to ${searchdata.maxprise}`);
   }
-  if (searchData && searchData.bhk !== undefined && searchData.bhk) {
-    displayedItems.push(searchData.bhk);
+  if (searchdata && searchdata.bhk !== undefined && searchdata.bhk) {
+    displayedItems.push(searchdata.bhk);
   }
   if (
-    searchData &&
-    searchData.posted_by !== undefined &&
-    searchData.posted_by
+    searchdata &&
+    searchdata.posted_by !== undefined &&
+    searchdata.posted_by
   ) {
-    displayedItems.push(searchData.posted_by);
+    displayedItems.push(searchdata.posted_by);
   }
   if (
-    searchData &&
-    searchData.construction_status !== undefined &&
-    searchData.construction_status
+    searchdata &&
+    searchdata.construction_status !== undefined &&
+    searchdata.construction_status
   ) {
-    displayedItems.push(searchData.construction_status);
+    displayedItems.push(searchdata.construction_status);
   }
 
   // const formattedItems = displayedItems.join(" , ");

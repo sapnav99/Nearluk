@@ -4,14 +4,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Col, InputNumber, Row, Slider } from "antd";
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
-// import SelectedItems from "../searchbarfields/Allfilters";
-// import { useLocation } from "react-router-dom";
+import { filterActions } from "../redux/action";
+import { useDispatch } from "react-redux";
 
-export default function SearchFilters({ onFiltersChange }: any) {
-  // const { state } = useLocation();
-
-  // const searchData =
-  //   state && state.searchData !== undefined ? state.searchData : null;
+export default function SearchFilters() {
   const [selectedFacing, setselectedFacing] = useState(null);
   const [selectedFurnishing, setselectedFurnishing] = useState(null);
   const furnish = [
@@ -37,20 +33,35 @@ export default function SearchFilters({ onFiltersChange }: any) {
     10
   );
 
+  const [filterData, setFilterData] = useState({
+    selectedFacing: null,
+    selectedFurnishing: null,
+    minValue: undefined,
+    maxValue: undefined,
+    constructionAge: 10,
+  });
+  const dispatch = useDispatch();
+  const updateFiltersAndCallback = (newData: any) => {
+    const updatedFilters = { ...filterData, ...newData };
+    setFilterData(updatedFilters);
+    filterActions.setFilters(updatedFilters);
+    dispatch(filterActions.setSearchData(updatedFilters));
+  };
+
   const toggleConstructionDropdown = () => {
     setisConstructionopen(!isConstructionopen);
   };
   const toggleAreaDropdown = () => {
     setAreaDropdownOpen(!AreaDropdownOpen);
   };
-  const onSliderChange = (values:any) => {
+  const onSliderChange = (values: any) => {
     setMinValue(values[0]);
     setMaxValue(values[1]);
-    onFiltersChange({ minValue: values[0], maxValue: values[1] });
+    updateFiltersAndCallback({ minValue: values[0], maxValue: values[1] });
   };
   const onConstrSliderChange = (value: number) => {
     setConstructionAge(value);
-    onFiltersChange({ constructionAge: value.toString() });
+    updateFiltersAndCallback({ constructionAge: value.toString() });
   };
   const onMinChange = (newValue: number | null | undefined) => {
     if (newValue !== null && newValue !== undefined) {
@@ -66,20 +77,15 @@ export default function SearchFilters({ onFiltersChange }: any) {
 
   const handleFacingChange = (e: MultiSelectChangeEvent) => {
     setselectedFacing(e.value);
-
-    onFiltersChange({ selectedFacing: e.value });
+    updateFiltersAndCallback({ selectedFacing: e.value });
   };
 
   const handleFurnishingChange = (e: MultiSelectChangeEvent) => {
     setselectedFurnishing(e.value);
-    onFiltersChange({ selectedFurnishing: e.value });
+    updateFiltersAndCallback({ selectedFurnishing: e.value });
   };
- 
   return (
     <div>
-     
-    
-
       <div
         className={`dropdown-container ${
           AreaDropdownOpen ? "budget-open" : ""

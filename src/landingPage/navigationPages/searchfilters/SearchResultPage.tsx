@@ -11,6 +11,7 @@ import SearchTabs from "./searchbarfields/Searchtabs";
 import PropertyCard from "../../../components/propertycard/PropertyCard";
 import { searchActions } from "../redux/action";
 import SearchpageSidebar from "./searchbarfields/SearchpageSidebar";
+import { filterActions } from "./redux/action";
 interface AllData {
   city?: string;
   selectedItems?: string;
@@ -28,51 +29,52 @@ const SearchResult = () => {
     (state: any) => state?.searchReducer?.searchRes
   );
   console.log(searchResponse);
+  const filterData = useSelector((state: any) => state.filtersReducer);
+  console.log("filterData", filterData);
 
-  const queryParams = new URLSearchParams(location.search);
-  const [filters, setFilters] = useState(() => {
-    const storedFilters = localStorage.getItem("filters");
-    return storedFilters
-      ? JSON.parse(storedFilters)
-      : {
-          selectedFacing: "",
-          selectedFurnishing: "",
-          minValue: "",
-          maxValue: "",
-          constructionAge: "",
-        };
-  });
-
+  // const queryParams = new URLSearchParams(location.search);
+  // const [filters, setFilters] = useState(() => {
+  //   const storedFilters = localStorage.getItem("filters");
+  //   return storedFilters
+  //     ? JSON.parse(storedFilters)
+  //     : {
+  //         selectedFacing: "",
+  //         selectedFurnishing: "",
+  //         minValue: "",
+  //         maxValue: "",
+  //         constructionAge: "",
+  //       };
+  // });
 
   // const clearAll = () => {
   //   setFilters("");
   // };
-  const handleFiltersChange = (newFilters: any) => {
-    setFilters(newFilters);
+  // const handleFiltersChange = (newFilters: any) => {
+  //   setFilters(newFilters);
 
-    localStorage.setItem("filters", JSON.stringify(newFilters));
+  //   localStorage.setItem("filters", JSON.stringify(newFilters));
 
-    queryParams.set("selectedFacing", newFilters.selectedFacing);
-    queryParams.set("constructionAge", newFilters.constructionAge);
+  //   queryParams.set("selectedFacing", newFilters.selectedFacing);
+  //   queryParams.set("constructionAge", newFilters.constructionAge);
 
-    window.history.replaceState(null, "", `?${queryParams.toString()}`);
-  };
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("filters");
-    };
-  }, []);
+  //   window.history.replaceState(null, "", `?${queryParams.toString()}`);
+  // };
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.removeItem("filters");
+  //   };
+  // }, []);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(searchActions.fetchAllSearchdata([]));
-  }, []);
+  }, [dispatch]);
   const { state } = useLocation();
 
   const searchData =
     state && state.searchData !== undefined ? state.searchData : null;
-
-  
-
+  useEffect(() => {
+    dispatch(filterActions.setSearchData(searchData));
+  }, [dispatch]);
   let allData: AllData = {};
 
   if (searchData && searchData.city !== undefined && searchData.city !== "") {
@@ -116,11 +118,11 @@ const SearchResult = () => {
   ) {
     allData.minPrise = searchData.minPrise;
   }
-  if (filters.selectedFacing != "") {
-    allData.selectedFacing = filters.selectedFacing;
+  if (filterData.selectedFacing != "") {
+    allData.selectedFacing = filterData.selectedFacing;
   }
-  if (filters.constructionAge != "") {
-    allData.constructionAge = filters.constructionAge;
+  if (filterData.constructionAge != "") {
+    allData.constructionAge = filterData.constructionAge;
   }
   console.log(allData);
 
@@ -142,7 +144,7 @@ const SearchResult = () => {
         bhk: allData.bhk,
         availability: allData.construction_status,
         posted_by: allData.posted_by,
-        facing: allData.selectedFacing?.toString(),
+        facing: allData.selectedFacing,
         property_age: allData.constructionAge,
       });
       setLoading(false);
@@ -157,7 +159,7 @@ const SearchResult = () => {
   };
   useEffect(() => {
     fetchData();
-  }, [searchData, filters]);
+  }, [searchData, filterData]);
 
   console.log("data of 0", properties[0]);
   useEffect(() => {}, [properties]);
@@ -180,15 +182,17 @@ const SearchResult = () => {
   };
 
   const [showLowerDiv, setShowLowerDiv] = useState(true);
-  const handleClick = () => {
+  const handleTabsClick = () => {
     setShowLowerDiv(false);
   };
   const [tabPropertyLength, setTabPropertyLength] = useState(0);
+  const [activeTab, setActiveTab] = useState("");
   console.log(tabPropertyLength);
 
   const updateTabPropertyLength = (length: number) => {
     setTabPropertyLength(length);
   };
+  console.log(tabPropertyLength);
   return (
     <section>
       <div className="gap">
@@ -200,7 +204,6 @@ const SearchResult = () => {
                   <aside className="sidebar static left">
                     <SearchpageSidebar
                       handleToggleChange={handleToggleChange}
-                      handleFiltersChange={handleFiltersChange}
                     />
                   </aside>
                 </div>
@@ -225,16 +228,30 @@ const SearchResult = () => {
                           </span>
                         )}
                         {!propertiesWithImages.length && (
-                          <span>{properties.length} Properties near you</span>
+                          <span>
+                            {showLowerDiv ? (
+                              <span>
+                                {properties.length} Properties near you
+                              </span>
+                            ) : (
+                              <span>
+                                {tabPropertyLength}{" "}
+                                {activeTab.charAt(0).toUpperCase() +
+                                  activeTab.slice(1)}{" "}
+                                properties near you
+                              </span>
+                            )}
+                          </span>
                         )}
                       </h5>
                     </div>
 
                     <div style={{ marginLeft: "-46px" }}>
                       <SearchTabs
-                        onTabClick={handleClick}
-                        searchData={searchData}
+                        onTabClick={handleTabsClick}
                         updatePropertyLength={updateTabPropertyLength}
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
                       />
                     </div>
                     {showLowerDiv && (

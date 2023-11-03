@@ -27,7 +27,7 @@ const Home = () => {
   const initialFetch = useSelector(
     (state: any) => state?.homeReducer?.initialFetrchComplete
   );
-  // console.log(loader)
+  
   if (loader === true && initialFetch === false)
     return (
       <div className="full-screen-loader">

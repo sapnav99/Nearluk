@@ -15,7 +15,17 @@ import topbuilders3 from "../../../assets/images/Topbuilders3.png";
 
 import "../event/EventSpace.css";
 
-const Plots = () => {
+type plotsProps = {
+  pageNumber: any;
+  pageSize: number;
+  setPageNumber: any;
+};
+
+const Plots = ( {
+  pageNumber,
+  pageSize,
+  setPageNumber,
+}: plotsProps)  => {
   const [plots, setPlots] = useState([]);
   console.log(plots)
 
@@ -23,10 +33,11 @@ const Plots = () => {
     const fetchData = async () => {
       try {
         const response = await Apis.get(
-          "/property/propertyByCategory?sub_category=plot"
+          `/property/propertyByCategory?sub_category=plot&pageNumber=${pageNumber}&pageSize=${pageSize}`
         );
 
         setPlots(response?.data?.data);
+        setPageNumber(pageNumber)
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,8 +45,7 @@ const Plots = () => {
     };
 
     fetchData();
-  }, []);
-
+  }, [pageNumber, pageSize]);
 
   return (
     <div>

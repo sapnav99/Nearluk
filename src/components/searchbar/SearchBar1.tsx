@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import microphone from "../../assets/images/Microphone.png";
 import { BsChevronDown } from "react-icons/bs";
 import plus from "../../assets/images/plus.png";
 import "./SearchBar1.css";
-
+import { filterActions } from "../../landingPage/navigationPages/searchfilters/redux/action";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./searchbarfields/Tabs";
 import PropertyType from "./searchbarfields/PropertyType";
 import Price from "./searchbarfields/Price";
 import Location from "./searchbarfields/Location";
+import { useDispatch } from "react-redux";
 // import PropertySearchLocation from "../postproperty/PropertySearchLocation";
 export default function SearchBarBeforeLogin() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState("");
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
@@ -63,7 +65,6 @@ export default function SearchBarBeforeLogin() {
     const selectedBHK = bhkStatus.toString();
     const selectedConstructionStatus = ConstrStatus.toString();
     const selectedPostedBy = PostedStatus.toString();
-
     const locationInputValue = searchCity || searchState || searchLocality;
     if (!locationInputValue) {
       return;
@@ -74,14 +75,17 @@ export default function SearchBarBeforeLogin() {
       construction_status: `${selectedConstructionStatus}`,
       posted_by: `${selectedPostedBy}`,
       city: locationInputValue,
-      selectedItems: selectedItems,
+      selectedItems: selectedItems.toString(),
       minprise: minSliderValue,
       maxprise: maxSliderValue,
     };
-    const selectedItemsString = selectedItems.toString();
-    const queryString = `city=${locationInputValue}&priceRange=${sliderValue}&selectedItems=${selectedItemsString}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}&posted_by=${selectedPostedBy}`;
 
-    const mainUrl = `/searchresult/?${queryString}`;
+    const queryString = `city=${locationInputValue}&priceRange=${sliderValue}
+    &selectedItems=${selectedItems}&bhk=${selectedBHK}&construction_status=${selectedConstructionStatus}
+    &posted_by=${selectedPostedBy}`;
+    filterActions.setSearchData(userData);
+
+    const mainUrl = `/searchresult?${queryString}`;
     navigate(mainUrl, {
       state: { searchData: userData },
     });
@@ -90,11 +94,11 @@ export default function SearchBarBeforeLogin() {
 
     return userData;
   };
-
+   
+  
   const toggleDropdown = () => {
     setDropdownVisibility(!isDropdownVisible);
   };
-
   return (
     <section
       className="searchbar__section"

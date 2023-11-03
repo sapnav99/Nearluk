@@ -108,7 +108,7 @@ const PostPropertyOne: React.FC<stepOneProps> = ({
       coworking_spaces: coworkingSpaces.filter(
         (item: any) => item.active === true
       ),
-      propertyOwner: propertyOwner,
+      property_owner: propertyOwner,
     }),
     [
       currentPosition,
